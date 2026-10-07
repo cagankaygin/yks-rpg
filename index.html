@@ -12,7 +12,7 @@
 </head>
 <body>
 <main>
-<div class="top"><div><h1>🎮 YKS RPG</h1><div class="sub">Çalışmayı oyuna çevir • V2</div></div><div class="actions" style="margin:0"><span class="pill">🔥 <span id="topStreak">0</span></span><span class="pill">🎟️ <span id="tickets">0</span></span><span class="pill">🏷️ <span id="coupons">0</span></span></div></div>
+<div class="top"><div><h1>🎮 YKS RPG</h1><div class="sub">Çalışmayı oyuna çevir • V2</div></div><div class="actions" style="margin:0"><span class="pill">🔥 <span id="topStreak">0</span></span><span class="pill">🎟️ <span id="tickets">0</span></span><span class="pill">🏷️ <span id="coupons">0</span></span><span class="pill" id="cloudPill">☁️ <span id="cloudStatus">Yerel</span></span></div></div>
 <section class="panel hero"><div class="sub">KULLANILABİLİR XP</div><div class="big" id="balance">0 XP</div><div class="bar"><div id="progress"></div></div><div class="top"><small id="next">Boş gün biletine 3.000 XP kaldı</small><span class="pill">👹 Boss <span id="bossMini">0/100</span></span></div><div class="stats" style="margin-top:15px"><div class="stat"><small>Toplam kazanılan</small><b id="earned">0</b></div><div class="stat"><small>Bu hafta</small><b id="weekly">0</b></div><div class="stat"><small>Harcanan XP</small><b id="spent">0</b></div><div class="stat"><small>En iyi seri</small><b id="bestStreak">0 gün</b></div></div></section>
 <nav class="tabs"><button data-tab="daily" class="active">📅 Günlük</button><button data-tab="rpg">⚔️ RPG</button><button data-tab="statsTab">📊 İstatistik</button><button data-tab="shopTab">🛍️ Mağaza</button><button data-tab="backupTab">💾 Yedek</button></nav>
 
@@ -41,16 +41,26 @@
 </div>
 
 <div id="backupTab" class="tab">
-<section class="panel"><h2>💾 Kayıt ve yedekleme</h2><p class="notice">Veriler tarayıcıda yerel tutulur. Yeni sürüm V1 kayıtlarını otomatik taşır; cihaz/tarayıcı değiştirirken JSON yedeği kullan. Özellikle büyük bir hafta sonunda yedek almak iyi fikir.</p><div class="actions"><button id="export">Yedeği indir (.json)</button><button id="importBtn">Yedekten geri yükle</button><input id="import" class="file" type="file" accept=".json,application/json"><button id="reset" class="danger">Tüm verileri sıfırla</button></div><small id="saved"></small></section>
+<section class="panel"><h2>💾 Kayıt ve yedekleme</h2><p class="notice">Veriler bu cihazda yerel olarak tutulur; Coach Sync bağlandığında aynı kayıt ayrıca buluta gönderilir. JSON yedeği yine ekstra güvence olarak kalır.</p><div class="actions"><button id="export">Yedeği indir (.json)</button><button id="importBtn">Yedekten geri yükle</button><input id="import" class="file" type="file" accept=".json,application/json"><button id="reset" class="danger">Tüm verileri sıfırla</button></div><small id="saved"></small></section>
+<section class="panel" id="cloudPanel"><div class="top"><h2>☁️ Coach Sync</h2><span class="pill" id="cloudRole">Öğrenci</span></div><p class="notice" id="cloudHelp">Bu cihazı bulut hesabına bağlamak için özel öğrenci kodunu bir kez gir. Kod cihazda saklanır; GitHub'a veya site kaynak koduna yazılmaz.</p><div id="ownerSetup"><input id="ownerTokenInput" type="password" placeholder="Özel öğrenci kurulum kodu" style="width:100%"><div class="actions"><button id="bindOwner" class="primary">☁️ Bu cihazı bağla</button></div></div><div class="actions"><button id="syncNow">↕️ Şimdi senkronize et</button><button id="copyCoachLink">🔗 Koç bağlantısını kopyala</button><button id="forgetOwner" class="danger">Bu cihazın bulut bağlantısını kaldır</button></div><p class="notice" id="cloudDetail">Henüz bağlanmadı.</p></section>
 <section class="panel"><h2>ℹ️ V2 kuralları</h2><p class="notice">Pazartesi: Genel TYT Deneme Analizi → TYT Coğrafya → TYT Tarih → Dil Bilgisi. Boş Gün Bileti yalnızca Pazartesi analiz tamamlandıktan sonra kullanılabilir. Günlük Mini Quest (özellik 14) bu sürümde özellikle yoktur; daha sonra birlikte tasarlanacaktır.</p></section>
 </div>
 </main>
 
 <div class="modal" id="checkinModal"><div class="modalBox"><h2>🌙 S-Rank! Gün nasıl geçti?</h2><p class="notice">Perfect Day tamamlandı. 10 saniyelik check-in yaparsan ileride hangi günlerin sana en iyi geldiğini görebilirsin.</p><div class="grid2"><div><small>Çalışma yükü</small><div class="checkinBtns" id="modalLoadBtns"></div></div><div><small>Memnuniyet</small><div class="checkinBtns" id="modalSatBtns"></div></div></div><textarea id="modalNote" placeholder="Opsiyonel kısa not..."></textarea><div class="actions"><button id="modalSave" class="primary">Kaydet</button><button id="modalLater">Sonra</button></div></div></div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 'use strict';
-const START='2026-09-28',PRICE=3000,KEY='yks-xp-final-v1',APP='yks-rpg-v2';
+const START='2026-09-28',PRICE=3000,KEY='yks-xp-final-v1',APP='yks-rpg-v3-coach-sync';
+const SUPABASE_URL='https://slyanyoxykuhqebjglkh.supabase.co';
+const SUPABASE_KEY='sb_publishable_kXs1WBuLiQtb5v_YY-zXzw_S6ILkc95';
+const CLOUD_TOKEN_KEY='yks-rpg-owner-token-v1';
+const COACH_MODE=location.hash.startsWith('#coach=');
+const URL_COACH_TOKEN=COACH_MODE?decodeURIComponent(location.hash.slice(7)):'';
+const sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
+let ownerToken=localStorage.getItem(CLOUD_TOKEN_KEY)||'';
+let cloudTimer=null,cloudBusy=false,lastCloudSavedAt=null,suppressCloud=false;
 const DAY=['Pazartesi','Salı','Çarşamba','Perşembe','Cuma','Cumartesi','Pazar'];
 const REWARDS={burger:{name:'🍔 Hamburger',price:800,coupon:true},special:{name:'Special',price:1000,coupon:false},balkaya:{name:'🍽️ Ders sonrası Balkaya',price:1200,coupon:true},gaming:{name:'🎮 Tam oyun gecesi',price:1500,coupon:true},friends:{name:'🧑‍🤝‍🧑 Arkadaşlarla uzun akşam',price:1750,coupon:true},shield:{name:'🛡️ Streak Koruyucu',price:2000,coupon:false}};
 const T={
@@ -116,7 +126,87 @@ function migrateLegacyAnalysis(){
  }
 }
 function load(){try{let x=JSON.parse(localStorage.getItem(KEY));if(x&&typeof x==='object'){state={...state,...x};state.checks=state.checks||{};state.rests=state.rests||{};state.rewardBuys=state.rewardBuys||[];state.shieldUses=state.shieldUses||{};state.chestClaims=state.chestClaims||{};state.checkins=state.checkins||{};state.claimedAchievements=state.claimedAchievements||{};state.coupons=Math.min(1,Math.max(0,Number(state.coupons)||0));state.streakRewardUnlocked=!!state.streakRewardUnlocked;state.purchases=Number(state.purchases)||0;state.refunds=Number(state.refunds)||0;state.spentRests=Number(state.spentRests)||0;state.rewardBuys=state.rewardBuys.map(x=>typeof x==='string'?{type:x,date:'',price:REWARDS[x]?.price||0,couponUsed:false}:{...x,price:Number(x.price)||REWARDS[x.type]?.price||0,couponUsed:!!x.couponUsed});migrateLegacyAnalysis();}}catch(e){alert('Kayıt okunamadı. JSON yedeğini geri yükleyebilirsin.')}}
-function save(){try{localStorage.setItem(KEY,JSON.stringify(state));$('saved').textContent='Son kayıt: '+new Date().toLocaleString('tr-TR')}catch(e){alert('Tarayıcı kayıt yapamadı. JSON yedeği indir.')}}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(state));$('saved').textContent='Son yerel kayıt: '+new Date().toLocaleString('tr-TR');if(!COACH_MODE&&!suppressCloud&&ownerToken)scheduleCloudSave()}catch(e){alert('Tarayıcı kayıt yapamadı. JSON yedeği indir.')}}
+function setCloudStatus(txt,detail){if($('cloudStatus'))$('cloudStatus').textContent=txt;if(detail&&$('cloudDetail'))$('cloudDetail').textContent=detail}
+function scheduleCloudSave(){clearTimeout(cloudTimer);setCloudStatus('Bekliyor');cloudTimer=setTimeout(()=>syncToCloud(false),500)}
+async function syncToCloud(showAlert=true){
+ if(COACH_MODE||!ownerToken||cloudBusy)return false;
+ cloudBusy=true;setCloudStatus('Kaydediliyor…');
+ try{
+   const {data,error}=await sb.rpc('save_yks_rpg_state',{raw_owner_token:ownerToken,new_state:state});
+   if(error)throw error;
+   lastCloudSavedAt=data;setCloudStatus('Kaydedildi',`Son bulut kaydı: ${new Date(data).toLocaleString('tr-TR')}`);
+   if(showAlert)alert('☁️ Bulut senkronizasyonu tamamlandı.');
+   return true;
+ }catch(e){setCloudStatus('Hata',`Bulut kaydı başarısız: ${e.message}`);if(showAlert)alert('Bulut senkronizasyonu başarısız: '+e.message);return false}
+ finally{cloudBusy=false}
+}
+function normalizeRemoteState(st){
+ if(!st||typeof st!=='object')return null;
+ return {
+  checks:st.checks||{},rests:st.rests||{},purchases:Number(st.purchases)||0,refunds:Number(st.refunds)||0,
+  spentRests:Number(st.spentRests)||0,rewardBuys:(st.rewardBuys||[]).map(x=>typeof x==='string'?{type:x,date:'',price:REWARDS[x]?.price||0,couponUsed:false}:{...x,price:Number(x.price)||REWARDS[x.type]?.price||0,couponUsed:!!x.couponUsed}),
+  shieldUses:st.shieldUses||{},chestClaims:st.chestClaims||{},checkins:st.checkins||{},claimedAchievements:st.claimedAchievements||{},
+  coupons:Math.min(1,Math.max(0,Number(st.coupons)||0)),streakRewardUnlocked:!!st.streakRewardUnlocked
+ };
+}
+async function pullOwnerCloud(){
+ if(!ownerToken)return false;
+ setCloudStatus('Yükleniyor…');
+ try{
+   const {data,error}=await sb.rpc('get_yks_rpg_owner_state',{raw_owner_token:ownerToken});
+   if(error)throw error;
+   const row=Array.isArray(data)?data[0]:data;
+   if(row&&row.state&&Object.keys(row.state).length){
+     const remote=normalizeRemoteState(row.state);if(remote){suppressCloud=true;state=remote;localStorage.setItem(KEY,JSON.stringify(state));suppressCloud=false;lastCloudSavedAt=row.updated_at;}
+   }
+   setCloudStatus('Bağlı',row?.updated_at?`Buluttaki son kayıt: ${new Date(row.updated_at).toLocaleString('tr-TR')}`:'Bulut hesabı bağlı.');
+   return true;
+ }catch(e){setCloudStatus('Bağlantı hatası',e.message);return false}
+}
+async function loadCoachCloud(){
+ setCloudStatus('Koç görünümü');
+ try{
+   const {data,error}=await sb.rpc('get_yks_rpg_coach_state',{raw_token:URL_COACH_TOKEN});
+   if(error)throw error;
+   const row=Array.isArray(data)?data[0]:data;
+   if(!row)throw Error('Koç bağlantısı geçersiz veya artık aktif değil.');
+   const remote=normalizeRemoteState(row.state);if(remote)state=remote;
+   lastCloudSavedAt=row.updated_at;setCloudStatus('Canlı',`Öğrencinin son kaydı: ${new Date(row.updated_at).toLocaleString('tr-TR')}`);
+   render();return true;
+ }catch(e){setCloudStatus('Erişim yok',e.message);if($('cloudDetail'))$('cloudDetail').textContent=e.message;return false}
+}
+function cloudUi(){
+ if(!$('cloudPanel'))return;
+ if(COACH_MODE){
+   $('cloudRole').textContent='Koç · Salt okunur';$('ownerSetup').style.display='none';$('syncNow').style.display='none';$('copyCoachLink').style.display='none';$('forgetOwner').style.display='none';
+   $('cloudHelp').textContent='Bu görünüm salt okunurdur. Öğrencinin buluta kaydettiği ilerleme gösterilir ve yaklaşık 30 saniyede bir yenilenir.';
+ }else{
+   $('cloudRole').textContent=ownerToken?'Öğrenci · Bağlı':'Öğrenci';
+   $('ownerSetup').style.display=ownerToken?'none':'block';
+   $('syncNow').disabled=!ownerToken;$('copyCoachLink').disabled=!ownerToken;$('forgetOwner').disabled=!ownerToken;
+   if(ownerToken&&$('cloudDetail').textContent==='Henüz bağlanmadı.')$('cloudDetail').textContent='Bu cihaz buluta bağlı. Görev değişiklikleri otomatik kaydedilir.';
+ }
+}
+function enforceCoachReadOnly(){
+ if(!COACH_MODE)return;
+ document.querySelectorAll('button,input,textarea,select').forEach(el=>{
+   const ok=el.matches('.tabs button,.days button,#prev,#current,#following,#date,#export');
+   if(!ok)el.disabled=true;
+ });
+ if($('date'))$('date').disabled=false;
+}
+async function bindOwnerToken(){
+ const token=$('ownerTokenInput').value.trim();if(token.length<32){alert('Kurulum kodu eksik veya hatalı.');return}
+ ownerToken=token;localStorage.setItem(CLOUD_TOKEN_KEY,ownerToken);
+ const ok=await pullOwnerCloud();
+ if(!ok){localStorage.removeItem(CLOUD_TOKEN_KEY);ownerToken='';cloudUi();alert('Kurulum kodu doğrulanamadı.');return}
+ cloudUi();render();
+ await syncToCloud(false);
+}
+async function deriveCoachToken(){const bytes=new TextEncoder().encode('coach:'+ownerToken);const hash=await crypto.subtle.digest('SHA-256',bytes);return btoa(String.fromCharCode(...new Uint8Array(hash))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'')}
+async function coachLink(){const token=await deriveCoachToken();return location.origin+location.pathname+'#coach='+encodeURIComponent(token)}
+
 function datesBetween(a,b){let out=[];for(let s=a;s<=b;s=add(s,1))out.push(s);return out}
 function trackedDates(end=today()){if(end<START)return[];return datesBetween(START,end)}
 function rewardSpent(){return state.rewardBuys.reduce((a,x)=>a+(Number(x.price)||REWARDS[x.type]?.price||0),0)}
@@ -147,7 +237,7 @@ function monthSummary(s){let [a,b]=monthBounds(s),end=b<today()?b:today();if(end
 function renderTabs(){document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tabs button').forEach(x=>x.classList.toggle('active',x===b));document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x.id===b.dataset.tab))})}
 function render(){let t=totals(),st=currentAndBestStreak(),bo=boss(),w=monday(selected);week=w;if(st.best>=30&&!state.streakRewardUnlocked){state.streakRewardUnlocked=true;save()}
  $('balance').textContent=t.balance.toLocaleString('tr-TR')+' XP';$('earned').textContent=t.earned.toLocaleString('tr-TR');$('spent').textContent=t.spent.toLocaleString('tr-TR');$('weekly').textContent=weekCore(monday(today())).p.toLocaleString('tr-TR');$('tickets').textContent=tickets();$('coupons').textContent=state.coupons;$('topStreak').textContent=st.current+' gün';$('bestStreak').textContent=st.best+' gün';$('progress').style.width=Math.min(100,Math.max(0,t.balance/PRICE*100))+'%';$('next').textContent=t.balance>=PRICE?'Yeni boş gün bileti almaya hazırsın!':`Bilete ${Math.max(0,PRICE-t.balance).toLocaleString('tr-TR')} XP kaldı`;$('bossMini').textContent=`${bo.power}/100`;
- renderDaily(w);renderRPG(w);renderStats(w);renderShop(t,st);renderCheckin();renderHistory();}
+ renderDaily(w);renderRPG(w);renderStats(w);renderShop(t,st);renderCheckin();renderHistory();cloudUi();if(COACH_MODE)setTimeout(enforceCoachReadOnly,0);}
 function renderDaily(w){$('date').value=selected;$('days').innerHTML='';for(let i=0;i<7;i++){let s=add(w,i),b=document.createElement('button');b.textContent=DAY[i].slice(0,3)+' '+parse(s).getDate();b.className=s===selected?'active':'';b.onclick=()=>{selected=s;render()};$('days').append(b)}$('daytitle').textContent=DAY[idx(selected)];$('daydate').textContent=fmt(selected);let r=dayRank(selected),pill=$('rankPill');pill.className='pill '+rankClass(r);pill.textContent=r==='REST'?'🎟️ Dinlenme Günü':`${r}-Rank · ${Math.round(completionPct(selected))}%`;$('rankbar').style.width=Math.min(100,completionPct(selected))+'%';let keys=tasks(selected),rest=isRest(selected);$('tasks').innerHTML='';for(let k of keys){let el=document.createElement('label');el.className='task'+(isDone(selected,k)?' done':'');let inp=document.createElement('input');inp.type='checkbox';inp.checked=isDone(selected,k);inp.disabled=(rest&&k!=='tyt')||selected>today();inp.onchange=()=>{let before=dayRank(selected);if(inp.checked)state.checks[checkKey(selected,k)]=true;else delete state.checks[checkKey(selected,k)];save();let after=dayRank(selected);render();if(before!=='S'&&after==='S'&&selected<=today()&&!state.checkins[selected])setTimeout(()=>openCheckinModal(),80)};let n=document.createElement('span');n.className='name';let b=document.createElement('b');b.textContent=T[k][0];let sm=document.createElement('small');sm.textContent=T[k][2];n.append(b,sm);let xp=document.createElement('span');xp.className='xp';xp.textContent='+'+T[k][1]+' XP';el.append(inp,n,xp);$('tasks').append(el)}let actual=keys.filter(k=>isDone(selected,k)&&(!rest||k==='tyt')).reduce((a,k)=>a+T[k][1],0),sbonus=r==='S'?50:0,cb=comebackDates().includes(selected)?50:0;let parts=[`${actual+sbonus+cb} XP`];if(sbonus)parts.push('S +50');if(cb)parts.push('🔥 Comeback +50');let c=taskCounts(selected);$('daynotice').innerHTML=rest?`🎟️ Boş Gün Bileti kullanıldı. Genel TYT deneme analizi XP'si korundu; Pazartesi soru analizleri ve kalan dersler muaf. Streak korunur, Rank/Perfect Day verilmez.`:`${c.done}/${c.total} görev tamamlandı · ${parts.join(' · ')}${protectedDay(selected)?' · 🛡️ Streak Koruyucu aktif':''}`;
  $('rest').disabled=rest||tickets()<1||beforeStart(selected)||idx(selected)!==0||!isDone(selected,'tyt');$('undoRest').disabled=!rest;$('useShield').disabled=shieldInventory()<1||selected>today()||rest||protectedDay(selected)||rankValue(r)>=rankValue('B');$('useShield').textContent=`🛡️ Streak Koruyucu kullan (${shieldInventory()} adet)`;$('undoShield').disabled=!protectedDay(selected);let wp=weekCore(w);$('weekprogress').textContent=`${wp.completed}/${wp.total} görev · ${wp.p.toLocaleString('tr-TR')} XP`;$('weekbar').style.width=(wp.total?wp.completed/wp.total*100:0)+'%'}
 function renderRPG(w){let q=weekQuestStatus(w),ce=chestEligibility(w),wrap=$('quests');wrap.innerHTML='';q.qs.forEach(x=>{let d=document.createElement('div');d.className='quest'+(x.cur>=x.target?' done':'');d.innerHTML=`<div class="top"><div><b>${x.name}</b><div class="notice">${x.desc}</div></div><b>${Math.min(x.cur,x.target)}${x.unit||''}/${x.target}${x.unit||''}</b></div><div class="bar"><div style="width:${Math.min(100,x.cur/x.target*100)}%"></div></div>`;wrap.append(d)});$('chestState').textContent=ce.claimed?`✅ ${ce.tier} açıldı`:ce.tier?`🎁 ${ce.tier} hazır`:`${ce.done}/3 Quest`;$('claimChest').disabled=ce.claimed||!ce.tier;$('claimChest').textContent=ce.claimed?`${ce.tier} Sandık · +${ce.reward} XP`:ce.tier?`🎁 ${ce.tier} Sandığı aç`:'🎁 Sandık kilitli';$('chestNote').textContent=ce.claimed?`Bu haftanın ${ce.tier} sandığından +${ce.reward} XP kazandın.`:ce.done===2&&today()<=add(w,6)?'Bronze hakkı oluştu; hafta bitene kadar 3. görevi de tamamlarsan Gold olur. Bronze hafta bittikten sonra açılır.':ce.done<2?'En az 2 Weekly Quest tamamla.':'Sandık hazır.';
@@ -183,7 +273,16 @@ $('prev').onclick=()=>{selected=add(monday(selected),-7);if(selected<START)selec
 $('export').onclick=()=>{let blob=new Blob([JSON.stringify({app:APP,version:2,exported:new Date().toISOString(),state},null,2)],{type:'application/json'}),a=document.createElement('a'),u=URL.createObjectURL(blob);a.href=u;a.download='yks-rpg-v2-yedek-'+today()+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(u),1000)};
 $('importBtn').onclick=()=>$('import').click();$('import').onchange=async e=>{let f=e.target.files[0];if(!f)return;try{let obj=JSON.parse(await f.text()),st=obj.state;if(!st||typeof st.checks!=='object'||typeof st.rests!=='object')throw Error('Uyumsuz yedek');if(confirm('Mevcut kayıtların yerine bu yedek yüklensin mi? V1 yedekleri de otomatik V2 yapısına taşınır.')){state={checks:st.checks||{},rests:st.rests||{},purchases:Number(st.purchases)||0,refunds:Number(st.refunds)||0,spentRests:Number(st.spentRests)||0,rewardBuys:st.rewardBuys||[],shieldUses:st.shieldUses||{},chestClaims:st.chestClaims||{},checkins:st.checkins||{},claimedAchievements:st.claimedAchievements||{},coupons:Math.min(1,Math.max(0,Number(st.coupons)||0)),streakRewardUnlocked:!!st.streakRewardUnlocked};state.rewardBuys=state.rewardBuys.map(x=>typeof x==='string'?{type:x,date:'',price:REWARDS[x]?.price||0,couponUsed:false}:{...x,price:Number(x.price)||REWARDS[x.type]?.price||0,couponUsed:!!x.couponUsed});migrateLegacyAnalysis();save();render()}}catch(err){alert('Yedek yüklenemedi: '+err.message)}e.target.value=''};
 $('reset').onclick=()=>{if(confirm('Tüm görev, XP, mağaza, quest, check-in ve RPG kayıtları kalıcı olarak sıfırlansın mı? Önce yedek indirmeni öneririm.')&&confirm('Son onay: bütün kayıtları sıfırla?')){state={checks:{},rests:{},purchases:0,refunds:0,spentRests:0,rewardBuys:[],shieldUses:{},chestClaims:{},checkins:{},claimedAchievements:{},coupons:0,streakRewardUnlocked:false};save();render()}};
-renderTabs();load();selected=today()<START?START:today();setCheckinButtons();render();
+$('bindOwner').onclick=bindOwnerToken;
+$('syncNow').onclick=async()=>{if(ownerToken){await syncToCloud(true);render()}};
+$('copyCoachLink').onclick=async()=>{if(!ownerToken)return;const link=await coachLink();try{await navigator.clipboard.writeText(link);alert('🔗 Koç bağlantısı kopyalandı. Bu bağlantı yalnızca görüntüleme yetkisi verir.')}catch(e){prompt('Koç bağlantısını kopyala:',link)}};
+$('forgetOwner').onclick=()=>{if(confirm('Bu cihazın bulut bağlantısı kaldırılsın mı? Buluttaki veriler silinmez.')){localStorage.removeItem(CLOUD_TOKEN_KEY);ownerToken='';setCloudStatus('Yerel','Bu cihaz artık buluta bağlı değil.');cloudUi();render()}};
+async function init(){
+ renderTabs();load();selected=today()<START?START:today();setCheckinButtons();cloudUi();render();
+ if(COACH_MODE){await loadCoachCloud();setInterval(loadCoachCloud,30000)}
+ else if(ownerToken){await pullOwnerCloud();render()}
+}
+init();
 </script>
 </body>
 </html>
