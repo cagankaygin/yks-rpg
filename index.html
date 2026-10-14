@@ -4,22 +4,25 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#0e1220">
-<title>YKS RPG V3.2</title>
+<title>YKS RPG V3.3</title>
 <style>
 :root{color-scheme:dark;--bg:#0e1220;--panel:#171d2d;--panel2:#111725;--line:#30394f;--text:#f3f5ff;--muted:#aab5cf;--green:#68e3ad;--blue:#86b9ff;--gold:#ffd071;--red:#ff8c93;--violet:#bc9cff}
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#18223a 0,#0e1220 38%);color:var(--text);font:15px system-ui,-apple-system,Segoe UI,sans-serif}main{max-width:920px;margin:auto;padding:18px 14px 70px}h1{font-size:27px;margin:7px 0}h2{font-size:19px;margin:0 0 12px}h3{font-size:16px;margin:12px 0 8px}.sub,small,.muted{color:var(--muted)}.panel{background:rgba(23,29,45,.96);border:1px solid var(--line);border-radius:18px;padding:17px;margin:13px 0;box-shadow:0 8px 28px rgba(0,0,0,.12)}.hero{background:linear-gradient(125deg,#213a40,#20233f)}.top{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}.big{font-size:35px;font-weight:850;color:var(--green)}.pill{display:inline-flex;align-items:center;gap:5px;border:1px solid var(--line);border-radius:30px;padding:6px 10px;color:var(--gold);font-weight:750;background:rgba(0,0,0,.09)}.pill.rankS{color:#ffe487;border-color:#927b2c}.pill.rankA{color:#8ee8bd;border-color:#3c8063}.pill.rankB{color:#8cc5ff;border-color:#3f6e9d}.pill.rankC{color:#e4b6ff;border-color:#76558c}.pill.rankD{color:#ff9da4;border-color:#8c4a50}.bar{height:11px;border-radius:12px;background:#343d54;overflow:hidden;margin:10px 0}.bar>div{height:100%;background:linear-gradient(90deg,var(--green),#88f0cb);transition:width .2s}.goldbar>div{background:linear-gradient(90deg,#d8a740,#ffe083)}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}.stat{background:#111725;border:1px solid rgba(255,255,255,.04);border-radius:12px;padding:10px}.stat b{display:block;font-size:18px;margin-top:4px}.days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px;margin:13px 0}.days button{padding:11px 2px;font-size:12px}.days button.active{background:#426a67;border-color:var(--green)}button,input,select,textarea{font:inherit}button{background:#273249;color:var(--text);border:1px solid #46536f;border-radius:11px;padding:10px 13px;cursor:pointer}button:hover:not(:disabled){filter:brightness(1.08)}button:disabled{opacity:.42;cursor:not-allowed}button.primary{background:#216c52;border-color:#49ba89}button.gold{background:#65501f;border-color:#a88936}button.danger{background:#60383e}button.ghost{background:transparent}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid var(--green)}.task{display:flex;gap:11px;align-items:center;padding:13px 0;border-bottom:1px solid var(--line)}.task:last-child{border:0}.taskGroup{margin:14px 0 2px;padding:9px 11px;border-radius:11px;background:#111725;border:1px solid var(--line);color:var(--gold);font-weight:800}.task input{width:22px;height:22px;accent-color:#67dfab;flex:none}.task .name{flex:1}.task .name b{display:block}.task .name small{display:block;margin-top:4px}.task .xp{font-weight:780;color:var(--green);white-space:nowrap}.done .name b{text-decoration:line-through;color:var(--muted)}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.notice{font-size:13px;line-height:1.5;color:var(--muted)}.warning{color:var(--gold)}.success{color:var(--green)}.history{display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding:10px 0;gap:8px}.history:last-child{border:0}input[type=date],select,textarea{background:#111725;color:white;border:1px solid var(--line);padding:9px;border-radius:9px;max-width:100%}textarea{width:100%;min-height:70px;resize:vertical}label{cursor:pointer}.file{display:none}.badge{color:var(--green);font-weight:750}.tabs{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;position:sticky;top:0;z-index:20;background:rgba(14,18,32,.95);backdrop-filter:blur(8px);padding:8px 0}.tabs button.active{background:#345b5a;border-color:var(--green)}.tab{display:none}.tab.active{display:block}.quest,.achievement,.skill{background:#111725;border:1px solid var(--line);border-radius:14px;padding:12px;margin:9px 0}.quest .top,.skill .top{align-items:flex-start}.quest.done,.achievement.done{border-color:#4d9b76}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.rankGrid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;text-align:center}.rankBox{background:#111725;border-radius:12px;padding:10px 4px}.rankBox b{font-size:20px;display:block}.shopItem{display:flex;justify-content:space-between;gap:10px;align-items:center;background:#111725;border:1px solid var(--line);border-radius:14px;padding:12px;margin:8px 0}.shopItem .price{color:var(--green);font-weight:800}.couponPrice{text-decoration:line-through;color:var(--muted);font-size:12px;margin-right:6px}.checkinBtns{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}.checkinBtns button.selected{background:#38655d;border-color:var(--green)}.modal{position:fixed;inset:0;background:rgba(5,8,14,.72);display:none;align-items:center;justify-content:center;z-index:100;padding:18px}.modal.show{display:flex}.modalBox{width:min(520px,100%);background:#171d2d;border:1px solid var(--line);border-radius:20px;padding:20px;box-shadow:0 30px 80px rgba(0,0,0,.45)}.modalBox h2{margin-top:0}.divider{height:1px;background:var(--line);margin:15px 0}.tiny{font-size:12px}.nowrap{white-space:nowrap}@media(max-width:680px){.stats{grid-template-columns:repeat(2,1fr)}.grid2,.grid3{grid-template-columns:1fr}.tabs{grid-template-columns:repeat(5,1fr)}.tabs button{font-size:11px;padding:9px 2px}.big{font-size:30px}.rankGrid{grid-template-columns:repeat(5,1fr)}}@media(max-width:480px){.days button{font-size:10px;padding:10px 1px}.task .xp{font-size:13px}.shopItem{align-items:flex-start;flex-direction:column}.shopItem button{width:100%}}@media print{button,.tabs,.actions,.days{display:none!important}body{background:white;color:black}.panel{background:white;border-color:#999;box-shadow:none}.tab{display:block}}
 
 .tabs{grid-template-columns:repeat(6,minmax(0,1fr))}.tabs button{min-width:0}.formGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.formGrid label{display:flex;flex-direction:column;gap:6px}input[type=number],input[type=text]{background:#111725;color:var(--text);border:1px solid var(--line);border-radius:9px;padding:9px;min-width:0;width:100%}.examTable{width:100%;border-collapse:collapse}.examTable th,.examTable td{text-align:left;padding:8px 4px;border-bottom:1px solid var(--line)}.examTable input{max-width:90px}.chart{width:100%;height:auto;display:block}.swapTag{color:var(--gold);font-weight:600}.examCard{background:#111725;border:1px solid var(--line);border-radius:14px;padding:14px;margin-top:12px;overflow-wrap:anywhere}#countdown{margin-top:14px;color:var(--gold);font-weight:800}#mockNote{min-height:60px}[hidden]{display:none!important}@media(max-width:680px){.tabs{grid-template-columns:repeat(3,minmax(0,1fr))}.tabs button{font-size:12px;padding:10px 3px}.formGrid{grid-template-columns:1fr}.examTable{font-size:12px}.examTable th,.examTable td{padding:8px 2px}.examTable input{padding:8px 4px}.examTable th:first-child{width:30%}}
+
+.tabs{grid-template-columns:repeat(7,minmax(0,1fr))}.plannerGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.planCard,.radarCard{background:#111725;border:1px solid var(--line);border-radius:14px;padding:13px;margin:8px 0}.planCard h3{margin-top:0}.planRow{display:flex;align-items:center;gap:5px;padding:7px 0;flex-wrap:wrap}.planRow .planName{flex:1;min-width:120px}.planRow button{padding:5px 9px}.planAdd{display:flex;gap:6px;margin-top:10px}.planAdd select{flex:1;min-width:0}.errorInputs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:12px 0}.errorInputs label{display:flex;flex-direction:column;gap:5px;font-size:12px}.examTable .errorInputs input{max-width:none;width:100%}.errorDistribution{display:grid;gap:8px;margin:12px 0}.errorBar{height:7px;border-radius:6px;background:#30394f;margin-top:4px}.errorBar span{display:block;height:100%;border-radius:6px;background:var(--green)}.radarTag{color:var(--gold);font-size:12px}.errorSubject{border-top:1px solid var(--line);padding:10px 0}.errorSubject h3{margin:3px 0}.viewControl{max-width:100%}@media(max-width:800px){.tabs{grid-template-columns:repeat(4,minmax(0,1fr))}}@media(max-width:680px){.tabs{grid-template-columns:repeat(3,minmax(0,1fr))}.plannerGrid{grid-template-columns:1fr}.errorInputs{grid-template-columns:repeat(2,minmax(0,1fr))}}
 </style>
 </head>
 <body>
 <main>
-<div class="top"><div><h1>🎮 YKS RPG V3.2</h1><div class="sub">YKS RPG V3.2 • Çalışmayı oyuna çevir</div></div><div class="actions" style="margin:0"><span class="pill">🔥 <span id="topStreak">0</span></span><span class="pill">🎟️ <span id="tickets">0</span></span><span class="pill">🏷️ <span id="coupons">0</span></span><span class="pill" id="cloudPill">☁️ <span id="cloudStatus">Yerel</span></span></div></div>
+<div class="top"><div><h1>🎮 YKS RPG V3.3</h1><div class="sub">YKS RPG V3.3 • Çalışmayı oyuna çevir</div></div><div class="actions" style="margin:0"><span class="pill">🔥 <span id="topStreak">0</span></span><span class="pill">🎟️ <span id="tickets">0</span></span><span class="pill">🏷️ <span id="coupons">0</span></span><span class="pill" id="cloudPill">☁️ <span id="cloudStatus">Yerel</span></span></div></div>
 <button id="countdown" class="ghost viewControl" type="button">🎯 YKS tarihini ayarla</button>
 <section class="panel hero"><div class="sub">KULLANILABİLİR XP</div><div class="big" id="balance">0 XP</div><div class="bar"><div id="progress"></div></div><div class="top"><small id="next">Boş gün biletine 3.000 XP kaldı</small><span class="pill">👹 Boss <span id="bossMini">0/100</span></span></div><div class="stats" style="margin-top:15px"><div class="stat"><small>Toplam kazanılan</small><b id="earned">0</b></div><div class="stat"><small>Bu hafta</small><b id="weekly">0</b></div><div class="stat"><small>Harcanan XP</small><b id="spent">0</b></div><div class="stat"><small>En iyi seri</small><b id="bestStreak">0 gün</b></div></div></section>
-<nav class="tabs"><button data-tab="daily" class="active">📅 Günlük</button><button data-tab="rpg">⚔️ RPG</button><button data-tab="statsTab">📊 İstatistik</button><button data-tab="shopTab">🛍️ Mağaza</button><button data-tab="mockTab">📝 Denemeler</button><button data-tab="backupTab">💾 Yedek / Ayarlar</button></nav>
+<nav class="tabs"><button data-tab="daily" class="active">📅 Günlük</button><button data-tab="rpg">⚔️ RPG</button><button data-tab="statsTab">📊 İstatistik</button><button data-tab="shopTab">🛍️ Mağaza</button><button data-tab="mockTab">📝 Denemeler</button><button data-tab="planTab">🗓️ Plan</button><button data-tab="backupTab">💾 Yedek / Ayarlar</button></nav>
 
 <div id="daily" class="tab active">
+<section class="panel"><h2>🎯 Ders Radarı</h2><p class="notice">Çalışma kayıtları ve deneme netlerinin özeti. XP / Rank cezası vermez, programı otomatik değiştirmez.</p><div id="studyRadar"></div></section>
 <section class="panel"><div class="top"><h2>📅 Çalışma günü</h2><input type="date" id="date"></div><div class="days" id="days"></div><div class="top"><div><h2 id="daytitle"></h2><small id="daydate"></small></div><span class="pill" id="rankPill">D-Rank</span></div><div class="bar"><div id="rankbar"></div></div><div id="tasks"></div><div class="actions"><button id="openSwap" type="button">↔ Ders Değiştir</button><button id="undoSwap" type="button">Değişimi geri al</button></div><p id="swapStatus" class="notice"></p><div id="swapEditor" hidden><div class="formGrid"><label>Çıkarılacak ders<select id="swapOut"></select></label><label>Yerine gelecek ders<select id="swapIn"></select></label></div><p class="notice">Günde bir slot değiştirilebilir. Aynı değişimi düzenleyebilir veya geri alabilirsin. Rank ağırlığı orijinal dersin XP değerini korur.</p><div class="actions"><button id="saveSwap" class="primary">Değişimi onayla</button><button id="cancelSwap">Vazgeç</button></div></div><div class="actions"><button id="rest" class="danger">🎟️ Analiz sonrası Boş Gün Bileti kullan</button><button id="undoRest">Dinlenme gününü geri al</button><button id="useShield">🛡️ Streak Koruyucu kullan</button><button id="undoShield">Koruyucuyu kaldır</button></div><p class="notice" id="daynotice"></p></section>
 <section class="panel" id="extraPanel" hidden><h2>➕ Ek Çalışma</h2><p class="notice">İsteğe bağlı ikinci oturumlar. Normal görevi yapmadan da işaretleyebilirsin. XP, Skill Tree, Boss ve haftalık görevlere katkı sağlar; günlük Rank oranını etkilemez.</p><div id="extraTasks"></div><p class="notice" id="extraNotice"></p></section>
 <section class="panel"><div class="top"><h2>🌙 Gün sonu check-in</h2><span id="checkinSaved" class="badge"></span></div><p class="notice">XP vermez. Sadece programın seni nasıl etkilediğini görmek için 10 saniyelik kayıt.</p><div class="grid2"><div><small>Çalışma yükü</small><div class="checkinBtns" id="loadBtns"></div></div><div><small>Çalışmandan memnuniyet</small><div class="checkinBtns" id="satBtns"></div></div></div><textarea id="checkinNote" placeholder="İstersen tek cümle not bırak..."></textarea><div class="actions"><button id="saveCheckin" class="primary">Check-in'i kaydet</button><button id="clearCheckin">Kaydı sil</button></div></section>
@@ -37,6 +40,7 @@
 <section class="panel"><div class="top"><h2>📊 Bu hafta</h2><span id="weekLabel" class="sub"></span></div><div class="stats" id="weekStats"></div><div class="divider"></div><div class="rankGrid" id="rankStats"></div></section>
 <section class="panel"><div class="top"><h2>🗓️ Aylık özet</h2><span id="monthLabel" class="sub"></span></div><div class="stats" id="monthStats"></div><div class="divider"></div><div id="monthSessions"></div><p id="checkinStats" class="notice"></p></section>
 <section class="panel"><h2>📈 Uzun dönem ilerleme</h2><p class="notice">Bugüne kadar kazanılan XP ve tamamlanan çalışmalar. Plan uyumu ana görevlerin orijinal XP ağırlığıyla hesaplanır; ek çalışmalar oranı etkilemez.</p><div class="stats" id="longProgress"></div></section>
+<section class="panel"><h2>🧠 Hata Profili</h2><div id="errorProfile"></div></section>
 <section class="panel"><h2>📈 Haftalık geçmiş</h2><div class="actions"><button id="prev">← Önceki hafta</button><button id="current">Bu hafta</button><button id="following">Sonraki hafta →</button></div><div id="history"></div></section>
 </div>
 
@@ -48,13 +52,17 @@
 <div id="mockTab" class="tab">
 <section class="panel"><div class="top"><h2>📝 Deneme takibi</h2><label>Görünüm <select id="mockFilter" class="viewControl"><option value="TYT">TYT</option><option value="AYT">AYT SAY</option></select></label></div><div class="stats" id="mockSummary"></div><div class="actions"><label>Grafik <select id="mockTrend" class="viewControl"></select></label></div><div id="mockChart"></div><p class="notice" id="mockChange"></p></section>
 <section class="panel" id="mockFormPanel"><h2 id="mockFormTitle">Yeni deneme</h2><form id="mockForm"><div class="formGrid"><label>Tarih<input id="mockDate" type="date" required></label><label>Tür<select id="mockType"><option value="TYT">TYT</option><option value="AYT">AYT SAY</option></select></label><label>Deneme adı / yayınevi<input id="mockName" type="text" maxlength="160" placeholder="İsteğe bağlı"></label><label>Süre (dakika)<input id="mockDuration" type="number" min="1" max="1440" step="1" placeholder="İsteğe bağlı"></label></div><table class="examTable"><thead><tr><th>Ders</th><th>Doğru</th><th>Yanlış</th><th>Boş</th><th>Net</th></tr></thead><tbody id="mockScores"></tbody></table><p><b id="mockTotal">Toplam net: 0</b></p><label>Kısa not<textarea id="mockNote" maxlength="2000" placeholder="İsteğe bağlı"></textarea></label><p id="mockError" role="alert" class="warning"></p><div class="actions"><button type="submit" class="primary">Denemeyi kaydet</button><button id="cancelMock" type="button">Yeni kayıt / Vazgeç</button></div></form></section>
+<section class="panel"><h2>🧠 Hata Analizi</h2><div class="actions"><label>Aralık <select id="errorWindow" class="viewControl"><option value="5">Son 5 deneme</option><option value="10">Son 10 deneme</option></select></label><label>Ders <select id="errorSubject" class="viewControl"></select></label></div><p class="notice">Üstte seçilen sınav türündeki kayıtların dağılımıdır; kesin neden veya başarı tahmini değildir. Yüzdeler sınıflandırılmamış kayıpları da içerir.</p><div id="errorAnalysis"></div></section>
 <section class="panel"><h2>Deneme kayıtları</h2><div id="mockList"></div></section>
+</div>
+<div id="planTab" class="tab">
+<section class="panel"><div class="top"><h2>🗓️ Haftalık plan</h2><label>Hafta <input id="planWeek" class="viewControl" type="date"></label></div><div class="actions"><button id="planPrev" class="viewControl">← Önceki hafta</button><button id="planCurrent" class="viewControl">Bu hafta</button><button id="planNext" class="viewControl">Sonraki hafta →</button><button id="resetPlanWeek">Haftayı varsayılana sıfırla</button></div><p class="notice">Paragraf ve Problem her gün sabittir. Bugünden önceki veya çalışma / swap / bilet / koruyucu kaydı olan günler kilitlidir. Haftayı sıfırlamak kilitli günleri değiştirmez. İkinci oturum için Ek Çalışma veya günlük Swap kullan.</p><div class="stats" id="planSummary"></div><div class="plannerGrid" id="planDays"></div></section>
 </div>
 <div id="backupTab" class="tab">
 <section class="panel" id="settingsPanel"><h2>🎯 YKS tarihi</h2><p class="notice">Sınav tarihini kendin belirle. Denemeler ve bu ayar diğer kayıtlarınla birlikte yedeklenir ve senkronize edilir.</p><label>YKS sınav tarihi <input type="date" id="examDate"></label><div class="actions"><button id="saveSettings" class="primary">Tarihi kaydet</button><button id="clearExamDate">Tarihi kaldır</button></div><p class="notice" id="settingsStatus"></p></section>
 <section class="panel"><h2>💾 Kayıt ve yedekleme</h2><p class="notice">Veriler bu cihazda yerel olarak tutulur; Coach Sync bağlandığında aynı kayıt ayrıca buluta gönderilir. JSON yedeği yine ekstra güvence olarak kalır.</p><div class="actions"><button id="export">Yedeği indir (.json)</button><button id="importBtn">Yedekten geri yükle</button><input id="import" class="file" type="file" accept=".json,application/json"><button id="reset" class="danger">Tüm verileri sıfırla</button></div><small id="saved"></small></section>
 <section class="panel" id="cloudPanel"><div class="top"><h2>☁️ Coach Sync</h2><span class="pill" id="cloudRole">Öğrenci</span></div><p class="notice" id="cloudHelp">Bu cihazı bulut hesabına bağlamak için özel öğrenci kodunu bir kez gir. Kod cihazda saklanır; GitHub'a veya site kaynak koduna yazılmaz.</p><div id="ownerSetup"><input id="ownerTokenInput" type="password" placeholder="Özel öğrenci kurulum kodu" style="width:100%"><div class="actions"><button id="bindOwner" class="primary">☁️ Bu cihazı bağla</button></div></div><div class="actions"><button id="syncNow">↕️ Şimdi senkronize et</button><button id="copyCoachLink">🔗 Koç bağlantısını kopyala</button><button id="forgetOwner" class="danger">Bu cihazın bulut bağlantısını kaldır</button></div><p class="notice" id="cloudDetail">Henüz bağlanmadı.</p></section>
-<section class="panel"><h2>ℹ️ V3.2 kuralları</h2><p class="notice">14 Ekim 2026 itibarıyla her gün önce Paragraf (+40 XP) ve Problem (+60 XP), ardından temel dersler gelir. Analiz ve rutin görevleri yalnızca geçmiş tarihlerde korunur. Ek çalışmalar isteğe bağlıdır; günlük Rank ve streak hesabında ana görevler esas alınır. 14 Ekim sonrası Rank, görevlerin XP ağırlığına göre hesaplanır. Ders değişiminde orijinal slotun Rank ağırlığı korunur; kazanılan XP gelen derse aittir. Pazartesi Boş Gün Bileti yeni planda analiz ön koşulu olmadan kullanılabilir; eski tarihlerde eski kural geçerlidir. Günlük Mini Quest (özellik 14) bu sürümde özellikle yoktur; daha sonra birlikte tasarlanacaktır.</p></section>
+<section class="panel"><h2>ℹ️ V3.3 kuralları</h2><p class="notice">14 Ekim 2026 itibarıyla her gün önce Paragraf (+40 XP) ve Problem (+60 XP), ardından temel dersler gelir. Analiz ve rutin görevleri yalnızca geçmiş tarihlerde korunur. Ek çalışmalar isteğe bağlıdır; günlük Rank ve streak hesabında ana görevler esas alınır. 14 Ekim sonrası Rank, görevlerin XP ağırlığına göre hesaplanır. Ders değişiminde orijinal slotun Rank ağırlığı korunur; kazanılan XP gelen derse aittir. Pazartesi Boş Gün Bileti yeni planda analiz ön koşulu olmadan kullanılabilir; eski tarihlerde eski kural geçerlidir. Günlük Mini Quest (özellik 14) bu sürümde özellikle yoktur; daha sonra birlikte tasarlanacaktır.</p></section>
 </div>
 </main>
 
@@ -111,7 +119,7 @@ const EXTRA_NAMES={paragraph:'Paragraf',problem:'Problem',mat:'TYT Matematik',ge
 // Keep the historical plan and task IDs intact; the new plan applies only from FLOW_START.
 const STUDY_PLAN=PLAN.map(keys=>['paragraph','problem',...keys.filter(k=>k!=='tyt'&&k!=='r1'&&k!=='r2'&&!ANALYSIS_KEYS.includes(k))]);
 const SKILLS={geo:{name:'📐 Geometri',sources:{geo:120,anGeo:60}},physics:{name:'⚛️ Fizik',sources:{physics:110,anPhysics:60}},chem:{name:'🧪 Kimya',sources:{chem:100,anChem:60}},bio:{name:'🧬 Biyoloji',sources:{bio:90,anBio:60}},problem:{name:'🧩 Problem',sources:{r1:60,r2:60,anProblem:60,problem:60}},paragraph:{name:'📖 Paragraf',sources:{paragraph:40}},mat:{name:'🔢 TYT Matematik',sources:{mat:120,anMath:90}},tr:{name:'📝 Türkçe',sources:{tr:80}},grammar:{name:'✍️ Dil Bilgisi',sources:{grammar:90,anGrammar:40}},geoTYT:{name:'🌍 TYT Coğrafya',sources:{geoTYT:80,anGeoTYT:40}},hist:{name:'📜 TYT Tarih',sources:{hist:80,anHist:40}}};
-function emptyState(){return {checks:{},rests:{},purchases:0,refunds:0,spentRests:0,rewardBuys:[],shieldUses:{},chestClaims:{},checkins:{},claimedAchievements:{},coupons:0,streakRewardUnlocked:false,swaps:{},mockExams:[],settings:{examDate:""}}}
+function emptyState(){return {checks:{},rests:{},purchases:0,refunds:0,spentRests:0,rewardBuys:[],shieldUses:{},chestClaims:{},checkins:{},claimedAchievements:{},coupons:0,streakRewardUnlocked:false,swaps:{},mockExams:[],settings:{examDate:""},weekPlans:{}}}
 let state=emptyState();
 let selected=START,week=START,checkinLoad=0,checkinSat=0,modalLoad=0,modalSat=0;
 const $=id=>document.getElementById(id);
@@ -125,7 +133,12 @@ function validDay(s){return typeof s==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(s)&&
 function beforeStart(s){return s<START}
 function idx(s){return (parse(s).getDay()+6)%7}
 const SPECIAL_PLAN={'2026-10-05':['tyt','geo','physics','chem','bio']};
-function plannedTasks(s){return beforeStart(s)?[]:s>=FLOW_START?STUDY_PLAN[idx(s)]:(SPECIAL_PLAN[s]||PLAN[idx(s)])}
+function defaultTasks(s){return beforeStart(s)?[]:s>=FLOW_START?STUDY_PLAN[idx(s)]:(SPECIAL_PLAN[s]||PLAN[idx(s)])}
+function plannedTasks(s){
+ if(s<FLOW_START)return defaultTasks(s);
+ const custom=state.weekPlans?.[monday(s)]?.[s];
+ return Array.isArray(custom)&&custom.every(k=>SWAP_KEYS.includes(k))&&new Set(custom).size===custom.length?['paragraph','problem',...custom]:defaultTasks(s);
+}
 const SWAP_KEYS=EXTRA_KEYS.filter(k=>!['paragraph','problem'].includes(k));
 function currentSwap(s){const swap=state.swaps?.[s];return s>=FLOW_START&&swap&&SWAP_KEYS.includes(swap.outKey)&&SWAP_KEYS.includes(swap.inKey)&&swap.outKey!==swap.inKey&&plannedTasks(s).includes(swap.outKey)?swap:null}
 function tasks(s){return plannedTasks(s)}
@@ -185,6 +198,7 @@ function normalizeRemoteState(st){
   coupons:Math.min(1,Math.max(0,Number(st.coupons)||0)),streakRewardUnlocked:!!st.streakRewardUnlocked,
   swaps:st.swaps&&typeof st.swaps==='object'&&!Array.isArray(st.swaps)?st.swaps:{},
   mockExams:Array.isArray(st.mockExams)?st.mockExams:[],
+  weekPlans:st.weekPlans&&typeof st.weekPlans==='object'&&!Array.isArray(st.weekPlans)?st.weekPlans:{},
   settings:{...(st.settings&&typeof st.settings==='object'?st.settings:{}),examDate:typeof st.settings?.examDate==='string'&&validDay(st.settings.examDate)?st.settings.examDate:''}
  };
 }
@@ -280,7 +294,7 @@ function monthSummary(s){let [a,b]=monthBounds(s),end=b<today()?b:today();if(end
 function renderTabs(){document.querySelectorAll('.tabs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.tabs button').forEach(x=>x.classList.toggle('active',x===b));document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x.id===b.dataset.tab))})}
 function render(){let t=totals(),st=currentAndBestStreak(),bo=boss(),w=monday(selected);week=w;if(!COACH_MODE&&st.best>=30&&!state.streakRewardUnlocked){state.streakRewardUnlocked=true;save()}
  $('balance').textContent=t.balance.toLocaleString('tr-TR')+' XP';$('earned').textContent=t.earned.toLocaleString('tr-TR');$('spent').textContent=t.spent.toLocaleString('tr-TR');$('weekly').textContent=weekCore(monday(today())).p.toLocaleString('tr-TR');$('tickets').textContent=tickets();$('coupons').textContent=state.coupons;$('topStreak').textContent=st.current+' gün';$('bestStreak').textContent=st.best+' gün';$('progress').style.width=Math.min(100,Math.max(0,t.balance/PRICE*100))+'%';$('next').textContent=t.balance>=PRICE?'Yeni boş gün bileti almaya hazırsın!':`Bilete ${Math.max(0,PRICE-t.balance).toLocaleString('tr-TR')} XP kaldı`;$('bossMini').textContent=`${bo.power}/100`;
- renderDaily(w);renderSwap();renderExtra();renderCountdown();renderLongProgress();renderMocks();renderRPG(w);renderStats(w);renderShop(t,st);renderCheckin();renderHistory();cloudUi();if(COACH_MODE)setTimeout(enforceCoachReadOnly,0);}
+ renderDaily(w);renderRadar();renderPlanner();renderErrorProfile();renderSwap();renderExtra();renderCountdown();renderLongProgress();renderMocks();renderRPG(w);renderStats(w);renderShop(t,st);renderCheckin();renderHistory();cloudUi();if(COACH_MODE)setTimeout(enforceCoachReadOnly,0);}
 function renderDaily(w){$('date').value=selected;$('days').innerHTML='';for(let i=0;i<7;i++){let s=add(w,i),b=document.createElement('button');b.textContent=DAY[i].slice(0,3)+' '+parse(s).getDate();b.className=s===selected?'active':'';b.onclick=()=>{selected=s;render()};$('days').append(b)}$('daytitle').textContent=DAY[idx(selected)];$('daydate').textContent=fmt(selected);let r=dayRank(selected),pill=$('rankPill');pill.className='pill '+rankClass(r);pill.textContent=r==='REST'?'🎟️ Dinlenme Günü':`${r}-Rank · ${formatNumber(completionPct(selected),1)}%`;$('rankbar').style.width=Math.min(100,completionPct(selected))+'%';let keys=tasks(selected),rest=isRest(selected);$('tasks').innerHTML='';for(let k of keys){let el=document.createElement('label');el.className='task'+(isDone(selected,k)?' done':'');let inp=document.createElement('input');inp.type='checkbox';inp.checked=isDone(selected,k);inp.disabled=COACH_MODE||(rest&&k!=='tyt')||selected>today();inp.onchange=()=>{if(COACH_MODE||selected>today())return;let before=dayRank(selected);if(inp.checked)state.checks[checkKey(selected,k)]=true;else delete state.checks[checkKey(selected,k)];save();let after=dayRank(selected);render();if(before!=='S'&&after==='S'&&selected<=today()&&!state.checkins[selected])setTimeout(()=>openCheckinModal(),80)};let n=document.createElement('span');n.className='name';let b=document.createElement('b');b.textContent=taskDef(selected,k)[0];let sm=document.createElement('small');sm.textContent=taskDef(selected,k)[2];n.append(b,sm);const swap=currentSwap(selected);if(swap?.outKey===k){const tag=document.createElement('small');tag.className='swapTag';tag.textContent='↔ '+EXTRA_NAMES[k]+' yerine '+EXTRA_NAMES[swap.inKey]+' · Rank ağırlığı '+T[k][1];n.append(tag)}let xp=document.createElement('span');xp.className='xp';xp.textContent='+'+taskXP(selected,k)+' XP';el.append(inp,n,xp);$('tasks').append(el)}let actual=extraXP(selected)+keys.filter(k=>isDone(selected,k)&&(!rest||k==='tyt')).reduce((a,k)=>a+taskXP(selected,k),0),sbonus=r==='S'?50:0,cb=comebackDates().includes(selected)?50:0;let parts=[`${actual+sbonus+cb} XP`];if(sbonus)parts.push('S +50');if(cb)parts.push('🔥 Comeback +50');let c=taskCounts(selected);$('daynotice').innerHTML=rest?(selected>=FLOW_START?`🎟️ Boş Gün Bileti kullanıldı. Ana görevlerden muafsın; streak korunur. Ek çalışmalar: +${extraXP(selected)} XP.`:`🎟️ Boş Gün Bileti kullanıldı. Genel TYT deneme analizi XP'si korundu; Pazartesi soru analizleri ve kalan dersler muaf. Streak korunur, Rank/Perfect Day verilmez.`):`${c.done}/${c.total} görev tamamlandı · ${parts.join(' · ')}${protectedDay(selected)?' · 🛡️ Streak Koruyucu aktif':''}`;
  $('rest').textContent=selected>=FLOW_START?'🎟️ Boş Gün Bileti kullan':'🎟️ Analiz sonrası Boş Gün Bileti kullan';$('rest').disabled=rest||tickets()<1||!canUseRest(selected);$('undoRest').disabled=!rest;$('useShield').disabled=shieldInventory()<1||selected>today()||rest||protectedDay(selected)||rankValue(r)>=rankValue('B');$('useShield').textContent=`🛡️ Streak Koruyucu kullan (${shieldInventory()} adet)`;$('undoShield').disabled=!protectedDay(selected);let wp=weekCore(w);$('weekprogress').textContent=`${wp.completed}/${wp.total} görev · ${wp.p.toLocaleString('tr-TR')} XP`;$('weekbar').style.width=(wp.total?wp.completed/wp.total*100:0)+'%'}
 function renderExtra(){
@@ -298,7 +312,7 @@ function renderRPG(w){let q=weekQuestStatus(w),ce=chestEligibility(w),wrap=$('qu
  let sx=skillXP(),sw=$('skills');sw.innerHTML='';for(let [k,def] of Object.entries(SKILLS)){let lv=skillLevel(sx[k]),d=document.createElement('div');d.className='skill';d.innerHTML=`<div class="top"><div><b>${def.name}</b><div class="notice">Toplam ${sx[k].toLocaleString('tr-TR')} Skill XP</div></div><span class="pill">Lv. ${lv.level}</span></div><div class="bar"><div style="width:${Math.min(100,lv.pct)}%"></div></div><small>${lv.into.toLocaleString('tr-TR')} / ${lv.need.toLocaleString('tr-TR')} XP → sonraki seviye</small>`;sw.append(d)}let bo=boss();$('bossStars').textContent=bo.stars;$('bossPower').textContent=`${bo.power} / 100`;$('bossbar').style.width=bo.power+'%';$('couponCount2').textContent=state.coupons;renderAchievements()}
 function renderAchievements(){let cand=achievementCandidates(),unclaimed=cand.filter(x=>!state.claimedAchievements[x.id]),box=$('achievements');box.innerHTML='';if(unclaimed.length){unclaimed.forEach(a=>{let d=document.createElement('div');d.className='achievement done';d.innerHTML=`<div class="top"><div><b>${a.name}</b><div class="notice">${a.desc}</div></div><button data-ach="${a.id}" ${state.coupons>=1?'disabled':''}>🏷️ Kuponu al</button></div>`;box.append(d)});box.querySelectorAll('button[data-ach]').forEach(b=>b.onclick=()=>claimCoupon(b.dataset.ach))}else box.innerHTML='<div class="notice">Şu an alınmayı bekleyen kupon başarısı yok.</div>';
  let ac=analysisCount(),nextA=(Math.floor(ac/15)+1)*15,sc=sRankDates().length,nextS=(Math.floor(sc/10)+1)*10,cs=currentSeason();$('couponProgress').textContent=`Sonraki Analiz Ustası: ${ac}/${nextA} · Sonraki S-Rank Koleksiyoncusu: ${sc}/${nextS} · Sezon ${cs.index+1}: ${cs.done}/${cs.total} görev (%${Math.round(cs.ratio*100)}) — sezon bitişi ${fmt(cs.end)}.`}
-function renderStats(w){let wp=weekCore(w),q=weekQuestStatus(w),days=Array.from({length:7},(_,i)=>add(w,i)).filter(s=>s<=today()),ranks={S:0,A:0,B:0,C:0,D:0};days.forEach(s=>{let r=dayRank(s);if(ranks[r]!==undefined)ranks[r]++});$('weekLabel').textContent=`${fmt(w)} – ${fmt(add(w,6))}`;$('weekStats').innerHTML=statHTML('Kazanılan XP',wp.p.toLocaleString('tr-TR'))+statHTML('Görev oranı',wp.total?`%${Math.round(wp.completed/wp.total*100)}`:'—')+statHTML('Weekly Quest',`${q.done}/3`)+statHTML('Comeback',`${wp.cb}/1`)+statHTML('Plan uyumu',formatPercent(planCompliance(w,add(w,6)).pct))+statHTML('Ek çalışma',datesBetween(w,add(w,6)).reduce((n,s)=>n+completedExtras(s).length,0)+' oturum');$('rankStats').innerHTML=['S','A','B','C','D'].map(r=>`<div class="rankBox"><b>${r}</b><small>${ranks[r]} gün</small></div>`).join('');let ms=monthSummary(selected);$('monthLabel').textContent=parse(selected).toLocaleDateString('tr-TR',{month:'long',year:'numeric'});$('monthStats').innerHTML=statHTML('Görev oranı',ms.total?`%${Math.round(ms.done/ms.total*100)}`:'—')+statHTML('Zor analiz',Number.isInteger(ms.analysis)?ms.analysis:ms.analysis.toFixed(1))+statHTML('S-Rank',ms.sr)+statHTML('Check-in',ms.ci)+statHTML('Plan uyumu',formatPercent(planCompliance(ms.a,ms.b).pct))+statHTML('Ek çalışma',ms.extra+' oturum')+statHTML('Ek çalışma XP',ms.extraXP.toLocaleString('tr-TR'));$('monthSessions').innerHTML=`<div class="stats"><div class="stat"><small>📐 Geometri</small><b>${ms.geo}</b></div><div class="stat"><small>⚛️ Fizik</small><b>${ms.physics}</b></div><div class="stat"><small>🧪 Kimya</small><b>${ms.chem}</b></div><div class="stat"><small>🧬 Biyoloji</small><b>${ms.bio}</b></div></div>`;$('checkinStats').textContent=ms.ci?`🌙 Check-in ortalaması: çalışma yükü ${(ms.load/ms.ci).toFixed(1)}/5 · memnuniyet ${(ms.sat/ms.ci).toFixed(1)}/5.`:'Bu ay henüz check-in kaydı yok.'}
+function renderStats(w){let wp=weekCore(w),q=weekQuestStatus(w),days=Array.from({length:7},(_,i)=>add(w,i)).filter(s=>s<=today()),ranks={S:0,A:0,B:0,C:0,D:0};days.forEach(s=>{let r=dayRank(s);if(ranks[r]!==undefined)ranks[r]++});$('weekLabel').textContent=`${fmt(w)} – ${fmt(add(w,6))}`;$('weekStats').innerHTML=statHTML('Kazanılan XP',wp.p.toLocaleString('tr-TR'))+statHTML('Görev oranı',wp.total?`%${Math.round(wp.completed/wp.total*100)}`:'—')+statHTML('Weekly Quest',`${q.done}/3`)+statHTML('Comeback',`${wp.cb}/1`)+statHTML('Plan uyumu',formatPercent(planCompliance(w,add(w,6)).pct))+statHTML('Gerçekleşen / planlanan ana oturum',planSessionSummary(w,add(w,6)).text)+statHTML('Ek çalışma',datesBetween(w,add(w,6)).reduce((n,s)=>n+completedExtras(s).length,0)+' oturum');$('rankStats').innerHTML=['S','A','B','C','D'].map(r=>`<div class="rankBox"><b>${r}</b><small>${ranks[r]} gün</small></div>`).join('');let ms=monthSummary(selected);$('monthLabel').textContent=parse(selected).toLocaleDateString('tr-TR',{month:'long',year:'numeric'});$('monthStats').innerHTML=statHTML('Görev oranı',ms.total?`%${Math.round(ms.done/ms.total*100)}`:'—')+statHTML('Zor analiz',Number.isInteger(ms.analysis)?ms.analysis:ms.analysis.toFixed(1))+statHTML('S-Rank',ms.sr)+statHTML('Check-in',ms.ci)+statHTML('Plan uyumu',formatPercent(planCompliance(ms.a,ms.b).pct))+statHTML('Ek çalışma',ms.extra+' oturum')+statHTML('Ek çalışma XP',ms.extraXP.toLocaleString('tr-TR'));$('monthSessions').innerHTML=`<div class="stats"><div class="stat"><small>📐 Geometri</small><b>${ms.geo}</b></div><div class="stat"><small>⚛️ Fizik</small><b>${ms.physics}</b></div><div class="stat"><small>🧪 Kimya</small><b>${ms.chem}</b></div><div class="stat"><small>🧬 Biyoloji</small><b>${ms.bio}</b></div></div>`;$('checkinStats').textContent=ms.ci?`🌙 Check-in ortalaması: çalışma yükü ${(ms.load/ms.ci).toFixed(1)}/5 · memnuniyet ${(ms.sat/ms.ci).toFixed(1)}/5.`:'Bu ay henüz check-in kaydı yok.'}
 function statHTML(label,val){return `<div class="stat"><small>${label}</small><b>${val}</b></div>`}
 function renderShop(t,st){$('couponShop').textContent=state.coupons;let rs=$('rewardShop');rs.innerHTML='';for(let [type,r] of Object.entries(REWARDS)){let d=document.createElement('div');d.className='shopItem';let discounted=r.coupon&&state.coupons>0?r.price-250:r.price;d.innerHTML=`<div><b>${r.name}</b><div class="notice">${r.coupon?'−250 XP kuponuna uygun':'Kupon kullanılamaz'}</div></div><div class="top"><span class="price">${r.coupon&&state.coupons>0?`<span class="couponPrice">${r.price}</span>${discounted}`:r.price.toLocaleString('tr-TR')} XP</span><button data-buy="${type}" ${t.balance<Math.min(r.price,discounted)?'disabled':''}>Satın al</button></div>`;rs.append(d)}rs.querySelectorAll('button[data-buy]').forEach(b=>b.onclick=()=>buyReward(b.dataset.buy));$('buy').disabled=t.balance<PRICE;$('refund').disabled=state.purchases<=state.refunds+state.spentRests;$('undoReward').disabled=!state.rewardBuys.length;$('shopnote').textContent=`Boş Gün Bileti — satın alınan: ${state.purchases-state.refunds} · kullanılan: ${state.spentRests} · kullanılabilir: ${tickets()} · Streak Koruyucu envanteri: ${shieldInventory()}.`;$('streakStatus').innerHTML=state.streakRewardUnlocked||st.best>=30?`🏆 <b>AÇILDI!</b> En iyi serin ${st.best} gün.`:`🔥 <b>${st.best}/30</b> · Büyük ödüle ${30-st.best} gün kaldı.`}
 function renderHistory(){let h=$('history');h.innerHTML='';for(let i=0;i<8;i++){let w=add(week,-7*i);if(w<START)break;let p=weekCore(w),q=weekQuestStatus(w),row=document.createElement('div');row.className='history';row.innerHTML=`<span>${fmt(w)} – ${fmt(add(w,6))}<br><small>${q.done}/3 Weekly Quest</small></span><b>${p.p.toLocaleString('tr-TR')} XP · ${p.completed}/${p.total}</b>`;h.append(row)}}
@@ -324,7 +338,7 @@ $('saveCheckin').onclick=()=>{if(saveSelectedCheckin(checkinLoad,checkinSat,$('c
 $('clearCheckin').onclick=()=>{if(state.checkins[selected]&&confirm('Bu günün check-in kaydı silinsin mi?')){delete state.checkins[selected];save();render()}};
 $('modalSave').onclick=()=>{if(saveSelectedCheckin(modalLoad,modalSat,$('modalNote').value)){$('checkinModal').classList.remove('show');render()}};$('modalLater').onclick=()=>$('checkinModal').classList.remove('show');
 $('prev').onclick=()=>{selected=add(monday(selected),-7);if(selected<START)selected=START;render()};$('following').onclick=()=>{selected=add(monday(selected),7);render()};$('current').onclick=()=>{selected=today()<START?START:today();render()};
-$('export').onclick=()=>{let blob=new Blob([JSON.stringify({app:APP,version:3,exported:new Date().toISOString(),state},null,2)],{type:'application/json'}),a=document.createElement('a'),u=URL.createObjectURL(blob);a.href=u;a.download='yks-rpg-v3.2-yedek-'+today()+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(u),1000)};
+$('export').onclick=()=>{let blob=new Blob([JSON.stringify({app:APP,version:3,exported:new Date().toISOString(),state},null,2)],{type:'application/json'}),a=document.createElement('a'),u=URL.createObjectURL(blob);a.href=u;a.download='yks-rpg-v3.3-yedek-'+today()+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(u),1000)};
 $('importBtn').onclick=()=>$('import').click();$('import').onchange=async e=>{let f=e.target.files[0];if(!f)return;try{let obj=JSON.parse(await f.text()),st=obj.state;if(!st||typeof st.checks!=='object'||typeof st.rests!=='object')throw Error('Uyumsuz yedek');if(!COACH_MODE&&confirm('Mevcut kayıtların yerine bu yedek yüklensin mi? Eski yedekler de otomatik uyarlanır.')){state=normalizeRemoteState(st);migrateLegacyAnalysis();resetMockForm();save();render()}}catch(err){alert('Yedek yüklenemedi: '+err.message)}e.target.value=''};
 $('reset').onclick=()=>{if(COACH_MODE)return;if(confirm('Tüm görev, XP, mağaza, quest, check-in ve RPG kayıtları kalıcı olarak sıfırlansın mı? Önce yedek indirmeni öneririm.')&&confirm('Son onay: bütün kayıtları sıfırla?')){state=emptyState();resetMockForm();save();render()}};
 $('bindOwner').onclick=bindOwnerToken;
@@ -429,19 +443,20 @@ function renderMockScores(scores={}){
  for(const [key,[name,max]] of Object.entries(subjects)){
   const tr=document.createElement('tr'),title=document.createElement('th');title.scope='row';title.textContent=name;tr.append(title);
   for(const [field,label] of [['correct','doğru'],['wrong','yanlış']]){const td=document.createElement('td'),input=document.createElement('input');input.type='number';input.min=0;input.max=max;input.step=1;input.value=scores[key]?.[field]??0;input.id=`mock-${field}-${key}`;input.setAttribute('aria-label',name+' '+label);input.oninput=previewMock;td.append(input);tr.append(td)}
-  for(const field of ['blank','net']){const td=document.createElement('td');td.id=`mock-${field}-${key}`;tr.append(td)}$('mockScores').append(tr);
+  for(const field of ['blank','net']){const td=document.createElement('td');td.id=`mock-${field}-${key}`;tr.append(td)}$('mockScores').append(tr);appendErrorInputs(key,name,scores[key]?.errorBreakdown);
  }
  previewMock();
 }
-function readMockScores(){
+function readMockScores(includeErrors=true){
  const result={};for(const [key,[name,max]] of Object.entries(EXAM_TYPES[$('mockType').value].subjects)){
   const correct=Number($('mock-correct-'+key).value),wrong=Number($('mock-wrong-'+key).value);
   if(!Number.isInteger(correct)||!Number.isInteger(wrong)||correct<0||wrong<0||correct+wrong>max)throw Error(`${name}: doğru + yanlış en fazla ${max} olmalı; negatif olmayan tam sayılar gir.`);
   result[key]={correct,wrong};
+  if(includeErrors){const errorBreakdown={};for(const code of Object.keys(ERROR_TYPES)){const n=Number($(`error-${key}-${code}`).value);if(!Number.isInteger(n)||n<0)throw Error(`${name}: hata adetleri negatif olmayan tam sayılar olmalı.`);errorBreakdown[code]=n}if(Object.values(errorBreakdown).reduce((n,x)=>n+x,0)>max-correct)throw Error(`${name}: hata türlerinin toplamı yanlış + boş sayısını (${max-correct}) aşamaz.`);result[key].errorBreakdown=errorBreakdown}
  }return result;
 }
 function previewMock(){
- try{const scores=readMockScores();let total=0;for(const [key,[,max]] of Object.entries(EXAM_TYPES[$('mockType').value].subjects)){$('mock-blank-'+key).textContent=max-scores[key].correct-scores[key].wrong;$('mock-net-'+key).textContent=formatNumber(scoreNet(scores[key]));total+=scoreNet(scores[key])}$('mockTotal').textContent='Toplam net: '+formatNumber(total);$('mockError').textContent=''}
+ try{const scores=readMockScores(false);let total=0;for(const [key,[,max]] of Object.entries(EXAM_TYPES[$('mockType').value].subjects)){$('mock-blank-'+key).textContent=max-scores[key].correct-scores[key].wrong;$('mock-net-'+key).textContent=formatNumber(scoreNet(scores[key]));total+=scoreNet(scores[key])}$('mockTotal').textContent='Toplam net: '+formatNumber(total);try{const classified=readMockScores();for(const [key,[,max]] of Object.entries(EXAM_TYPES[$('mockType').value].subjects))$(`error-unclassified-${key}`).textContent='Sınıflandırılmamış: '+errorCounts(classified[key],max).unclassified;$('mockError').textContent=''}catch(e){$('mockError').textContent=e.message}}
  catch(e){$('mockError').textContent=e.message;$('mockTotal').textContent='Toplam net: —';for(const key of Object.keys(EXAM_TYPES[$('mockType').value].subjects)){$('mock-blank-'+key).textContent='—';$('mock-net-'+key).textContent='—'}}
 }
 function resetMockForm(){editingMockId=null;$('mockForm').reset();$('mockDate').value=today();$('mockDate').max=today();$('mockFormTitle').textContent='Yeni deneme';renderMockScores()}
@@ -473,18 +488,19 @@ function renderMockChart(records,subject){
  make('text',{x:50,y:242,fill:'#aab5cf','font-size':12},fmt(records[0].date));make('text',{x:620,y:242,fill:'#aab5cf','font-size':12,'text-anchor':'end'},fmt(records.at(-1).date));wrap.append(svg);
 }
 function renderMocks(){
+ $('mockDate').max=today();
  const type=$('mockFilter').value,def=EXAM_TYPES[type],records=mockRecords(type),m=mockMetrics(type),net=x=>x===null?'—':formatNumber(x);
  $('mockSummary').innerHTML=statHTML('Son deneme neti',net(m.last))+statHTML('En iyi net',net(m.best))+statHTML('Son 5 ortalaması',net(m.average))+statHTML('Deneme sayısı',m.count);
  const previous=$('mockTrend').value;$('mockTrend').replaceChildren(new Option('Toplam net','total'));for(const [key,[name]] of Object.entries(def.subjects))$('mockTrend').add(new Option(name,key));$('mockTrend').value=previous==='total'||def.subjects[previous]?previous:'total';
  const subject=$('mockTrend').value;renderMockChart(records,subject);
  if(records.length<5)$('mockChange').textContent='Henüz yeterli veri yok. Değişim için aynı türde en az 5 deneme gerekli.';
  else{const recent=records.slice(-5),key=subject==='total'?'math':subject,change=examNet(recent.at(-1),key)-examNet(recent[0],key);$('mockChange').textContent=`Son 5 ${def.name} denemesinde ${def.subjects[key][0]} ${change>=0?'+':''}${formatNumber(change)} net (ilk ve son deneme).`}
- $('mockFormPanel').hidden=COACH_MODE;$('mockList').replaceChildren();
+ renderErrorAnalysis();$('mockFormPanel').hidden=COACH_MODE;$('mockList').replaceChildren();
  if(!records.length)$('mockList').textContent='Henüz bu türde deneme kaydı yok.';
  for(const exam of [...records].reverse()){
   const card=document.createElement('div');card.className='examCard';const title=document.createElement('h3');title.textContent=`${fmt(exam.date)} · ${def.name} · ${formatNumber(examNet(exam))} net`;card.append(title);
   if(exam.name){const name=document.createElement('p');name.textContent=exam.name;card.append(name)}
-  const scores=document.createElement('p');scores.className='notice';scores.textContent=Object.entries(def.subjects).map(([key,[name,max]])=>`${name}: ${exam.scores[key].correct}D / ${exam.scores[key].wrong}Y / ${max-exam.scores[key].correct-exam.scores[key].wrong}B · ${formatNumber(examNet(exam,key))} net`).join(' — ');card.append(scores);
+  const scores=document.createElement('p');scores.className='notice';scores.textContent=Object.entries(def.subjects).map(([key,[name,max]])=>`${name}: ${exam.scores[key].correct}D / ${exam.scores[key].wrong}Y / ${max-exam.scores[key].correct-exam.scores[key].wrong}B · ${formatNumber(examNet(exam,key))} net`).join(' — ');card.append(scores);appendSavedErrors(card,exam);
   if(exam.duration){const time=document.createElement('p');time.textContent='Süre: '+exam.duration+' dk';card.append(time)}if(exam.note){const note=document.createElement('p');note.textContent=exam.note;card.append(note)}
   if(!COACH_MODE){const actions=document.createElement('div');actions.className='actions';for(const [label,action] of [['Düzenle',()=>editMock(exam.id)],['Sil',()=>deleteMock(exam.id)]]){const button=document.createElement('button');button.textContent=label;button.onclick=action;actions.append(button)}card.append(actions)}$('mockList').append(card);
  }
@@ -495,8 +511,166 @@ function initV32(){
  $('mockFilter').onchange=renderMocks;$('mockTrend').onchange=renderMocks;$('mockType').onchange=()=>renderMockScores();$('mockForm').onsubmit=saveMock;$('cancelMock').onclick=()=>{if(!COACH_MODE)resetMockForm()};resetMockForm();
 }
 
+// Optional error counts never change scores or earned XP.
+const ERROR_TYPES={knowledge:'Bilgi eksiği',attention:'Dikkat hatası',calculation:'İşlem hatası',time:'Süre problemi',misread:'Soruyu yanlış okuma'};
+function errorCounts(score,max){
+ const counts=Object.fromEntries(Object.keys(ERROR_TYPES).map(k=>[k,0]));
+ const lost=max-score.correct,raw=score.errorBreakdown;
+ if(raw&&typeof raw==='object'){
+  const valid=Object.keys(ERROR_TYPES).every(k=>raw[k]===undefined||(Number.isInteger(raw[k])&&raw[k]>=0));
+  const sum=Object.keys(ERROR_TYPES).reduce((n,k)=>n+(raw[k]||0),0);
+  if(valid&&sum<=lost)for(const k of Object.keys(ERROR_TYPES))counts[k]=raw[k]||0;
+ }
+ const classified=Object.values(counts).reduce((n,x)=>n+x,0);return {...counts,unclassified:lost-classified,classified,total:lost};
+}
+function appendErrorInputs(key,name,breakdown={}){
+ const row=document.createElement('tr'),cell=document.createElement('td');cell.colSpan=5;
+ const details=document.createElement('details'),summary=document.createElement('summary');summary.textContent=`🧠 ${name} hata analizi (isteğe bağlı)`;details.append(summary);
+ const grid=document.createElement('div');grid.className='errorInputs';
+ for(const [code,label] of Object.entries(ERROR_TYPES)){const field=document.createElement('label');field.textContent=label;const input=document.createElement('input');input.type='number';input.min=0;input.step=1;input.max=EXAM_TYPES[$('mockType').value].subjects[key][1];input.id=`error-${key}-${code}`;input.value=breakdown?.[code]??0;input.setAttribute('aria-label',name+' '+label);input.oninput=previewMock;field.append(input);grid.append(field)}
+ const remaining=document.createElement('p');remaining.className='notice';remaining.id=`error-unclassified-${key}`;details.append(grid,remaining);cell.append(details);row.append(cell);$('mockScores').append(row);
+}
+function appendSavedErrors(card,exam){
+ const parts=[];for(const [key,[name,max]] of Object.entries(EXAM_TYPES[exam.type].subjects)){const counts=errorCounts(exam.scores[key],max);if(counts.classified)parts.push(name+': '+Object.entries(ERROR_TYPES).filter(([k])=>counts[k]).map(([k,label])=>label+' '+counts[k]).join(', ')+` · Sınıflandırılmamış ${counts.unclassified}`)}
+ if(parts.length){const note=document.createElement('p');note.className='notice';note.textContent='🧠 '+parts.join(' — ');card.append(note)}
+}
+function allMockRecords(){return state.mockExams.filter(validMock).map((exam,index)=>({exam,index})).sort((a,b)=>a.exam.date.localeCompare(b.exam.date)||a.index-b.index).map(x=>x.exam)}
+function errorAggregate(records,subject='all'){
+ const totals={...Object.fromEntries(Object.keys(ERROR_TYPES).map(k=>[k,0])),unclassified:0,classified:0,total:0,analyzedExams:0,subjects:{}};
+ for(const exam of records){let analyzed=false;for(const [key,[name,max]] of Object.entries(EXAM_TYPES[exam.type].subjects)){
+   if(subject!=='all'&&key!==subject)continue;const counts=errorCounts(exam.scores[key],max);analyzed ||= counts.classified>0;
+   for(const k of [...Object.keys(ERROR_TYPES),'unclassified','classified','total'])totals[k]+=counts[k];
+   if(!totals.subjects[key])totals.subjects[key]={name,classified:0,counts:Object.fromEntries(Object.keys(ERROR_TYPES).map(k=>[k,0]))};
+   totals.subjects[key].classified+=counts.classified;for(const k of Object.keys(ERROR_TYPES))totals.subjects[key].counts[k]+=counts[k];
+  }if(analyzed)totals.analyzedExams++;
+ }return totals;
+}
+function mostFrequent(counts){const max=Math.max(0,...Object.keys(ERROR_TYPES).map(k=>counts[k]||0));return max?Object.keys(ERROR_TYPES).filter(k=>counts[k]===max):[]}
+function errorDistribution(container,totals){
+ const chart=document.createElement('div');chart.className='errorDistribution';
+ for(const [key,label] of [...Object.entries(ERROR_TYPES),['unclassified','Sınıflandırılmamış']]){
+  const n=totals[key],pct=totals.total?n/totals.total*100:0,row=document.createElement('div'),text=document.createElement('span');text.textContent=`${label}: ${n} · ${formatPercent(pct)}`;
+  const bar=document.createElement('div');bar.className='errorBar';const fill=document.createElement('span');fill.style.width=pct+'%';if(key==='unclassified')fill.style.background='var(--muted)';bar.append(fill);row.append(text,bar);chart.append(row);
+ }container.append(chart);
+}
+function errorTrendComments(records,subject='all'){
+ const comments=[];if(!records.length)return comments;const type=records[0].type;
+ for(const [key,[name,max]] of Object.entries(EXAM_TYPES[type].subjects)){
+  if(subject!=='all'&&key!==subject)continue;
+  const recent=records.slice(-3);if(recent.length!==3)continue;
+  const counts=recent.map(e=>errorCounts(e.scores[key],max));
+  if(counts.every(c=>c.classified>0)&&counts[0].knowledge>counts[1].knowledge&&counts[1].knowledge>counts[2].knowledge)comments.push(`${name}: bilgi eksiği olarak sınıflandırılan hata sayısı son 3 ${EXAM_TYPES[type].name} denemesinde azaldı (${counts.map(c=>c.knowledge).join(' → ')}).`);
+ }return comments;
+}
+function renderErrorAnalysis(){
+ const type=$('mockFilter').value,records=mockRecords(type),previous=$('errorSubject').value;
+ $('errorSubject').replaceChildren(new Option('Tüm dersler','all'));for(const [key,[name]] of Object.entries(EXAM_TYPES[type].subjects))$('errorSubject').add(new Option(name,key));$('errorSubject').value=EXAM_TYPES[type].subjects[previous]?previous:'all';
+ const subject=$('errorSubject').value,limit=Number($('errorWindow').value),recent=records.slice(-limit),totals=errorAggregate(recent,subject),all=errorAggregate(records),wrap=$('errorAnalysis');wrap.replaceChildren();
+ const summary=document.createElement('p');summary.className='notice';summary.textContent=`Son ${Math.min(limit,records.length)} ${EXAM_TYPES[type].name} denemesi · ${totals.analyzedExams} kayıtta sınıflandırılmış hata var · ${totals.classified}/${totals.total} kayıp sınıflandırılmış.`;wrap.append(summary);
+ if(!totals.classified){const empty=document.createElement('p');empty.textContent='Henüz yeterli hata analizi verisi yok.';wrap.append(empty)}
+ errorDistribution(wrap,totals);
+ const top=mostFrequent(all);if(top.length){const note=document.createElement('p');note.textContent='Tüm '+EXAM_TYPES[type].name+' denemelerinde en sık sınıflandırılan: '+top.map(k=>ERROR_TYPES[k]).join(' / ')+'.';wrap.append(note)}
+ for(const [key,entry] of Object.entries(totals.subjects)){
+  if(!entry.classified)continue;const row=document.createElement('div');row.className='errorSubject';const title=document.createElement('h3');title.textContent=entry.name;const text=document.createElement('p');text.className='notice';text.textContent='En sık sınıflandırılan: '+mostFrequent(entry.counts).map(k=>ERROR_TYPES[k]).join(' / ')+'.';row.append(title,text);
+  errorDistribution(row,errorAggregate(recent,key));
+  if(totals.analyzedExams>=3){const observation=document.createElement('p');observation.className='notice';observation.textContent=`Son ${recent.length} ${EXAM_TYPES[type].name} denemesinde ${entry.name} için en çok kaydedilen hata türü: ${mostFrequent(entry.counts).map(k=>ERROR_TYPES[k]).join(' / ')}.`;row.append(observation)}wrap.append(row);
+ }
+ for(const comment of errorTrendComments(recent,subject)){const text=document.createElement('p');text.className='notice';text.textContent=comment;wrap.append(text)}
+}
+function renderErrorProfile(){
+ const records=allMockRecords(),all=errorAggregate(records),recent=errorAggregate(records.slice(-5)),wrap=$('errorProfile');wrap.replaceChildren();
+ if(!all.classified){wrap.textContent='Henüz yeterli hata analizi verisi yok.';return}
+ const top=mostFrequent(all),subjects=Object.values(all.subjects),max=Math.max(...subjects.map(x=>x.classified)),most=subjects.filter(x=>x.classified===max).map(x=>x.name);
+ const summary=document.createElement('p');summary.textContent='En sık hata türü: '+top.map(k=>ERROR_TYPES[k]).join(' / ')+'. En fazla hata sınıflandırılan ders: '+most.join(' / ')+'.';wrap.append(summary);
+ const label=document.createElement('p');label.className='notice';label.textContent='Son 5 deneme (TYT ve AYT SAY birlikte) hata dağılımı; sınıflandırılmamış kayıplar dahildir.';wrap.append(label);errorDistribution(wrap,recent);
+}
+// A broad TYT Fen/Sosyal total is not evidence for an individual subject decline.
+const RADAR_EXAM_MAP={TYT:{math:'mat',turkish:'tr'},AYT:{math:'mat',physics:'physics',chemistry:'chem',biology:'bio'}};
+function radarData(){
+ const end=today(),start6=add(end,-5),start7=add(end,-6),info=Object.fromEntries(SWAP_KEYS.map(k=>[k,{key:k,reasons:[],priority:3,last:null,sessions:0,planned:0,done:0,net:null,decline:0}]));
+ for(const s of trackedDates()){
+  for(const entry of completedStudies(s))if(info[entry.subject]){info[entry.subject].last=s;if(s>=start7)info[entry.subject].sessions++}
+  if(s>=start7&&!isRest(s))for(const k of tasks(s)){const actual=taskSubject(s,k);if(info[actual]){info[actual].planned++;if(isDone(s,k))info[actual].done++}}
+ }
+ for(const type of Object.keys(RADAR_EXAM_MAP)){
+  const records=mockRecords(type).filter(e=>e.date<=end);
+  for(const [examSubject,key] of Object.entries(RADAR_EXAM_MAP[type])){
+   const item=info[key],latest=records.at(-1);if(latest&&(!item.net||latest.date>=item.net.date))item.net={date:latest.date,value:examNet(latest,examSubject),type};
+   if(records.length<6)continue;const last=records.slice(-3),before=records.slice(-6,-3),avg=list=>list.reduce((n,e)=>n+examNet(e,examSubject),0)/3,drop=avg(before)-avg(last),questions=EXAM_TYPES[type].subjects[examSubject][1],threshold=questions<20?Math.max(2,questions*.2):2;
+   if(drop+1e-9>=threshold){item.priority=0;item.decline=Math.max(item.decline,drop);item.reasons.push(`📉 ${EXTRA_NAMES[key]}: son 3 ${EXAM_TYPES[type].name} denemesinin ortalaması önceki 3 denemeye göre ${formatNumber(drop,1)} net düşük.`)}
+  }
+ }
+ for(const item of Object.values(info)){
+  if(calendarDistance(START,end)>=5&&(!item.last||item.last<start6)){const days=item.last?calendarDistance(item.last,end):calendarDistance(START,end)+1;item.priority=Math.min(item.priority,1);item.reasons.push(`⚠️ ${EXTRA_NAMES[item.key]} ${days} gündür çalışılmadı.`)}
+  if(item.planned>=2&&item.done/item.planned<.5){item.priority=Math.min(item.priority,2);item.reasons.push(`⚠️ Son 7 günde planlanan ${item.planned} ${EXTRA_NAMES[item.key]} oturumunun yalnızca ${item.done} tanesi tamamlandı.`)}
+ }
+ return Object.values(info).filter(item=>item.reasons.length).sort((a,b)=>a.priority-b.priority||b.decline-a.decline||(a.last||'').localeCompare(b.last||'')||SWAP_KEYS.indexOf(a.key)-SWAP_KEYS.indexOf(b.key));
+}
+function renderRadar(){
+ const wrap=$('studyRadar');wrap.replaceChildren();const alarms=radarData().slice(0,3);
+ if(!alarms.length){wrap.textContent='✅ Ders dağılımında belirgin bir ihmal görünmüyor.';return}
+ for(const item of alarms){const card=document.createElement('div');card.className='radarCard';card.dataset.subject=item.key;const title=document.createElement('h3');title.textContent=EXTRA_NAMES[item.key];card.append(title);
+  for(const reason of item.reasons){const text=document.createElement('p');text.className='notice';text.textContent=reason;card.append(text)}
+  const detail=document.createElement('small');detail.textContent=`Son çalışma: ${item.last?fmt(item.last):'Kayıt yok'} · Son 7 gün: ${item.sessions} oturum`+(item.net?` · Son ${EXAM_TYPES[item.net.type].name} neti: ${formatNumber(item.net.value)}`:'');card.append(detail);wrap.append(card);
+ }
+ const note=document.createElement('p');note.className='tiny muted';note.textContent='Deneme düşüşü için aynı türde en az 6 kayıt kullanılır (son 3 / önceki 3). Küçük AYT derslerinde eşik en az 2 net ve soru sayısının %20’sidir. Bu panel yalnızca kayıt özetidir.';wrap.append(note);
+}
+
+let plannerWeek=null;
+function planLockReason(s){
+ if(COACH_MODE)return 'Koç görünümü: salt okunur.';
+ if(s<FLOW_START||s<today())return 'Geçmiş gün: plan kilitli.';
+ if(state.swaps[s])return 'Swap kaydı var: plan kilitli.';
+ if(isRest(s)||protectedDay(s))return 'Bilet / koruyucu kaydı var: plan kilitli.';
+ if(Object.entries(state.checks).some(([key,v])=>v&&key.startsWith(s+'|')))return 'Çalışma kaydı var: plan kilitli.';
+ return '';
+}
+function canEditPlan(s){return validDay(s)&&!planLockReason(s)}
+function setDayPlan(s,keys){
+ if(!canEditPlan(s)||!Array.isArray(keys)||keys.some(k=>!SWAP_KEYS.includes(k))||new Set(keys).size!==keys.length)return false;
+ const w=monday(s);if(!state.weekPlans[w]||typeof state.weekPlans[w]!=='object'||Array.isArray(state.weekPlans[w]))state.weekPlans[w]={};
+ state.weekPlans[w][s]=[...keys];save();render();return true;
+}
+function resetDayPlan(s){
+ if(!canEditPlan(s))return false;const w=monday(s);if(state.weekPlans[w]){delete state.weekPlans[w][s];if(!Object.keys(state.weekPlans[w]).length)delete state.weekPlans[w]}save();render();return true;
+}
+function resetWeekPlan(){
+ if(COACH_MODE||!plannerWeek)return;const days=datesBetween(plannerWeek,add(plannerWeek,6)).filter(canEditPlan);
+ if(!days.length||!confirm('Bu haftanın yalnızca kilitli olmayan günleri varsayılan plana dönsün mü? Kilitli günler ve kayıtları korunacak.'))return;
+ const week=state.weekPlans[plannerWeek];if(week){for(const s of days)delete week[s];if(!Object.keys(week).length)delete state.weekPlans[plannerWeek]}save();render();
+}
+function planSessionSummary(a,b){let done=0,total=0;const end=b<today()?b:today();for(let s=a<START?START:a;s<=end;s=add(s,1)){const counts=taskCounts(s);done+=counts.done;total+=counts.total}return {done,total,text:`${done} / ${total} (bugüne kadar)`}}
+function renderPlanner(){
+ if(!plannerWeek)plannerWeek=add(monday(today()),7);$('planWeek').value=plannerWeek;
+ const days=datesBetween(plannerWeek,add(plannerWeek,6)),radar=new Set(radarData().map(x=>x.key)),counts={total:0,geo:0,physics:0,chem:0,bio:0,mat:0,other:0};
+ for(const s of days)for(const k of tasks(s)){counts.total++;if(Object.hasOwn(counts,k)&&k!=='total'&&k!=='other')counts[k]++;else counts.other++}
+ $('planSummary').innerHTML=statHTML('Planlanan ana oturum',counts.total)+statHTML('Geometri',counts.geo)+statHTML('Fizik',counts.physics)+statHTML('Kimya',counts.chem)+statHTML('Biyoloji',counts.bio)+statHTML('TYT Matematik',counts.mat)+statHTML('Diğer (Paragraf/Problem dahil)',counts.other);
+ $('resetPlanWeek').disabled=COACH_MODE||!days.some(canEditPlan);const wrap=$('planDays');wrap.replaceChildren();
+ for(const s of days){
+  const card=document.createElement('div');card.className='planCard';card.dataset.date=s;const title=document.createElement('h3');title.textContent=DAY[idx(s)]+' · '+fmt(s);card.append(title);
+  const reason=planLockReason(s),editable=!reason,keys=plannedTasks(s).filter(k=>SWAP_KEYS.includes(k));
+  const status=document.createElement('p');status.className='notice';status.textContent=reason||'Düzenlenebilir · '+(Array.isArray(state.weekPlans?.[monday(s)]?.[s])?'Özel plan':'Varsayılan plan');card.append(status);
+  for(const k of plannedTasks(s).filter(k=>!SWAP_KEYS.includes(k))){const fixed=document.createElement('div');fixed.className='planRow';fixed.textContent=T[k][0]+' · +'+T[k][1]+' XP'+(s>=FLOW_START?' · Sabit':'');card.append(fixed)}
+  keys.forEach((k,index)=>{const row=document.createElement('div');row.className='planRow';const label=document.createElement('span');label.className='planName';label.textContent=EXTRA_NAMES[k]+' · '+T[k][1]+' XP';row.append(label);
+   if(radar.has(k)){const tag=document.createElement('small');tag.className='radarTag';tag.textContent='⚠️ Radarda';row.append(tag)}
+   const swap=currentSwap(s);if(swap?.outKey===k){const tag=document.createElement('small');tag.className='swapTag';tag.textContent='↔ '+EXTRA_NAMES[swap.inKey]+' olarak çalışılacak';row.append(tag)}
+   for(const [text,disabled,action] of [['↑',index===0,()=>{const next=[...keys];[next[index-1],next[index]]=[next[index],next[index-1]];setDayPlan(s,next)}],['↓',index===keys.length-1,()=>{const next=[...keys];[next[index+1],next[index]]=[next[index],next[index+1]];setDayPlan(s,next)}],['Kaldır',false,()=>setDayPlan(s,keys.filter(x=>x!==k))]]){const button=document.createElement('button');button.textContent=text;button.setAttribute('aria-label',EXTRA_NAMES[k]+' '+text);button.disabled=!editable||disabled;button.onclick=action;row.append(button)}card.append(row);
+  });
+  const add=document.createElement('div');add.className='planAdd';const select=document.createElement('select');select.setAttribute('aria-label',s+' eklenecek ders');
+  for(const k of SWAP_KEYS.filter(k=>!keys.includes(k)))select.add(new Option(EXTRA_NAMES[k]+(radar.has(k)?' ⚠️ Radarda':''),k));select.disabled=!editable||!select.options.length;
+  const button=document.createElement('button');button.textContent='Ders ekle';button.disabled=select.disabled;button.onclick=()=>setDayPlan(s,[...keys,select.value]);add.append(select,button);card.append(add);
+  const reset=document.createElement('button');reset.textContent='Günü varsayılana sıfırla';reset.disabled=!editable;reset.onclick=()=>resetDayPlan(s);card.append(reset);wrap.append(card);
+ }
+}
+function initV33(){
+ $('errorWindow').onchange=renderErrorAnalysis;$('errorSubject').onchange=renderErrorAnalysis;
+ plannerWeek=add(monday(today()),7);$('planWeek').onchange=()=>{if(!validDay($('planWeek').value))return;plannerWeek=monday($('planWeek').value);renderPlanner();if(COACH_MODE)enforceCoachReadOnly()};
+ for(const [id,getWeek] of [['planPrev',()=>add(plannerWeek,-7)],['planNext',()=>add(plannerWeek,7)],['planCurrent',()=>monday(today())]])$(id).onclick=()=>{plannerWeek=getWeek();renderPlanner();if(COACH_MODE)enforceCoachReadOnly()};
+ $('resetPlanWeek').onclick=resetWeekPlan;
+}
+
 async function init(){
- renderTabs();load();initV32();selected=today()<START?START:today();setCheckinButtons();cloudUi();render();
+ renderTabs();load();initV32();initV33();selected=today()<START?START:today();setCheckinButtons();cloudUi();render();
  if(COACH_MODE){await loadCoachCloud();setInterval(loadCoachCloud,30000)}
  else if(ownerToken){await pullOwnerCloud();render()}
 }
