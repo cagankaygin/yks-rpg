@@ -1,4 +1,4 @@
-"""Plan-note browser tests. All cloud RPCs use an isolated in-memory state."""
+"""Study-flow and plan-note browser tests. All cloud RPCs use an isolated in-memory state."""
 import argparse
 import copy
 import functools
@@ -23,7 +23,7 @@ OWNER = 'test-only-owner-not-real-1234567890123456'
 COACH = 'test-only-coach-not-real-1234567890123456'
 TODAY, FUTURE = '2026-10-15', '2026-10-19'
 legacy = {
-    'checks': {'2026-10-05|tyt': True, '2026-10-10|geo': True},
+    'checks': {'2026-10-05|tyt': True, '2026-10-10|geo': True, '2026-10-14|paragraph': True, '2026-10-14|problem': True},
     'rests': {}, 'purchases': 1, 'checkins': {'2026-10-10': {'load': 3, 'satisfaction': 4, 'note': 'Eski kayıt'}},
     'settings': {'examDate': '2027-06-19', 'morningWakeTime': '06:30', 'studyStartTime': '09:00'},
     'weekPlans': {'2026-10-12': {TODAY: ['mat', 'geo', 'bio']}, FUTURE: {FUTURE: ['hist']}},
@@ -109,9 +109,79 @@ def add_lesson(page, day, key, text=''):
 def no_overflow(page): assert page.evaluate('document.documentElement.scrollWidth<=innerWidth')
 def metrics(page): return page.evaluate('({totals:totals(),boss:boss(),skill:skillXP(),rank:completionPct(today()),streak:currentAndBestStreak(),morning:morningStatistics(),quest:weekQuestStatus(monday(today()))})')
 
+def test_optional_basics(browser):
+    fixture = copy.deepcopy(legacy)
+    fixture['weekPlans']['2026-10-12'][TODAY] = ['geo', 'physics']
+    fixture['checks'].update({
+        '2026-10-14|paragraph': True, '2026-10-14|problem': True,
+        '2026-10-14|extra:paragraph': True, TODAY + '|geo': True,
+    })
+    page = context(browser, initial=fixture)
+    page.goto(URL, wait_until='networkidle')
+    assert page.evaluate('state.checks') == fixture['checks']
+    assert page.evaluate('tasks(today())') == ['geo', 'physics']
+    assert page.evaluate("datesBetween(FLOW_START,add(FLOW_START,13)).every(day=>!defaultTasks(day).some(k=>['paragraph','problem'].includes(k))&&!plannedTasks(day).some(k=>['paragraph','problem'].includes(k)))")
+    assert page.locator('#tasks .task').count() == 2
+    assert 'Paragraf' not in page.locator('#tasks').inner_text()
+    assert 'Problem' not in page.locator('#tasks').inner_text()
+    assert page.evaluate('rankWeights(today())') == {'done': 120, 'total': 230}
+    assert abs(page.evaluate('completionPct(today())') - 120/230*100) < 1e-9
+    assert page.evaluate('dayRank(today())') == 'C'
+    assert page.evaluate('completedPriorBasics("2026-10-14").length') == 2
+    assert page.evaluate('completedStudies("2026-10-14").length') == 3
+    assert page.evaluate('skillXP().paragraph') == 80  # Former main + separately earned extra.
+    assert page.evaluate('baseEarned()') == 80 + 120 + 100 + 40 + 120
+    assert page.evaluate('monthSummary(today()).problem') == 1
+    before = page.evaluate('({xp:totals().earned,rank:completionPct(today()),plan:planCompliance(today(),today()),skill:skillXP(),boss:boss().raw,quest:weekQuestStatus(monday(today())).qs.find(q=>q.id==="extra").cur,week:weekCore(monday(today())).p,day:earnedByDay()[today()],morning:state.morningProtocol})')
+    page.locator('#extraPanel summary').click()
+    expect(page.locator('#extraTasks input[data-extra="paragraph"]')).to_be_visible()
+    expect(page.locator('#extraTasks input[data-extra="problem"]')).to_be_visible()
+    for key, xp in [('paragraph', 40), ('problem', 60)]:
+        earned = page.evaluate('totals().earned')
+        page.locator(f'#extraTasks input[data-extra="{key}"]').click()
+        assert page.evaluate('totals().earned') == earned + xp
+        expect(page.locator(f'#completedExtraTasks input[data-extra="{key}"]')).to_be_checked()
+    after = page.evaluate('({xp:totals().earned,rank:completionPct(today()),plan:planCompliance(today(),today()),skill:skillXP(),boss:boss().raw,quest:weekQuestStatus(monday(today())).qs.find(q=>q.id==="extra").cur,week:weekCore(monday(today())).p,day:earnedByDay()[today()],morning:state.morningProtocol})')
+    assert after['xp'] == before['xp'] + 100
+    assert after['rank'] == before['rank'] and after['plan'] == before['plan']
+    assert after['skill']['paragraph'] == before['skill']['paragraph'] + 40
+    assert after['skill']['problem'] == before['skill']['problem'] + 60
+    assert after['boss'] == before['boss'] + 2
+    assert after['quest'] == before['quest'] + 100
+    assert after['week'] == before['week'] + 100 and after['day'] == before['day'] + 100
+    assert after['morning'] == before['morning']
+    no_overflow(page)
+    page.locator('#completedExtraTasks input[data-extra="paragraph"]').click()
+    assert page.evaluate('totals().earned') == after['xp'] - 40
+    assert page.evaluate('completionPct(today())') == before['rank']
+    page.locator('#extraTasks input[data-extra="paragraph"]').click()
+    page.evaluate("state.checks[checkKey(today(),'physics')]=true;save();render()")
+    assert page.evaluate('completionPct(today())') == 100
+    assert page.evaluate('dayRank(today())') == 'S'
+    assert page.evaluate('planCompliance(today(),today()).pct') == 100
+    assert page.evaluate('!state.checks[today()+"|paragraph"]&&!state.checks[today()+"|problem"]')
+    assert page.evaluate('state.checks["2026-10-14|paragraph"]&&state.checks["2026-10-14|problem"]')
+    plan_week(page, FUTURE)
+    assert 'Paragraf' not in page.locator('#planDays').inner_text()
+    assert 'Problem' not in page.locator('#planDays').inner_text()
+    assert 'Paragraf/Problem' not in page.locator('#planSummary').inner_text()
+    no_overflow(page)
+    tab(page, 'backupTab')
+    with page.expect_download() as info: page.locator('#export').click()
+    backup = json.loads(Path(info.value.path()).read_text())
+    for key, value in fixture['checks'].items(): assert backup['state']['checks'][key] == value
+    page.locator('#import').set_input_files({'name': 'optional-backup.json', 'mimeType': 'application/json', 'buffer': json.dumps(backup).encode()})
+    assert page.evaluate('state') == backup['state']
+    page.reload(wait_until='networkidle')
+    assert page.evaluate('state') == backup['state']
+    no_overflow(page)
+    page.context.close()
+    print('PASS: optional Paragraph +40 / Problem +60 in Extra only; default/custom modern plans, weighted Rank/plan compliance, Skill Tree/Boss/quest/statistics, uncheck, legacy main XP plus distinct extra, Morning independence, JSON/reload and 360px.')
+
 try:
     with sync_playwright() as p:
         browser = p.chromium.launch(executable_path=shutil.which('chromium') or shutil.which('chromium-browser'), headless=True, args=['--no-sandbox'])
+        test_optional_basics(browser)
         page = context(browser, initial=legacy)
         page.goto(URL, wait_until='networkidle')
         assert page.evaluate('state.planNotes') == {}
@@ -216,6 +286,7 @@ try:
         owner.clock.run_for(600)
         owner.wait_for_function("document.getElementById('cloudStatus').textContent==='Kaydedildi'")
         assert backend.state['planNotes'][TODAY]['mat'] == 'Diğer cihaza gidecek plan notu'
+        assert backend.state['checks']['2026-10-14|paragraph'] and backend.state['checks']['2026-10-14|problem']
         tab(owner, 'backupTab'); owner.locator('#syncNow').click()
         owner2 = context(browser, 'owner'); owner2.goto(URL, wait_until='networkidle')
         expect(owner2.locator('#tasks')).to_contain_text('Diğer cihaza gidecek plan notu')
@@ -256,18 +327,19 @@ try:
                         state.swaps['2026-10-15']={outKey:'mat',inKey:'bio'};
                         state.mockExams=[{id:'legacy-mock-'+seed,date:'2026-10-14',type:'TYT',name:'Eski deneme',scores:{math:{correct:30,wrong:8}}}];
                         for(const day of trackedDates()){
-                            for(const [i,k] of tasks(day).entries())if((parse(day).getDate()+i+seed)%4!==0)state.checks[checkKey(day,k)]=true;
+                            const fixtureTasks=day<FLOW_START?tasks(day):['paragraph','problem',...(state.weekPlans[monday(day)]?.[day]||PLAN[idx(day)].filter(k=>!['tyt','r1','r2',...ANALYSIS_KEYS].includes(k)))];
+                            for(const [i,k] of fixtureTasks.entries())if((parse(day).getDate()+i+seed)%4!==0)state.checks[checkKey(day,k)]=true;
                             if(day>=FLOW_START)for(const [i,k] of EXTRA_KEYS.entries())if((i+seed)%3===0)state.checks[checkKey(day,extraKey(k))]=true;
                             if((parse(day).getDate()+seed)%3===0)state.morningProtocol[day]={checks:Object.fromEntries(MORNING_STEPS.map(x=>[x.key,true])),timestamps:{firstQuestion:day+'T06:00:00Z'}};
                         }
                         state=normalizeRemoteState(JSON.parse(JSON.stringify(state)));migrateLegacyAnalysis();
-                        const student=JSON.parse(JSON.stringify(state));delete student.planNotes;results.push({state:student,totals:totals(),skills:skillXP(),boss:boss(),streak:currentAndBestStreak(),morning:morningStatistics(),long:longProgress(),month:monthSummary(today()),quests:weekQuestStatus(monday(today())),radar:radarData(),days:trackedDates().map(s=>({s,tasks:tasks(s),pct:completionPct(s),rank:dayRank(s)}))});
+                        const student=JSON.parse(JSON.stringify(state));delete student.planNotes;results.push({state:student,base:baseEarned(),skills:skillXP(),studies:allCompletedTaskCount(),morning:morningStatistics(),priorWeek:weekCore('2026-10-05'),priorMonth:monthSummary('2026-09-30'),priorPlan:planCompliance(START,'2026-10-13'),priorBonusDates:{srank:sRankDates('2026-10-13'),comeback:comebackDates('2026-10-13'),perfect:perfectWeekCount('2026-10-13')},days:trackedDates('2026-10-13').map(s=>({s,tasks:tasks(s),pct:completionPct(s),rank:dayRank(s)}))});
                     }
                     return results;
                 }"""))
                 c.close()
             assert snapshots[0]==snapshots[1], 'previous-version state or computed metrics changed'
-            print('PASS: 12 historical/current previous-version fixtures preserve state, XP, weighted/legacy Rank, Swap, Extra, Skill Tree, Boss, quests, main/morning streak, mock records, radar and long-term statistics.')
+            print('PASS: 12 previous-version fixtures preserve full state, earned task XP, Skill Tree, study counts, Morning and all checked pre-Oct-14 plans, Rank, bonuses and weekly/monthly XP metrics.')
         assert not errors, errors
         browser.close()
 finally:
