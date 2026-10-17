@@ -62,7 +62,7 @@ URL = f'http://127.0.0.1:{server.server_port}/'
 errors, contexts = [], []
 backend = Backend()
 
-def context(browser, role=None, initial=None):
+def context(browser, role=None, initial=None, now=None):
     ctx = browser.new_context(accept_downloads=True, timezone_id='Europe/Istanbul', viewport={'width': 360, 'height': 900}, reduced_motion='reduce')
     contexts.append(ctx)
     ctx.route(CDN, lambda r: r.fulfill(body=library, content_type='application/javascript'))
@@ -72,7 +72,7 @@ def context(browser, role=None, initial=None):
     if role == 'owner':
         ctx.add_init_script(f"localStorage.setItem('yks-rpg-owner-token-v1',{json.dumps(OWNER)})")
     page = ctx.new_page()
-    page.clock.install(time=datetime(2026, 10, 15, 6, tzinfo=timezone.utc))
+    page.clock.install(time=now or datetime(2026, 10, 15, 6, tzinfo=timezone.utc))
     page.on('pageerror', lambda error: errors.append(str(error)))
     page.on('dialog', lambda dialog: dialog.accept())
     return page
@@ -162,8 +162,8 @@ def test_optional_basics(browser):
     assert page.evaluate('!state.checks[today()+"|paragraph"]&&!state.checks[today()+"|problem"]')
     assert page.evaluate('state.checks["2026-10-14|paragraph"]&&state.checks["2026-10-14|problem"]')
     plan_week(page, FUTURE)
-    assert 'Paragraf' not in page.locator('#planDays').inner_text()
-    assert 'Problem' not in page.locator('#planDays').inner_text()
+    assert 'Paragraf' not in '\n'.join(page.locator('#planDays .planRow').all_inner_texts())
+    assert 'Problem' not in '\n'.join(page.locator('#planDays .planRow').all_inner_texts())
     assert 'Paragraf/Problem' not in page.locator('#planSummary').inner_text()
     no_overflow(page)
     tab(page, 'backupTab')
@@ -177,6 +177,144 @@ def test_optional_basics(browser):
     no_overflow(page)
     page.context.close()
     print('PASS: optional Paragraph +40 / Problem +60 in Extra only; default/custom modern plans, weighted Rank/plan compliance, Skill Tree/Boss/quest/statistics, uncheck, legacy main XP plus distinct extra, Morning independence, JSON/reload and 360px.')
+
+def test_rebalanced_planner(browser):
+    day, week = '2026-10-17', '2026-10-12'
+    now = datetime(2026, 10, 17, 6, tzinfo=timezone.utc)
+    expected = {'generalExam': 220, 'generalExamAnalysis': 160, 'paragraph': 60, 'problem': 100,
+                'mathStudy': 100, 'geo': 125, 'physics': 115, 'chem': 100, 'bio': 90,
+                'turkishStudy': 85, 'grammar': 75, 'geoTYT': 65, 'hist': 65, 'mat': 120, 'tr': 90}
+    fixture = copy.deepcopy(legacy)
+    fixture['weekPlans'][week][day] = []
+    page = context(browser, initial=fixture, now=now)
+    page.goto(URL, wait_until='networkidle')
+    assert page.evaluate('Object.fromEntries(PLAN_KEYS.map(k=>[k,xpFor(today(),k)]))') == expected
+    assert page.evaluate('Object.fromEntries(Object.entries(REWARDS).map(([k,v])=>[k,v.price]))') == {'burger':800,'special':1000,'balkaya':1200,'gaming':1500,'friends':1750,'shield':2000}
+    assert page.evaluate('PRICE') == 3000
+    assert page.evaluate('T.mat[0]') == 'TYT Matematik branş denemesi'
+    assert page.evaluate('T.tr[0]') == 'Türkçe branş denemesi'
+    assert page.evaluate('T.tyt[0]') == 'Genel TYT deneme analizi'
+    assert page.evaluate('xpFor("2026-10-16","paragraph")') == 40
+    assert page.evaluate('xpFor("2026-10-16","problem")') == 60
+    assert page.evaluate('xpFor("2026-10-16","geo")') == 120
+    assert page.evaluate('xpFor("2026-10-16","tr")') == 80
+    assert page.evaluate('datesBetween("2026-10-14","2026-10-25").every(s=>!defaultTasks(s).includes("paragraph")&&!defaultTasks(s).includes("problem"))')
+    plan_week(page, week)
+    select = card(page, day).locator('.planAdd select')
+    assert select.locator('optgroup').evaluate_all('(nodes)=>nodes.map(n=>n.label)') == ['GENEL', 'GÜNLÜK ÇALIŞMA', 'BRANŞ DENEMELERİ']
+    assert select.locator('option').evaluate_all('(nodes)=>nodes.map(n=>n.value)') == list(expected)
+    for key, xp in expected.items():
+        expect(select.locator(f'option[value="{key}"]')).to_contain_text(f'· {xp} XP')
+    for key in expected:
+        add_lesson(page, day, key, f'Not: {key}')
+        assert not page.evaluate('(key)=>addPlannedLesson(today(),key,"tekrar")', key)
+        expect(note_editor(page, day, key)).to_contain_text(f'Not: {key}')
+    assert page.evaluate('tasks(today())') == list(expected)
+    assert select.locator('option').count() == 0
+    assert page.evaluate('Object.keys(state.planNotes[today()]).length') == 15
+    no_overflow(page)
+    tab(page, 'daily')
+    expect(page.locator('#tasks .planNote')).to_have_count(15)
+    earned = page.evaluate('baseEarned()')
+    for index, (key, xp) in enumerate(expected.items()):
+        task = page.locator('#tasks .task').nth(index)
+        expect(task.locator('.xp')).to_have_text(f'+{xp} XP')
+        expect(task.locator('.planNote')).to_contain_text(f'Not: {key}')
+        task.locator('input').check()
+        assert page.evaluate('baseEarned()') == earned + xp, key
+        earned += xp
+    assert page.evaluate('dayRank(today())') == 'S'
+    assert page.evaluate('completedPriorBasics(today()).length') == 0, 'Planned Paragraph/Problem must not be counted twice'
+    assert page.evaluate('completedMain(today()).length') == 15
+    assert page.evaluate('totals().earned-baseEarned()') == 100, 'S-Rank +50 and weekly Comeback +50 are unchanged'
+    page.clock.run_for(100)
+    if page.locator('#checkinModal').is_visible(): page.locator('#modalLater').click()
+    no_overflow(page)
+    # Both study and branch tasks aggregate into the original subject skills/radar.
+    assert page.evaluate('skillXP().mat') == 220
+    assert page.evaluate('skillXP().tr') == 175
+    radar = page.evaluate('radarData()')
+    assert len(radar) == 9
+    assert next(item for item in radar if item['key'] == 'mat')['sessions'] == 2
+    assert next(item for item in radar if item['key'] == 'tr')['sessions'] == 2
+    print('PASS: all 15 dated-XP choices in ordered optgroups, unique task IDs, optional main Paragraph/Problem, normal+branch coexistence, all plan notes/daily checkboxes, no double counting, combined Skills/Radar and 360px.')
+
+    partial = {'checks': {day+'|geo': True, day+'|physics': True}, 'rests': {},
+               'weekPlans': {week: {day: ['paragraph', 'problem', 'geo', 'physics']}}}
+    extra = context(browser, initial=partial, now=now)
+    extra.goto(URL, wait_until='networkidle')
+    assert extra.evaluate('rankWeights(today())') == {'done': 240, 'total': 400}
+    assert extra.evaluate('completionPct(today())') == 60
+    before = extra.evaluate('({xp:baseEarned(),boss:boss().raw,skills:skillXP(),morning:state.morningProtocol})')
+    extra.locator('#extraPanel summary').click()
+    assert extra.locator('#extraTasks input[data-extra]').count() == 15
+    for key, xp in expected.items():
+        old = extra.evaluate('baseEarned()')
+        extra.locator(f'#extraTasks input[data-extra="{key}"]').click()
+        expect(extra.locator(f'#completedExtraTasks input[data-extra="{key}"]')).to_be_checked()
+        assert extra.evaluate('baseEarned()') == old + xp
+        assert extra.evaluate('completionPct(today())') == 60
+    assert extra.evaluate('extraXP(today())') == sum(expected.values())
+    assert extra.evaluate('monthSummary(today()).extraXP') == sum(expected.values())
+    assert extra.evaluate('weekQuestStatus(monday(today())).qs.find(x=>x.id==="extra").cur') == sum(expected.values())
+    assert extra.evaluate('longProgress().extras') == 15
+    assert extra.evaluate('boss().raw') == before['boss'] + 15
+    assert extra.evaluate('skillXP().mat') == 220 and extra.evaluate('skillXP().tr') == 175
+    assert extra.evaluate('state.morningProtocol') == before['morning']
+    skills = extra.evaluate('skillXP()')
+    assert skills == {'paragraph':60,'problem':100,'mat':220,'geo':250,'physics':230,'chem':100,'bio':90,'tr':175,'grammar':75,'geoTYT':65,'hist':65}
+    extra.locator('#completedExtraTasks input[data-extra="generalExam"]').click()
+    assert extra.evaluate('skillXP()') == skills, 'General exams must not award subject Skill XP'
+    assert extra.evaluate('extraXP(today())') == sum(expected.values()) - 220
+    assert extra.evaluate('planCompliance(today(),today()).pct') == 60
+    no_overflow(extra)
+    print('PASS: 240/400 weighted Rank; each of 15 extras awards exact dated XP, stays outside Rank, moves with EK badge, updates quest/Boss/month/long-term stats; general exams give no subject Skill XP.')
+
+    swap = context(browser, initial={'checks': {}, 'rests': {}, 'weekPlans': {week: {day: ['mathStudy', 'bio', 'generalExam']}},
+                                    'planNotes': {day: {'mathStudy': 'Fonksiyonlar'}}}, now=now)
+    swap.goto(URL, wait_until='networkidle')
+    swap.locator('#openSwap').click(); swap.locator('#swapOut').select_option('mathStudy'); swap.locator('#swapIn').select_option('bio'); swap.locator('#saveSwap').click()
+    row = swap.locator('#tasks .task').filter(has=swap.locator('.swapTag'))
+    expect(row).to_contain_text('TYT Matematik plan notu')
+    expect(row).to_contain_text('Rank ağırlığı 100')
+    expect(row.locator('.xp')).to_have_text('+90 XP')
+    assert swap.locator('#tasks .name b').filter(has_text='Biyoloji').count() == 2
+    row.locator('input').check()
+    assert swap.evaluate('baseEarned()') == 90
+    assert swap.evaluate('rankWeights(today())') == {'done': 100, 'total': 410}
+    assert swap.evaluate('skillXP().bio') == 90 and swap.evaluate('skillXP().mat') == 0
+    assert swap.evaluate('boss().raw') == 1
+    assert not swap.evaluate('updateSwap(today(),"bio","geo")')
+    assert swap.evaluate('updateSwap(today(),"mathStudy","geo",true)')
+    assert swap.evaluate('baseEarned()') == 0
+    no_overflow(swap)
+    print('PASS: normal Mathematics 100 -> Biology 90 Swap preserves 100 Rank weight, actual Biology skill, original-slot note and one-slot edit/undo behavior.')
+
+    # Persist all new main keys/notes through JSON and the three existing state RPCs.
+    tab(page, 'backupTab')
+    with page.expect_download() as info: page.locator('#export').click()
+    backup = json.loads(Path(info.value.path()).read_text())
+    page.locator('#import').set_input_files({'name': 'new-tasks.json', 'mimeType': 'application/json', 'buffer': json.dumps(backup).encode()})
+    assert page.evaluate('state') == backup['state']
+    page.reload(wait_until='networkidle'); assert page.evaluate('state') == backup['state']
+    backend.state = copy.deepcopy(backup['state'])
+    owner = context(browser, 'owner', now=now); owner.goto(URL, wait_until='networkidle')
+    plan_week(owner, week); edit_note(owner, day, 'generalExamAnalysis', 'Yanlışları tekrar çöz')
+    owner.clock.run_for(600); owner.wait_for_function("document.getElementById('cloudStatus').textContent==='Kaydedildi'")
+    assert backend.state['weekPlans'][week][day] == list(expected)
+    assert backend.state['planNotes'][day]['generalExamAnalysis'] == 'Yanlışları tekrar çöz'
+    second = context(browser, 'owner', now=now); second.goto(URL, wait_until='networkidle')
+    expect(second.locator('#tasks')).to_contain_text('Yanlışları tekrar çöz')
+    coach = context(browser, now=now); coach.goto(URL+'#coach='+COACH, wait_until='networkidle')
+    expect(coach.locator('#tasks .planNote')).to_have_count(15)
+    assert coach.locator('#tasks input:enabled,#extraTasks input:enabled').count() == 0
+    plan_week(coach, week); assert coach.locator('.planNoteEditor').count() == 0
+    assert not coach.evaluate('savePlanNote(today(),"generalExam","yasak")')
+    assert not coach.evaluate('addPlannedLesson(today(),"problem")')
+    no_overflow(coach); no_overflow(owner)
+    assert not backend.unexpected
+    print('PASS: all new task IDs, checks and notes survive JSON/import/reload, automatic state sync and another device; coach stays readonly; no new RPC/schema.')
+    for test_page in [page, extra, swap, owner, second, coach]: test_page.context.close()
 
 try:
     with sync_playwright() as p:
@@ -244,7 +382,7 @@ try:
         expect(geo_task.locator('.planNote')).to_contain_text('Bugünkü geometri çalışması')
         page.locator('#openSwap').click(); page.locator('#swapOut').select_option('mat'); page.locator('#swapIn').select_option('bio'); page.locator('#saveSwap').click()
         swap_task = page.locator('#tasks .task').filter(has=page.locator('.swapTag'))
-        expect(swap_task).to_contain_text('📝 TYT Matematik plan notu')
+        expect(swap_task).to_contain_text('📝 TYT Matematik Branş Denemesi plan notu')
         expect(swap_task).to_contain_text("Fonksiyonlardan test 4'ü çöz.")
         expect(swap_task.locator('.xp')).to_have_text('+90 XP')
         assert not page.evaluate("savePlanNote(today(),'paragraph','yasak')")
@@ -308,10 +446,12 @@ try:
             tab(coach, key); no_overflow(coach)
         print('PASS: automatic/manual existing state sync, second device and coach view; coach stays fully readonly; only the three original RPCs are used; all tabs fit 360px.')
 
+        test_rebalanced_planner(browser)
+
         if args.baseline:
             snapshots=[]
             for source in [args.baseline.read_text(), (repo/'index.html').read_text()]:
-                baseline_page=context(browser);page=baseline_page;c=page.context
+                baseline_page=context(browser,now=datetime(2026,10,16,6,tzinfo=timezone.utc));page=baseline_page;c=page.context
                 page.route(URL,lambda r,_request,html=source:r.fulfill(body=html,content_type='text/html'))
                 page.goto(URL,wait_until='networkidle')
                 snapshots.append(page.evaluate("""() => {
@@ -329,17 +469,17 @@ try:
                         for(const day of trackedDates()){
                             const fixtureTasks=day<FLOW_START?tasks(day):['paragraph','problem',...(state.weekPlans[monday(day)]?.[day]||PLAN[idx(day)].filter(k=>!['tyt','r1','r2',...ANALYSIS_KEYS].includes(k)))];
                             for(const [i,k] of fixtureTasks.entries())if((parse(day).getDate()+i+seed)%4!==0)state.checks[checkKey(day,k)]=true;
-                            if(day>=FLOW_START)for(const [i,k] of EXTRA_KEYS.entries())if((i+seed)%3===0)state.checks[checkKey(day,extraKey(k))]=true;
+                            if(day>=FLOW_START)for(const [i,k] of ['paragraph','problem','mat','geo','physics','chem','bio','tr','grammar','geoTYT','hist'].entries())if((i+seed)%3===0)state.checks[checkKey(day,extraKey(k))]=true;
                             if((parse(day).getDate()+seed)%3===0)state.morningProtocol[day]={checks:Object.fromEntries(MORNING_STEPS.map(x=>[x.key,true])),timestamps:{firstQuestion:day+'T06:00:00Z'}};
                         }
                         state=normalizeRemoteState(JSON.parse(JSON.stringify(state)));migrateLegacyAnalysis();
-                        const student=JSON.parse(JSON.stringify(state));delete student.planNotes;results.push({state:student,base:baseEarned(),skills:skillXP(),studies:allCompletedTaskCount(),morning:morningStatistics(),priorWeek:weekCore('2026-10-05'),priorMonth:monthSummary('2026-09-30'),priorPlan:planCompliance(START,'2026-10-13'),priorBonusDates:{srank:sRankDates('2026-10-13'),comeback:comebackDates('2026-10-13'),perfect:perfectWeekCount('2026-10-13')},days:trackedDates('2026-10-13').map(s=>({s,tasks:tasks(s),pct:completionPct(s),rank:dayRank(s)}))});
+                        const student=JSON.parse(JSON.stringify(state));results.push({state:student,totals:totals(),skills:skillXP(),studies:allCompletedTaskCount(),boss:boss(),streak:currentAndBestStreak(),morning:morningStatistics(),long:longProgress(),month:monthSummary(today()),quest:weekQuestStatus(monday(today())),radar:radarData(),history:[START,add(START,7),add(START,14)].map(weekCore),plan:planCompliance(START,today()),bonusDates:{srank:sRankDates(),comeback:comebackDates(),perfect:perfectWeekCount()},days:trackedDates().map(s=>({s,tasks:tasks(s),pct:completionPct(s),rank:dayRank(s)}))});
                     }
                     return results;
                 }"""))
                 c.close()
             assert snapshots[0]==snapshots[1], 'previous-version state or computed metrics changed'
-            print('PASS: 12 previous-version fixtures preserve full state, earned task XP, Skill Tree, study counts, Morning and all checked pre-Oct-14 plans, Rank, bonuses and weekly/monthly XP metrics.')
+            print('PASS: 12 pre-17-October fixtures exactly preserve full state, total XP/balance/spending, legacy+weighted Rank, history, bonuses, Skills, Boss, streak, Morning, Radar and weekly/monthly/long-term metrics.')
         assert not errors, errors
         browser.close()
 finally:
