@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#0e1220">
-<title>YKS RPG V3.6</title>
+<title>YKS RPG V3.7</title>
 <style>
 :root{
  color-scheme:dark;--bg:#0c1019;--surface:#141b28;--surface-raised:#1b2535;--surface-soft:#101722;--border:#2a3547;--text:#edf2fa;--muted:#98a7bc;--accent:#84cbb8;--success:#84cbb8;--warning:#e9be76;--danger:#ef9c9d;--gold:#e9be76;--violet:#b5a1e5;
@@ -34,13 +34,22 @@ button,input,select,textarea{font:inherit}button{min-height:44px;display:inline-
 .vaultStats .stat b{font-size:20px}.vaultGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.vaultBookCard,.vaultQuestion{border:1px solid var(--border);background:var(--surface-soft);border-radius:14px;padding:14px}.vaultBookCard{min-width:0}.vaultBookHead,.vaultQuestionHead{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}.vaultBookHead strong,.vaultQuestionHead strong{overflow-wrap:anywhere}.vaultMeta{display:flex;flex-wrap:wrap;gap:6px;margin-top:7px}.vaultMeta .pill{padding:4px 7px;font-size:11px}.vaultQuestion{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:11px;margin:9px 0}.vaultQuestion.selectable{cursor:pointer}.vaultQuestion input[type=checkbox]{width:20px;height:20px;margin:0}.vaultDot{width:14px;height:14px;border-radius:50%;box-shadow:0 0 0 3px #ffffff0a;flex:none}.vaultDot.locked,.vaultDot.failed{background:#d76469}.vaultDot.ready{background:#5a9fe8}.vaultDot.partial{background:#9b7255}.vaultDot.solved{background:#53c7c2}.vaultDot.mastered{background:#05070a;border:1px solid #5d6878}.vaultDot.neutral{background:#596579}.vaultRef{font-weight:730}.vaultSub{font-size:12px;color:var(--muted);margin-top:2px;overflow-wrap:anywhere}.vaultDue{font-size:11px;font-weight:750;white-space:nowrap}.vaultDue.late{color:var(--danger)}.vaultDue.today{color:var(--gold)}.vaultDue.future{color:var(--muted)}.vaultEmpty{padding:20px;border:1px dashed var(--border);border-radius:14px;text-align:center;color:var(--muted)}.vaultToolbar{display:flex;gap:8px;align-items:end;flex-wrap:wrap}.vaultToolbar label{min-width:150px;flex:1}.vaultToolbar select,.vaultToolbar input{width:100%}.vaultQuickForm .formGrid{grid-template-columns:repeat(3,minmax(0,1fr))}.vaultBookForm .formGrid{grid-template-columns:minmax(0,180px) minmax(0,1fr)}.vaultLegend{display:flex;gap:10px;flex-wrap:wrap}.vaultLegend span{display:inline-flex;align-items:center;gap:6px;color:var(--muted);font-size:11px}.vaultSession{position:relative;border-color:#4b7182;background:radial-gradient(ellipse at 100% 0,#84cbb814,transparent 50%),var(--surface)}.vaultSessionRef{font-size:21px;font-weight:800;letter-spacing:-.02em;margin-bottom:4px}.vaultSessionProgress{font-size:12px;color:var(--muted)}.vaultResultButtons{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin-top:16px}.vaultResultButtons button{min-height:54px;font-weight:750}.vaultResultButtons .solved{border-color:#53c7c266}.vaultResultButtons .partial{border-color:#9b725566}.vaultResultButtons .failed{border-color:#d7646966}.vaultTopicRow{padding:8px 0;border-top:1px solid #ffffff0a;display:flex;justify-content:space-between;gap:10px}.vaultTopicRow:first-child{border-top:0}.vaultBookQuestions{margin-top:10px}.vaultBookQuestions summary{cursor:pointer;color:var(--muted);font-size:12px}.vaultQuestion .actions{margin:0}.vaultQuestion .actions button{font-size:11px;padding:7px 9px;min-height:36px}.vaultStatusLine{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.vaultStatusLine .pill{font-size:11px}.vaultReadyCount{font-weight:800;color:var(--blue)}.vaultDangerText{color:var(--danger)}
 @media(max-width:720px){.vaultGrid{grid-template-columns:1fr}.vaultQuickForm .formGrid,.vaultBookForm .formGrid{grid-template-columns:1fr}.vaultResultButtons{grid-template-columns:1fr}.vaultQuestion{grid-template-columns:auto minmax(0,1fr)}.vaultQuestion>.actions{grid-column:2}.vaultDue{white-space:normal}.vaultToolbar label{min-width:100%;}}
 
+#radarShortcut{display:none!important}
+.mockVaultMeta{display:flex;gap:7px;flex-wrap:wrap;margin:8px 0 2px}.mockVaultMeta .pill{font-size:11px}
+.mockVaultLaunch{border-color:#84cbb84d}
+.mockVaultModal .modalBox{max-width:720px}.mockVaultModal .formGrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+.mockVaultModal .full{grid-column:1/-1}.mockVaultReason{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.mockVaultReason label{display:flex;gap:8px;align-items:center;border:1px solid var(--border);background:var(--surface-soft);border-radius:12px;padding:10px}
+.mockVaultReason input{width:auto}
+.vaultOrigin{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+@media(max-width:720px){.mockVaultModal .formGrid,.mockVaultReason{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <main>
-<header class="appHeader"><div class="brand"><span class="brandMark" aria-hidden="true">🎮</span><div><div class="brandLine"><h1>YKS RPG</h1><span class="version">V3.6</span></div><p class="sub">Her gün biraz daha güçlü.</p></div></div><div class="headerBadges"><span class="pill" id="cloudPill">☁️ <span id="cloudStatus">Yerel</span></span><span class="pill" title="Boş gün bileti">🎟️ <span id="tickets">0</span></span><span class="pill" title="İndirim kuponu">🏷️ <span id="coupons">0</span></span></div></header>
+<header class="appHeader"><div class="brand"><span class="brandMark" aria-hidden="true">🎮</span><div><div class="brandLine"><h1>YKS RPG</h1><span class="version">V3.7</span></div><p class="sub">Her gün biraz daha güçlü.</p></div></div><div class="headerBadges"><span class="pill" id="cloudPill">☁️ <span id="cloudStatus">Yerel</span></span><span class="pill" title="Boş gün bileti">🎟️ <span id="tickets">0</span></span><span class="pill" title="İndirim kuponu">🏷️ <span id="coupons">0</span></span></div></header>
 <section class="panel hero"><div class="heroHeading"><div><span class="overline">LEVEL / XP · KULLANILABİLİR BAKİYE</span><div class="big" id="balance">0 XP</div></div><div class="heroEmblem" aria-hidden="true">✦</div></div><div class="bar"><div id="progress"></div></div><div class="heroReward"><small id="next">Sonraki boş gün biletine 3.000 XP</small><span class="pill">🎟️ 3.000 XP</span></div><div class="stats heroStats"><div class="stat"><small>BU HAFTA</small><b id="weekly">0</b></div><div class="stat"><small>🔥 STREAK</small><b id="topStreak">0 gün</b></div><div class="stat"><small>BUGÜNKÜ RANK</small><b id="heroRank">D-Rank</b></div><div class="stat"><small>👹 BOSS POWER</small><b id="bossMini">0/100</b><div class="bar miniBoss"><div id="heroBossProgress"></div></div></div></div><div class="heroFooter"><button id="countdown" class="viewControl" type="button">🎯 YKS tarihini ayarla</button><div class="ledgerRow"><span>Toplam <b id="earned">0</b> XP</span><span>Harcanan <b id="spent">0</b> XP</span><span>En iyi seri <b id="bestStreak">0 gün</b></span></div></div></section>
-<nav class="tabs" role="tablist" aria-label="Uygulama bölümleri"><button id="nav-daily" data-tab="daily" role="tab" aria-controls="daily" aria-selected="true" class="active"><span class="navIcon" aria-hidden="true">📅</span>Günlük</button><button id="nav-rpg" data-tab="rpg" role="tab" aria-controls="rpg" aria-selected="false"><span class="navIcon" aria-hidden="true">⚔️</span>RPG</button><button id="nav-mockTab" data-tab="mockTab" role="tab" aria-controls="mockTab" aria-selected="false"><span class="navIcon" aria-hidden="true">📝</span>Denemeler</button><button id="nav-planTab" data-tab="planTab" role="tab" aria-controls="planTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🗓️</span>Plan</button><button id="nav-vaultTab" data-tab="vaultTab" role="tab" aria-controls="vaultTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🧠</span>Zor Soru</button><button id="nav-radarTab" data-tab="radarTab" role="tab" aria-controls="radarTab" aria-selected="false"><span class="navIcon" aria-hidden="true">📡</span>Radar</button><button id="nav-statsTab" data-tab="statsTab" role="tab" aria-controls="statsTab" aria-selected="false"><span class="navIcon" aria-hidden="true">📊</span>İstatistik</button><button id="nav-shopTab" data-tab="shopTab" role="tab" aria-controls="shopTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🛍️</span>Mağaza</button><button id="nav-backupTab" data-tab="backupTab" role="tab" aria-controls="backupTab" aria-selected="false"><span class="navIcon" aria-hidden="true">💾</span>Yedek</button></nav>
+<nav class="tabs" role="tablist" aria-label="Uygulama bölümleri"><button id="nav-daily" data-tab="daily" role="tab" aria-controls="daily" aria-selected="true" class="active"><span class="navIcon" aria-hidden="true">📅</span>Günlük</button><button id="nav-rpg" data-tab="rpg" role="tab" aria-controls="rpg" aria-selected="false"><span class="navIcon" aria-hidden="true">⚔️</span>RPG</button><button id="nav-mockTab" data-tab="mockTab" role="tab" aria-controls="mockTab" aria-selected="false"><span class="navIcon" aria-hidden="true">📝</span>Denemeler</button><button id="nav-planTab" data-tab="planTab" role="tab" aria-controls="planTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🗓️</span>Plan</button><button id="nav-vaultTab" data-tab="vaultTab" role="tab" aria-controls="vaultTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🧠</span>Zor Soru</button><button id="nav-shopTab" data-tab="shopTab" role="tab" aria-controls="shopTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🛍️</span>Mağaza</button><button id="nav-backupTab" data-tab="backupTab" role="tab" aria-controls="backupTab" aria-selected="false"><span class="navIcon" aria-hidden="true">💾</span>Yedek</button></nav>
 
 <div id="daily" class="tab active" role="tabpanel" aria-labelledby="nav-daily">
 <button id="radarShortcut" class="radarLink viewControl"><strong id="radarBrief">📡 Radar</strong><span aria-hidden="true">İncele →</span></button>
@@ -83,7 +92,7 @@ button,input,select,textarea{font:inherit}button{min-height:44px;display:inline-
 </div>
 
 <div id="vaultTab" class="tab" role="tabpanel" aria-labelledby="nav-vaultTab">
-  <div class="sectionIntro"><span class="overline">UNUTMAYI YAKALA</span><h2>🧠 Zor Soru Kasası</h2><p>Video çözümünden öğrendiğin soru bankası sorularını 7 gün dinlendir, sonra kendi seçiminle test et. Bir soruyu ilk kez gerçekten denedikten sonra tekrar takvimini uygulama takip eder.</p></div>
+  <div class="sectionIntro"><span class="overline">UNUTMAYI YAKALA</span><h2>🧠 Zor Soru Kasası</h2><p>Video çözümünden öğrendiğin soru bankası ve deneme sorularını 7 gün dinlendir, sonra kendi seçiminle test et. Bir soruyu ilk kez gerçekten denedikten sonra tekrar takvimini uygulama takip eder.</p></div>
 
   <section class="panel vaultHero">
     <div class="top"><div><span class="overline">BUGÜNÜN TEKRAR NABZI</span><h2>🔥 Bugün yapılacaklar</h2></div><button id="vaultStartDue" class="primary" type="button">Bugünküleri çöz</button></div>
@@ -146,6 +155,9 @@ button,input,select,textarea{font:inherit}button{min-height:44px;display:inline-
       <span><i class="vaultDot mastered"></i>Siyah · Öğrenildi</span>
     </div>
     <div class="vaultGrid" id="vaultBookMap"></div>
+    <div class="divider"></div>
+    <h3>📝 Deneme soruları</h3>
+    <div class="vaultGrid" id="vaultMockMap"></div>
   </section>
 </div>
 
@@ -154,9 +166,36 @@ button,input,select,textarea{font:inherit}button{min-height:44px;display:inline-
 <section class="panel morningSettings"><h2>🌅 Morning Protocol ayarları</h2><p class="notice">Sabah saatlerini kendine göre ayarla. Namaz vakti için sabit bir saat kullanılmaz.</p><form id="morningSettingsForm"><div class="formGrid"><label>Uyanış saati<input id="morningWakeTime" type="time" value="06:30" required></label><label>Çalışma başlangıcı<input id="studyStartTime" type="time" value="09:00" required></label></div><div class="actions"><button type="submit" class="primary" id="saveMorningSettings">Sabah ayarlarını kaydet</button></div><p class="notice" id="morningSettingsStatus" aria-live="polite"></p></form></section>
 <section class="panel"><h2>💾 Kayıt ve yedekleme</h2><p class="notice">Veriler bu cihazda yerel olarak tutulur; Coach Sync bağlandığında aynı kayıt ayrıca buluta gönderilir. JSON yedeği yine ekstra güvence olarak kalır.</p><div class="actions"><button id="export">Yedeği indir (.json)</button><button id="importBtn">Yedekten geri yükle</button><input id="import" class="file" type="file" accept=".json,application/json"><button id="reset" class="danger">Tüm verileri sıfırla</button></div><small id="saved"></small></section>
 <section class="panel" id="cloudPanel"><div class="top"><h2>☁️ Coach Sync</h2><span class="pill" id="cloudRole">Öğrenci</span></div><p class="notice" id="cloudHelp">Bu cihazı bulut hesabına bağlamak için özel öğrenci kodunu bir kez gir. Kod cihazda saklanır; GitHub'a veya site kaynak koduna yazılmaz.</p><div id="ownerSetup"><input id="ownerTokenInput" type="password" placeholder="Özel öğrenci kurulum kodu" style="width:100%"><div class="actions"><button id="bindOwner" class="primary">☁️ Bu cihazı bağla</button></div></div><div class="actions"><button id="syncNow">↕️ Şimdi senkronize et</button><button id="copyCoachLink">🔗 Koç bağlantısını kopyala</button><button id="copySetupCode" type="button" hidden disabled>🔑 Kurulum kodunu kopyala</button><button id="forgetOwner" class="danger">Bu cihazın bulut bağlantısını kaldır</button></div><p class="notice" id="cloudDetail">Henüz bağlanmadı.</p></section>
-<section class="panel"><h2>ℹ️ V3.6 kuralları</h2><p class="notice">Paragraf ve Problem otomatik eklenmez; Plan’a eklendiğinde ana görev ve Rank ağırlığı kazanır. 17 Ekim 2026 itibarıyla yeni XP ekonomisi uygulanır (Paragraf 60 XP, Problem 100 XP); önceki günlerin XP değerleri korunur. Eski soru analizi ve rutin görevleri yalnızca geçmiş tarihlerde korunur. Ek çalışmalar isteğe bağlıdır; günlük Rank ve streak hesabında ana görevler esas alınır. 14 Ekim sonrası Rank, görevlerin XP ağırlığına göre hesaplanır. Ders değişiminde orijinal slotun Rank ağırlığı korunur; kazanılan XP gelen derse aittir. Pazartesi Boş Gün Bileti yeni planda analiz ön koşulu olmadan kullanılabilir; eski tarihlerde eski kural geçerlidir. Günlük Mini Quest (özellik 14) bu sürümde özellikle yoktur; daha sonra birlikte tasarlanacaktır.</p></section>
+<section class="panel"><h2>ℹ️ V3.7 kuralları</h2><p class="notice">Paragraf ve Problem otomatik eklenmez; Plan’a eklendiğinde ana görev ve Rank ağırlığı kazanır. 17 Ekim 2026 itibarıyla yeni XP ekonomisi uygulanır (Paragraf 60 XP, Problem 100 XP); önceki günlerin XP değerleri korunur. Eski soru analizi ve rutin görevleri yalnızca geçmiş tarihlerde korunur. Ek çalışmalar isteğe bağlıdır; günlük Rank ve streak hesabında ana görevler esas alınır. 14 Ekim sonrası Rank, görevlerin XP ağırlığına göre hesaplanır. Ders değişiminde orijinal slotun Rank ağırlığı korunur; kazanılan XP gelen derse aittir. Pazartesi Boş Gün Bileti yeni planda analiz ön koşulu olmadan kullanılabilir; eski tarihlerde eski kural geçerlidir. Günlük Mini Quest (özellik 14) bu sürümde özellikle yoktur; daha sonra birlikte tasarlanacaktır.</p></section>
 </div>
 </main>
+
+
+<div class="modal mockVaultModal" id="mockVaultModal">
+  <div class="modalBox">
+    <div class="top"><div><span class="overline">DENEMEDEN KASAYA</span><h2>🧠 Zor soruları ekle</h2></div><button id="closeMockVault" type="button">Kapat</button></div>
+    <p class="notice" id="mockVaultExamInfo"></p>
+    <form id="mockVaultForm">
+      <div class="formGrid">
+        <label>Ders<select id="mockVaultSubject" required></select></label>
+        <label>Çözümü öğrendiğim tarih<input id="mockVaultLearnedDate" type="date" required></label>
+        <label class="full">Soru no<input id="mockVaultQuestionNo" type="text" maxlength="160" placeholder="Örn. 12, 18, 27" required></label>
+        <label class="full">Konu <input id="mockVaultTopic" type="text" maxlength="120" placeholder="İsteğe bağlı · Örn. Problemler"></label>
+      </div>
+      <div class="divider"></div>
+      <small>Soruyu kasaya alma nedeni</small>
+      <div class="mockVaultReason">
+        <label><input type="radio" name="mockVaultReason" value="wrong" checked>❌ Yanlış yaptım</label>
+        <label><input type="radio" name="mockVaultReason" value="blank">⬜ Boş bıraktım</label>
+        <label><input type="radio" name="mockVaultReason" value="time">⏱️ Sürede yapamadım</label>
+        <label><input type="radio" name="mockVaultReason" value="uncertain">🎯 Doğru ama emin değildim / çok zorlandım</label>
+      </div>
+      <p class="notice">Sadece tekrar görmeye değecek soruları ekle. Dikkatsizlikten yapılan basit işlem hatalarını kasaya atmak zorunda değilsin.</p>
+      <div class="actions"><button class="primary" type="submit">🔴 Kasaya ekle</button></div>
+      <p class="notice" id="mockVaultNotice" aria-live="polite"></p>
+    </form>
+  </div>
+</div>
 
 <div class="modal" id="checkinModal"><div class="modalBox"><h2>🌙 S-Rank! Gün nasıl geçti?</h2><p class="notice">Perfect Day tamamlandı. 10 saniyelik check-in yaparsan ileride hangi günlerin sana en iyi geldiğini görebilirsin.</p><div class="grid2"><div><small>Çalışma yükü</small><div class="checkinBtns" id="modalLoadBtns"></div></div><div><small>Memnuniyet</small><div class="checkinBtns" id="modalSatBtns"></div></div></div><textarea id="modalNote" placeholder="Opsiyonel kısa not..."></textarea><div class="actions"><button id="modalSave" class="primary">Kaydet</button><button id="modalLater">Sonra</button></div></div></div>
 
@@ -596,7 +635,7 @@ function editMock(id){
  if(COACH_MODE)return;const exam=state.mockExams.find(e=>e.id===id);if(!validMock(exam))return;
  editingMockId=id;$('mockFormTitle').textContent='Denemeyi düzenle';$('mockDate').value=exam.date;$('mockType').value=exam.type;$('mockName').value=exam.name||'';$('mockDuration').value=exam.duration??'';$('mockNote').value=exam.note||'';renderMockScores(exam.scores);$('mockFormPanel').scrollIntoView({behavior:'smooth',block:'start'});
 }
-function deleteMock(id){if(COACH_MODE)return;if(!confirm('Bu deneme kaydı silinsin mi?'))return;state.mockExams=state.mockExams.filter(e=>e.id!==id);if(editingMockId===id)resetMockForm();save();render()}
+function deleteMock(id){if(COACH_MODE)return;const linked=vaultQuestions().filter(q=>q.sourceType==='mock'&&q.mockId===id).length;const msg=linked?'Bu deneme kaydı silinsin mi? Kasadaki '+linked+' soru, denemenin adı/tarihi saklanarak kasada kalır.':'Bu deneme kaydı silinsin mi?';if(!confirm(msg))return;state.mockExams=state.mockExams.filter(e=>e.id!==id);if(editingMockId===id)resetMockForm();save();render()}
 function renderMockChart(records,subject){
  const wrap=$('mockChart');wrap.replaceChildren();
  if(records.length<2){wrap.append(emptyView('📈','Gelişim hikâyen burada başlayacak.','Grafiği görmek için aynı türde en az 2 deneme ekle.',true));return}
@@ -624,7 +663,8 @@ function renderMocks(){
   if(exam.name){const name=document.createElement('p');name.textContent=exam.name;card.append(name)}
   const scores=document.createElement('p');scores.className='notice';scores.textContent=Object.entries(def.subjects).map(([key,[name,max]])=>`${name}: ${exam.scores[key].correct}D / ${exam.scores[key].wrong}Y / ${max-exam.scores[key].correct-exam.scores[key].wrong}B · ${formatNumber(examNet(exam,key))} net`).join(' — ');card.append(scores);appendSavedErrors(card,exam);
   if(exam.duration){const time=document.createElement('p');time.textContent='Süre: '+exam.duration+' dk';card.append(time)}if(exam.note){const note=document.createElement('p');note.textContent=exam.note;card.append(note)}
-  if(!COACH_MODE){const actions=document.createElement('div');actions.className='actions';for(const [label,action] of [['Düzenle',()=>editMock(exam.id)],['Sil',()=>deleteMock(exam.id)]]){const button=document.createElement('button');button.textContent=label;button.onclick=action;actions.append(button)}card.append(actions)}$('mockList').append(card);
+  const vc=mockVaultCounts(exam);if(vc.total){const meta=document.createElement('div');meta.className='mockVaultMeta';for(const txt of ['🧠 Kasada '+vc.total,'🔥 Aktif '+vc.active,'⚫ Öğrenildi '+vc.mastered]){const p=document.createElement('span');p.className='pill';p.textContent=txt;meta.append(p)}card.append(meta)}
+  if(!COACH_MODE){const actions=document.createElement('div');actions.className='actions';for(const [label,action,cls] of [['🧠 Zor soruları kasaya ekle',()=>openMockVault(exam.id),'mockVaultLaunch'],['Düzenle',()=>editMock(exam.id),''],['Sil',()=>deleteMock(exam.id),'']]){const button=document.createElement('button');button.textContent=label;if(cls)button.className=cls;button.onclick=action;actions.append(button)}card.append(actions)}$('mockList').append(card);
  }
 }
 function initV32(){
@@ -975,8 +1015,14 @@ function appendPlanNoteEditor(card,day,key){
 
 const VAULT_SUBJECTS={
  mathStudy:'TYT Matematik',problem:'Problem',geo:'Geometri',physics:'Fizik',chem:'Kimya',bio:'Biyoloji',
- turkishStudy:'Türkçe',grammar:'Dil Bilgisi',geoTYT:'TYT Coğrafya',hist:'TYT Tarih'
+ turkishStudy:'Türkçe',grammar:'Dil Bilgisi',geoTYT:'TYT Coğrafya',hist:'TYT Tarih',
+ tytSocial:'TYT Sosyal',tytScience:'TYT Fen',aytMath:'AYT Matematik',aytPhysics:'AYT Fizik',aytChem:'AYT Kimya',aytBio:'AYT Biyoloji'
 };
+const MOCK_VAULT_SUBJECT_MAP={
+ TYT:{turkish:'turkishStudy',social:'tytSocial',math:'mathStudy',science:'tytScience'},
+ AYT:{math:'aytMath',physics:'aytPhysics',chemistry:'aytChem',biology:'aytBio'}
+};
+const MOCK_VAULT_REASON={wrong:'Yanlış',blank:'Boş',time:'Süre',uncertain:'Zorlandım / emin değildim'};
 let vaultSelectedReady=new Set(),vaultSessionIds=[],vaultSessionIndex=0,vaultLastBookId='',vaultLastTopic='';
 
 function vaultId(prefix){return prefix+'-'+(crypto.randomUUID?crypto.randomUUID():(Date.now().toString(36)+Math.random().toString(36).slice(2)))}
@@ -992,25 +1038,38 @@ function normalizeQuestionVault(raw){
  const validBooks=new Set(out.books.map(b=>b.id));
  const questions=Array.isArray(raw.questions)?raw.questions:[];
  for(const q of questions){
-  if(!q||typeof q!=='object'||typeof q.id!=='string'||!q.id||!validBooks.has(q.bookId))continue;
+  if(!q||typeof q!=='object'||typeof q.id!=='string'||!q.id)continue;
+  const sourceType=q.sourceType==='mock'?'mock':'book';
+  if(sourceType==='book'&&!validBooks.has(q.bookId))continue;
   const addedAt=validDay(q.addedAt)?q.addedAt:today(),firstEligibleAt=validDay(q.firstEligibleAt)?q.firstEligibleAt:add(addedAt,7);
   const active=!!q.active,mastered=!!q.mastered,stage=Math.max(0,Math.min(3,Number(q.successStage)||0));
   const result=['solved','partial','failed'].includes(q.lastResult)?q.lastResult:null;
   const history=Array.isArray(q.history)?q.history.filter(h=>h&&validDay(h.date)&&['solved','partial','failed'].includes(h.result)).map(h=>({date:h.date,result:h.result})).slice(-30):[];
-  out.questions.push({
-   id:q.id,bookId:q.bookId,topic:typeof q.topic==='string'&&q.topic.trim()?q.topic.trim().slice(0,120):'Genel',
+  const common={
+   id:q.id,sourceType,topic:typeof q.topic==='string'&&q.topic.trim()?q.topic.trim().slice(0,120):'Konu belirtilmedi',
    page:typeof q.page==='string'||typeof q.page==='number'?String(q.page).trim().slice(0,20):'',
    questionNo:typeof q.questionNo==='string'||typeof q.questionNo==='number'?String(q.questionNo).trim().slice(0,40):'',
    addedAt,firstEligibleAt,active,successStage:stage,lastResult:result,
    lastAttemptAt:validDay(q.lastAttemptAt)?q.lastAttemptAt:'',nextDueAt:validDay(q.nextDueAt)?q.nextDueAt:'',
    mastered,history
-  });
+  };
+  if(sourceType==='mock'){
+   const subject=VAULT_SUBJECTS[q.subject]?q.subject:'mathStudy';
+   out.questions.push({...common,bookId:'',mockId:typeof q.mockId==='string'?q.mockId:'',mockType:q.mockType==='AYT'?'AYT':'TYT',
+    mockName:typeof q.mockName==='string'?q.mockName.slice(0,160):'',mockDate:validDay(q.mockDate)?q.mockDate:addedAt,
+    subject,originStatus:MOCK_VAULT_REASON[q.originStatus]?q.originStatus:'wrong'});
+  }else out.questions.push({...common,bookId:q.bookId,mockId:'',mockType:'',mockName:'',mockDate:'',subject:'',originStatus:''});
  }
  return out;
 }
 function vaultBooks(){return state.questionVault?.books||[]}
 function vaultQuestions(){return state.questionVault?.questions||[]}
 function vaultBook(id){return vaultBooks().find(b=>b.id===id)}
+function vaultMockExam(q){return q?.mockId?state.mockExams.find(e=>e.id===q.mockId):null}
+function vaultQuestionSubject(q){return q?.sourceType==='mock'?q.subject:vaultBook(q?.bookId)?.subject}
+function vaultSourceIsMock(q){return q?.sourceType==='mock'}
+function vaultMockName(q){const exam=vaultMockExam(q);return exam?.name||q.mockName||EXAM_TYPES[q.mockType]?.name||'Deneme'}
+function vaultOriginText(q){return vaultSourceIsMock(q)?'📝 Deneme':'📚 Soru bankası'}
 function vaultSubjectLabel(key){return VAULT_SUBJECTS[key]||key||'Ders'}
 function vaultDayDiff(from,to){return Math.round((parse(to)-parse(from))/86400000)}
 function vaultDaysUntil(date){return Math.max(0,vaultDayDiff(today(),date))}
@@ -1031,6 +1090,7 @@ function vaultDueQuestions(){
   const ao=a.nextDueAt<today(),bo=b.nextDueAt<today();if(ao!==bo)return ao?-1:1;
   const score=q=>q.lastResult==='failed'?3:q.lastResult==='partial'?2:1;
   if(score(a)!==score(b))return score(b)-score(a);
+  if(vaultSourceIsMock(a)!==vaultSourceIsMock(b))return vaultSourceIsMock(a)?-1:1;
   const lateA=vaultDaysLate(a),lateB=vaultDaysLate(b);if(lateA!==lateB)return lateB-lateA;
   return a.nextDueAt.localeCompare(b.nextDueAt);
  });
@@ -1041,6 +1101,7 @@ function vaultReadyQuestions(){
 function vaultLockedQuestions(){return vaultQuestions().filter(q=>!q.active&&!q.mastered&&q.firstEligibleAt>today())}
 function vaultFutureActive(){return vaultQuestions().filter(q=>q.active&&!q.mastered&&q.nextDueAt&&q.nextDueAt>today())}
 function vaultQuestionLabel(q){
+ if(vaultSourceIsMock(q))return vaultMockName(q)+' · '+fmt(q.mockDate)+' · '+vaultSubjectLabel(q.subject)+' · S.'+(q.questionNo||'—');
  const b=vaultBook(q.bookId);return (b?b.name:'Kaynak')+' · '+q.topic+' · s.'+(q.page||'—')+' / S.'+(q.questionNo||'—');
 }
 function vaultDueText(q){
@@ -1063,7 +1124,10 @@ function vaultMakeQuestion(q,selectable=false,showDelete=false){
  }else{const dot=document.createElement('i');dot.className='vaultDot '+vaultState(q).key;dot.title=vaultState(q).label;wrap.append(dot)}
  const body=document.createElement('div');const head=document.createElement('div');head.className='vaultQuestionHead';
  const title=document.createElement('strong');title.className='vaultRef';title.textContent=vaultQuestionLabel(q);head.append(title);body.append(head);
- const sub=document.createElement('div');sub.className='vaultSub';sub.textContent=vaultSubjectLabel(vaultBook(q.bookId)?.subject)+' · '+vaultState(q).label;body.append(sub);
+ const origin=document.createElement('div');origin.className='vaultOrigin';origin.textContent=vaultOriginText(q);body.append(origin);
+ const sub=document.createElement('div');sub.className='vaultSub';
+ sub.textContent=vaultSubjectLabel(vaultQuestionSubject(q))+' · '+q.topic+' · '+vaultState(q).label+(vaultSourceIsMock(q)?' · '+(MOCK_VAULT_REASON[q.originStatus]||'Deneme'):'');
+ body.append(sub);
  const due=document.createElement('div');due.className='vaultDue '+vaultDueClass(q);due.textContent=vaultDueText(q);body.append(due);wrap.append(body);
  if(showDelete&&!COACH_MODE){const actions=document.createElement('div');actions.className='actions';const del=document.createElement('button');del.type='button';del.textContent='Sil';del.onclick=()=>deleteVaultQuestion(q.id);actions.append(del);wrap.append(actions)}
  return wrap;
@@ -1081,7 +1145,7 @@ function renderVaultFilters(){
 function filteredVaultReady(){
  const s=$('vaultFilterSubject')?.value||'',b=$('vaultFilterBook')?.value||'',topic=($('vaultFilterTopic')?.value||'').trim().toLocaleLowerCase('tr-TR');
  return vaultReadyQuestions().filter(q=>{
-  const book=vaultBook(q.bookId);return (!s||book?.subject===s)&&(!b||q.bookId===b)&&(!topic||q.topic.toLocaleLowerCase('tr-TR').includes(topic));
+  return (!s||vaultQuestionSubject(q)===s)&&(!b||(q.sourceType==='book'&&q.bookId===b))&&(!topic||q.topic.toLocaleLowerCase('tr-TR').includes(topic));
  });
 }
 function renderVaultReady(){
@@ -1144,6 +1208,31 @@ function renderVaultBookMap(){
   map.append(card);
  }
 }
+function renderVaultMockMap(){
+ const map=$('vaultMockMap');if(!map)return;map.replaceChildren();
+ const qs=vaultQuestions().filter(vaultSourceIsMock);
+ if(!qs.length){const box=document.createElement('div');box.className='vaultEmpty';box.textContent='Henüz deneme sorusu kasaya eklenmedi.';map.append(box);return}
+ const groups=new Map();
+ for(const q of qs){const key=q.mockId||[q.mockType,q.mockDate,q.mockName].join('|');if(!groups.has(key,))groups.set(key,[]);groups.get(key).push(q)}
+ for(const items of groups.values()){
+  const first=items[0],card=document.createElement('div');card.className='vaultBookCard';
+  const head=document.createElement('div');head.className='vaultBookHead';const left=document.createElement('div');
+  const title=document.createElement('strong');title.textContent=vaultMockName(first);
+  const sub=document.createElement('div');sub.className='vaultSub';sub.textContent=fmt(first.mockDate)+' · '+(EXAM_TYPES[first.mockType]?.name||first.mockType)+' · '+items.length+' soru';
+  left.append(title,sub);head.append(left);card.append(head);
+  const meta=document.createElement('div');meta.className='vaultMeta';
+  for(const [label,n] of [
+    ['🔴 Bekliyor',items.filter(q=>!q.active&&!q.mastered&&q.firstEligibleAt>today()).length],
+    ['🔵 Hazır',items.filter(q=>!q.active&&!q.mastered&&q.firstEligibleAt<=today()).length],
+    ['🔥 Aktif',items.filter(q=>q.active&&!q.mastered).length],
+    ['⚫ Öğrenildi',items.filter(q=>q.mastered).length]
+  ]){const p=document.createElement('span');p.className='pill';p.textContent=label+' '+n;meta.append(p)}card.append(meta);
+  const details=document.createElement('details');details.className='vaultBookQuestions';const summary=document.createElement('summary');summary.textContent='Soruları göster';details.append(summary);
+  for(const q of [...items].sort((a,b)=>vaultSubjectLabel(a.subject).localeCompare(vaultSubjectLabel(b.subject),'tr')||String(a.questionNo).localeCompare(String(b.questionNo),'tr')))details.append(vaultMakeQuestion(q,false,true));
+  card.append(details);map.append(card);
+ }
+}
+
 function renderVaultSession(){
  const panel=$('vaultSessionPanel');if(!panel)return;
  const valid=vaultSessionIds.filter(id=>vaultQuestions().some(q=>q.id===id&&!q.mastered));
@@ -1151,11 +1240,12 @@ function renderVaultSession(){
  if(vaultSessionIndex>=vaultSessionIds.length){panel.hidden=true;return}
  const q=vaultQuestions().find(x=>x.id===vaultSessionIds[vaultSessionIndex]);if(!q){panel.hidden=true;return}
  panel.hidden=false;$('vaultSessionProgress').textContent=(vaultSessionIndex+1)+' / '+vaultSessionIds.length;
- $('vaultSessionRef').textContent='s.'+(q.page||'—')+' · S.'+(q.questionNo||'—');
- const b=vaultBook(q.bookId);$('vaultSessionSub').textContent=(b?b.name:'Kaynak')+' · '+q.topic+' · '+vaultSubjectLabel(b?.subject);
+ $('vaultSessionRef').textContent=vaultSourceIsMock(q)?'Deneme · S.'+(q.questionNo||'—'):'s.'+(q.page||'—')+' · S.'+(q.questionNo||'—');
+ if(vaultSourceIsMock(q))$('vaultSessionSub').textContent=vaultMockName(q)+' · '+fmt(q.mockDate)+' · '+vaultSubjectLabel(q.subject)+' · '+q.topic;
+ else{const b=vaultBook(q.bookId);$('vaultSessionSub').textContent=(b?b.name:'Kaynak')+' · '+q.topic+' · '+vaultSubjectLabel(b?.subject)}
 }
 function renderQuestionVault(){
- if(!$('vaultTab'))return;renderVaultSummary();renderVaultDue();renderVaultReady();renderVaultBookOptions();renderVaultBookMap();renderVaultSession();
+ if(!$('vaultTab'))return;renderVaultSummary();renderVaultDue();renderVaultReady();renderVaultBookOptions();renderVaultBookMap();renderVaultMockMap();renderVaultSession();
  if($('vaultLearnedDate')&&!$('vaultLearnedDate').value)$('vaultLearnedDate').value=today();
 }
 function addVaultBook(event){
@@ -1173,7 +1263,7 @@ function addVaultQuestions(event){
  for(const questionNo of nums){
   const duplicate=vaultQuestions().some(q=>q.bookId===bookId&&q.topic.toLocaleLowerCase('tr-TR')===topic.toLocaleLowerCase('tr-TR')&&q.page===page&&q.questionNo===questionNo);
   if(duplicate){skipped++;continue}
-  state.questionVault.questions.push({id:vaultId('q'),bookId,topic:topic.slice(0,120),page:page.slice(0,20),questionNo:questionNo.slice(0,40),addedAt:learned,firstEligibleAt:add(learned,7),active:false,successStage:0,lastResult:null,lastAttemptAt:'',nextDueAt:'',mastered:false,history:[]});added++;
+  state.questionVault.questions.push({id:vaultId('q'),sourceType:'book',bookId,topic:topic.slice(0,120),page:page.slice(0,20),questionNo:questionNo.slice(0,40),addedAt:learned,firstEligibleAt:add(learned,7),active:false,successStage:0,lastResult:null,lastAttemptAt:'',nextDueAt:'',mastered:false,history:[]});added++;
  }
  vaultLastBookId=bookId;vaultLastTopic=topic;$('vaultPage').value='';$('vaultQuestionNo').value='';save();renderQuestionVault();
  $('vaultQuestionNotice').textContent=added+' soru kasaya eklendi.'+(skipped?' '+skipped+' tekrar kayıt atlandı.':'');$('vaultPage').focus();
@@ -1205,6 +1295,43 @@ function recordVaultResult(result){
  if(vaultSessionIndex>=vaultSessionIds.length){const done=vaultSessionIds.length;vaultSessionIds=[];vaultSessionIndex=0;renderQuestionVault();alert('🧠 Tekrar oturumu tamamlandı · '+done+' soru.')}
  else renderQuestionVault();
 }
+
+let mockVaultExamId='';
+function mockVaultExam(){return state.mockExams.find(e=>e.id===mockVaultExamId)}
+function openMockVault(examId){
+ if(COACH_MODE)return;const exam=state.mockExams.find(e=>e.id===examId);if(!validMock(exam))return;mockVaultExamId=examId;
+ const def=EXAM_TYPES[exam.type];$('mockVaultExamInfo').textContent=(exam.name?exam.name+' · ':'')+fmt(exam.date)+' · '+def.name;
+ const select=$('mockVaultSubject');select.replaceChildren();
+ for(const [key,[name]] of Object.entries(def.subjects)){const mapped=MOCK_VAULT_SUBJECT_MAP[exam.type]?.[key];if(mapped)select.add(new Option(name,mapped))}
+ $('mockVaultLearnedDate').value=today();$('mockVaultQuestionNo').value='';$('mockVaultTopic').value='';$('mockVaultNotice').textContent='';
+ const first=$('mockVaultForm').querySelector('input[name="mockVaultReason"]');if(first)first.checked=true;
+ $('mockVaultModal').classList.add('show');$('mockVaultQuestionNo').focus();
+}
+function closeMockVault(){$('mockVaultModal').classList.remove('show');mockVaultExamId=''}
+function saveMockVaultQuestions(event){
+ event.preventDefault();if(COACH_MODE)return;const exam=mockVaultExam();if(!validMock(exam)){closeMockVault();return}
+ const subject=$('mockVaultSubject').value,learned=$('mockVaultLearnedDate').value,topic=$('mockVaultTopic').value.trim()||'Konu belirtilmedi';
+ const reason=$('mockVaultForm').querySelector('input[name="mockVaultReason"]:checked')?.value||'wrong';
+ const nums=$('mockVaultQuestionNo').value.split(/[;,]+/).map(x=>x.trim()).filter(Boolean);
+ if(!VAULT_SUBJECTS[subject]||!validDay(learned)||!nums.length){$('mockVaultNotice').textContent='Ders, tarih ve soru numarasını kontrol et.';return}
+ let added=0,skipped=0;
+ for(const questionNo of nums){
+  const duplicate=vaultQuestions().some(q=>q.sourceType==='mock'&&q.mockId===exam.id&&q.subject===subject&&q.questionNo===questionNo);
+  if(duplicate){skipped++;continue}
+  state.questionVault.questions.push({
+   id:vaultId('q'),sourceType:'mock',bookId:'',mockId:exam.id,mockType:exam.type,mockName:exam.name||'',mockDate:exam.date,subject,
+   originStatus:MOCK_VAULT_REASON[reason]?reason:'wrong',topic:topic.slice(0,120),page:'',questionNo:questionNo.slice(0,40),
+   addedAt:learned,firstEligibleAt:add(learned,7),active:false,successStage:0,lastResult:null,lastAttemptAt:'',nextDueAt:'',mastered:false,history:[]
+  });added++;
+ }
+ save();$('mockVaultNotice').textContent=added+' deneme sorusu kasaya eklendi.'+(skipped?' '+skipped+' tekrar kayıt atlandı.':'');
+ $('mockVaultQuestionNo').value='';renderQuestionVault();renderMocks();
+}
+function mockVaultCounts(exam){
+ const qs=vaultQuestions().filter(q=>q.sourceType==='mock'&&q.mockId===exam.id);
+ return {total:qs.length,active:qs.filter(q=>q.active&&!q.mastered).length,mastered:qs.filter(q=>q.mastered).length};
+}
+
 function initQuestionVault(){
  if(!$('vaultTab'))return;
  $('vaultBookForm').onsubmit=addVaultBook;$('vaultQuestionForm').onsubmit=addVaultQuestions;
@@ -1218,6 +1345,8 @@ function initQuestionVault(){
  $('vaultStopSession').onclick=()=>{vaultSessionIds=[];vaultSessionIndex=0;renderVaultSession()};
  $('vaultSolved').onclick=()=>recordVaultResult('solved');$('vaultPartial').onclick=()=>recordVaultResult('partial');$('vaultFailed').onclick=()=>recordVaultResult('failed');
  $('vaultLearnedDate').value=today();
+ $('mockVaultForm').onsubmit=saveMockVaultQuestions;$('closeMockVault').onclick=closeMockVault;
+ $('mockVaultModal').onclick=e=>{if(e.target===$('mockVaultModal'))closeMockVault()};
 }
 
 
