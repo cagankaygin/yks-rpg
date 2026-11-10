@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#0e1220">
-<title>YKS RPG V3.26</title>
+<title>YKS RPG V3.27</title>
 <style>
 :root{
  color-scheme:dark;--bg:#0c1019;--surface:#141b28;--surface-raised:#1b2535;--surface-soft:#101722;--border:#2a3547;--text:#edf2fa;--muted:#98a7bc;--accent:#84cbb8;--success:#84cbb8;--warning:#e9be76;--danger:#ef9c9d;--gold:#e9be76;--violet:#b5a1e5;
@@ -60,7 +60,7 @@ button,input,select,textarea{font:inherit}button{min-height:44px;display:inline-
 </head>
 <body>
 <main>
-<header class="appHeader"><div class="brand"><span class="brandMark" aria-hidden="true">🎮</span><div><div class="brandLine"><h1>YKS RPG</h1><span class="version">V3.26</span></div><p class="sub">Her gün biraz daha güçlü.</p></div></div><div class="headerBadges"><span class="pill" id="cloudPill">☁️ <span id="cloudStatus">Yerel</span></span><span class="pill" title="Boş gün bileti">🎟️ <span id="tickets">0</span></span><span class="pill" title="İndirim kuponu">🏷️ <span id="coupons">0</span></span></div></header>
+<header class="appHeader"><div class="brand"><span class="brandMark" aria-hidden="true">🎮</span><div><div class="brandLine"><h1>YKS RPG</h1><span class="version">V3.27</span></div><p class="sub">Her gün biraz daha güçlü.</p></div></div><div class="headerBadges"><span class="pill" id="cloudPill">☁️ <span id="cloudStatus">Yerel</span></span><span class="pill" title="Boş gün bileti">🎟️ <span id="tickets">0</span></span><span class="pill" title="İndirim kuponu">🏷️ <span id="coupons">0</span></span></div></header>
 <section class="panel hero"><div class="heroHeading"><div><span class="overline">LEVEL / XP · KULLANILABİLİR BAKİYE</span><div class="big" id="balance">0 XP</div></div><div class="heroEmblem" aria-hidden="true">✦</div></div><div class="bar"><div id="progress"></div></div><div class="heroReward"><small id="next">Sonraki boş gün biletine 3.000 XP</small><span class="pill">🎟️ 3.000 XP</span></div><div class="stats heroStats"><div class="stat"><small>BU HAFTA</small><b id="weekly">0</b></div><div class="stat"><small>🔥 STREAK</small><b id="topStreak">0 gün</b></div><div class="stat"><small>BUGÜNKÜ RANK</small><b id="heroRank">D-Rank</b></div><div class="stat"><small>👹 BOSS POWER</small><b id="bossMini">0/100</b><div class="bar miniBoss"><div id="heroBossProgress"></div></div></div></div><div class="heroFooter"><button id="countdown" class="viewControl" type="button">🎯 YKS tarihini ayarla</button><div class="ledgerRow"><span>Toplam <b id="earned">0</b> XP</span><span>Harcanan <b id="spent">0</b> XP</span><span>En iyi seri <b id="bestStreak">0 gün</b></span></div></div></section>
 <nav class="tabs" role="tablist" aria-label="Uygulama bölümleri"><button id="nav-daily" data-tab="daily" role="tab" aria-controls="daily" aria-selected="true" class="active"><span class="navIcon" aria-hidden="true">📅</span>Günlük</button><button id="nav-rpg" data-tab="rpg" role="tab" aria-controls="rpg" aria-selected="false"><span class="navIcon" aria-hidden="true">⚔️</span>RPG</button><button id="nav-mockTab" data-tab="mockTab" role="tab" aria-controls="mockTab" aria-selected="false"><span class="navIcon" aria-hidden="true">📝</span>Denemeler</button><button id="nav-planTab" data-tab="planTab" role="tab" aria-controls="planTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🗓️</span>Plan</button><button id="nav-vaultTab" data-tab="vaultTab" role="tab" aria-controls="vaultTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🧠</span>Zor Soru</button><button id="nav-teacherTab" data-tab="teacherTab" role="tab" aria-controls="teacherTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🙋</span>Hocaya Sor</button><button id="nav-shopTab" data-tab="shopTab" role="tab" aria-controls="shopTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🛍️</span>Mağaza</button><button id="nav-backupTab" data-tab="backupTab" role="tab" aria-controls="backupTab" aria-selected="false"><span class="navIcon" aria-hidden="true">💾</span>Yedek</button></nav>
 
@@ -235,7 +235,7 @@ button,input,select,textarea{font:inherit}button{min-height:44px;display:inline-
 
 <section class="panel"><h2>💾 Kayıt ve yedekleme</h2><p class="notice">Veriler bu cihazda yerel olarak tutulur; Coach Sync bağlandığında aynı kayıt ayrıca buluta gönderilir. JSON yedeği yine ekstra güvence olarak kalır.</p><div class="actions"><button id="export">Yedeği indir (.json)</button><button id="importBtn">Yedekten geri yükle</button><input id="import" class="file" type="file" accept=".json,application/json"><button id="reset" class="danger">Tüm verileri sıfırla</button></div><small id="saved"></small></section>
 <section class="panel" id="cloudPanel"><div class="top"><h2>☁️ Coach Sync</h2><span class="pill" id="cloudRole">Öğrenci</span></div><p class="notice" id="cloudHelp">Bu cihazı bulut hesabına bağlamak için özel öğrenci kodunu bir kez gir. Kod cihazda saklanır; GitHub'a veya site kaynak koduna yazılmaz.</p><div id="ownerSetup"><input id="ownerTokenInput" type="password" placeholder="Özel öğrenci kurulum kodu" style="width:100%"><div class="actions"><button id="bindOwner" class="primary">☁️ Bu cihazı bağla</button></div></div><div class="actions"><button id="syncNow">↕️ Şimdi senkronize et</button><button id="copyCoachLink">🔗 Koç bağlantısını kopyala</button><button id="copySetupCode" type="button" hidden disabled>🔑 Kurulum kodunu kopyala</button><button id="forgetOwner" class="danger">Bu cihazın bulut bağlantısını kaldır</button></div><p class="notice" id="cloudDetail">Henüz bağlanmadı.</p></section>
-<section class="panel"><h2>ℹ️ V3.26 kuralları</h2><p class="notice">5 Kasım 2026'dan itibaren hiçbir ders otomatik eklenmez; yalnızca Plan’a eklenen dersler ana görev olarak görünür ve Rank ağırlığı kazanır. 17 Ekim 2026 itibarıyla yeni XP ekonomisi uygulanır (Paragraf 60 XP, Problem 100 XP); önceki günlerin XP değerleri korunur. Eski soru analizi ve rutin görevleri yalnızca geçmiş tarihlerde korunur. Ek çalışmalar isteğe bağlıdır; günlük Rank ve streak hesabında ana görevler esas alınır. 14 Ekim sonrası Rank, görevlerin XP ağırlığına göre hesaplanır. Ders değişiminde orijinal slotun Rank ağırlığı korunur; kazanılan XP gelen derse aittir. Pazartesi Boş Gün Bileti yeni planda analiz ön koşulu olmadan kullanılabilir; eski tarihlerde eski kural geçerlidir. Zor Soru Kasası; günlük özet, hızlı ekleme, filtreye göre karışık 20 soru seçimi, konu ustalık haritası ve kaynak bitirme takibiyle birlikte çalışır. Bir kaynak yalnızca tüm test/sayfaları tamamlanıp o kaynağa ait bütün zor sorular ⚫ Öğrenildi olduğunda bitmiş sayılır. Çalışma kronometresi net süreyi günlük kaydeder; ders tamamlanırken çalışan kronometre onayla durdurulup o derse ait oturum olarak saklanır. Günlük Mini Quest bu sürümde özellikle yoktur.</p></section>
+<section class="panel"><h2>ℹ️ V3.27 kuralları</h2><p class="notice">5 Kasım 2026'dan itibaren hiçbir ders otomatik eklenmez; yalnızca Plan’a eklenen dersler ana görev olarak görünür ve Rank ağırlığı kazanır. 17 Ekim 2026 itibarıyla yeni XP ekonomisi uygulanır (Paragraf 60 XP, Problem 100 XP); önceki günlerin XP değerleri korunur. Eski soru analizi ve rutin görevleri yalnızca geçmiş tarihlerde korunur. Ek çalışmalar isteğe bağlıdır; günlük Rank ve streak hesabında ana görevler esas alınır. 14 Ekim sonrası Rank, görevlerin XP ağırlığına göre hesaplanır. Ders değişiminde orijinal slotun Rank ağırlığı korunur; kazanılan XP gelen derse aittir. Pazartesi Boş Gün Bileti yeni planda analiz ön koşulu olmadan kullanılabilir; eski tarihlerde eski kural geçerlidir. Zor Soru Kasası; günlük özet, hızlı ekleme, filtreye göre karışık 20 soru seçimi, konu ustalık haritası ve kaynak bitirme takibiyle birlikte çalışır. Bir kaynak yalnızca tüm test/sayfaları tamamlanıp o kaynağa ait bütün zor sorular ⚫ Öğrenildi olduğunda bitmiş sayılır. Çalışma kronometresi net süreyi günlük kaydeder; ders tamamlanırken çalışan kronometre onayla durdurulup o derse ait oturum olarak saklanır. Günlük Mini Quest bu sürümde özellikle yoktur.</p></section>
 </div>
 </main>
 
@@ -359,6 +359,13 @@ const XP_REBALANCE_START='2026-10-17';
 const REBALANCED_XP={dailyAnalysis:100,paragraph:60,problem:100,mathStudy:100,geo:125,physics:115,chem:100,bio:90,turkishStudy:85,grammar:75,geoTYT:65,hist:65,mat:120,tr:90,generalExam:220,generalExamAnalysis:160};
 function xpFor(date,key){return date>=XP_REBALANCE_START?(REBALANCED_XP[key]??T[key]?.[1]??0):(T[key]?.[1]??0)}
 const EXTRA_NAMES={dailyAnalysis:'Analiz',paragraph:'Paragraf',problem:'Problem',mat:'TYT Matematik Branş Denemesi',geo:'Geometri',physics:'TYT Fizik',chem:'TYT Kimya',bio:'TYT Biyoloji',tr:'Türkçe Branş Denemesi',grammar:'Dil Bilgisi',geoTYT:'TYT Coğrafya',hist:'TYT Tarih',mathStudy:'TYT Matematik',turkishStudy:'Türkçe',generalExam:'Genel Deneme',generalExamAnalysis:'Genel Deneme Analizi'};
+const PLAN_SLOT_SEP='~';
+function planSlotBase(slot){return typeof slot==='string'?slot.split(PLAN_SLOT_SEP)[0]:''}
+function isPlanSlot(slot){const base=planSlotBase(slot);if(!PLAN_KEYS.includes(base))return false;if(slot===base)return true;const suffix=slot.slice(base.length+1);return slot.startsWith(base+PLAN_SLOT_SEP)&&/^\d+$/.test(suffix)}
+function nextPlanSlot(base,keys){if(!keys.includes(base))return base;let n=2;while(keys.includes(base+PLAN_SLOT_SEP+n))n++;return base+PLAN_SLOT_SEP+n}
+function planSlotOccurrence(day,slot){const base=planSlotBase(slot),same=plannedTasks(day).filter(x=>planSlotBase(x)===base),index=same.indexOf(slot);return {count:same.length,index:index<0?0:index+1}}
+function planSlotName(day,slot){const base=planSlotBase(slot),occ=planSlotOccurrence(day,slot),name=EXTRA_NAMES[base]||T[base]?.[0]||base;return name+(occ.count>1?' · '+occ.index+'. oturum':'')}
+function taskDisplayName(day,slot){const occ=planSlotOccurrence(day,slot),name=taskDef(day,slot)[0];return name+(occ.count>1?' · '+occ.index+'. oturum':'')}
 // Keep the historical plan and task IDs intact; the new plan applies only from FLOW_START.
 const STUDY_PLAN=PLAN.map(keys=>keys.filter(k=>k!=='tyt'&&k!=='r1'&&k!=='r2'&&!ANALYSIS_KEYS.includes(k)));
 const SKILLS={geo:{name:'📐 Geometri',sources:{geo:120,anGeo:60}},physics:{name:'⚛️ Fizik',sources:{physics:110,anPhysics:60}},chem:{name:'🧪 Kimya',sources:{chem:100,anChem:60}},bio:{name:'🧬 Biyoloji',sources:{bio:90,anBio:60}},problem:{name:'🧩 Problem',sources:{r1:60,r2:60,anProblem:60,problem:60}},paragraph:{name:'📖 Paragraf',sources:{paragraph:40}},mat:{name:'🔢 TYT Matematik',sources:{mat:120,anMath:90,mathStudy:100}},tr:{name:'📝 Türkçe',sources:{tr:80,turkishStudy:85}},grammar:{name:'✍️ Dil Bilgisi',sources:{grammar:90,anGrammar:40}},geoTYT:{name:'🌍 TYT Coğrafya',sources:{geoTYT:80,anGeoTYT:40}},hist:{name:'📜 TYT Tarih',sources:{hist:80,anHist:40}}};
@@ -380,22 +387,22 @@ function defaultTasks(s){return beforeStart(s)?[]:s>=FLOW_START?STUDY_PLAN[idx(s
 function plannedTasks(s){
  if(s<FLOW_START)return defaultTasks(s);
  const custom=state.weekPlans?.[monday(s)]?.[s];
- if(Array.isArray(custom)&&custom.every(k=>PLAN_KEYS.includes(k))&&new Set(custom).size===custom.length)return [...custom];
+ if(Array.isArray(custom)&&custom.every(isPlanSlot)&&new Set(custom).size===custom.length)return [...custom];
  return s<PLAN_ONLY_START?defaultTasks(s):[];
 }
-function currentSwap(s){const swap=state.swaps?.[s];return s>=FLOW_START&&swap&&SWAP_KEYS.includes(swap.outKey)&&SWAP_KEYS.includes(swap.inKey)&&swap.outKey!==swap.inKey&&plannedTasks(s).includes(swap.outKey)?swap:null}
+function currentSwap(s){const swap=state.swaps?.[s],outBase=planSlotBase(swap?.outKey);return s>=FLOW_START&&swap&&SWAP_KEYS.includes(outBase)&&SWAP_KEYS.includes(swap.inKey)&&outBase!==swap.inKey&&plannedTasks(s).includes(swap.outKey)?swap:null}
 function tasks(s){return plannedTasks(s)}
 function sessionKey(s,k){const swap=currentSwap(s);return swap?.outKey===k?'swap:'+swap.outKey+':'+swap.inKey:k}
-function taskSubject(s,k){const swap=currentSwap(s);return swap?.outKey===k?swap.inKey:k}
+function taskSubject(s,k){const swap=currentSwap(s);return swap?.outKey===k?swap.inKey:planSlotBase(k)}
 function taskXP(s,k){return xpFor(s,taskSubject(s,k))}
 function taskDef(s,k){const key=taskSubject(s,k);return [T[key][0],xpFor(s,key),T[key][2]]}
-function completedMain(s){return tasks(s).filter(k=>isDone(s,k)&&(!isRest(s)||k==='tyt')).map(k=>({slot:k,subject:taskSubject(s,k),xp:taskXP(s,k)}))}
+function completedMain(s){return tasks(s).filter(k=>isDone(s,k)&&(!isRest(s)||planSlotBase(k)==='tyt')).map(k=>({slot:k,subject:taskSubject(s,k),xp:taskXP(s,k)}))}
 // Retain XP/study history for former mandatory checks without restoring Rank slots
 // or rewriting them as extra:* sessions. A separately checked extra stays separate.
-function completedPriorBasics(s){return s<FLOW_START||isRest(s)?[]:['paragraph','problem'].filter(k=>!plannedTasks(s).includes(k)&&isDone(s,k)).map(k=>({slot:k,subject:k,xp:xpFor(s,k)}))}
+function completedPriorBasics(s){return s<FLOW_START||isRest(s)?[]:['paragraph','problem'].filter(k=>!plannedTasks(s).some(slot=>planSlotBase(slot)===k)&&isDone(s,k)).map(k=>({slot:k,subject:k,xp:xpFor(s,k)}))}
 function completedStudies(s){return [...completedMain(s),...completedPriorBasics(s),...completedExtras(s).map(k=>({slot:extraKey(k),subject:k,xp:xpFor(s,k)}))]}
 function recordedDays(){return [...new Set(Object.keys(state.checks).map(key=>key.split('|')[0]))].filter(s=>validDay(s)&&!beforeStart(s))}
-function rankWeights(s){const planned=isRest(s)?tasks(s).filter(k=>k==='tyt'):tasks(s);return {total:planned.reduce((n,k)=>n+xpFor(s,k),0),done:planned.reduce((n,k)=>n+(isDone(s,k)?xpFor(s,k):0),0)}}
+function rankWeights(s){const planned=isRest(s)?tasks(s).filter(k=>planSlotBase(k)==='tyt'):tasks(s);return {total:planned.reduce((n,k)=>n+taskXP(s,k),0),done:planned.reduce((n,k)=>n+(isDone(s,k)?taskXP(s,k):0),0)}}
 function extraTasks(s){return s>=FLOW_START?EXTRA_KEYS:[]}
 function extraKey(k){return 'extra:'+k}
 function completedExtras(s){return extraTasks(s).filter(k=>isDone(s,extraKey(k)))}
@@ -405,7 +412,7 @@ function checkKey(s,k){return s+'|'+sessionKey(s,k)}
 function isDone(s,k){return !!state.checks[checkKey(s,k)]}
 function isRest(s){return !!state.rests[s]}
 function protectedDay(s){return !!state.shieldUses[s]}
-function taskCounts(s){let keys=tasks(s),planned=isRest(s)?keys.filter(k=>k==='tyt'):keys,done=planned.filter(k=>isDone(s,k)).length;return {done,total:planned.length}}
+function taskCounts(s){let keys=tasks(s),planned=isRest(s)?keys.filter(k=>planSlotBase(k)==='tyt'):keys,done=planned.filter(k=>isDone(s,k)).length;return {done,total:planned.length}}
 function completionPct(s){let c=s>=FLOW_START?rankWeights(s):taskCounts(s);return c.total?c.done/c.total*100:0}
 function dayRank(s){if(isRest(s))return 'REST';let p=completionPct(s);return p>=100?'S':p>=85?'A':p>=70?'B':p>=50?'C':'D'}
 function rankValue(r){return {D:0,C:1,B:2,A:3,S:4}[r]??-1}
@@ -522,7 +529,7 @@ function perfectWeekCount(end=today()){let n=0;for(let w=START;add(w,6)<=end;w=a
 function comebackDates(end=today()){let out=[];if(end<START)return out;for(let w=START;w<=end;w=add(w,7)){let found=false;for(let i=0;i<7&&!found;i++){let s=add(w,i);if(s>end)break;let prev=add(s,-1);if(beforeStart(prev))continue;let pr=dayRank(prev),cr=dayRank(s);if((pr==='C'||pr==='D')&&rankValue(cr)>=rankValue('A')){out.push(s);found=true}}}return out}
 function chestXP(){return Object.values(state.chestClaims).reduce((a,x)=>a+(Number(x.reward)||0),0)}
 function totals(){let base=baseEarned(),s=sRankDates().length,pw=perfectWeekCount(),cb=comebackDates().length,ch=chestXP();let earned=base+s*50+pw*250+cb*50+ch;let spent=(state.purchases-state.refunds)*PRICE+rewardSpent();return {base,s,pw,cb,ch,earned,spent,balance:earned-spent}}
-function weekCore(w){let p=0,completed=0,total=0;for(let i=0;i<7;i++){let s=add(w,i),planned=isRest(s)?tasks(s).filter(k=>k==='tyt'):tasks(s);for(let k of planned){total++;if(isDone(s,k))completed++}p+=completedStudies(s).reduce((sum,x)=>sum+x.xp,0);if(dayRank(s)==='S')p+=50}if(weekAll(w)&&add(w,6)<=today())p+=250;let cb=comebackDates().filter(s=>monday(s)===w).length;p+=cb*50;let chest=state.chestClaims[w]?.reward||0;p+=chest;return {p,completed,total,cb,chest}}
+function weekCore(w){let p=0,completed=0,total=0;for(let i=0;i<7;i++){let s=add(w,i),planned=isRest(s)?tasks(s).filter(k=>planSlotBase(k)==='tyt'):tasks(s);for(let k of planned){total++;if(isDone(s,k))completed++}p+=completedStudies(s).reduce((sum,x)=>sum+x.xp,0);if(dayRank(s)==='S')p+=50}if(weekAll(w)&&add(w,6)<=today())p+=250;let cb=comebackDates().filter(s=>monday(s)===w).length;p+=cb*50;let chest=state.chestClaims[w]?.reward||0;p+=chest;return {p,completed,total,cb,chest}}
 function rankClass(r){return r==='REST'?'':`rank${r}`}
 function analysisXPInRange(a,b){let n=0;for(let s=a;s<=b;s=add(s,1)){if(isRest(s))continue;for(let k of ANALYSIS_KEYS)if(tasks(s).includes(k)&&isDone(s,k))n+=xpFor(s,k)}return n}
 function weekQuestStatus(w){
@@ -566,11 +573,11 @@ function openStudyTimerTaskPicker(){
  if(!keys.length){alert('Bugünün Planında ders yok. Önce Plan bölümünden bugüne ders ekle.');return}
  const wrap=$('studyTimerTaskChoices');wrap.replaceChildren();
  for(const key of keys){
-  const [label]=taskDef(today(),key),subjectKey=taskSubject(today(),key),done=isDone(today(),key);
+  const label=taskDisplayName(today(),key),done=isDone(today(),key);
   const button=document.createElement('button');button.type='button';button.className=done?'done':'';
   const name=document.createElement('strong');name.textContent=label;
   const meta=document.createElement('small');meta.textContent=done?'✓ Tamamlandı':'Planlı ders';
-  button.append(name,meta);button.onclick=()=>startStudyTimerForTask(subjectKey,label);
+  button.append(name,meta);button.onclick=()=>startStudyTimerForTask(key,label);
   wrap.append(button);
  }
  $('studyTimerTaskModal').classList.add('show');
@@ -598,7 +605,7 @@ function renderStudyWeekTimes(w){
  }
  $('weeklyStudyTotal').textContent=formatStudyDuration(total);
 }
-function renderDaily(w){$('date').value=selected;$('days').innerHTML='';for(let i=0;i<7;i++){let s=add(w,i),b=document.createElement('button');b.textContent=DAY[i].slice(0,3)+' '+parse(s).getDate();b.className=s===selected?'active':'';b.onclick=()=>{selected=s;render()};$('days').append(b)}renderStudyWeekTimes(w);$('daytitle').textContent=DAY[idx(selected)];$('daydate').textContent=fmt(selected);let r=dayRank(selected),pill=$('rankPill');pill.className='pill '+rankClass(r);pill.textContent=r==='REST'?'🎟️ Dinlenme Günü':`${r}-Rank · ${formatNumber(completionPct(selected),1)}%`;$('rankbar').style.width=Math.min(100,completionPct(selected))+'%';let keys=tasks(selected),rest=isRest(selected);$('tasks').innerHTML='';if(!keys.length&&selected>=PLAN_ONLY_START){$('tasks').append(emptyView('🗓️','Bu gün için ders planlanmadı','Plan bölümüne ders eklediğinde burada görünecek.',true))}for(let k of keys){if(selected>=FLOW_START&&k===keys[0]){const group=document.createElement('div');group.className='taskGroup';group.textContent='ANA DERSLER';$('tasks').append(group)}let el=document.createElement('label');el.className='task'+(isDone(selected,k)?' done':'');let inp=document.createElement('input');inp.type='checkbox';inp.checked=isDone(selected,k);inp.disabled=COACH_MODE||(rest&&k!=='tyt')||selected>today();inp.onchange=()=>{if(COACH_MODE||selected>today())return;let before=dayRank(selected);if(inp.checked){const lessonName=taskDef(selected,k)[0];if(!confirmStopStudyTimerForTask(selected,lessonName,k)){inp.checked=false;return}state.checks[checkKey(selected,k)]=true}else delete state.checks[checkKey(selected,k)];save();let after=dayRank(selected);render();if(before!=='S'&&after==='S'&&selected<=today()&&!state.checkins[selected])setTimeout(()=>{celebrateRank();openCheckinModal()},80)};let n=document.createElement('span');n.className='name';let b=document.createElement('b');b.textContent=taskDef(selected,k)[0];n.append(b);const swap=currentSwap(selected);if(swap?.outKey===k){const tag=document.createElement('small');tag.className='swapTag';tag.textContent='↔ '+EXTRA_NAMES[k]+' yerine '+EXTRA_NAMES[swap.inKey]+' · Rank ağırlığı '+xpFor(selected,k);n.append(tag)}const planNote=planNoteViewer(selected,k);if(planNote)n.append(planNote);let xp=document.createElement('span');xp.className='xp';xp.textContent='+'+taskXP(selected,k)+' XP';el.append(inp,subjectIcon(taskSubject(selected,k)),n,xp);$('tasks').append(el)}let actual=completedStudies(selected).reduce((sum,x)=>sum+x.xp,0),sbonus=r==='S'?50:0,cb=comebackDates().includes(selected)?50:0;let parts=[`${actual+sbonus+cb} XP`];if(sbonus)parts.push('S +50');if(cb)parts.push('🔥 Comeback +50');let c=taskCounts(selected);$('daynotice').innerHTML=rest?(selected>=FLOW_START?`🎟️ Boş Gün Bileti kullanıldı. Ana görevlerden muafsın; streak korunur. Ek çalışmalar: +${extraXP(selected)} XP.`:`🎟️ Boş Gün Bileti kullanıldı. Genel TYT deneme analizi XP'si korundu; Pazartesi soru analizleri ve kalan dersler muaf. Streak korunur, Rank/Perfect Day verilmez.`):`${c.done}/${c.total} görev tamamlandı · ${parts.join(' · ')}${protectedDay(selected)?' · 🛡️ Streak Koruyucu aktif':''}`;
+function renderDaily(w){$('date').value=selected;$('days').innerHTML='';for(let i=0;i<7;i++){let s=add(w,i),b=document.createElement('button');b.textContent=DAY[i].slice(0,3)+' '+parse(s).getDate();b.className=s===selected?'active':'';b.onclick=()=>{selected=s;render()};$('days').append(b)}renderStudyWeekTimes(w);$('daytitle').textContent=DAY[idx(selected)];$('daydate').textContent=fmt(selected);let r=dayRank(selected),pill=$('rankPill');pill.className='pill '+rankClass(r);pill.textContent=r==='REST'?'🎟️ Dinlenme Günü':`${r}-Rank · ${formatNumber(completionPct(selected),1)}%`;$('rankbar').style.width=Math.min(100,completionPct(selected))+'%';let keys=tasks(selected),rest=isRest(selected);$('tasks').innerHTML='';if(!keys.length&&selected>=PLAN_ONLY_START){$('tasks').append(emptyView('🗓️','Bu gün için ders planlanmadı','Plan bölümüne ders eklediğinde burada görünecek.',true))}for(let k of keys){if(selected>=FLOW_START&&k===keys[0]){const group=document.createElement('div');group.className='taskGroup';group.textContent='ANA DERSLER';$('tasks').append(group)}let el=document.createElement('label');el.className='task'+(isDone(selected,k)?' done':'');let inp=document.createElement('input');inp.type='checkbox';inp.checked=isDone(selected,k);inp.disabled=COACH_MODE||(rest&&planSlotBase(k)!=='tyt')||selected>today();inp.onchange=()=>{if(COACH_MODE||selected>today())return;let before=dayRank(selected);if(inp.checked){const lessonName=taskDisplayName(selected,k);if(!confirmStopStudyTimerForTask(selected,lessonName,k)){inp.checked=false;return}state.checks[checkKey(selected,k)]=true}else delete state.checks[checkKey(selected,k)];save();let after=dayRank(selected);render();if(before!=='S'&&after==='S'&&selected<=today()&&!state.checkins[selected])setTimeout(()=>{celebrateRank();openCheckinModal()},80)};let n=document.createElement('span');n.className='name';let b=document.createElement('b');b.textContent=taskDisplayName(selected,k);n.append(b);const swap=currentSwap(selected);if(swap?.outKey===k){const tag=document.createElement('small');tag.className='swapTag';tag.textContent='↔ '+planSlotName(selected,k)+' yerine '+EXTRA_NAMES[swap.inKey]+' · Rank ağırlığı '+xpFor(selected,planSlotBase(k));n.append(tag)}const planNote=planNoteViewer(selected,k);if(planNote)n.append(planNote);let xp=document.createElement('span');xp.className='xp';xp.textContent='+'+taskXP(selected,k)+' XP';el.append(inp,subjectIcon(taskSubject(selected,k)),n,xp);$('tasks').append(el)}let actual=completedStudies(selected).reduce((sum,x)=>sum+x.xp,0),sbonus=r==='S'?50:0,cb=comebackDates().includes(selected)?50:0;let parts=[`${actual+sbonus+cb} XP`];if(sbonus)parts.push('S +50');if(cb)parts.push('🔥 Comeback +50');let c=taskCounts(selected);$('daynotice').innerHTML=rest?(selected>=FLOW_START?`🎟️ Boş Gün Bileti kullanıldı. Ana görevlerden muafsın; streak korunur. Ek çalışmalar: +${extraXP(selected)} XP.`:`🎟️ Boş Gün Bileti kullanıldı. Genel TYT deneme analizi XP'si korundu; Pazartesi soru analizleri ve kalan dersler muaf. Streak korunur, Rank/Perfect Day verilmez.`):`${c.done}/${c.total} görev tamamlandı · ${parts.join(' · ')}${protectedDay(selected)?' · 🛡️ Streak Koruyucu aktif':''}`;
  $('rest').textContent=selected>=FLOW_START?'🎟️ Boş Gün Bileti kullan':'🎟️ Analiz sonrası Boş Gün Bileti kullan';$('rest').disabled=rest||tickets()<1||!canUseRest(selected);$('undoRest').disabled=!rest;$('useShield').disabled=shieldInventory()<1||selected>today()||rest||protectedDay(selected)||rankValue(r)>=rankValue('B');$('useShield').textContent=`🛡️ Streak Koruyucu kullan (${shieldInventory()} adet)`;$('undoShield').disabled=!protectedDay(selected);let wp=weekCore(w);$('weekprogress').textContent=`${wp.completed}/${wp.total} görev · ${wp.p.toLocaleString('tr-TR')} XP`;$('weekbar').style.width=(wp.total?wp.completed/wp.total*100:0)+'%'}
 function renderExtra(){
  const keys=extraTasks(selected),wrap=$('extraTasks'),doneWrap=$('completedExtraTasks');$('extraPanel').hidden=keys.length===0;wrap.replaceChildren();doneWrap.replaceChildren();
@@ -661,27 +668,28 @@ function showTab(id){
 }
 function canSwap(s){return !COACH_MODE&&s>=FLOW_START&&s<=today()&&!isRest(s)}
 function renderSwap(){
- const swap=currentSwap(selected),allowed=canSwap(selected)&&plannedTasks(selected).some(k=>SWAP_KEYS.includes(k));
+ const swap=currentSwap(selected),allowed=canSwap(selected)&&plannedTasks(selected).some(k=>SWAP_KEYS.includes(planSlotBase(k)));
  $('openSwap').disabled=!allowed;$('openSwap').textContent=swap?'↔ Ders değişimini düzenle':'↔ Ders Değiştir';$('undoSwap').hidden=!swap;$('undoSwap').disabled=!allowed;
- $('swapStatus').textContent=selected<FLOW_START?'Ders değişimi 14 Ekim 2026 ve sonrası için kullanılabilir.':swap?`Günün 1/1 değişim hakkı kullanıldı: ${EXTRA_NAMES[swap.outKey]} → ${EXTRA_NAMES[swap.inKey]}. Aynı değişimi düzenleyebilir veya geri alabilirsin.`:'Günün ders değişimi hakkı: 0/1. Paragraf, Problem ve genel denemeler değiştirilemez.';
+ $('swapStatus').textContent=selected<FLOW_START?'Ders değişimi 14 Ekim 2026 ve sonrası için kullanılabilir.':swap?`Günün 1/1 değişim hakkı kullanıldı: ${planSlotName(selected,swap.outKey)} → ${EXTRA_NAMES[swap.inKey]}. Aynı değişimi düzenleyebilir veya geri alabilirsin.`:'Günün ders değişimi hakkı: 0/1. Paragraf, Problem ve genel denemeler değiştirilemez.';
  $('swapEditor').hidden=true;
 }
 function openSwapEditor(){
- if(!canSwap(selected)||!plannedTasks(selected).some(k=>SWAP_KEYS.includes(k)))return;
+ if(!canSwap(selected)||!plannedTasks(selected).some(k=>SWAP_KEYS.includes(planSlotBase(k))))return;
  const swap=currentSwap(selected);$('swapOut').replaceChildren();$('swapIn').replaceChildren();
- for(const k of plannedTasks(selected).filter(k=>SWAP_KEYS.includes(k)))$('swapOut').add(new Option(EXTRA_NAMES[k],k));
+ for(const k of plannedTasks(selected).filter(k=>SWAP_KEYS.includes(planSlotBase(k))))$('swapOut').add(new Option(planSlotName(selected,k),k));
  for(const k of SWAP_KEYS)$('swapIn').add(new Option(EXTRA_NAMES[k],k));
  if(swap){$('swapOut').value=swap.outKey;$('swapIn').value=swap.inKey}
- else $('swapIn').value=SWAP_KEYS.find(k=>k!==$('swapOut').value);
+ else $('swapIn').value=SWAP_KEYS.find(k=>k!==planSlotBase($('swapOut').value));
  $('swapEditor').dataset.editing=swap?'yes':'no';$('swapEditor').hidden=false;
 }
 function updateSwap(s,outKey,inKey,editing=false){
- if(!canSwap(s)||!SWAP_KEYS.includes(outKey)||!SWAP_KEYS.includes(inKey)||outKey===inKey||!plannedTasks(s).includes(outKey))return false;
+ const outBase=planSlotBase(outKey);
+ if(!canSwap(s)||!SWAP_KEYS.includes(outBase)||!SWAP_KEYS.includes(inKey)||outBase===inKey||!plannedTasks(s).includes(outKey))return false;
  const previous=currentSwap(s);if(previous&&!editing){alert('Bu günün değişim hakkı kullanıldı. Mevcut değişimi düzenle.');return false}
  if(previous?.outKey===outKey&&previous.inKey===inKey)return true;
  const removed=[previous?checkKey(s,previous.outKey):null,s+'|'+outKey].filter(Boolean);
  const completed=removed.some(key=>!!state.checks[key]);
- if(!confirm(`${EXTRA_NAMES[outKey]} yerine ${EXTRA_NAMES[inKey]} çalışılsın mı? Gelen ders +${xpFor(s,inKey)} XP kazandırır; Rank ağırlığı ${xpFor(s,outKey)} kalır.${completed?'\nBu değişimden etkilenen tamamlanmış görev işareti ve XP’si geri alınacak. Onaylıyor musun?':''}`))return false;
+ if(!confirm(`${planSlotName(s,outKey)} yerine ${EXTRA_NAMES[inKey]} çalışılsın mı? Gelen ders +${xpFor(s,inKey)} XP kazandırır; Rank ağırlığı ${xpFor(s,outBase)} kalır.${completed?'\nBu değişimden etkilenen tamamlanmış görev işareti ve XP’si geri alınacak. Onaylıyor musun?':''}`))return false;
  for(const key of removed)delete state.checks[key];
  // Clear inactive swapped-session checks so undo/reapply cannot restore free XP.
  for(const key of Object.keys(state.checks))if(key.startsWith(s+'|swap:'))delete state.checks[key];
@@ -961,7 +969,7 @@ function renderErrorProfile(){
 // A broad TYT Fen/Sosyal total is not evidence for an individual subject decline.
 const RADAR_KEYS=['mat','geo','physics','chem','bio','tr','grammar','geoTYT','hist'];
 const RADAR_NAMES={...EXTRA_NAMES,mat:'TYT Matematik',tr:'Türkçe'};
-function radarSubject(key){return key==='mathStudy'?'mat':key==='turkishStudy'?'tr':key}
+function radarSubject(key){key=planSlotBase(key);return key==='mathStudy'?'mat':key==='turkishStudy'?'tr':key}
 const RADAR_EXAM_MAP={TYT:{math:'mat',turkish:'tr'},AYT:{math:'mat',physics:'physics',chemistry:'chem',biology:'bio'},MAT:{math:'mat'}};
 function radarData(){
  const end=today(),start6=add(end,-5),start7=add(end,-6);
@@ -1035,7 +1043,7 @@ function planLockReason(s){
 }
 function canEditPlan(s){return validDay(s)&&!planLockReason(s)}
 function setDayPlan(s,keys){
- if(!canEditPlan(s)||!Array.isArray(keys)||keys.some(k=>!PLAN_KEYS.includes(k))||new Set(keys).size!==keys.length)return false;
+ if(!canEditPlan(s)||!Array.isArray(keys)||keys.some(k=>!isPlanSlot(k))||new Set(keys).size!==keys.length)return false;
  const w=monday(s);if(!state.weekPlans[w]||typeof state.weekPlans[w]!=='object'||Array.isArray(state.weekPlans[w]))state.weekPlans[w]={};
  state.weekPlans[w][s]=[...keys];prunePlanNotes(s,keys);save();render();return true;
 }
@@ -1051,21 +1059,21 @@ function planSessionSummary(a,b){let done=0,total=0;const end=b<today()?b:today(
 function renderPlanner(items=radarData()){
  if(!plannerWeek)plannerWeek=add(monday(today()),7);$('planWeek').value=plannerWeek;
  const days=datesBetween(plannerWeek,add(plannerWeek,6)),radar=new Set(items.filter(x=>x.level!=='balanced').map(x=>x.key)),counts={total:0,geo:0,physics:0,chem:0,bio:0,mat:0,other:0};
- for(const s of days)for(const k of tasks(s)){const subject=radarSubject(k);counts.total++;if(Object.hasOwn(counts,subject)&&subject!=='total'&&subject!=='other')counts[subject]++;else counts.other++}
+ for(const s of days)for(const k of tasks(s)){const subject=radarSubject(planSlotBase(k));counts.total++;if(Object.hasOwn(counts,subject)&&subject!=='total'&&subject!=='other')counts[subject]++;else counts.other++}
  $('planSummary').innerHTML=statHTML('Planlanan ana oturum',counts.total)+statHTML('Geometri',counts.geo)+statHTML('Fizik',counts.physics)+statHTML('Kimya',counts.chem)+statHTML('Biyoloji',counts.bio)+statHTML('TYT Matematik',counts.mat)+statHTML('Diğer',counts.other);
  $('resetPlanWeek').disabled=COACH_MODE||!days.some(canEditPlan);const wrap=$('planDays');wrap.replaceChildren();
  for(const s of days){
   const card=document.createElement('div');card.className='planCard';card.dataset.date=s;const title=document.createElement('h3');title.textContent=DAY[idx(s)]+' · '+fmt(s);card.append(title);
-  const reason=planLockReason(s),editable=!reason,keys=plannedTasks(s).filter(k=>PLAN_KEYS.includes(k));
+  const reason=planLockReason(s),editable=!reason,keys=plannedTasks(s).filter(isPlanSlot);
   const status=document.createElement('p');status.className='notice';status.textContent=reason||'Düzenlenebilir · '+(Array.isArray(state.weekPlans?.[monday(s)]?.[s])?'Plan kaydedildi':'Plan boş · Ders ekleyince Günlükte görünür');card.append(status);
-  for(const k of plannedTasks(s).filter(k=>!PLAN_KEYS.includes(k))){const fixed=document.createElement('div');fixed.className='planRow';fixed.textContent=T[k][0]+' · +'+xpFor(s,k)+' XP'+(s>=PLAN_ONLY_START?'':' · Tarihsel sabit');card.append(fixed)}
-  keys.forEach((k,index)=>{const row=document.createElement('div');row.className='planRow';const label=document.createElement('span');label.className='planName';label.textContent=EXTRA_NAMES[k]+' · '+xpFor(s,k)+' XP';row.append(label);
-   if(radar.has(radarSubject(k))){const tag=document.createElement('small');tag.className='radarTag';tag.textContent='⚠️ Radarda';row.append(tag)}
+  for(const k of plannedTasks(s).filter(k=>!isPlanSlot(k))){const fixed=document.createElement('div');fixed.className='planRow';fixed.textContent=T[k][0]+' · +'+xpFor(s,k)+' XP'+(s>=PLAN_ONLY_START?'':' · Tarihsel sabit');card.append(fixed)}
+  keys.forEach((k,index)=>{const base=planSlotBase(k),row=document.createElement('div');row.className='planRow';const label=document.createElement('span');label.className='planName';label.textContent=planSlotName(s,k)+' · '+xpFor(s,base)+' XP';row.append(label);
+   if(radar.has(radarSubject(base))){const tag=document.createElement('small');tag.className='radarTag';tag.textContent='⚠️ Radarda';row.append(tag)}
    const swap=currentSwap(s);if(swap?.outKey===k){const tag=document.createElement('small');tag.className='swapTag';tag.textContent='↔ '+EXTRA_NAMES[swap.inKey]+' olarak çalışılacak';row.append(tag)}
-   for(const [text,disabled,action] of [['↑',index===0,()=>{const next=[...keys];[next[index-1],next[index]]=[next[index],next[index-1]];setDayPlan(s,next)}],['↓',index===keys.length-1,()=>{const next=[...keys];[next[index+1],next[index]]=[next[index],next[index+1]];setDayPlan(s,next)}],['Kaldır',false,()=>removePlannedLesson(s,k)]]){const button=document.createElement('button');button.textContent=text;button.setAttribute('aria-label',EXTRA_NAMES[k]+' '+text);button.disabled=!editable||disabled;button.onclick=action;row.append(button)}card.append(row);appendPlanNoteEditor(card,s,k);
+   for(const [text,disabled,action] of [['↑',index===0,()=>{const next=[...keys];[next[index-1],next[index]]=[next[index],next[index-1]];setDayPlan(s,next)}],['↓',index===keys.length-1,()=>{const next=[...keys];[next[index+1],next[index]]=[next[index],next[index+1]];setDayPlan(s,next)}],['Kaldır',false,()=>removePlannedLesson(s,k)]]){const button=document.createElement('button');button.textContent=text;button.setAttribute('aria-label',planSlotName(s,k)+' '+text);button.disabled=!editable||disabled;button.onclick=action;row.append(button)}card.append(row);appendPlanNoteEditor(card,s,k);
   });
   const add=document.createElement('div');add.className='planAdd';const select=document.createElement('select');select.setAttribute('aria-label',s+' eklenecek ders');
-  for(const group of PLAN_GROUPS){const options=document.createElement('optgroup');options.label=group.label;for(const k of group.keys.filter(k=>!keys.includes(k)))options.append(new Option(EXTRA_NAMES[k]+' · '+xpFor(s,k)+' XP'+(radar.has(radarSubject(k))?' ⚠️ Radarda':''),k));if(options.children.length)select.append(options)}select.disabled=!editable||!select.options.length;
+  for(const group of PLAN_GROUPS){const options=document.createElement('optgroup');options.label=group.label;for(const k of group.keys)options.append(new Option(EXTRA_NAMES[k]+' · '+xpFor(s,k)+' XP'+(radar.has(radarSubject(k))?' ⚠️ Radarda':''),k));if(options.children.length)select.append(options)}select.disabled=!editable||!select.options.length;
   const draft=planAddDrafts.get(s)||{key:select.value,text:''};if([...select.options].some(option=>option.value===draft.key))select.value=draft.key;
   const label=document.createElement('label');label.textContent='📝 Ders notu (opsiyonel)';const note=document.createElement('textarea');note.rows=2;note.maxLength=PLAN_NOTE_LIMIT;note.value=draft.text;note.placeholder='Örn. Üçgende merkezlerden 20 soru çöz.';note.disabled=select.disabled;note.setAttribute('aria-label',s+' yeni ders notu');label.append(note);
   const remember=()=>planAddDrafts.set(s,{key:select.value,text:note.value});note.oninput=remember;select.onchange=remember;
@@ -1096,12 +1104,12 @@ function normalizePlanNotes(raw){
  const notes={};if(!raw||typeof raw!=='object'||Array.isArray(raw))return notes;
  for(const [day,lessons] of Object.entries(raw)){
   if(!validDay(day)||day<FLOW_START||!lessons||typeof lessons!=='object'||Array.isArray(lessons))continue;
-  for(const key of PLAN_KEYS)if(typeof lessons[key]==='string'&&lessons[key].trim()){notes[day]??={};notes[day][key]=lessons[key]}
+  for(const [key,text] of Object.entries(lessons))if(isPlanSlot(key)&&typeof text==='string'&&text.trim()){notes[day]??={};notes[day][key]=text}
  }
  return notes;
 }
-function planNoteText(day,key){return PLAN_KEYS.includes(key)&&plannedTasks(day).includes(key)&&typeof state.planNotes?.[day]?.[key]==='string'?state.planNotes[day][key]:''}
-function canEditPlanNote(day,key){return !COACH_MODE&&validDay(day)&&day>=FLOW_START&&PLAN_KEYS.includes(key)&&plannedTasks(day).includes(key)}
+function planNoteText(day,key){return isPlanSlot(key)&&plannedTasks(day).includes(key)&&typeof state.planNotes?.[day]?.[key]==='string'?state.planNotes[day][key]:''}
+function canEditPlanNote(day,key){return !COACH_MODE&&validDay(day)&&day>=FLOW_START&&isPlanSlot(key)&&plannedTasks(day).includes(key)}
 function writePlanNote(day,key,text){
  if(COACH_MODE)return;
  if(text){state.planNotes[day]??={};state.planNotes[day][key]=text}
@@ -1118,20 +1126,20 @@ function prunePlanNotes(day,keys){
  for(const id of planNoteDrafts.keys())if(id.startsWith(day+'|')&&!keys.includes(id.slice(day.length+1)))planNoteDrafts.delete(id);
 }
 function addPlannedLesson(day,key,text=''){
- const keys=plannedTasks(day).filter(k=>PLAN_KEYS.includes(k));
- if(!canEditPlan(day)||!PLAN_KEYS.includes(key)||keys.includes(key)||typeof text!=='string')return false;
+ const keys=plannedTasks(day).filter(isPlanSlot);
+ if(!canEditPlan(day)||!PLAN_KEYS.includes(key)||typeof text!=='string')return false;
  text=text.trim();if(text.length>PLAN_NOTE_LIMIT){alert('Ders notu en fazla '+PLAN_NOTE_LIMIT+' karakter olabilir.');return false}
- writePlanNote(day,key,text);planAddDrafts.delete(day);return setDayPlan(day,[...keys,key]);
+ const slot=nextPlanSlot(key,keys);writePlanNote(day,slot,text);planAddDrafts.delete(day);return setDayPlan(day,[...keys,slot]);
 }
 function removePlannedLesson(day,key){
- if(!canEditPlan(day)||!PLAN_KEYS.includes(key)||!plannedTasks(day).includes(key))return false;
- if(planNoteText(day,key)&&!confirm(EXTRA_NAMES[key]+' dersi ve bu derse ait plan notu kaldırılsın mı?'))return false;
- return setDayPlan(day,plannedTasks(day).filter(k=>PLAN_KEYS.includes(k)&&k!==key));
+ if(!canEditPlan(day)||!isPlanSlot(key)||!plannedTasks(day).includes(key))return false;
+ if(planNoteText(day,key)&&!confirm(planSlotName(day,key)+' ve bu derse ait plan notu kaldırılsın mı?'))return false;
+ return setDayPlan(day,plannedTasks(day).filter(k=>!isPlanSlot(k)||k!==key));
 }
 function planNoteViewer(day,key){
  const note=planNoteText(day,key);if(!note)return null;
  const block=document.createElement('span');block.className='planNote';const badge=document.createElement('span');badge.className='planNoteBadge';
- badge.textContent=currentSwap(day)?.outKey===key?'📝 '+EXTRA_NAMES[key]+' plan notu':'📝 Plan notu';const text=document.createElement('span');text.className='planNoteText';text.textContent=note;block.append(badge,text);return block;
+ badge.textContent=currentSwap(day)?.outKey===key?'📝 '+planSlotName(day,key)+' plan notu':'📝 Plan notu';const text=document.createElement('span');text.className='planNoteText';text.textContent=note;block.append(badge,text);return block;
 }
 function appendPlanNoteEditor(card,day,key){
  const viewer=planNoteViewer(day,key);if(COACH_MODE&&!viewer)return;
@@ -1140,7 +1148,7 @@ function appendPlanNoteEditor(card,day,key){
   const id=day+'|'+key,draft=planNoteDrafts.get(id)||{text:planNoteText(day,key),open:false};planNoteDrafts.set(id,draft);
   const editor=document.createElement('details');editor.className='planNoteEditor';editor.open=draft.open;editor.ontoggle=()=>{if(editor.isConnected)draft.open=editor.open};
   const summary=document.createElement('summary');summary.textContent=viewer?'📝 Notu düzenle':'📝 Not ekle';editor.append(summary);
-  const label=document.createElement('label');label.textContent='Ders notu (opsiyonel)';const input=document.createElement('textarea');input.rows=2;input.maxLength=PLAN_NOTE_LIMIT;input.value=draft.text;input.setAttribute('aria-label',EXTRA_NAMES[key]+' plan notu · '+day);input.oninput=()=>{draft.text=input.value;draft.open=true};label.append(input);editor.append(label);
+  const label=document.createElement('label');label.textContent='Ders notu (opsiyonel)';const input=document.createElement('textarea');input.rows=2;input.maxLength=PLAN_NOTE_LIMIT;input.value=draft.text;input.setAttribute('aria-label',planSlotName(day,key)+' plan notu · '+day);input.oninput=()=>{draft.text=input.value;draft.open=true};label.append(input);editor.append(label);
   const actions=document.createElement('div');actions.className='actions';for(const [text,action] of [['Notu kaydet',()=>savePlanNote(day,key,input.value)],['Notu sil',()=>savePlanNote(day,key,'')]]){const button=document.createElement('button');button.type='button';button.textContent=text;button.disabled=text==='Notu sil'&&!planNoteText(day,key);button.onclick=action;actions.append(button)}editor.append(actions);block.append(editor);
  }
  card.append(block);
