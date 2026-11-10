@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#0e1220">
-<title>YKS RPG V3.27</title>
+<title>YKS RPG V3.28</title>
 <style>
 :root{
  color-scheme:dark;--bg:#0c1019;--surface:#141b28;--surface-raised:#1b2535;--surface-soft:#101722;--border:#2a3547;--text:#edf2fa;--muted:#98a7bc;--accent:#84cbb8;--success:#84cbb8;--warning:#e9be76;--danger:#ef9c9d;--gold:#e9be76;--violet:#b5a1e5;
@@ -60,7 +60,7 @@ button,input,select,textarea{font:inherit}button{min-height:44px;display:inline-
 </head>
 <body>
 <main>
-<header class="appHeader"><div class="brand"><span class="brandMark" aria-hidden="true">🎮</span><div><div class="brandLine"><h1>YKS RPG</h1><span class="version">V3.27</span></div><p class="sub">Her gün biraz daha güçlü.</p></div></div><div class="headerBadges"><span class="pill" id="cloudPill">☁️ <span id="cloudStatus">Yerel</span></span><span class="pill" title="Boş gün bileti">🎟️ <span id="tickets">0</span></span><span class="pill" title="İndirim kuponu">🏷️ <span id="coupons">0</span></span></div></header>
+<header class="appHeader"><div class="brand"><span class="brandMark" aria-hidden="true">🎮</span><div><div class="brandLine"><h1>YKS RPG</h1><span class="version">V3.28</span></div><p class="sub">Her gün biraz daha güçlü.</p></div></div><div class="headerBadges"><span class="pill" id="cloudPill">☁️ <span id="cloudStatus">Yerel</span></span><span class="pill" title="Boş gün bileti">🎟️ <span id="tickets">0</span></span><span class="pill" title="İndirim kuponu">🏷️ <span id="coupons">0</span></span></div></header>
 <section class="panel hero"><div class="heroHeading"><div><span class="overline">LEVEL / XP · KULLANILABİLİR BAKİYE</span><div class="big" id="balance">0 XP</div></div><div class="heroEmblem" aria-hidden="true">✦</div></div><div class="bar"><div id="progress"></div></div><div class="heroReward"><small id="next">Sonraki boş gün biletine 3.000 XP</small><span class="pill">🎟️ 3.000 XP</span></div><div class="stats heroStats"><div class="stat"><small>BU HAFTA</small><b id="weekly">0</b></div><div class="stat"><small>🔥 STREAK</small><b id="topStreak">0 gün</b></div><div class="stat"><small>BUGÜNKÜ RANK</small><b id="heroRank">D-Rank</b></div><div class="stat"><small>👹 BOSS POWER</small><b id="bossMini">0/100</b><div class="bar miniBoss"><div id="heroBossProgress"></div></div></div></div><div class="heroFooter"><button id="countdown" class="viewControl" type="button">🎯 YKS tarihini ayarla</button><div class="ledgerRow"><span>Toplam <b id="earned">0</b> XP</span><span>Harcanan <b id="spent">0</b> XP</span><span>En iyi seri <b id="bestStreak">0 gün</b></span></div></div></section>
 <nav class="tabs" role="tablist" aria-label="Uygulama bölümleri"><button id="nav-daily" data-tab="daily" role="tab" aria-controls="daily" aria-selected="true" class="active"><span class="navIcon" aria-hidden="true">📅</span>Günlük</button><button id="nav-rpg" data-tab="rpg" role="tab" aria-controls="rpg" aria-selected="false"><span class="navIcon" aria-hidden="true">⚔️</span>RPG</button><button id="nav-mockTab" data-tab="mockTab" role="tab" aria-controls="mockTab" aria-selected="false"><span class="navIcon" aria-hidden="true">📝</span>Denemeler</button><button id="nav-planTab" data-tab="planTab" role="tab" aria-controls="planTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🗓️</span>Plan</button><button id="nav-vaultTab" data-tab="vaultTab" role="tab" aria-controls="vaultTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🧠</span>Zor Soru</button><button id="nav-teacherTab" data-tab="teacherTab" role="tab" aria-controls="teacherTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🙋</span>Hocaya Sor</button><button id="nav-shopTab" data-tab="shopTab" role="tab" aria-controls="shopTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🛍️</span>Mağaza</button><button id="nav-backupTab" data-tab="backupTab" role="tab" aria-controls="backupTab" aria-selected="false"><span class="navIcon" aria-hidden="true">💾</span>Yedek</button></nav>
 
@@ -235,7 +235,7 @@ button,input,select,textarea{font:inherit}button{min-height:44px;display:inline-
 
 <section class="panel"><h2>💾 Kayıt ve yedekleme</h2><p class="notice">Veriler bu cihazda yerel olarak tutulur; Coach Sync bağlandığında aynı kayıt ayrıca buluta gönderilir. JSON yedeği yine ekstra güvence olarak kalır.</p><div class="actions"><button id="export">Yedeği indir (.json)</button><button id="importBtn">Yedekten geri yükle</button><input id="import" class="file" type="file" accept=".json,application/json"><button id="reset" class="danger">Tüm verileri sıfırla</button></div><small id="saved"></small></section>
 <section class="panel" id="cloudPanel"><div class="top"><h2>☁️ Coach Sync</h2><span class="pill" id="cloudRole">Öğrenci</span></div><p class="notice" id="cloudHelp">Bu cihazı bulut hesabına bağlamak için özel öğrenci kodunu bir kez gir. Kod cihazda saklanır; GitHub'a veya site kaynak koduna yazılmaz.</p><div id="ownerSetup"><input id="ownerTokenInput" type="password" placeholder="Özel öğrenci kurulum kodu" style="width:100%"><div class="actions"><button id="bindOwner" class="primary">☁️ Bu cihazı bağla</button></div></div><div class="actions"><button id="syncNow">↕️ Şimdi senkronize et</button><button id="copyCoachLink">🔗 Koç bağlantısını kopyala</button><button id="copySetupCode" type="button" hidden disabled>🔑 Kurulum kodunu kopyala</button><button id="forgetOwner" class="danger">Bu cihazın bulut bağlantısını kaldır</button></div><p class="notice" id="cloudDetail">Henüz bağlanmadı.</p></section>
-<section class="panel"><h2>ℹ️ V3.27 kuralları</h2><p class="notice">5 Kasım 2026'dan itibaren hiçbir ders otomatik eklenmez; yalnızca Plan’a eklenen dersler ana görev olarak görünür ve Rank ağırlığı kazanır. 17 Ekim 2026 itibarıyla yeni XP ekonomisi uygulanır (Paragraf 60 XP, Problem 100 XP); önceki günlerin XP değerleri korunur. Eski soru analizi ve rutin görevleri yalnızca geçmiş tarihlerde korunur. Ek çalışmalar isteğe bağlıdır; günlük Rank ve streak hesabında ana görevler esas alınır. 14 Ekim sonrası Rank, görevlerin XP ağırlığına göre hesaplanır. Ders değişiminde orijinal slotun Rank ağırlığı korunur; kazanılan XP gelen derse aittir. Pazartesi Boş Gün Bileti yeni planda analiz ön koşulu olmadan kullanılabilir; eski tarihlerde eski kural geçerlidir. Zor Soru Kasası; günlük özet, hızlı ekleme, filtreye göre karışık 20 soru seçimi, konu ustalık haritası ve kaynak bitirme takibiyle birlikte çalışır. Bir kaynak yalnızca tüm test/sayfaları tamamlanıp o kaynağa ait bütün zor sorular ⚫ Öğrenildi olduğunda bitmiş sayılır. Çalışma kronometresi net süreyi günlük kaydeder; ders tamamlanırken çalışan kronometre onayla durdurulup o derse ait oturum olarak saklanır. Günlük Mini Quest bu sürümde özellikle yoktur.</p></section>
+<section class="panel"><h2>ℹ️ V3.28 kuralları</h2><p class="notice">5 Kasım 2026'dan itibaren hiçbir ders otomatik eklenmez; yalnızca Plan’a eklenen dersler ana görev olarak görünür ve Rank ağırlığı kazanır. 17 Ekim 2026 itibarıyla yeni XP ekonomisi uygulanır (Paragraf 60 XP, Problem 100 XP); önceki günlerin XP değerleri korunur. Eski soru analizi ve rutin görevleri yalnızca geçmiş tarihlerde korunur. Ek çalışmalar isteğe bağlıdır; günlük Rank ve streak hesabında ana görevler esas alınır. 14 Ekim sonrası Rank, görevlerin XP ağırlığına göre hesaplanır. Ders değişiminde orijinal slotun Rank ağırlığı korunur; kazanılan XP gelen derse aittir. Pazartesi Boş Gün Bileti yeni planda analiz ön koşulu olmadan kullanılabilir; eski tarihlerde eski kural geçerlidir. Zor Soru Kasası; günlük özet, hızlı ekleme, filtreye göre karışık 20 soru seçimi, konu ustalık haritası ve kaynak bitirme takibiyle birlikte çalışır. Bir kaynak yalnızca tüm test/sayfaları tamamlanıp o kaynağa ait bütün zor sorular ⚫ Öğrenildi olduğunda bitmiş sayılır. Çalışma kronometresi net süreyi günlük kaydeder; ders tamamlanırken çalışan kronometre onayla durdurulup o derse ait oturum olarak saklanır. Günlük Mini Quest bu sürümde özellikle yoktur.</p></section>
 </div>
 </main>
 
@@ -749,7 +749,13 @@ const EXAM_TYPES={
  MAT:{name:'Matematik Branş',subjects:{math:['Matematik',40]}}
 };
 let editingMockId=null;
+const TYT_SCIENCE_PARTS={physics:['Fizik',7],chemistry:['Kimya',7],biology:['Biyoloji',6]};
 function scoreNet(score){return score.correct-score.wrong/4}
+function tytScienceDetailFromScores(scores){return scores?.scienceDetail&&typeof scores.scienceDetail==='object'?scores.scienceDetail:null}
+function tytScienceAggregate(detail){
+ let correct=0,wrong=0;for(const [key,[,max]] of Object.entries(TYT_SCIENCE_PARTS)){const v=detail?.[key];if(!v||!Number.isInteger(v.correct)||!Number.isInteger(v.wrong)||v.correct<0||v.wrong<0||v.correct+v.wrong>max)throw Error('TYT Fen alt derslerini kontrol et.');correct+=v.correct;wrong+=v.wrong}
+ return {correct,wrong};
+}
 function validMock(exam){
  if(!exam||typeof exam.id!=='string'||!validDay(exam.date)||!EXAM_TYPES[exam.type]||!exam.scores)return false;
  return Object.entries(EXAM_TYPES[exam.type].subjects).every(([key,[,max]])=>{const v=exam.scores[key];return v&&Number.isInteger(v.correct)&&Number.isInteger(v.wrong)&&v.correct>=0&&v.wrong>=0&&v.correct+v.wrong<=max});
@@ -758,8 +764,32 @@ function examNet(exam,subject='total'){return subject==='total'?Object.keys(EXAM
 function mockRecords(type){return state.mockExams.filter(e=>validMock(e)&&e.type===type).map((exam,index)=>({exam,index})).sort((a,b)=>a.exam.date.localeCompare(b.exam.date)||a.index-b.index).map(x=>x.exam)}
 function mockMetrics(type){const records=mockRecords(type),nets=records.map(e=>examNet(e));return {count:records.length,last:nets.at(-1)??null,best:nets.length?Math.max(...nets):null,average:nets.length?nets.slice(-5).reduce((n,x)=>n+x,0)/Math.min(5,nets.length):null}}
 function renderMockScores(scores={}){
- const subjects=EXAM_TYPES[$('mockType').value].subjects;$('mockScores').replaceChildren();
+ const type=$('mockType').value,subjects=EXAM_TYPES[type].subjects;$('mockScores').replaceChildren();
  for(const [key,[name,max]] of Object.entries(subjects)){
+  if(type==='TYT'&&key==='science'){
+   const detail=tytScienceDetailFromScores(scores);
+   if(detail){
+    for(const [part,[partName,partMax]] of Object.entries(TYT_SCIENCE_PARTS)){
+     const tr=document.createElement('tr'),title=document.createElement('th');title.scope='row';title.textContent=partName;tr.append(title);
+     for(const [field,label] of [['correct','doğru'],['wrong','yanlış']]){const td=document.createElement('td'),input=document.createElement('input');input.type='number';input.min=0;input.max=partMax;input.step=1;input.value=detail[part]?.[field]??0;input.id=`mock-${field}-science-${part}`;input.setAttribute('aria-label',partName+' '+label);input.oninput=previewMock;td.append(input);tr.append(td)}
+     for(const field of ['blank','net']){const td=document.createElement('td');td.id=`mock-${field}-science-${part}`;tr.append(td)}$('mockScores').append(tr);
+    }
+   }else if(scores.science){
+    const tr=document.createElement('tr'),title=document.createElement('th');title.scope='row';title.textContent='Fen (eski kayıt)';tr.append(title);
+    for(const [field,label] of [['correct','doğru'],['wrong','yanlış']]){const td=document.createElement('td'),input=document.createElement('input');input.type='number';input.min=0;input.max=20;input.step=1;input.value=scores.science?.[field]??0;input.id=`mock-${field}-science`;input.setAttribute('aria-label','Fen '+label);input.oninput=previewMock;td.append(input);tr.append(td)}
+    for(const field of ['blank','net']){const td=document.createElement('td');td.id=`mock-${field}-science`;tr.append(td)}$('mockScores').append(tr);
+    const note=document.createElement('tr'),cell=document.createElement('td');cell.colSpan=5;cell.className='notice';cell.textContent='Bu eski kayıt tek Fen satırıyla oluşturulmuş. Kaydederken bu format korunur.';note.append(cell);$('mockScores').append(note);
+   }else{
+    for(const [part,[partName,partMax]] of Object.entries(TYT_SCIENCE_PARTS)){
+     const tr=document.createElement('tr'),title=document.createElement('th');title.scope='row';title.textContent=partName;tr.append(title);
+     for(const [field,label] of [['correct','doğru'],['wrong','yanlış']]){const td=document.createElement('td'),input=document.createElement('input');input.type='number';input.min=0;input.max=partMax;input.step=1;input.value=0;input.id=`mock-${field}-science-${part}`;input.setAttribute('aria-label',partName+' '+label);input.oninput=previewMock;td.append(input);tr.append(td)}
+     for(const field of ['blank','net']){const td=document.createElement('td');td.id=`mock-${field}-science-${part}`;tr.append(td)}$('mockScores').append(tr);
+    }
+   }
+   const total=document.createElement('tr'),th=document.createElement('th');th.scope='row';th.textContent='Fen toplamı';total.append(th);
+   for(const field of ['correct','wrong','blank','net']){const td=document.createElement('td');td.id=`mock-science-total-${field}`;total.append(td)}$('mockScores').append(total);
+   appendErrorInputs(key,name,scores[key]?.errorBreakdown);continue;
+  }
   const tr=document.createElement('tr'),title=document.createElement('th');title.scope='row';title.textContent=name;tr.append(title);
   for(const [field,label] of [['correct','doğru'],['wrong','yanlış']]){const td=document.createElement('td'),input=document.createElement('input');input.type='number';input.min=0;input.max=max;input.step=1;input.value=scores[key]?.[field]??0;input.id=`mock-${field}-${key}`;input.setAttribute('aria-label',name+' '+label);input.oninput=previewMock;td.append(input);tr.append(td)}
   for(const field of ['blank','net']){const td=document.createElement('td');td.id=`mock-${field}-${key}`;tr.append(td)}$('mockScores').append(tr);appendErrorInputs(key,name,scores[key]?.errorBreakdown);
@@ -767,7 +797,25 @@ function renderMockScores(scores={}){
  previewMock();
 }
 function readMockScores(includeErrors=true){
- const result={};for(const [key,[name,max]] of Object.entries(EXAM_TYPES[$('mockType').value].subjects)){
+ const type=$('mockType').value,result={};for(const [key,[name,max]] of Object.entries(EXAM_TYPES[type].subjects)){
+  if(type==='TYT'&&key==='science'){
+   const detailInputs=$('mock-correct-science-physics');
+   if(detailInputs){
+    const detail={};
+    for(const [part,[partName,partMax]] of Object.entries(TYT_SCIENCE_PARTS)){
+     const correct=Number($('mock-correct-science-'+part).value),wrong=Number($('mock-wrong-science-'+part).value);
+     if(!Number.isInteger(correct)||!Number.isInteger(wrong)||correct<0||wrong<0||correct+wrong>partMax)throw Error(`${partName}: doğru + yanlış en fazla ${partMax} olmalı.`);
+     detail[part]={correct,wrong};
+    }
+    const agg=tytScienceAggregate(detail);result.science={...agg,scienceDetail:detail};
+   }else{
+    const correct=Number($('mock-correct-science').value),wrong=Number($('mock-wrong-science').value);
+    if(!Number.isInteger(correct)||!Number.isInteger(wrong)||correct<0||wrong<0||correct+wrong>20)throw Error('Fen: doğru + yanlış en fazla 20 olmalı.');
+    result.science={correct,wrong};
+   }
+   if(includeErrors){const errorBreakdown={};for(const code of Object.keys(ERROR_TYPES)){const n=Number($(`error-science-${code}`).value);if(!Number.isInteger(n)||n<0)throw Error('Fen: hata adetleri negatif olmayan tam sayılar olmalı.');errorBreakdown[code]=n}if(Object.values(errorBreakdown).reduce((n,x)=>n+x,0)>20-result.science.correct)throw Error(`Fen: hata türlerinin toplamı yanlış + boş sayısını (${20-result.science.correct}) aşamaz.`);result.science.errorBreakdown=errorBreakdown}
+   continue;
+  }
   const correct=Number($('mock-correct-'+key).value),wrong=Number($('mock-wrong-'+key).value);
   if(!Number.isInteger(correct)||!Number.isInteger(wrong)||correct<0||wrong<0||correct+wrong>max)throw Error(`${name}: doğru + yanlış en fazla ${max} olmalı; negatif olmayan tam sayılar gir.`);
   result[key]={correct,wrong};
@@ -775,8 +823,16 @@ function readMockScores(includeErrors=true){
  }return result;
 }
 function previewMock(){
- try{const scores=readMockScores(false);let total=0;for(const [key,[,max]] of Object.entries(EXAM_TYPES[$('mockType').value].subjects)){$('mock-blank-'+key).textContent=max-scores[key].correct-scores[key].wrong;$('mock-net-'+key).textContent=formatNumber(scoreNet(scores[key]));total+=scoreNet(scores[key])}$('mockTotal').textContent='Toplam net: '+formatNumber(total);try{const classified=readMockScores();for(const [key,[,max]] of Object.entries(EXAM_TYPES[$('mockType').value].subjects))$(`error-unclassified-${key}`).textContent='Sınıflandırılmamış: '+errorCounts(classified[key],max).unclassified;$('mockError').textContent=''}catch(e){$('mockError').textContent=e.message}}
- catch(e){$('mockError').textContent=e.message;$('mockTotal').textContent='Toplam net: —';for(const key of Object.keys(EXAM_TYPES[$('mockType').value].subjects)){$('mock-blank-'+key).textContent='—';$('mock-net-'+key).textContent='—'}}
+ try{const type=$('mockType').value,scores=readMockScores(false);let total=0;for(const [key,[,max]] of Object.entries(EXAM_TYPES[type].subjects)){
+   if(type==='TYT'&&key==='science'){
+    const detail=scores.science.scienceDetail;
+    if(detail){for(const [part,[,partMax]] of Object.entries(TYT_SCIENCE_PARTS)){const v=detail[part];$('mock-blank-science-'+part).textContent=partMax-v.correct-v.wrong;$('mock-net-science-'+part).textContent=formatNumber(scoreNet(v))}}
+    else{$('mock-blank-science').textContent=20-scores.science.correct-scores.science.wrong;$('mock-net-science').textContent=formatNumber(scoreNet(scores.science))}
+    $('mock-science-total-correct').textContent=scores.science.correct;$('mock-science-total-wrong').textContent=scores.science.wrong;$('mock-science-total-blank').textContent=20-scores.science.correct-scores.science.wrong;$('mock-science-total-net').textContent=formatNumber(scoreNet(scores.science));total+=scoreNet(scores.science);continue;
+   }
+   $('mock-blank-'+key).textContent=max-scores[key].correct-scores[key].wrong;$('mock-net-'+key).textContent=formatNumber(scoreNet(scores[key]));total+=scoreNet(scores[key])
+  }$('mockTotal').textContent='Toplam net: '+formatNumber(total);try{const classified=readMockScores();for(const [key,[,max]] of Object.entries(EXAM_TYPES[type].subjects))$(`error-unclassified-${key}`).textContent='Sınıflandırılmamış: '+errorCounts(classified[key],max).unclassified;$('mockError').textContent=''}catch(e){$('mockError').textContent=e.message}}
+ catch(e){$('mockError').textContent=e.message;$('mockTotal').textContent='Toplam net: —'}
 }
 function resetMockForm(){editingMockId=null;$('mockForm').reset();$('mockDate').value=today();$('mockDate').max=today();$('mockFormTitle').textContent='Yeni deneme';renderMockScores()}
 function saveMock(event){
@@ -789,7 +845,8 @@ function saveMock(event){
   if(mathViewedCount!==null&&(!Number.isInteger(mathViewedCount)||mathViewedCount<0||mathViewedCount>40))throw Error('Süre içinde bakılan matematik soru sayısı 0–40 arasında olmalı.');
   if((mathTimeMinutes===null)!==(mathViewedCount===null))throw Error('Matematik bitiriş takibi için süre ve bakılan soru sayısını birlikte gir.');
   const previous=editingMockId?state.mockExams.find(e=>e.id===editingMockId):null;
-  const exam={id:editingMockId||(globalThis.crypto?.randomUUID?.()||'exam-'+Date.now()+'-'+Math.random().toString(36).slice(2)),date,type:$('mockType').value,name:$('mockName').value.trim().slice(0,160),duration,note:$('mockNote').value.trim().slice(0,2000),scores:readMockScores(),mathTimeMinutes,mathViewedCount,mathFinishSeconds:Math.max(0,Number(previous?.mathFinishSeconds)||0),mathFinishStartedAt:typeof previous?.mathFinishStartedAt==='string'?previous.mathFinishStartedAt:'',mathFinishCompletedAt:typeof previous?.mathFinishCompletedAt==='string'?previous.mathFinishCompletedAt:''};
+  const rawScores=readMockScores(),scienceDetail=rawScores.science?.scienceDetail||null;if(rawScores.science)delete rawScores.science.scienceDetail;
+  const exam={id:editingMockId||(globalThis.crypto?.randomUUID?.()||'exam-'+Date.now()+'-'+Math.random().toString(36).slice(2)),date,type:$('mockType').value,name:$('mockName').value.trim().slice(0,160),duration,note:$('mockNote').value.trim().slice(0,2000),scores:rawScores,scienceDetail,mathTimeMinutes,mathViewedCount,mathFinishSeconds:Math.max(0,Number(previous?.mathFinishSeconds)||0),mathFinishStartedAt:typeof previous?.mathFinishStartedAt==='string'?previous.mathFinishStartedAt:'',mathFinishCompletedAt:typeof previous?.mathFinishCompletedAt==='string'?previous.mathFinishCompletedAt:''};
   if(mathViewedCount===40){exam.mathFinishSeconds=0;exam.mathFinishStartedAt='';exam.mathFinishCompletedAt=exam.mathFinishCompletedAt||new Date().toISOString()}
   if(editingMockId){const index=state.mockExams.findIndex(e=>e.id===editingMockId);if(index<0)throw Error('Düzenlenen deneme bulunamadı; yeni kayıt oluştur.');state.mockExams[index]=exam}else state.mockExams.push(exam);
   $('mockFilter').value=exam.type;save();resetMockForm();render();
@@ -797,7 +854,7 @@ function saveMock(event){
 }
 function editMock(id){
  if(COACH_MODE)return;const exam=state.mockExams.find(e=>e.id===id);if(!validMock(exam))return;
- editingMockId=id;$('mockFormTitle').textContent='Denemeyi düzenle';$('mockDate').value=exam.date;$('mockType').value=exam.type;$('mockName').value=exam.name||'';$('mockDuration').value=exam.duration??'';$('mockMathTime').value=exam.mathTimeMinutes??'';$('mockMathViewed').value=exam.mathViewedCount??'';$('mockNote').value=exam.note||'';renderMockScores(exam.scores);$('mockFormPanel').scrollIntoView({behavior:'smooth',block:'start'});
+ editingMockId=id;$('mockFormTitle').textContent='Denemeyi düzenle';$('mockDate').value=exam.date;$('mockType').value=exam.type;$('mockName').value=exam.name||'';$('mockDuration').value=exam.duration??'';$('mockMathTime').value=exam.mathTimeMinutes??'';$('mockMathViewed').value=exam.mathViewedCount??'';$('mockNote').value=exam.note||'';renderMockScores({...exam.scores,scienceDetail:exam.scienceDetail});$('mockFormPanel').scrollIntoView({behavior:'smooth',block:'start'});
 }
 function deleteMock(id){if(COACH_MODE)return;const linked=vaultQuestions().filter(q=>q.sourceType==='mock'&&q.mockId===id).length;const msg=linked?'Bu deneme kaydı silinsin mi? Kasadaki '+linked+' soru, denemenin adı/tarihi saklanarak kasada kalır.':'Bu deneme kaydı silinsin mi?';if(!confirm(msg))return;state.mockExams=state.mockExams.filter(e=>e.id!==id);if(editingMockId===id)resetMockForm();save();render()}
 function renderMockChart(records,subject){
@@ -870,7 +927,7 @@ function renderMocks(){
  for(const exam of [...records].reverse()){
   const card=document.createElement('div');card.className='examCard';const title=document.createElement('h3');title.textContent=`${fmt(exam.date)} · ${def.name} · ${formatNumber(examNet(exam))} net`;card.append(title);
   if(exam.name){const name=document.createElement('p');name.textContent=exam.name;card.append(name)}
-  const scores=document.createElement('p');scores.className='notice';scores.textContent=Object.entries(def.subjects).map(([key,[name,max]])=>`${name}: ${exam.scores[key].correct}D / ${exam.scores[key].wrong}Y / ${max-exam.scores[key].correct-exam.scores[key].wrong}B · ${formatNumber(examNet(exam,key))} net`).join(' — ');card.append(scores);appendSavedErrors(card,exam);
+  const scores=document.createElement('p');scores.className='notice';const scoreParts=[];for(const [key,[name,max]] of Object.entries(def.subjects)){if(exam.type==='TYT'&&key==='science'&&exam.scienceDetail){for(const [part,[partName,partMax]] of Object.entries(TYT_SCIENCE_PARTS)){const v=exam.scienceDetail[part];scoreParts.push(`${partName}: ${v.correct}D / ${v.wrong}Y / ${partMax-v.correct-v.wrong}B · ${formatNumber(scoreNet(v))} net`)}scoreParts.push(`Fen toplamı: ${exam.scores.science.correct}D / ${exam.scores.science.wrong}Y / ${20-exam.scores.science.correct-exam.scores.science.wrong}B · ${formatNumber(examNet(exam,'science'))} net`)}else scoreParts.push(`${name}: ${exam.scores[key].correct}D / ${exam.scores[key].wrong}Y / ${max-exam.scores[key].correct-exam.scores[key].wrong}B · ${formatNumber(examNet(exam,key))} net`)}scores.textContent=scoreParts.join(' — ');card.append(scores);appendSavedErrors(card,exam);
   if(exam.duration){const time=document.createElement('p');time.textContent='Süre: '+exam.duration+' dk';card.append(time)}if(exam.note){const note=document.createElement('p');note.textContent=exam.note;card.append(note)}
   if(mathFinishEligible(exam)){
    const box=document.createElement('div');box.className='mathFinishBox';const top=document.createElement('div');top.className='mathFinishTop';
