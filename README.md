@@ -68,6 +68,35 @@ Removing a lesson also removes its note. Day/week resets remove notes for lesson
 that leave the plan and retain notes for lessons still present. Existing plan
 locks remain; notes can be edited independently of task completion.
 
+## Extra-work timers
+
+Every Extra-work row uses the existing study timer. Start, pause/resume and finish
+are available beside the task, including completed Extras. The same choices also
+appear in the main timer picker, even when there is no daily main plan.
+
+There is one shared `studyTimer.running` record. Saved sessions retain the same
+`day`, `taskKey`, `label`, `seconds`, `startedAt` and `endedAt` fields; Extra task
+keys use the existing `extra:<taskKey>` namespace. Per-task totals, daily totals
+and weekly totals sum those sessions, excluding paused time. Reload, JSON backup
+and the existing Coach Sync state JSON carry them without a new storage key,
+state schema or database change. Coach mode remains read-only.
+
+Finishing a timer saves time only. XP still comes from the existing completion
+checkbox once per Extra; timing the same completed Extra again does not grant
+more XP. Checking a matching task can finish its timer after confirmation;
+checking another task leaves the current timer running. Timer buttons are
+outside checkbox labels to prevent accidental completion on mobile.
+
+Run the focused timer tests with Python Playwright and Chromium:
+
+```sh
+python tests/test_extra_study_timer.py
+```
+
+Use `--supabase-js /path/to/supabase-browser.js` for a local TLS-verified library.
+The tests use deterministic time, temporary browser contexts, 360px viewports and
+mock cloud RPCs. They never read or write live student data.
+
 ## Browser tests
 
 Requires Python Playwright and Chromium. Run from the repository root:
