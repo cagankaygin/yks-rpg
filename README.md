@@ -55,8 +55,8 @@ general XP, Boss and study statistics without awarding a subject Skill XP.
 Students can add an optional note when adding a lesson in **Plan**, or edit/delete
 notes below existing lessons. The daily task shows the same note, including after
 completion. Swap labels identify the original planned lesson. All 15 planned
-task kinds support notes, including Paragraph, Problem and general exams. Extra
-sessions do not have plan notes.
+task kinds support notes, including Paragraph, Problem and general exams. Past
+Extra sessions also reuse the note editor and store notes under `extra:<taskKey>`.
 
 Notes are stored as `state.planNotes[date][taskKey]` in the existing
 `yks-xp-final-v1` localStorage record and student state JSON. Old saves default to
@@ -64,9 +64,44 @@ Notes are stored as `state.planNotes[date][taskKey]` in the existing
 notes without any Supabase migration, new table, column or RPC. Coach mode is
 fully read-only. No separate coach-note API or write permission is used.
 
-Removing a lesson also removes its note. Day/week resets remove notes for lessons
-that leave the plan and retain notes for lessons still present. Existing plan
-locks remain; notes can be edited independently of task completion.
+Removing a lesson also removes its note after confirmation. Clearing a day/week
+preserves Extra-session notes. Notes can be edited independently of completion.
+
+## Editing historical days
+
+Choose a past date in **Günlük**, then use **Seçili günün planını düzenle** to open
+that week in the existing planner. Add lessons, reorder/remove slots, and edit
+notes there; completion and Extra checkboxes stay on the selected daily screen.
+Only the selected day's plan/checks are changed. Today's and future plans retain
+their existing completion/Swap/ticket/shield locks. Coach mode can navigate past
+plans and view records but cannot edit them.
+
+Legacy days retain their defaults, task IDs, XP and count-based Rank until
+explicitly edited. A saved empty plan stays empty rather than restoring default
+tasks. No existing checks or time records are migrated on load. Deletion and
+day/week clearing require confirmation; removing a swapped slot clears its
+completion key and Swap for that day without affecting other slots.
+
+Recorded sessions can be edited from **Seçili günün oturumlarını göster**;
+**Süre ekle** records missing main/Extra study time using the same session store.
+Editing preserves the session ID and original timestamps. Manual entries carry
+an optional `manual: true` marker and are shown as manual records rather than
+measured clock times. All sessions remain even when their lesson is removed.
+Time changes update daily/weekly totals without changing XP or a running timer.
+
+XP, Rank, streak, Comeback and perfect-week bonuses continue to be derived from
+current checks and plans. Previously claimed chests/achievements, purchases and
+ticket/shield records are retained; an edit never resets their claim guards.
+Local saves, JSON backups and existing Coach Sync transport these records.
+
+Run the backdated-edit regression suite with Python Playwright and Chromium:
+
+```sh
+python tests/test_past_plan_editing.py
+```
+
+The optional `--supabase-js` argument uses a local TLS-verified browser library.
+The suite uses isolated fixtures, mocked cloud RPCs and a 360px viewport.
 
 ## Extra-work timers
 
