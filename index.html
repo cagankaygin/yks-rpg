@@ -58,6 +58,7 @@ button,input,select,textarea{font:inherit}button{min-height:44px;display:inline-
 .sourceProgressSummary{margin-top:10px}.sourceProgressGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.sourceProgressCard{border:1px solid var(--border);background:var(--surface-soft);border-radius:15px;padding:15px}.sourceProgressHead{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.sourceProgressBar{height:9px;border-radius:999px;background:#0b1018;overflow:hidden;margin:12px 0 7px}.sourceProgressBar>span{display:block;height:100%;background:linear-gradient(90deg,#91b5e2,#84cbb8)}.sourceProgressBar.done>span{background:linear-gradient(90deg,#84cbb8,#e9be76)}.sourceProgressNumbers{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:12px;color:var(--muted)}.sourceProgressActions{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}.sourceProgressActions button{font-size:11px}.sourceProgressEdit{margin-top:10px;border-top:1px solid #ffffff0d;padding-top:10px}.sourceProgressEdit summary{cursor:pointer;color:var(--muted);font-size:12px}.sourceProgressEdit .formGrid{grid-template-columns:repeat(3,minmax(0,1fr));margin-top:10px}.sourceProgressUntracked{margin:10px 0;color:var(--muted);font-size:12px}.sourceProgressDone{color:var(--gold);font-weight:800}.sourceProgressNear{color:var(--blue);font-weight:750}
 @media(max-width:720px){.sourceProgressGrid{grid-template-columns:1fr}.sourceProgressEdit .formGrid{grid-template-columns:1fr}}
 .extraStudy{min-width:0;margin:8px 0;border:1px solid var(--border);border-radius:13px;background:var(--surface-soft);overflow:hidden}.extraStudy>.task{margin:0;border:0;border-radius:0}.extraStudy.timerActive{border-color:#91b5e26b}.extraStudyTimer{display:flex;align-items:center;gap:7px;flex-wrap:wrap;padding:8px 12px 12px}.extraStudyTime{flex:1;min-width:130px;color:var(--muted);font-size:11px;font-variant-numeric:tabular-nums}.extraStudy.timerActive .extraStudyTime{color:var(--blue);flex-basis:100%}.extraStudy.timerActive .extraStudyTimer button{flex:1}.extraStudyTimer button{min-height:44px;padding:8px 10px;font-size:11px}.extraStudyTimer button:disabled{opacity:.5}
+.vaultMasteryCelebration{position:fixed;inset:0;z-index:140;display:grid;place-items:center;padding:18px;pointer-events:none}.vaultMasteryCard{position:relative;overflow:hidden;width:min(420px,100%);padding:26px 22px;text-align:center;border:1px solid #e9be7670;border-radius:22px;background:radial-gradient(ellipse at top,#e9be7618,transparent 65%),var(--surface);box-shadow:0 20px 80px #0009;pointer-events:auto;animation:masteryCardIn .25s ease-out}.vaultMasteryMessage,.vaultMasteryCard>button{position:relative;z-index:1}.vaultMasteryCard h2{font-size:22px;color:var(--gold);margin:10px 0}.vaultMasteryCard strong{display:block;font-size:17px;line-height:1.5}.vaultMasteryCard p{font-size:13px;line-height:1.8;color:var(--muted);margin:13px 0 17px}.vaultMasteryCard>button{min-height:44px;padding:9px 25px}.vaultMasteryTrophy{font-size:52px;line-height:1.2;animation:masteryTrophyPop .8s ease-in-out 2}.vaultMasteryConfetti{position:absolute;inset:0;overflow:hidden;pointer-events:none}.vaultMasteryConfetti i{position:absolute;top:-12px;width:5px;height:9px;border-radius:2px;opacity:0;animation:masteryConfettiFall 2.7s ease-out forwards}@keyframes masteryCardIn{from{opacity:0;transform:translateY(12px) scale(.97)}to{opacity:1;transform:none}}@keyframes masteryTrophyPop{0%,100%{transform:scale(1) rotate(0)}45%{transform:scale(1.12) rotate(-5deg)}70%{transform:scale(1.04) rotate(3deg)}}@keyframes masteryConfettiFall{0%{opacity:0;transform:translateY(-12px) rotate(0)}12%{opacity:.8}100%{opacity:0;transform:translate(var(--drift),380px) rotate(var(--turn))}}@media(prefers-reduced-motion:reduce){.vaultMasteryCard,.vaultMasteryTrophy,.vaultMasteryConfetti i{animation:none}.vaultMasteryConfetti{display:none}}
 </style>
 </head>
 <body>
@@ -343,6 +344,19 @@ button,input,select,textarea{font:inherit}button{min-height:44px;display:inline-
     <div class="studyTimerTaskGrid" id="studyTimerTaskChoices"></div>
   </div>
 </div>
+
+<section id="vaultMasteryCelebration" class="vaultMasteryCelebration" hidden aria-label="Soru öğrenme kutlaması">
+  <div class="vaultMasteryCard">
+    <div id="vaultMasteryConfetti" class="vaultMasteryConfetti" aria-hidden="true"></div>
+    <div class="vaultMasteryMessage" role="status" aria-live="polite" aria-atomic="true">
+      <div class="vaultMasteryTrophy" aria-hidden="true">🏆</div>
+      <h2>🎉 TEBRİKLER!</h2>
+      <strong>Bu soruyu tamamen öğrendin!</strong>
+      <p>Bir zamanlar seni zorlayan bu soru artık öğrendiğin sorular arasında. Harika ilerleme! 🧠🔥</p>
+    </div>
+    <button id="closeVaultMasteryCelebration" type="button">Kapat</button>
+  </div>
+</section>
 
 <div class="modal" id="checkinModal"><div class="modalBox"><h2>🌙 S-Rank! Gün nasıl geçti?</h2><p class="notice">Perfect Day tamamlandı. 10 saniyelik check-in yaparsan ileride hangi günlerin sana en iyi geldiğini görebilirsin.</p><div class="grid2"><div><small>Çalışma yükü</small><div class="checkinBtns" id="modalLoadBtns"></div></div><div><small>Memnuniyet</small><div class="checkinBtns" id="modalSatBtns"></div></div></div><textarea id="modalNote" placeholder="Opsiyonel kısa not..."></textarea><div class="actions"><button id="modalSave" class="primary">Kaydet</button><button id="modalLater">Sonra</button></div></div></div>
 
@@ -824,7 +838,7 @@ function longProgress(){
  return {last7:sum(add(end,-6),end),last30:sum(last30,end),previous30:sum(previous30,add(end,-30)),plan:planCompliance(last30,end),active,extras,month:sum(monthStart,end),previousMonth:sum(prevStart,prevEnd)};
 }
 function renderLongProgress(){
- const p=longProgress();$('longProgress').innerHTML=statHTML('Son 7 gün XP',formatNumber(p.last7))+statHTML('Son 30 gün XP',formatNumber(p.last30))+statHTML('Önceki 30 güne göre',changeText(p.last30,p.previous30))+statHTML('Son 30 gün plan uyumu',formatPercent(p.plan.pct))+statHTML('Aktif çalışma günü',p.active)+statHTML('Son 30 gün ek oturum',p.extras)+statHTML('Bu ay XP',formatNumber(p.month))+statHTML('Geçen ay XP',formatNumber(p.previousMonth))+statHTML('Bu ay / geçen ay',changeText(p.month,p.previousMonth));
+ const p=longProgress();$('longProgress').innerHTML=statHTML('Son 7 gün XP',formatNumber(p.last7))+statHTML('Son 30 gün XP',formatNumber(p.last30))+statHTML('Önceki 30 güne göre',changeText(p.last30,p.previous30))+statHTML('Son 30 gün plan uyumu',formatPercent(p.plan.pct))+statHTML('Aktif çalışma günü',p.active)+statHTML('Son 30 gün ek oturum',p.extras)+statHTML('Bu ay XP',formatNumber(p.month))+statHTML('Geçen ay XP',formatNumber(p.previousMonth))+statHTML('Bu ay / geçen ay',changeText(p.month,p.previousMonth))+statHTML('🧠 Tamamen öğrenilen zor soru','<span id="vaultMasteredTotal">'+vaultMasteredCount()+'</span>');
 }
 function calendarDistance(a,b){const utc=s=>{const [y,m,d]=s.split('-').map(Number);return Date.UTC(y,m-1,d)};return Math.round((utc(b)-utc(a))/86400000)}
 function renderCountdown(){
@@ -1418,6 +1432,7 @@ function normalizeQuestionVault(raw){
    lastAttemptAt:validDay(q.lastAttemptAt)?q.lastAttemptAt:'',nextDueAt:validDay(q.nextDueAt)?q.nextDueAt:'',
    mastered,history
   };
+  if(typeof q.masteryCelebratedAt==='string'&&Number.isFinite(Date.parse(q.masteryCelebratedAt)))common.masteryCelebratedAt=q.masteryCelebratedAt;
   if(sourceType==='mock'){
    const subject=VAULT_SUBJECTS[q.subject]?q.subject:'mathStudy';
    out.questions.push({...common,bookId:'',mockId:typeof q.mockId==='string'?q.mockId:'',mockType:q.mockType==='AYT'?'AYT':'TYT',
@@ -1427,6 +1442,15 @@ function normalizeQuestionVault(raw){
  }
  return out;
 }
+let vaultMasteryCelebrationTimer=null;
+function closeVaultMasteryCelebration(){clearTimeout(vaultMasteryCelebrationTimer);vaultMasteryCelebrationTimer=null;const panel=$('vaultMasteryCelebration');if(panel)panel.hidden=true;$('vaultMasteryConfetti')?.replaceChildren()}
+function showVaultMasteryCelebration(){
+ if(COACH_MODE)return;const panel=$('vaultMasteryCelebration'),confetti=$('vaultMasteryConfetti');if(!panel||!confetti)return;
+ clearTimeout(vaultMasteryCelebrationTimer);confetti.replaceChildren();
+ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){const colors=['#e9be76','#84cbb8','#91b5e2','#b5a1e5'];for(let i=0;i<24;i++){const piece=document.createElement('i');piece.style.left=((i*37)%100)+'%';piece.style.background=colors[i%colors.length];piece.style.animationDelay=(i%6)*.07+'s';piece.style.setProperty('--drift',((i%2?1:-1)*(14+i*2))+'px');piece.style.setProperty('--turn',(i%2?300:-300)+'deg');confetti.append(piece)}}
+ panel.hidden=false;vaultMasteryCelebrationTimer=setTimeout(closeVaultMasteryCelebration,3500);
+}
+function vaultMasteredCount(){return vaultQuestions().filter(q=>q.mastered).length}
 function vaultBooks(){return state.questionVault?.books||[]}
 function vaultQuestions(){return state.questionVault?.questions||[]}
 function vaultBook(id){return vaultBooks().find(b=>b.id===id)}
@@ -1527,9 +1551,10 @@ function renderVaultDue(){
  for(const q of due)list.append(vaultMakeQuestion(q,false,false));
 }
 function renderVaultSummary(){
- const due=vaultDueQuestions(),late=due.filter(q=>q.nextDueAt<today()).length,ready=vaultReadyQuestions().length,locked=vaultLockedQuestions().length,mastered=vaultQuestions().filter(q=>q.mastered).length;
+ const due=vaultDueQuestions(),late=due.filter(q=>q.nextDueAt<today()).length,ready=vaultReadyQuestions().length,locked=vaultLockedQuestions().length,mastered=vaultMasteredCount();
+ const total=$('vaultMasteredTotal');if(total)total.textContent=String(mastered);
  const el=$('vaultSummary');if(!el)return;el.innerHTML='';
- for(const [label,value] of [['BUGÜN',due.length],['GECİKMİŞ',late],['MAVİ HAVUZ',ready],['7 GÜN BEKLEYEN',locked],['ÖĞRENİLDİ',mastered]]){
+ for(const [label,value] of [['BUGÜN',due.length],['GECİKMİŞ',late],['MAVİ HAVUZ',ready],['7 GÜN BEKLEYEN',locked],['TOPLAM ÖĞRENİLEN',mastered]]){
   const d=document.createElement('div');d.className='stat';const s=document.createElement('small');s.textContent=label;const b=document.createElement('b');b.textContent=String(value);d.append(s,b);el.append(d);
  }
 }
@@ -1724,7 +1749,7 @@ function renderVaultMockMap(){
 function renderVaultSession(){
  const panel=$('vaultSessionPanel');if(!panel)return;
  const valid=vaultSessionIds.filter(id=>vaultQuestions().some(q=>q.id===id&&!q.mastered));
- if(valid.length!==vaultSessionIds.length)vaultSessionIds=valid;
+ if(valid.length!==vaultSessionIds.length){const removedBefore=vaultSessionIds.slice(0,vaultSessionIndex).filter(id=>!valid.includes(id)).length;vaultSessionIndex=Math.max(0,vaultSessionIndex-removedBefore);vaultSessionIds=valid;}
  if(vaultSessionIndex>=vaultSessionIds.length){panel.hidden=true;return}
  const q=vaultQuestions().find(x=>x.id===vaultSessionIds[vaultSessionIndex]);if(!q){panel.hidden=true;return}
  panel.hidden=false;$('vaultSessionProgress').textContent=(vaultSessionIndex+1)+' / '+vaultSessionIds.length;
@@ -1780,7 +1805,7 @@ function startVaultSession(ids){
 }
 function recordVaultResult(result){
  if(COACH_MODE||!['solved','partial','failed'].includes(result)||vaultSessionIndex>=vaultSessionIds.length)return;
- const q=vaultQuestions().find(x=>x.id===vaultSessionIds[vaultSessionIndex]);if(!q)return;const day=today();q.active=true;q.lastAttemptAt=day;q.lastResult=result;q.history??=[];q.history.push({date:day,result});if(q.history.length>30)q.history=q.history.slice(-30);
+ const q=vaultQuestions().find(x=>x.id===vaultSessionIds[vaultSessionIndex]);if(!q||q.mastered)return;const day=today();q.active=true;q.lastAttemptAt=day;q.lastResult=result;q.history??=[];q.history.push({date:day,result});if(q.history.length>30)q.history=q.history.slice(-30);
  if(result==='failed'){q.successStage=0;q.nextDueAt=add(day,7);q.mastered=false}
  else if(result==='partial'){q.nextDueAt=add(day,7);q.mastered=false}
  else{
@@ -1788,9 +1813,11 @@ function recordVaultResult(result){
   if(q.successStage>=3){q.mastered=true;q.nextDueAt=''}
   else q.nextDueAt=add(day,q.successStage===1?14:28);
  }
+ const celebrate=q.mastered&&!q.masteryCelebratedAt;if(celebrate)q.masteryCelebratedAt=new Date().toISOString();
  vaultSelectedReady.delete(q.id);vaultSessionIndex++;save();
- if(vaultSessionIndex>=vaultSessionIds.length){const done=vaultSessionIds.length;vaultSessionIds=[];vaultSessionIndex=0;renderQuestionVault();alert('🧠 Tekrar oturumu tamamlandı · '+done+' soru.')}
+ if(vaultSessionIndex>=vaultSessionIds.length){const done=vaultSessionIds.length;vaultSessionIds=[];vaultSessionIndex=0;renderQuestionVault();if(!celebrate)alert('🧠 Tekrar oturumu tamamlandı · '+done+' soru.')}
  else renderQuestionVault();
+ if(celebrate)showVaultMasteryCelebration();
 }
 
 
@@ -1925,6 +1952,7 @@ function initTeacherQuestions(){
 
 function initQuestionVault(){
  if(!$('vaultTab'))return;
+ $('closeVaultMasteryCelebration').onclick=closeVaultMasteryCelebration;document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!$('vaultMasteryCelebration').hidden)closeVaultMasteryCelebration()});
  $('vaultBookForm').onsubmit=addVaultBook;$('vaultQuestionForm').onsubmit=addVaultQuestions;
  $('vaultQuestionBook').onchange=()=>{vaultLastBookId=$('vaultQuestionBook').value;vaultLastTopic='';$('vaultQuestionTopic').value='';updateVaultTopicOptions()};
  for(const id of ['vaultFilterSubject','vaultFilterBook'])$(id).onchange=()=>renderVaultReady();$('vaultFilterTopic').oninput=()=>renderVaultReady();

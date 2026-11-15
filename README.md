@@ -97,6 +97,32 @@ Use `--supabase-js /path/to/supabase-browser.js` for a local TLS-verified librar
 The tests use deterministic time, temporary browser contexts, 360px viewports and
 mock cloud RPCs. They never read or write live student data.
 
+## Fully learned question celebration
+
+The question-vault review schedule stays unchanged: the first independent check
+opens after seven days; successful checks then schedule 14- and 28-day reviews.
+Only the existing final `mastered` transition shows the congratulations card,
+with a trophy and lightweight CSS confetti. It closes after 3.5 seconds, or
+immediately with **Kapat** / Escape. Reduced-motion users get a static card.
+
+The optional per-question `masteryCelebratedAt` timestamp is saved with existing
+question data before showing the card and survives localStorage, JSON backups and
+Coach Sync. Existing mastered questions never replay a celebration on load. This
+is presentation metadata only: it awards no XP and does not change stages,
+review dates or the stored question IDs. The global learned count appears in the
+vault summary and the existing RPG long-term statistics. Batch sessions keep the
+next question selected when a newly mastered question leaves the session list.
+
+Run the focused tests with Python Playwright and Chromium:
+
+```sh
+python tests/test_vault_mastery_celebration.py
+```
+
+The optional `--supabase-js` argument accepts a local TLS-verified browser
+library. Tests use isolated fixtures, mocked cloud calls and a 360px viewport;
+no real student data is read or modified.
+
 ## Browser tests
 
 Requires Python Playwright and Chromium. Run from the repository root:
