@@ -69,6 +69,7 @@ button,input,select,textarea{font:inherit}button{min-height:44px;display:inline-
 
 <div id="daily" class="tab active" role="tabpanel" aria-labelledby="nav-daily">
 <button id="radarShortcut" class="radarLink viewControl"><strong id="radarBrief">📡 Radar</strong><span aria-hidden="true">İncele →</span></button>
+<section class="panel studyTimerPanel" id="studyTimerPanel"><div class="studyTimerTop"><div><span class="overline">NET ÇALIŞMA</span><h2>⏱️ Çalışma Kronometresi</h2></div><span class="pill" id="studyTimerStatus">Hazır</span></div><div class="studyTimerClock" id="studyTimerClock">00:00:00</div><div class="studyTimerMeta"><span>Seçili gün toplamı: <b id="studyDayTotal">0 dk</b></span><span>Oturum: <b id="studySessionCount">0</b></span></div><div class="actions"><button type="button" class="primary" id="studyTimerStart">▶ Başlat</button><button type="button" class="studyTimerPause" id="studyTimerPause">⏸ Mola</button><button type="button" id="studyTimerStop">■ Durdur</button><button type="button" id="addStudySession">✎ Süre ekle</button></div><p class="notice" id="studyTimerNotice">Kronometre sadece net çalışma sırasında açık kalsın. Molalarda durdur.</p><details class="studyTimerSessions"><summary>Seçili günün oturumlarını göster</summary><div id="studySessionList"></div></details></section>
 <section class="panel lockInPanel" id="lockInPanel">
   <div class="lockInTop"><div><span class="overline">YKS İZOLASYON MODU</span><h2>🔒 Lock-In</h2></div><span class="pill" id="lockInStatus">Kapalı</span></div>
   <p class="notice">Bugün hangi ortamda çalışıyorsun? Ortamı seç; kurallar ekranda sabit kalsın.</p>
@@ -81,7 +82,7 @@ button,input,select,textarea{font:inherit}button{min-height:44px;display:inline-
   <div class="actions"><button type="button" class="primary" id="lockInStart">🔒 Modu aç</button><button type="button" id="lockInStop">Modu kapat</button></div>
   <p class="lockInState" id="lockInState"></p>
 </section>
-<section class="panel studyTimerPanel" id="studyTimerPanel"><div class="studyTimerTop"><div><span class="overline">NET ÇALIŞMA</span><h2>⏱️ Çalışma Kronometresi</h2></div><span class="pill" id="studyTimerStatus">Hazır</span></div><div class="studyTimerClock" id="studyTimerClock">00:00:00</div><div class="studyTimerMeta"><span>Seçili gün toplamı: <b id="studyDayTotal">0 dk</b></span><span>Oturum: <b id="studySessionCount">0</b></span></div><div class="actions"><button type="button" class="primary" id="studyTimerStart">▶ Başlat</button><button type="button" class="studyTimerPause" id="studyTimerPause">⏸ Mola</button><button type="button" id="studyTimerStop">■ Durdur</button><button type="button" id="addStudySession">✎ Süre ekle</button></div><p class="notice" id="studyTimerNotice">Kronometre sadece net çalışma sırasında açık kalsın. Molalarda durdur.</p><details class="studyTimerSessions"><summary>Seçili günün oturumlarını göster</summary><div id="studySessionList"></div></details></section>
+
 <button id="dailyVaultShortcut" class="dailyVaultCard" type="button">
   <span class="dailyVaultMain"><strong>🧠 Zor Soru Kasası</strong><span class="dailyVaultMeta" id="dailyVaultMeta"><span>Bugün yükleniyor…</span></span></span>
   <span class="pill">Kasaya git →</span>
@@ -1317,9 +1318,13 @@ function planLockReason(s){
  return '';
 }
 function canEditPlan(s){return validDay(s)&&!planLockReason(s)}
+function completedPlanSlot(day,key){return !!(state.checks[checkKey(day,key)]||state.checks[day+'|'+key])}
 function setDayPlan(s,keys){
  if(!canEditPlan(s)||!Array.isArray(keys)||keys.some(k=>!validPlanSlotForDay(s,k))||new Set(keys).size!==keys.length)return false;
- const removed=plannedTasks(s).filter(k=>!keys.includes(k));
+ const original=plannedTasks(s),removed=original.filter(k=>!keys.includes(k));
+ if(removed.some(k=>completedPlanSlot(s,k)))return false;
+ // Past days permit removing unfinished lessons only, not adding or reordering.
+ if(s<today()&&keys.join('|')!==original.filter(k=>!removed.includes(k)).join('|'))return false;
  if(removed.length&&!confirm(fmt(s)+' planından '+removed.map(k=>planSlotName(s,k)).join(', ')+' kaldırılsın mı?\n\nBu derslerin tamamlanma işaretleri ve plan notları kaldırılır; XP, Rank ve streak yeniden hesaplanır. Kayıtlı kronometre süreleri ve alınmış ödüller korunur.'))return false;
  writeDayPlan(s,keys);save();render();return true;
 }
@@ -1333,10 +1338,11 @@ function writeDayPlan(s,keys){
  state.weekPlans[w][s]=[...keys];prunePlanNotes(s,keys);
 }
 function resetDayPlan(s){
+ if(s<today())return false;
  return setDayPlan(s,[]);
 }
 function resetWeekPlan(){
- if(COACH_MODE||!plannerWeek)return;const days=datesBetween(plannerWeek,add(plannerWeek,6)).filter(canEditPlan);
+ if(COACH_MODE||!plannerWeek)return;const days=datesBetween(plannerWeek,add(plannerWeek,6)).filter(s=>s>=today()&&canEditPlan(s));
  if(!days.length||!confirm(fmt(plannerWeek)+' haftasının düzenlenebilir günlerindeki ana planlar, tamamlanma işaretleri ve plan notları temizlensin mi?\n\nGeçmiş günler de dahildir. XP, Rank ve streak yeniden hesaplanır. Ek çalışmalar, kronometre kayıtları, alınmış ödüller ve kilitli günler korunur.'))return;
  for(const s of days)writeDayPlan(s,[]);save();render();
 }
@@ -1350,19 +1356,19 @@ function renderPlanner(items=radarData()){
  for(const s of days){
   const card=document.createElement('div');card.className='planCard';card.dataset.date=s;const title=document.createElement('h3');title.textContent=DAY[idx(s)]+' · '+fmt(s);card.append(title);
   const reason=planLockReason(s),editable=!reason,keys=plannedTasks(s);
-  const status=document.createElement('p');status.className='notice';status.textContent=reason||'Düzenlenebilir · '+(Array.isArray(state.weekPlans?.[monday(s)]?.[s])?'Plan kaydedildi':'Plan boş · Ders ekleyince Günlükte görünür');card.append(status);
+  const status=document.createElement('p');status.className='notice';status.textContent=reason||(s<today()?'Geçmiş gün · yalnızca tamamlanmamış dersler kaldırılabilir':'Düzenlenebilir · ')+(Array.isArray(state.weekPlans?.[monday(s)]?.[s])?'Plan kaydedildi':'Plan boş · Ders ekleyince Günlükte görünür');card.append(status);
   keys.forEach((k,index)=>{const base=planSlotBase(k),row=document.createElement('div');row.className='planRow';const label=document.createElement('span');label.className='planName';label.textContent=planSlotName(s,k)+' · '+xpFor(s,base)+' XP';row.append(label);
    if(radar.has(radarSubject(base))){const tag=document.createElement('small');tag.className='radarTag';tag.textContent='⚠️ Radarda';row.append(tag)}
    const swap=currentSwap(s);if(swap?.outKey===k){const tag=document.createElement('small');tag.className='swapTag';tag.textContent='↔ '+EXTRA_NAMES[swap.inKey]+' olarak çalışılacak';row.append(tag)}
-   for(const [text,disabled,action] of [['↑',index===0,()=>{const next=[...keys];[next[index-1],next[index]]=[next[index],next[index-1]];setDayPlan(s,next)}],['↓',index===keys.length-1,()=>{const next=[...keys];[next[index+1],next[index]]=[next[index],next[index+1]];setDayPlan(s,next)}],['Kaldır',false,()=>removePlannedLesson(s,k)]]){const button=document.createElement('button');button.textContent=text;button.setAttribute('aria-label',planSlotName(s,k)+' '+text);button.disabled=!editable||disabled;button.onclick=action;row.append(button)}card.append(row);appendPlanNoteEditor(card,s,k);
+   for(const [text,disabled,action] of [['↑',index===0,()=>{const next=[...keys];[next[index-1],next[index]]=[next[index],next[index-1]];setDayPlan(s,next)}],['↓',index===keys.length-1,()=>{const next=[...keys];[next[index+1],next[index]]=[next[index],next[index+1]];setDayPlan(s,next)}],['Kaldır',false,()=>removePlannedLesson(s,k)]]){const button=document.createElement('button');button.textContent=text;button.setAttribute('aria-label',planSlotName(s,k)+' '+text);button.disabled=!editable||disabled||(s<today()&&(text!=='Kaldır'||completedPlanSlot(s,k)));button.onclick=action;row.append(button)}card.append(row);appendPlanNoteEditor(card,s,k);
   });
   const add=document.createElement('div');add.className='planAdd';const select=document.createElement('select');select.setAttribute('aria-label',s+' eklenecek ders');
-  for(const group of PLAN_GROUPS){const options=document.createElement('optgroup');options.label=group.label;for(const k of group.keys)options.append(new Option(EXTRA_NAMES[k]+' · '+xpFor(s,k)+' XP'+(radar.has(radarSubject(k))?' ⚠️ Radarda':''),k));if(options.children.length)select.append(options)}select.disabled=!editable||!select.options.length;
+  for(const group of PLAN_GROUPS){const options=document.createElement('optgroup');options.label=group.label;for(const k of group.keys)options.append(new Option(EXTRA_NAMES[k]+' · '+xpFor(s,k)+' XP'+(radar.has(radarSubject(k))?' ⚠️ Radarda':''),k));if(options.children.length)select.append(options)}select.disabled=!editable||s<today()||!select.options.length;
   const draft=planAddDrafts.get(s)||{key:select.value,text:''};if([...select.options].some(option=>option.value===draft.key))select.value=draft.key;
   const label=document.createElement('label');label.textContent='📝 Ders notu (opsiyonel)';const note=document.createElement('textarea');note.rows=2;note.maxLength=PLAN_NOTE_LIMIT;note.value=draft.text;note.placeholder='Örn. Üçgende merkezlerden 20 soru çöz.';note.disabled=select.disabled;note.setAttribute('aria-label',s+' yeni ders notu');label.append(note);
   const remember=()=>planAddDrafts.set(s,{key:select.value,text:note.value});note.oninput=remember;select.onchange=remember;
   const button=document.createElement('button');button.textContent='Ders ekle';button.disabled=select.disabled;button.onclick=()=>addPlannedLesson(s,select.value,note.value);add.append(select,label,button);card.append(add);
-  const reset=document.createElement('button');reset.textContent='Günün planını temizle';reset.disabled=!editable;reset.onclick=()=>resetDayPlan(s);card.append(reset);wrap.append(card);
+  const reset=document.createElement('button');reset.textContent='Günün planını temizle';reset.disabled=!editable||s<today();reset.onclick=()=>resetDayPlan(s);card.append(reset);wrap.append(card);
  }
 }
 function initV33(){
@@ -1417,12 +1423,12 @@ function prunePlanNotes(day,keys){
 }
 function addPlannedLesson(day,key,text=''){
  const keys=plannedTasks(day);
- if(!canEditPlan(day)||!PLAN_KEYS.includes(key)||typeof text!=='string')return false;
+ if(!canEditPlan(day)||day<today()||!PLAN_KEYS.includes(key)||typeof text!=='string')return false;
  text=text.trim();if(text.length>PLAN_NOTE_LIMIT){alert('Ders notu en fazla '+PLAN_NOTE_LIMIT+' karakter olabilir.');return false}
  const slot=nextPlanSlot(key,keys);writePlanNote(day,slot,text);planAddDrafts.delete(day);return setDayPlan(day,[...keys,slot]);
 }
 function removePlannedLesson(day,key){
- if(!canEditPlan(day)||!validPlanSlotForDay(day,key)||!plannedTasks(day).includes(key))return false;
+ if(!canEditPlan(day)||completedPlanSlot(day,key)||!validPlanSlotForDay(day,key)||!plannedTasks(day).includes(key))return false;
  return setDayPlan(day,plannedTasks(day).filter(k=>k!==key));
 }
 function planNoteViewer(day,key){
