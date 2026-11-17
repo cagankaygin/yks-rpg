@@ -214,6 +214,29 @@ Use `--supabase-js /path/to/supabase-browser.js` for a local TLS-verified librar
 The tests use deterministic time, temporary browser contexts, 360px viewports and
 mock cloud RPCs. They never read or write live student data.
 
+## Rename question-vault sources
+
+The pencil button beside a source in the source map opens the name editor. Saving changes only that book's `name`; its ID, subject, progress
+and linked question records remain intact. All question references, active
+review sessions, filters, quick-add options and teacher-question views resolve
+the new name through the existing book ID. Local saves, JSON backups and the
+existing Coach Sync state JSON carry the change without new fields or tables.
+Coach mode can see renamed sources but has no edit controls or write access.
+
+Both source creation and renaming reject duplicate names across subjects after
+Turkish case folding, Unicode normalization and whitespace cleanup. Names must
+contain 1–160 characters. Existing duplicate sources are retained on load;
+no books or questions are automatically merged or deleted.
+
+Run the focused browser tests with Python Playwright and Chromium:
+
+```sh
+python tests/test_vault_book_rename.py
+```
+
+The optional `--supabase-js` argument accepts a local TLS-verified browser
+library. Tests use synthetic records, mocked cloud RPCs and 360px viewports.
+
 ## Fully learned question celebration
 
 The question-vault review schedule stays unchanged: the first independent check

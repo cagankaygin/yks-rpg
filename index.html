@@ -62,6 +62,8 @@ button,input,select,textarea{font:inherit}button{min-height:44px;display:inline-
 .studyTimeTable{width:100%;table-layout:fixed;border-collapse:collapse;margin-top:12px;font-size:11px}.studyTimeTable th,.studyTimeTable td{padding:10px 3px;border-bottom:1px solid var(--border);text-align:right;font-variant-numeric:tabular-nums}.studyTimeTable th:first-child,.studyTimeTable td:first-child{text-align:left;width:48%;overflow-wrap:anywhere}.studyTimeTable th{color:var(--muted);font-size:10px}
 .lockCheck{display:flex;gap:10px;align-items:flex-start;margin:14px 0;font-size:13px}.lockCheck input{flex:none;margin-top:3px}.periodCard{padding:14px;margin:12px 0;border:1px solid var(--border);border-radius:13px}.periodCard.done{border-color:#84cbb860}.periodCard p{font-size:12px}.periodCard button{margin:4px 5px 4px 0;font-size:11px}.lockTransaction{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--border);font-size:12px}.lockTransaction span{min-width:0;overflow-wrap:anywhere}.lockTransaction b{flex:none;white-space:nowrap}.breakOverrun{color:var(--gold)}#lockInIndicator{margin-bottom:8px}#lockInTab .formGrid{margin:14px 0}#studyBreakButtons button{white-space:normal;font-size:11px}
 .vaultDifficultyBadge{font-size:10px;color:var(--muted);padding:3px 7px;border:1px solid var(--border);border-radius:7px;white-space:nowrap}.vaultQuestionHead{flex-wrap:wrap}.vaultDifficultySelect{font-size:11px;padding:5px 8px;margin:6px 0;max-width:100%;min-height:36px}
+.vaultBookActions{display:flex;gap:6px;flex-wrap:wrap}.vaultBookHead{flex-wrap:wrap}.vaultBookHead>div:first-child{min-width:0;overflow-wrap:anywhere}.vaultBookRenameButton{font-size:12px;padding:8px 10px}
+#vaultTab .formGrid>label,#quickVaultForm .formGrid>label,#teacherQuestionForm .formGrid>label{min-width:0}#vaultQuestionBook,#vaultFilterBook,#quickVaultBook,#teacherQuestionBook{min-width:0;width:100%;max-width:100%}.vaultRef{overflow-wrap:anywhere}
 </style>
 </head>
 <body>
@@ -267,6 +269,7 @@ button,input,select,textarea{font:inherit}button{min-height:44px;display:inline-
 
 
 <button id="quickVaultFab" class="quickVaultFab" type="button">➕ Soru</button>
+<div class="modal" id="vaultBookRenameModal" role="dialog" aria-modal="true" aria-labelledby="vaultBookRenameTitle"><form class="modalBox" id="vaultBookRenameForm"><div class="top"><h2 id="vaultBookRenameTitle">✏️ Kaynak ismini düzenle</h2><button type="button" id="cancelVaultBookRename">Vazgeç</button></div><p class="notice">Yalnızca kaynak adı değişir. Kaynak kimliği, bağlı sorular ve öğrenme ilerlemesi korunur.</p><label>Yeni kaynak adı<input id="vaultBookRenameInput" maxlength="160" required autocomplete="off"></label><p id="vaultBookRenameNotice" class="notice" aria-live="polite"></p><div class="actions"><button type="submit" class="primary">İsmi kaydet</button></div></form></div>
 <div class="modal quickVaultModal" id="quickVaultModal">
   <div class="modalBox">
     <div class="top"><div><span class="overline">5 SANİYELİK KAYIT</span><h2>➕ Zor soru ekle</h2></div><button id="closeQuickVault" type="button">Kapat</button></div>
@@ -1702,6 +1705,23 @@ function vaultMasteredCount(){return vaultQuestions().filter(q=>q.mastered).leng
 function vaultBooks(){return state.questionVault?.books||[]}
 function vaultQuestions(){return state.questionVault?.questions||[]}
 function vaultBook(id){return vaultBooks().find(b=>b.id===id)}
+function cleanVaultBookName(name){return typeof name==='string'?name.normalize('NFC').trim().replace(/\s+/g,' '):''}
+function vaultBookNameExists(name,excludeId=''){const key=cleanVaultBookName(name).toLocaleLowerCase('tr-TR');return vaultBooks().find(b=>b.id!==excludeId&&cleanVaultBookName(b.name).toLocaleLowerCase('tr-TR')===key)}
+let vaultBookRenameId=null;
+function closeVaultBookRename(){vaultBookRenameId=null;$('vaultBookRenameModal').classList.remove('show')}
+function openVaultBookRename(id){
+ if(COACH_MODE)return;const book=vaultBook(id);if(!book)return;
+ vaultBookRenameId=id;$('vaultBookRenameInput').value=book.name;$('vaultBookRenameNotice').textContent='';$('vaultBookRenameModal').classList.add('show');$('vaultBookRenameInput').focus();$('vaultBookRenameInput').select();
+}
+function renameVaultBook(id,rawName){
+ if(COACH_MODE)return false;const book=vaultBook(id),name=cleanVaultBookName(rawName);
+ if(!book){$('vaultBookRenameNotice').textContent='Kaynak artık bulunamıyor.';return false}
+ if(!name||name.length>160){$('vaultBookRenameNotice').textContent='Kaynak adı 1–160 karakter olmalı.';return false}
+ if(vaultBookNameExists(name,id)){$('vaultBookRenameNotice').textContent='Bu isimde bir kaynak zaten kayıtlı. Başka bir isim seç.';return false}
+ book.name=name;save();renderQuestionVault();renderTeacherQuestions();return true;
+}
+function saveVaultBookRename(event){event.preventDefault();if(!COACH_MODE&&vaultBookRenameId&&renameVaultBook(vaultBookRenameId,$('vaultBookRenameInput').value))closeVaultBookRename()}
+function vaultBookEditButton(book){const button=document.createElement('button');button.type='button';button.className='vaultBookRenameButton';button.textContent='✏️ Düzenle';button.dataset.renameBook=book.id;button.setAttribute('aria-label',book.name+' kaynak ismini düzenle');button.onclick=()=>openVaultBookRename(book.id);return button}
 function vaultMockExam(q){return q?.mockId?state.mockExams.find(e=>e.id===q.mockId):null}
 function vaultQuestionSubject(q){return q?.sourceType==='mock'?q.subject:vaultBook(q?.bookId)?.subject}
 function vaultSourceIsMock(q){return q?.sourceType==='mock'}
@@ -1955,9 +1975,9 @@ function renderVaultBookMap(){
  const map=$('vaultBookMap');if(!map)return;map.replaceChildren();
  if(!vaultBooks().length){const box=document.createElement('div');box.className='vaultEmpty';box.textContent='Henüz soru bankası eklenmedi.';map.append(box);return}
  for(const b of vaultBooks()){
-  const qs=vaultQuestions().filter(q=>q.bookId===b.id),card=document.createElement('div');card.className='vaultBookCard';
+  const qs=vaultQuestions().filter(q=>q.bookId===b.id),card=document.createElement('div');card.className='vaultBookCard';card.dataset.vaultBookId=b.id;
   const head=document.createElement('div');head.className='vaultBookHead';const left=document.createElement('div');const title=document.createElement('strong');title.textContent=b.name;const sub=document.createElement('div');sub.className='vaultSub';const bp=sourceProgressPct(b),openHard=sourceUnmasteredHardCount(b);sub.textContent=vaultSubjectLabel(b.subject)+' · '+qs.length+' zor soru'+(bp===null?'':' · Kaynak '+formatNumber(bp,0)+'%')+(sourceIsComplete(b)?' · ✅ Bitti':bp>=100&&openHard?' · 🧠 '+openHard+' zor soru kaldı':'');left.append(title,sub);head.append(left);
-  if(!COACH_MODE){const del=document.createElement('button');del.type='button';del.textContent='Kaynağı sil';del.onclick=()=>deleteVaultBook(b.id);head.append(del)}card.append(head);
+  if(!COACH_MODE){const actions=document.createElement('div');actions.className='vaultBookActions';actions.append(vaultBookEditButton(b));const del=document.createElement('button');del.type='button';del.textContent='Kaynağı sil';del.onclick=()=>deleteVaultBook(b.id);actions.append(del);head.append(actions)}card.append(head);
   const meta=document.createElement('div');meta.className='vaultMeta';
   const counts=[
    ['🔴 Bekliyor',qs.filter(q=>!q.active&&!q.mastered&&q.firstEligibleAt>today()).length],
@@ -2019,9 +2039,10 @@ function renderQuestionVault(){
  if($('quickVaultModal')?.classList.contains('show'))fillQuickVaultBooks();
 }
 function addVaultBook(event){
- event.preventDefault();if(COACH_MODE)return;const subject=$('vaultBookSubject').value,name=$('vaultBookName').value.trim();
+ event.preventDefault();if(COACH_MODE)return;const subject=$('vaultBookSubject').value,name=cleanVaultBookName($('vaultBookName').value);
  if(!VAULT_SUBJECTS[subject]||!name)return;
- const exists=vaultBooks().find(b=>b.subject===subject&&b.name.toLocaleLowerCase('tr-TR')===name.toLocaleLowerCase('tr-TR'));
+ if(name.length>160){alert('Kaynak adı en fazla 160 karakter olabilir.');return}
+ const exists=vaultBookNameExists(name);
  if(exists){vaultLastBookId=exists.id;alert('Bu kaynak zaten kayıtlı.');renderQuestionVault();return}
  const rawTotal=$('vaultBookTotal').value.trim(),totalUnits=rawTotal===''?0:Number(rawTotal),progressUnit=$('vaultBookProgressUnit').value==='page'?'page':'test';
  if(rawTotal!==''&&(!Number.isInteger(totalUnits)||totalUnits<1||totalUnits>10000)){alert('Toplam adet 1–10.000 arasında tam sayı olmalı.');return}
@@ -2208,6 +2229,7 @@ function initTeacherQuestions(){
 
 function initQuestionVault(){
  if(!$('vaultTab'))return;
+ $('vaultBookRenameForm').onsubmit=saveVaultBookRename;$('cancelVaultBookRename').onclick=closeVaultBookRename;$('vaultBookRenameModal').onclick=e=>{if(e.target===$('vaultBookRenameModal'))closeVaultBookRename()};document.addEventListener('keydown',e=>{if(e.key==='Escape')closeVaultBookRename()});
  $('closeVaultMasteryCelebration').onclick=closeVaultMasteryCelebration;document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!$('vaultMasteryCelebration').hidden)closeVaultMasteryCelebration()});
  $('vaultFilterDifficulty').onchange=()=>renderQuestionVault();$('vaultBookForm').onsubmit=addVaultBook;$('vaultQuestionForm').onsubmit=addVaultQuestions;
  $('vaultQuestionBook').onchange=()=>{vaultLastBookId=$('vaultQuestionBook').value;vaultLastTopic='';$('vaultQuestionTopic').value='';updateVaultTopicOptions()};
