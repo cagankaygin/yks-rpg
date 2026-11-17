@@ -103,6 +103,36 @@ python tests/test_past_plan_editing.py
 The optional `--supabase-js` argument uses a local TLS-verified browser library.
 The suite uses isolated fixtures, mocked cloud RPCs and a 360px viewport.
 
+## All-course study timer (V3.33)
+
+The existing timer picker includes the selected day's plan plus **TYT subjects**,
+**AYT subjects**, **branch exams**, **general exams** and **analysis tasks**.
+Choices reuse the planner/Extra task definitions and question-vault subject list;
+an empty daily plan does not limit which subject can be timed. Duplicate and
+swapped main-plan slots remain separately selectable.
+
+The shared **Derslere göre süreler** summary shows each subject's selected-day
+and weekly net time, including saved sessions and an active timer. It uses saved
+lesson labels to retain the actual subject after a plan/Swap changes. Original
+session IDs, timestamps and task keys are preserved; there is no data migration.
+Existing Extra choices keep `extra:<taskKey>` keys, while vault-only subjects
+use their existing subject IDs, such as `aytPhysics`.
+
+Starting, pausing or finishing a timer never adds a planned lesson, checks a task
+or grants XP. Completion, Rank, skills, Boss and rewards still follow their
+existing rules. The same expanded catalog is available in the existing manual
+session editor. Coach mode can view time summaries but cannot change records.
+
+Run the focused browser tests with Python Playwright and Chromium:
+
+```sh
+python tests/test_timer_catalog.py
+```
+
+Use `--supabase-js /path/to/supabase-browser.js` for a local TLS-verified library.
+Tests cover old records, reload, JSON backup, mocked cloud sync, mobile layout
+and the absence of plan/completion/XP side effects.
+
 ## Extra-work timers
 
 Every Extra-work row uses the existing study timer. Start, pause/resume and finish
