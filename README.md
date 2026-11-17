@@ -103,6 +103,58 @@ python tests/test_past_plan_editing.py
 The optional `--supabase-js` argument uses a local TLS-verified browser library.
 The suite uses isolated fixtures, mocked cloud RPCs and a 360px viewport.
 
+## Lock-In, breaks and question difficulty (V3.34)
+
+Lock-In has its own tab. Bilim, University and Home share the same rules; the
+daily screen shows a small indicator for today's active mode. Existing dated
+Lock-In records are retained. The owner can assign daily plan slot IDs to any
+number of periods, choose where the 60-minute meal break belongs, and remove a
+period after confirmation. The planner itself is never rewritten. Period
+completion is derived from the existing daily checkboxes, including Swap and
+duplicate lesson slots.
+
+The shared timer supports 5-minute short, 25-minute period and 60-minute meal
+breaks, including standalone breaks between finished sessions. Breaks remain
+active after the target duration and show silent overrun time until ended.
+`studyTimer.breakRunning` and `studyTimer.breaks` retain their own IDs, dates,
+types, planned durations, timestamps, elapsed time and overruns. Net work remains
+in the existing session records and excludes all paused time. Reload, backups
+and Coach Sync preserve both stores; legacy untyped pauses still resume safely.
+Neither working nor taking a break changes task completion or grants XP.
+
+Closing Lock-In opens a self-assessment. Four rules award 10, 10, 15 and 20 XP,
+at most once per rule/day across all environments and restarts. Each active
+Lock-In session has a unique evaluation ID. Repeated submissions or duplicate
+imported IDs cannot multiply a reward or penalty. Confirming that the student
+abandoned the plan to socialize deducts 1500 XP from the balance. That evaluation
+cannot also award the social rule's 20 XP. Emergencies, health issues and forced
+schedule changes are explicitly excluded; an unchecked exit has no penalty.
+
+Evaluations live in `lockIn.days[date].evaluations`; periods and the chosen meal
+position also stay on that day's record. The daily ledger deduplicates rule
+rewards and evaluation IDs. Existing task XP, Rank, skills, Boss, quests,
+purchase records and chest claims are unchanged. Lock-In rewards enter earned
+XP, penalties enter spent XP, and weekly/long-term XP summaries include the net
+change. The Lock-In tab and Statistics show the transaction reason and amount.
+
+Question difficulty is optional metadata: `medium`, `hard` or `brutal`. Normal,
+quick, mock-exam and mathematics-analysis entry forms offer the same choices.
+Old questions stay unassigned until edited. Cards show a small difficulty badge
+and an owner-only selector; a read-only difficulty filter narrows visible ready,
+due and source question lists. Difficulty never changes review scheduling,
+mastery, XP or the existing due/overdue colors. All new writes are guarded in
+coach mode. No new storage key, Supabase table, schema or RPC is introduced.
+
+Run the focused suite with Python Playwright and Chromium:
+
+```sh
+python tests/test_lockin_protocol.py
+```
+
+Use `--supabase-js /path/to/supabase-browser.js` to use a local TLS-verified
+library. Tests use synthetic records, mocked RPCs, deterministic time and a
+360px viewport; no live student data is accessed.
+
 ## All-course study timer (V3.33)
 
 The existing timer picker includes the selected day's plan plus **TYT subjects**,

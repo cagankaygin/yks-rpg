@@ -75,8 +75,8 @@ try:
     with sync_playwright() as p:
         browser = p.chromium.launch(executable_path=shutil.which('chromium') or shutil.which('chromium-browser'), headless=True, args=['--no-sandbox'])
         page = context(browser, fixture)
-        expect(page).to_have_title('YKS RPG V3.33')
-        expect(page.locator('.version')).to_have_text('V3.33')
+        expect(page).to_have_title('YKS RPG V3.34')
+        expect(page.locator('.version')).to_have_text('V3.34')
         assert page.evaluate('KEY') == KEY
         assert page.evaluate('state.studyTimer.sessions') == fixture['studyTimer']['sessions']
         state_before, mechanics = non_timer(page), gameplay(page)

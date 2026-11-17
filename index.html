@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#0e1220">
-<title>YKS RPG V3.33</title>
+<title>YKS RPG V3.34</title>
 <style>
 :root{
  color-scheme:dark;--bg:#0c1019;--surface:#141b28;--surface-raised:#1b2535;--surface-soft:#101722;--border:#2a3547;--text:#edf2fa;--muted:#98a7bc;--accent:#84cbb8;--success:#84cbb8;--warning:#e9be76;--danger:#ef9c9d;--gold:#e9be76;--violet:#b5a1e5;
@@ -60,29 +60,21 @@ button,input,select,textarea{font:inherit}button{min-height:44px;display:inline-
 .extraStudy{min-width:0;margin:8px 0;border:1px solid var(--border);border-radius:13px;background:var(--surface-soft);overflow:hidden}.extraStudy>.task{margin:0;border:0;border-radius:0}.extraStudy.timerActive{border-color:#91b5e26b}.extraStudyTimer{display:flex;align-items:center;gap:7px;flex-wrap:wrap;padding:8px 12px 12px}.extraStudyTime{flex:1;min-width:130px;color:var(--muted);font-size:11px;font-variant-numeric:tabular-nums}.extraStudy.timerActive .extraStudyTime{color:var(--blue);flex-basis:100%}.extraStudy.timerActive .extraStudyTimer button{flex:1}.extraStudyTimer button{min-height:44px;padding:8px 10px;font-size:11px}.extraStudyTimer button:disabled{opacity:.5}
 .vaultMasteryCelebration{position:fixed;inset:0;z-index:140;display:grid;place-items:center;padding:18px;pointer-events:none}.vaultMasteryCard{position:relative;overflow:hidden;width:min(420px,100%);padding:26px 22px;text-align:center;border:1px solid #e9be7670;border-radius:22px;background:radial-gradient(ellipse at top,#e9be7618,transparent 65%),var(--surface);box-shadow:0 20px 80px #0009;pointer-events:auto;animation:masteryCardIn .25s ease-out}.vaultMasteryMessage,.vaultMasteryCard>button{position:relative;z-index:1}.vaultMasteryCard h2{font-size:22px;color:var(--gold);margin:10px 0}.vaultMasteryCard strong{display:block;font-size:17px;line-height:1.5}.vaultMasteryCard p{font-size:13px;line-height:1.8;color:var(--muted);margin:13px 0 17px}.vaultMasteryCard>button{min-height:44px;padding:9px 25px}.vaultMasteryTrophy{font-size:52px;line-height:1.2;animation:masteryTrophyPop .8s ease-in-out 2}.vaultMasteryConfetti{position:absolute;inset:0;overflow:hidden;pointer-events:none}.vaultMasteryConfetti i{position:absolute;top:-12px;width:5px;height:9px;border-radius:2px;opacity:0;animation:masteryConfettiFall 2.7s ease-out forwards}@keyframes masteryCardIn{from{opacity:0;transform:translateY(12px) scale(.97)}to{opacity:1;transform:none}}@keyframes masteryTrophyPop{0%,100%{transform:scale(1) rotate(0)}45%{transform:scale(1.12) rotate(-5deg)}70%{transform:scale(1.04) rotate(3deg)}}@keyframes masteryConfettiFall{0%{opacity:0;transform:translateY(-12px) rotate(0)}12%{opacity:.8}100%{opacity:0;transform:translate(var(--drift),380px) rotate(var(--turn))}}@media(prefers-reduced-motion:reduce){.vaultMasteryCard,.vaultMasteryTrophy,.vaultMasteryConfetti i{animation:none}.vaultMasteryConfetti{display:none}}
 .studyTimeTable{width:100%;table-layout:fixed;border-collapse:collapse;margin-top:12px;font-size:11px}.studyTimeTable th,.studyTimeTable td{padding:10px 3px;border-bottom:1px solid var(--border);text-align:right;font-variant-numeric:tabular-nums}.studyTimeTable th:first-child,.studyTimeTable td:first-child{text-align:left;width:48%;overflow-wrap:anywhere}.studyTimeTable th{color:var(--muted);font-size:10px}
+.lockCheck{display:flex;gap:10px;align-items:flex-start;margin:14px 0;font-size:13px}.lockCheck input{flex:none;margin-top:3px}.periodCard{padding:14px;margin:12px 0;border:1px solid var(--border);border-radius:13px}.periodCard.done{border-color:#84cbb860}.periodCard p{font-size:12px}.periodCard button{margin:4px 5px 4px 0;font-size:11px}.lockTransaction{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--border);font-size:12px}.lockTransaction span{min-width:0;overflow-wrap:anywhere}.lockTransaction b{flex:none;white-space:nowrap}.breakOverrun{color:var(--gold)}#lockInIndicator{margin-bottom:8px}#lockInTab .formGrid{margin:14px 0}#studyBreakButtons button{white-space:normal;font-size:11px}
+.vaultDifficultyBadge{font-size:10px;color:var(--muted);padding:3px 7px;border:1px solid var(--border);border-radius:7px;white-space:nowrap}.vaultQuestionHead{flex-wrap:wrap}.vaultDifficultySelect{font-size:11px;padding:5px 8px;margin:6px 0;max-width:100%;min-height:36px}
 </style>
 </head>
 <body>
 <main>
-<header class="appHeader"><div class="brand"><span class="brandMark" aria-hidden="true">🎮</span><div><div class="brandLine"><h1>YKS RPG</h1><span class="version">V3.33</span></div><p class="sub">Her gün biraz daha güçlü.</p></div></div><div class="headerBadges"><span class="pill" id="cloudPill">☁️ <span id="cloudStatus">Yerel</span></span><span class="pill" title="Boş gün bileti">🎟️ <span id="tickets">0</span></span><span class="pill" title="İndirim kuponu">🏷️ <span id="coupons">0</span></span></div></header>
+<header class="appHeader"><div class="brand"><span class="brandMark" aria-hidden="true">🎮</span><div><div class="brandLine"><h1>YKS RPG</h1><span class="version">V3.34</span></div><p class="sub">Her gün biraz daha güçlü.</p></div></div><div class="headerBadges"><span class="pill" id="cloudPill">☁️ <span id="cloudStatus">Yerel</span></span><span class="pill" title="Boş gün bileti">🎟️ <span id="tickets">0</span></span><span class="pill" title="İndirim kuponu">🏷️ <span id="coupons">0</span></span></div></header>
 <section class="panel hero"><div class="heroHeading"><div><span class="overline">LEVEL / XP · KULLANILABİLİR BAKİYE</span><div class="big" id="balance">0 XP</div></div><div class="heroEmblem" aria-hidden="true">✦</div></div><div class="bar"><div id="progress"></div></div><div class="heroReward"><small id="next">Sonraki boş gün biletine 3.000 XP</small><span class="pill">🎟️ 3.000 XP</span></div><div class="stats heroStats"><div class="stat"><small>BU HAFTA</small><b id="weekly">0</b></div><div class="stat"><small>🔥 STREAK</small><b id="topStreak">0 gün</b></div><div class="stat"><small>BUGÜNKÜ RANK</small><b id="heroRank">D-Rank</b></div><div class="stat"><small>👹 BOSS POWER</small><b id="bossMini">0/100</b><div class="bar miniBoss"><div id="heroBossProgress"></div></div></div></div><div class="heroFooter"><button id="countdown" class="viewControl" type="button">🎯 YKS tarihini ayarla</button><div class="ledgerRow"><span>Toplam <b id="earned">0</b> XP</span><span>Harcanan <b id="spent">0</b> XP</span><span>En iyi seri <b id="bestStreak">0 gün</b></span></div></div></section>
-<nav class="tabs" role="tablist" aria-label="Uygulama bölümleri"><button id="nav-daily" data-tab="daily" role="tab" aria-controls="daily" aria-selected="true" class="active"><span class="navIcon" aria-hidden="true">📅</span>Günlük</button><button id="nav-rpg" data-tab="rpg" role="tab" aria-controls="rpg" aria-selected="false"><span class="navIcon" aria-hidden="true">⚔️</span>RPG</button><button id="nav-mockTab" data-tab="mockTab" role="tab" aria-controls="mockTab" aria-selected="false"><span class="navIcon" aria-hidden="true">📝</span>Denemeler</button><button id="nav-planTab" data-tab="planTab" role="tab" aria-controls="planTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🗓️</span>Plan</button><button id="nav-vaultTab" data-tab="vaultTab" role="tab" aria-controls="vaultTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🧠</span>Zor Soru</button><button id="nav-teacherTab" data-tab="teacherTab" role="tab" aria-controls="teacherTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🙋</span>Hocaya Sor</button><button id="nav-shopTab" data-tab="shopTab" role="tab" aria-controls="shopTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🛍️</span>Mağaza</button><button id="nav-backupTab" data-tab="backupTab" role="tab" aria-controls="backupTab" aria-selected="false"><span class="navIcon" aria-hidden="true">💾</span>Yedek</button></nav>
+<nav class="tabs" role="tablist" aria-label="Uygulama bölümleri"><button id="nav-daily" data-tab="daily" role="tab" aria-controls="daily" aria-selected="true" class="active"><span class="navIcon" aria-hidden="true">📅</span>Günlük</button><button id="nav-lockInTab" data-tab="lockInTab" role="tab" aria-controls="lockInTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🔒</span>Lock-In</button><button id="nav-rpg" data-tab="rpg" role="tab" aria-controls="rpg" aria-selected="false"><span class="navIcon" aria-hidden="true">⚔️</span>RPG</button><button id="nav-mockTab" data-tab="mockTab" role="tab" aria-controls="mockTab" aria-selected="false"><span class="navIcon" aria-hidden="true">📝</span>Denemeler</button><button id="nav-planTab" data-tab="planTab" role="tab" aria-controls="planTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🗓️</span>Plan</button><button id="nav-vaultTab" data-tab="vaultTab" role="tab" aria-controls="vaultTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🧠</span>Zor Soru</button><button id="nav-teacherTab" data-tab="teacherTab" role="tab" aria-controls="teacherTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🙋</span>Hocaya Sor</button><button id="nav-shopTab" data-tab="shopTab" role="tab" aria-controls="shopTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🛍️</span>Mağaza</button><button id="nav-backupTab" data-tab="backupTab" role="tab" aria-controls="backupTab" aria-selected="false"><span class="navIcon" aria-hidden="true">💾</span>Yedek</button></nav>
 
 <div id="daily" class="tab active" role="tabpanel" aria-labelledby="nav-daily">
 <button id="radarShortcut" class="radarLink viewControl"><strong id="radarBrief">📡 Radar</strong><span aria-hidden="true">İncele →</span></button>
-<section class="panel studyTimerPanel" id="studyTimerPanel"><div class="studyTimerTop"><div><span class="overline">NET ÇALIŞMA</span><h2>⏱️ Çalışma Kronometresi</h2></div><span class="pill" id="studyTimerStatus">Hazır</span></div><div class="studyTimerClock" id="studyTimerClock">00:00:00</div><div class="studyTimerMeta"><span>Seçili gün toplamı: <b id="studyDayTotal">0 dk</b></span><span>Oturum: <b id="studySessionCount">0</b></span></div><div class="actions"><button type="button" class="primary" id="studyTimerStart">▶ Başlat</button><button type="button" class="studyTimerPause" id="studyTimerPause">⏸ Mola</button><button type="button" id="studyTimerStop">■ Durdur</button><button type="button" id="addStudySession">✎ Süre ekle</button></div><p class="notice" id="studyTimerNotice">Kronometre sadece net çalışma sırasında açık kalsın. Molalarda durdur.</p><details class="studyTimerSessions"><summary>Seçili günün oturumlarını göster</summary><div id="studySessionList"></div></details><details class="studyTimerSessions" id="studySubjectSummary"><summary>Derslere göre süreler · seçili gün / hafta</summary><table class="studyTimeTable"><thead><tr><th scope="col">Ders</th><th scope="col">Seçili gün</th><th scope="col">Hafta</th></tr></thead><tbody id="studySubjectTimes"></tbody></table></details></section>
-<section class="panel lockInPanel" id="lockInPanel">
-  <div class="lockInTop"><div><span class="overline">YKS İZOLASYON MODU</span><h2>🔒 Lock-In</h2></div><span class="pill" id="lockInStatus">Kapalı</span></div>
-  <p class="notice">Bugün hangi ortamda çalışıyorsun? Ortamı seç; kurallar ekranda sabit kalsın.</p>
-  <div class="lockInModes" id="lockInModes">
-    <button type="button" class="lockInMode" data-lockin-env="university"><b>🏛️ Üniversite</b><small>Saf derin çalışma</small></button>
-    <button type="button" class="lockInMode" data-lockin-env="bilim"><b>📚 Bilim</b><small>Yan yana çalışma + planlı mola</small></button>
-    <button type="button" class="lockInMode" data-lockin-env="home"><b>🏠 Ev</b><small>Balkaya ve sosyal kaçış kontrolü</small></button>
-  </div>
-  <div class="lockInRules" id="lockInRules"></div>
-  <div class="actions"><button type="button" class="primary" id="lockInStart">🔒 Modu aç</button><button type="button" id="lockInStop">Modu kapat</button></div>
-  <p class="lockInState" id="lockInState"></p>
-</section>
+<button type="button" id="lockInIndicator" class="pill viewControl">🔒 Lock-In kapalı</button>
+<section class="panel studyTimerPanel" id="studyTimerPanel"><div class="studyTimerTop"><div><span class="overline">NET ÇALIŞMA</span><h2>⏱️ Çalışma Kronometresi</h2></div><span class="pill" id="studyTimerStatus">Hazır</span></div><div class="studyTimerClock" id="studyTimerClock">00:00:00</div><div class="studyTimerMeta"><span>Seçili gün toplamı: <b id="studyDayTotal">0 dk</b></span><span>Oturum: <b id="studySessionCount">0</b></span></div><div class="actions"><button type="button" class="primary" id="studyTimerStart">▶ Başlat</button><button type="button" class="studyTimerPause" id="studyTimerPause">⏸ Mola</button><button type="button" id="studyTimerStop">■ Durdur</button><button type="button" id="addStudySession">✎ Süre ekle</button></div><div class="studyTimerMeta"><span>Günlük mola: <b id="studyDayBreakTotal">0 dk</b></span><span>Haftalık mola: <b id="studyWeekBreakTotal">0 dk</b></span></div><div id="studyBreakButtons" class="actions"><button type="button" data-study-break="short">☕ Kısa mola · 5 dk</button><button type="button" data-study-break="period">🌿 Periyot molası · 25 dk</button><button type="button" data-study-break="meal">🍽️ Yemek molası · 60 dk</button><button type="button" id="studyBreakEnd">▶ Molayı bitir / Devam et</button></div><p class="notice" id="studyBreakStatus" aria-live="off"></p><details class="studyTimerSessions"><summary>Mola kayıtları</summary><div id="studyBreakList"></div></details><p class="notice" id="studyTimerNotice">Kronometre sadece net çalışma sırasında açık kalsın. Molalarda durdur.</p><details class="studyTimerSessions"><summary>Seçili günün oturumlarını göster</summary><div id="studySessionList"></div></details><details class="studyTimerSessions" id="studySubjectSummary"><summary>Derslere göre süreler · seçili gün / hafta</summary><table class="studyTimeTable"><thead><tr><th scope="col">Ders</th><th scope="col">Seçili gün</th><th scope="col">Hafta</th></tr></thead><tbody id="studySubjectTimes"></tbody></table></details></section>
+
 
 <button id="dailyVaultShortcut" class="dailyVaultCard" type="button">
   <span class="dailyVaultMain"><strong>🧠 Zor Soru Kasası</strong><span class="dailyVaultMeta" id="dailyVaultMeta"><span>Bugün yükleniyor…</span></span></span>
@@ -106,11 +98,11 @@ button,input,select,textarea{font:inherit}button{min-height:44px;display:inline-
 <section class="panel"><div class="top"><h2>📊 Bu hafta</h2><span id="weekLabel" class="sub"></span></div><div class="stats" id="weekStats"></div><div class="divider"></div><div class="rankGrid" id="rankStats"></div></section>
 <section class="panel"><div class="top"><h2>🗓️ Aylık özet</h2><span id="monthLabel" class="sub"></span></div><div class="stats" id="monthStats"></div><div class="divider"></div><div id="monthSessions"></div><p id="checkinStats" class="notice"></p></section>
 
-<section class="panel"><h2>📈 Uzun dönem ilerleme</h2><p class="notice">Bugüne kadar kazanılan XP ve tamamlanan çalışmalar. Plan uyumu ana görevlerin orijinal XP ağırlığıyla hesaplanır; ek çalışmalar oranı etkilemez.</p><div class="stats" id="longProgress"></div></section>
+<section class="panel"><h2>📈 Uzun dönem ilerleme</h2><p class="notice">Bugüne kadar kazanılan XP ve tamamlanan çalışmalar. Lock-In ödülleri ve cezaları net XP değişimine dahildir. Plan uyumu ana görevlerin orijinal XP ağırlığıyla hesaplanır; ek çalışmalar oranı etkilemez.</p><div class="stats" id="longProgress"></div></section>
 <section class="panel"><div class="top"><div><h2>🏁 Matematik Bitiriş Süresi</h2><p class="notice">Denemede matematiğe ayırdığın süre + süre bitince bakamadığın soruları çözmek için kullandığın net ek süre. Video çözümü ve ayrıntılı analiz bu kronometreye dahil değildir. Her denemede toplam süreyi aşağı çekmeye çalış.</p></div></div><div class="stats" id="mathFinishSummary"></div><div id="mathFinishTrend"></div></section>
 <section class="panel"><div class="top"><div><h2>🧠 Matematik Analiz Gücü</h2><p class="notice">Yanlış/boş sorularda asıl hedef: çözümü görmeden geri dönebildiğin soru oranını artırmak. Süreyi uygulama kronometresiyle veya saatinle tutup manuel girebilirsin.</p></div></div><div class="stats" id="mathAnalysisSummary"></div><div id="mathAnalysisTrend"></div></section>
 <section class="panel"><h2>🧠 Hata Profili</h2><div id="errorProfile"></div></section>
-<section class="panel"><h2>📈 Haftalık geçmiş</h2><div class="actions"><button id="prev">← Önceki hafta</button><button id="current">Bu hafta</button><button id="following">Sonraki hafta →</button></div><div id="history"></div></section>
+<section class="panel"><h2>XP işlem geçmişi · Lock-In</h2><p class="notice">Ödüller günlük en fazla 55 XP. Onaylanan sosyal programı yarıda bırakma cezası bakiyeden düşer. Haftalık ve uzun dönem XP özetleri Lock-In net değişimini içerir.</p><div id="xpTransactions"></div></section><section class="panel"><h2>📈 Haftalık geçmiş</h2><div class="actions"><button id="prev">← Önceki hafta</button><button id="current">Bu hafta</button><button id="following">Sonraki hafta →</button></div><div id="history"></div></section>
 </div>
 
 <div id="shopTab" class="tab" role="tabpanel" aria-labelledby="nav-shopTab"><div class="sectionIntro"><span class="overline">EMEĞİNİ ÖDÜLLENDİR</span><h2>🛍️ Ödül mağazası</h2><p>Biriktirdiğin XP ile kendine küçük molalar ve yeni hedefler aç.</p></div>
@@ -124,6 +116,20 @@ button,input,select,textarea{font:inherit}button{min-height:44px;display:inline-
 <section class="panel"><h2>🧠 Hata Profili</h2><div class="actions"><label>Aralık <select id="errorWindow" class="viewControl"><option value="5">Son 5 deneme</option><option value="10">Son 10 deneme</option></select></label><label>Ders <select id="errorSubject" class="viewControl"></select></label></div><p class="notice">Üstte seçilen sınav türündeki kayıtların dağılımıdır; kesin neden veya başarı tahmini değildir. Yüzdeler sınıflandırılmamış kayıpları da içerir.</p><div id="errorAnalysis"></div></section>
 <section class="panel mockRecordsPanel"><div class="mockRecordsHeader"><div><span class="overline">PERFORMANS ARŞİVİ</span><h2>🏁 Deneme Savaş Kayıtları</h2><p class="notice">Her kart tek bakışta neti, hızını, ders dağılımını ve analizde ne kadarını kendi başına geri kazandığını gösterir.</p></div></div><div id="mockList"></div></section>
 </div>
+<div id="lockInTab" class="tab" role="tabpanel" aria-labelledby="nav-lockInTab"><div class="sectionIntro"><span class="overline">KENDİ ÇALIŞMA DÜZENİN</span><h2>🔒 Lock-In</h2><label>Gün <input id="lockInDate" type="date" class="viewControl"></label></div><section class="panel lockInPanel" id="lockInPanel">
+  <div class="lockInTop"><div><span class="overline">YKS İZOLASYON MODU</span><h2>🔒 Lock-In</h2></div><span class="pill" id="lockInStatus">Kapalı</span></div>
+  <p class="notice">Üç ortamda da aynı kurallar geçerli. Planını değiştirmeden periyotlarını kendin oluştur.</p>
+  <div class="lockInModes" id="lockInModes">
+    <button type="button" class="lockInMode" data-lockin-env="university"><b>🏛️ Üniversite</b><small>Aynı kurallar · Kendi periyotların</small></button>
+    <button type="button" class="lockInMode" data-lockin-env="bilim"><b>📚 Bilim</b><small>Aynı kurallar · Kendi periyotların</small></button>
+    <button type="button" class="lockInMode" data-lockin-env="home"><b>🏠 Ev</b><small>Aynı kurallar · Kendi periyotların</small></button>
+  </div>
+  <div class="lockInRules" id="lockInRules"></div>
+  <div class="actions"><button type="button" class="primary" id="lockInStart">🔒 Modu aç</button><button type="button" id="lockInStop">Modu kapat</button></div>
+  <p class="lockInState" id="lockInState"></p>
+</section>
+<section class="panel"><h2>🧩 Günün periyotları</h2><p class="notice">Önce periyot ekle, sonra planındaki dersleri istediğin sayıda ve sırada gruplara ata. Ders tamamlanmaları Günlük ekranından takip edilir. Periyot oluşturmak planı veya XP'yi değiştirmez.</p><div class="actions"><button id="addLockPeriod">➕ Periyot ekle</button><button id="lockDailyLink" class="viewControl">Günlük görevleri aç</button></div><div class="formGrid" id="lockPeriodAssignments"></div><label>Yemek molası<select id="lockMealAfter"></select></label><div class="actions"><button id="lockTimerLink" class="viewControl">⏱️ Kronometreyi aç</button><button id="lockBreakEnd">▶ Molayı bitir / Devam et</button></div><p class="notice" id="lockBreakStatus" aria-live="off"></p><div id="lockPeriods"></div><p class="notice">Molaları buradan veya Kronometre'den başlatabilirsin. Periyot tamamlanması, içindeki bütün plan görevlerinin işaretlenmesine bağlıdır.</p></section>
+<section class="panel"><h2>XP işlem geçmişi · Seçili gün</h2><div id="lockInHistory"></div></section></div>
 <div id="planTab" class="tab" role="tabpanel" aria-labelledby="nav-planTab"><div class="sectionIntro"><span class="overline">HAFTANA YÖN VER</span><h2>🗓️ Haftalık plan</h2><p>Günlük ekranın artık tamamen bu plana bağlı. Buraya eklemediğin hiçbir ders Günlükte görünmez.</p></div>
 <section class="panel"><div class="top"><h2>🗓️ Haftalık plan</h2><label>Hafta <input id="planWeek" class="viewControl" type="date"></label></div><div class="actions"><button id="planPrev" class="viewControl">← Önceki hafta</button><button id="planCurrent" class="viewControl">Bu hafta</button><button id="planNext" class="viewControl">Sonraki hafta →</button><button id="resetPlanWeek">Haftanın planını temizle</button></div><p class="notice">5 Kasım 2026'dan itibaren otomatik/standart ders yoktur. Türkçe, TYT Matematik, Geometri, Fizik, Kimya, Biyoloji, Paragraf, Problem, deneme ve diğer tüm çalışmalar yalnızca Plan’a eklendiğinde Günlükte görünür ve Rank ağırlığı kazanır. Geçmiş günlerin planını da düzenleyebilirsin. Tamamlanan dersleri kaldırmak XP, Rank ve streak hesaplarını günceller; kayıtlı süreler ve alınmış sandık/ödüller korunur. Bugün ve gelecekte çalışma / swap / bilet / koruyucu kaydı olan planlar kilitlidir. İkinci oturum için Ek Çalışma veya günlük Swap kullan.</p><div class="stats" id="planSummary"></div><div class="plannerGrid" id="planDays"></div></section>
 </div>
@@ -139,7 +145,7 @@ button,input,select,textarea{font:inherit}button{min-height:44px;display:inline-
         <label>Konu<input id="vaultQuestionTopic" list="vaultTopicOptions" maxlength="120" placeholder="Örn. Üçgende merkezler" required><datalist id="vaultTopicOptions"></datalist></label>
         <label>Çözümü öğrendiğim tarih<input id="vaultLearnedDate" type="date" required></label>
         <label>Sayfa no<input id="vaultPage" type="text" inputmode="numeric" maxlength="20" placeholder="84" required></label>
-        <label>Soru no<input id="vaultQuestionNo" type="text" maxlength="100" placeholder="7 veya 3, 7, 11" required></label>
+        <label>Zorluk<select id="vaultDifficulty"><option value="medium">🟡 Orta</option><option value="hard">🟠 Zor</option><option value="brutal">🔴 İnsafsız</option></select></label><label>Soru no<input id="vaultQuestionNo" type="text" maxlength="100" placeholder="7 veya 3, 7, 11" required></label>
       </div>
       <div class="actions"><button class="primary" type="submit">🔴 Kasaya ekle</button></div>
       <p class="notice" id="vaultQuestionNotice" aria-live="polite"></p>
@@ -147,7 +153,8 @@ button,input,select,textarea{font:inherit}button{min-height:44px;display:inline-
   </section>
 
 
-  <section class="panel vaultHero">
+  <section class="panel"><label>Zorluk filtresi<select id="vaultFilterDifficulty" class="viewControl"><option value="">Tüm zorluklar</option><option value="medium">🟡 Orta</option><option value="hard">🟠 Zor</option><option value="brutal">🔴 İnsafsız</option><option value="unknown">Henüz atanmadı</option></select></label><p class="notice">Yalnızca görüntülenen soru listelerini filtreler; tekrar tarihlerini ve kaynak ilerlemesini değiştirmez.</p></section>
+<section class="panel vaultHero">
     <div class="top"><div><span class="overline">BUGÜNÜN TEKRAR NABZI</span><h2>🔥 Bugün yapılacaklar</h2></div><button id="vaultStartDue" class="primary" type="button">Bugünküleri çöz</button></div>
     <div class="stats vaultStats" id="vaultSummary"></div>
     <p class="notice">Yalnızca daha önce senin aktif tekrar zincirine soktuğun sorular burada günü geldiğinde görünür. Hiç dokunmadığın mavi Serbest Havuz soruları otomatik görev olmaz.</p>
@@ -253,7 +260,7 @@ button,input,select,textarea{font:inherit}button{min-height:44px;display:inline-
 
 <section class="panel"><h2>💾 Kayıt ve yedekleme</h2><p class="notice">Veriler bu cihazda yerel olarak tutulur; Coach Sync bağlandığında aynı kayıt ayrıca buluta gönderilir. JSON yedeği yine ekstra güvence olarak kalır.</p><div class="actions"><button id="export">Yedeği indir (.json)</button><button id="importBtn">Yedekten geri yükle</button><input id="import" class="file" type="file" accept=".json,application/json"><button id="reset" class="danger">Tüm verileri sıfırla</button></div><small id="saved"></small></section>
 <section class="panel" id="cloudPanel"><div class="top"><h2>☁️ Coach Sync</h2><span class="pill" id="cloudRole">Öğrenci</span></div><p class="notice" id="cloudHelp">Bu cihazı bulut hesabına bağlamak için özel öğrenci kodunu bir kez gir. Kod cihazda saklanır; GitHub'a veya site kaynak koduna yazılmaz.</p><div id="ownerSetup"><input id="ownerTokenInput" type="password" placeholder="Özel öğrenci kurulum kodu" style="width:100%"><div class="actions"><button id="bindOwner" class="primary">☁️ Bu cihazı bağla</button></div></div><div class="actions"><button id="syncNow">↕️ Şimdi senkronize et</button><button id="copyCoachLink">🔗 Koç bağlantısını kopyala</button><button id="copySetupCode" type="button" hidden disabled>🔑 Kurulum kodunu kopyala</button><button id="forgetOwner" class="danger">Bu cihazın bulut bağlantısını kaldır</button></div><p class="notice" id="cloudDetail">Henüz bağlanmadı.</p></section>
-<section class="panel"><h2>ℹ️ V3.33 kuralları</h2><p class="notice">5 Kasım 2026'dan itibaren hiçbir ders otomatik eklenmez; yalnızca Plan’a eklenen dersler ana görev olarak görünür ve Rank ağırlığı kazanır. 17 Ekim 2026 itibarıyla yeni XP ekonomisi uygulanır (Paragraf 60 XP, Problem 100 XP); önceki günlerin XP değerleri korunur. Eski soru analizi ve rutin görevleri yalnızca geçmiş tarihlerde korunur. Ek çalışmalar isteğe bağlıdır; günlük Rank ve streak hesabında ana görevler esas alınır. 14 Ekim sonrası Rank, görevlerin XP ağırlığına göre hesaplanır. Ders değişiminde orijinal slotun Rank ağırlığı korunur; kazanılan XP gelen derse aittir. Pazartesi Boş Gün Bileti yeni planda analiz ön koşulu olmadan kullanılabilir; eski tarihlerde eski kural geçerlidir. Zor Soru Kasası; günlük özet, hızlı ekleme, filtreye göre karışık 20 soru seçimi, konu ustalık haritası ve kaynak bitirme takibiyle birlikte çalışır. Bir kaynak yalnızca tüm test/sayfaları tamamlanıp o kaynağa ait bütün zor sorular ⚫ Öğrenildi olduğunda bitmiş sayılır. Çalışma kronometresi net süreyi günlük kaydeder; ders tamamlanırken çalışan kronometre onayla durdurulup o derse ait oturum olarak saklanır. Günlük Mini Quest bu sürümde özellikle yoktur.</p></section>
+<section class="panel"><h2>ℹ️ V3.34 kuralları</h2><p class="notice">5 Kasım 2026'dan itibaren hiçbir ders otomatik eklenmez; yalnızca Plan’a eklenen dersler ana görev olarak görünür ve Rank ağırlığı kazanır. 17 Ekim 2026 itibarıyla yeni XP ekonomisi uygulanır (Paragraf 60 XP, Problem 100 XP); önceki günlerin XP değerleri korunur. Eski soru analizi ve rutin görevleri yalnızca geçmiş tarihlerde korunur. Ek çalışmalar isteğe bağlıdır; günlük Rank ve streak hesabında ana görevler esas alınır. 14 Ekim sonrası Rank, görevlerin XP ağırlığına göre hesaplanır. Ders değişiminde orijinal slotun Rank ağırlığı korunur; kazanılan XP gelen derse aittir. Pazartesi Boş Gün Bileti yeni planda analiz ön koşulu olmadan kullanılabilir; eski tarihlerde eski kural geçerlidir. Zor Soru Kasası; günlük özet, hızlı ekleme, filtreye göre karışık 20 soru seçimi, konu ustalık haritası ve kaynak bitirme takibiyle birlikte çalışır. Bir kaynak yalnızca tüm test/sayfaları tamamlanıp o kaynağa ait bütün zor sorular ⚫ Öğrenildi olduğunda bitmiş sayılır. Çalışma kronometresi net süreyi günlük kaydeder; ders tamamlanırken çalışan kronometre onayla durdurulup o derse ait oturum olarak saklanır. Günlük Mini Quest bu sürümde özellikle yoktur.</p></section>
 </div>
 </main>
 
@@ -270,7 +277,7 @@ button,input,select,textarea{font:inherit}button{min-height:44px;display:inline-
         <label>Konu<input id="quickVaultTopic" list="quickVaultTopicOptions" maxlength="120" placeholder="Örn. Üçgende merkezler" required><datalist id="quickVaultTopicOptions"></datalist></label>
         <label>Çözümü öğrendiğim tarih<input id="quickVaultDate" type="date" required></label>
         <label>Sayfa no<input id="quickVaultPage" type="text" inputmode="numeric" maxlength="20" placeholder="84" required></label>
-        <label class="full">Soru no<input id="quickVaultQuestionNo" type="text" maxlength="100" placeholder="7 veya 3, 7, 11" required></label>
+        <label>Zorluk<select id="quickVaultDifficulty"><option value="medium">🟡 Orta</option><option value="hard">🟠 Zor</option><option value="brutal">🔴 İnsafsız</option></select></label><label class="full">Soru no<input id="quickVaultQuestionNo" type="text" maxlength="100" placeholder="7 veya 3, 7, 11" required></label>
       </div>
       <div class="actions"><button class="primary" type="submit">🔴 Kasaya ekle</button><button id="quickVaultGoManage" type="button">Kaynakları yönet</button></div>
       <p class="notice" id="quickVaultNotice" aria-live="polite"></p>
@@ -286,7 +293,7 @@ button,input,select,textarea{font:inherit}button{min-height:44px;display:inline-
       <div class="formGrid">
         <label>Ders<select id="mockVaultSubject" required></select></label>
         <label>Çözümü öğrendiğim tarih<input id="mockVaultLearnedDate" type="date" required></label>
-        <label class="full">Soru no<input id="mockVaultQuestionNo" type="text" maxlength="160" placeholder="Örn. 12, 18, 27" required></label>
+        <label>Zorluk<select id="mockVaultDifficulty"><option value="medium">🟡 Orta</option><option value="hard">🟠 Zor</option><option value="brutal">🔴 İnsafsız</option></select></label><label class="full">Soru no<input id="mockVaultQuestionNo" type="text" maxlength="160" placeholder="Örn. 12, 18, 27" required></label>
         <label class="full">Konu <input id="mockVaultTopic" type="text" maxlength="120" placeholder="İsteğe bağlı · Örn. Problemler"></label>
       </div>
       <div class="divider"></div>
@@ -331,7 +338,7 @@ button,input,select,textarea{font:inherit}button{min-height:44px;display:inline-
         <label><input type="radio" name="mathAnalysisMethod" value="self" checked>✅ Çözümü görmeden kendim yaptım</label>
         <label><input type="radio" name="mathAnalysisMethod" value="video">🎥 Video/çözümden öğrendim</label>
       </div>
-      <label id="mathAnalysisVaultWrap" style="margin-top:10px"><input id="mathAnalysisAddVault" type="checkbox" checked> Video çözümle öğrendiysem Zor Soru Kasası’na da ekle</label></div>
+      <label>Zorluk<select id="mathAnalysisDifficulty"><option value="medium">🟡 Orta</option><option value="hard">🟠 Zor</option><option value="brutal">🔴 İnsafsız</option></select></label><label id="mathAnalysisVaultWrap" style="margin-top:10px"><input id="mathAnalysisAddVault" type="checkbox" checked> Video çözümle öğrendiysem Zor Soru Kasası’na da ekle</label></div>
       <p class="notice">“Kendim yaptım” kaydı kasaya girmez; bağımsız geri kazanım istatistiğine eklenir. Video çözüm gerekiyorsa 7 günlük tekrar zincirine aktarabilirsin.</p>
       <div class="actions"><button class="primary" type="submit">Analizi kaydet</button></div>
       <p class="notice" id="mathAnalysisNotice" aria-live="polite"></p>
@@ -339,6 +346,7 @@ button,input,select,textarea{font:inherit}button{min-height:44px;display:inline-
   </div>
 </div>
 
+<div class="modal" id="lockInEvaluation" role="dialog" aria-modal="true" aria-labelledby="lockInEvaluationTitle"><form class="modalBox" id="lockInEvaluationForm"><div class="top"><h2 id="lockInEvaluationTitle">🔒 Lock-In değerlendirmesi</h2><button type="button" id="cancelLockInEvaluation">Vazgeç</button></div><p class="notice">Uyduğun kuralları işaretle. Her kuralın ödülü günde yalnızca bir kez, tüm modlar toplamında en fazla 55 XP kazanılır.</p><div id="lockInChecklist"></div><div class="divider"></div><label class="lockCheck"><input id="lockInPenalty" type="checkbox"><span>Arkadaşlarımla takılmak için günlük ders programımı yarıda bıraktım. <b>−1500 XP</b></span></label><p class="notice">Acil durumlar, sağlık sorunları ve zorunlu program değişiklikleri ceza kapsamında değildir. İşaretlemezsen ceza uygulanmaz.</p><p id="lockInEvaluationTotals" class="notice" aria-live="polite"></p><button type="submit" class="primary">Değerlendirmeyi kaydet ve modu kapat</button></form></div>
 <div class="modal" id="studyTimerTaskModal">
   <div class="modalBox">
     <div class="top"><div><span class="overline">OTURUM BAŞLAT</span><h2>⏱️ Bu oturumda hangi dersi çalışıyorsun?</h2></div><button id="closeStudyTimerTaskModal" type="button">Kapat</button></div>
@@ -446,7 +454,7 @@ function taskDisplayName(day,slot){const occ=planSlotOccurrence(day,slot),name=t
 // Keep the historical plan and task IDs intact; the new plan applies only from FLOW_START.
 const STUDY_PLAN=PLAN.map(keys=>keys.filter(k=>k!=='tyt'&&k!=='r1'&&k!=='r2'&&!ANALYSIS_KEYS.includes(k)));
 const SKILLS={geo:{name:'📐 Geometri',sources:{geo:120,anGeo:60}},physics:{name:'⚛️ Fizik',sources:{physics:110,anPhysics:60}},chem:{name:'🧪 Kimya',sources:{chem:100,anChem:60}},bio:{name:'🧬 Biyoloji',sources:{bio:90,anBio:60}},problem:{name:'🧩 Problem',sources:{r1:60,r2:60,anProblem:60,problem:60}},paragraph:{name:'📖 Paragraf',sources:{paragraph:40}},mat:{name:'🔢 TYT Matematik',sources:{mat:120,anMath:90,mathStudy:100}},tr:{name:'📝 Türkçe',sources:{tr:80,turkishStudy:85}},grammar:{name:'✍️ Dil Bilgisi',sources:{grammar:90,anGrammar:40}},geoTYT:{name:'🌍 TYT Coğrafya',sources:{geoTYT:80,anGeoTYT:40}},hist:{name:'📜 TYT Tarih',sources:{hist:80,anHist:40}}};
-function emptyState(){return {checks:{},rests:{},purchases:0,refunds:0,spentRests:0,rewardBuys:[],shieldUses:{},chestClaims:{},checkins:{},claimedAchievements:{},coupons:0,streakRewardUnlocked:false,swaps:{},mockExams:[],settings:{examDate:""},weekPlans:{},planNotes:{},questionVault:{books:[],questions:[]},teacherQuestions:[],studyTimer:{running:null,sessions:[]},lockIn:{days:{}}}}
+function emptyState(){return {checks:{},rests:{},purchases:0,refunds:0,spentRests:0,rewardBuys:[],shieldUses:{},chestClaims:{},checkins:{},claimedAchievements:{},coupons:0,streakRewardUnlocked:false,swaps:{},mockExams:[],settings:{examDate:""},weekPlans:{},planNotes:{},questionVault:{books:[],questions:[]},teacherQuestions:[],studyTimer:{running:null,sessions:[],breaks:[],breakRunning:null},lockIn:{days:{}}}}
 let state=emptyState();
 let selected=START,week=START,checkinLoad=0,checkinSat=0,modalLoad=0,modalSat=0;
 const $=id=>document.getElementById(id);
@@ -520,12 +528,31 @@ async function syncToCloud(showAlert=true){
  }catch(e){setCloudStatus('Hata',`Bulut kaydı başarısız: ${e.message}`);if(showAlert)alert('Bulut senkronizasyonu başarısız: '+e.message);return false}
  finally{cloudBusy=false}
 }
-function normalizeStudyTimer(raw){const src=raw&&typeof raw==='object'&&!Array.isArray(raw)?raw:{};const sessions=Array.isArray(src.sessions)?src.sessions.filter(x=>x&&typeof x==='object'&&validDay(x.day)&&typeof x.startedAt==='string'&&typeof x.endedAt==='string'&&Number(x.seconds)>0).map(x=>({id:typeof x.id==='string'&&x.id?x.id:'study_'+Date.now()+'_'+Math.random().toString(36).slice(2,7),day:x.day,startedAt:x.startedAt,endedAt:x.endedAt,seconds:Math.max(1,Math.round(Number(x.seconds))),label:typeof x.label==='string'&&x.label.trim()?x.label.trim().slice(0,120):'Odak oturumu',taskKey:typeof x.taskKey==='string'?x.taskKey:'',...(x.manual===true?{manual:true}:{})})):[];let running=null;if(src.running&&typeof src.running==='object'&&validDay(src.running.day)&&typeof src.running.startedAt==='string'){const d=new Date(src.running.startedAt);if(!isNaN(d.getTime())){const pausedAt=typeof src.running.pausedAt==='string'&&!isNaN(new Date(src.running.pausedAt).getTime())?src.running.pausedAt:null;running={day:src.running.day,startedAt:src.running.startedAt,pausedSeconds:Math.max(0,Number(src.running.pausedSeconds)||0),pausedAt,label:typeof src.running.label==='string'&&src.running.label.trim()?src.running.label.trim().slice(0,120):'',taskKey:typeof src.running.taskKey==='string'?src.running.taskKey:''}}}return {running,sessions}}
+function normalizeStudyTimer(raw){
+ const src=raw&&typeof raw==='object'&&!Array.isArray(raw)?raw:{};
+ const sessions=Array.isArray(src.sessions)?src.sessions.filter(x=>x&&validDay(x.day)&&typeof x.startedAt==='string'&&typeof x.endedAt==='string'&&Number.isFinite(Number(x.seconds))&&Number(x.seconds)>0).map(x=>({id:typeof x.id==='string'&&x.id?x.id:vaultId('study'),day:x.day,startedAt:x.startedAt,endedAt:x.endedAt,seconds:Math.max(1,Math.round(Number(x.seconds))),label:typeof x.label==='string'&&x.label.trim()?x.label.trim().slice(0,120):'Odak oturumu',taskKey:typeof x.taskKey==='string'?x.taskKey:'',...(x.manual===true?{manual:true}:{})})):[];
+ let running=null;
+ if(src.running&&validDay(src.running.day)&&Number.isFinite(Date.parse(src.running.startedAt))){const r=src.running;running={day:r.day,startedAt:r.startedAt,pausedSeconds:Math.max(0,Number(r.pausedSeconds)||0),pausedAt:Number.isFinite(Date.parse(r.pausedAt))?r.pausedAt:null,label:typeof r.label==='string'?r.label.trim().slice(0,120):'',taskKey:typeof r.taskKey==='string'?r.taskKey:''}}
+ const normalizeBreak=b=>{if(!b||!validDay(b.day)||!Number.isFinite(Date.parse(b.startedAt))||!Object.hasOwn(STUDY_BREAK_TYPES,b.type))return null;return {id:typeof b.id==='string'&&b.id?b.id:vaultId('break'),day:b.day,startedAt:b.startedAt,type:b.type,plannedSeconds:STUDY_BREAK_TYPES[b.type].seconds,taskKey:typeof b.taskKey==='string'?b.taskKey:'',label:typeof b.label==='string'?b.label.slice(0,120):STUDY_BREAK_TYPES[b.type].name}};
+ const seen=new Set(),breaks=[];
+ for(const b of Array.isArray(src.breaks)?src.breaks:[]){const v=normalizeBreak(b);if(!v||seen.has(v.id)||!Number.isFinite(Date.parse(b.endedAt))||!Number.isFinite(Number(b.seconds))||Number(b.seconds)<0)continue;seen.add(v.id);const seconds=Math.round(Number(b.seconds));breaks.push({...v,endedAt:b.endedAt,seconds,overrunSeconds:v.plannedSeconds?Math.max(0,seconds-v.plannedSeconds):0})}
+ const breakRunning=normalizeBreak(src.breakRunning);
+ return {running,sessions,breaks,breakRunning:breakRunning&&!seen.has(breakRunning.id)?breakRunning:null};
+}
+
 function normalizeLockIn(raw){
- const out={days:{}};const days=raw&&typeof raw==='object'&&!Array.isArray(raw)&&raw.days&&typeof raw.days==='object'&&!Array.isArray(raw.days)?raw.days:{};
- for(const [day,v] of Object.entries(days)){if(!validDay(day)||!v||typeof v!=='object')continue;const env=['university','bilim','home'].includes(v.env)?v.env:'university';out.days[day]={env,active:!!v.active,startedAt:typeof v.startedAt==='string'?v.startedAt:''}}
+ const out={days:{}},days=raw&&typeof raw.days==='object'&&raw.days&&!Array.isArray(raw.days)?raw.days:{};
+ for(const [day,v] of Object.entries(days)){
+  if(!validDay(day)||!v||typeof v!=='object')continue;
+  const env=Object.hasOwn(LOCKIN_ENVS,v.env)?v.env:'university',d={env,active:!!v.active,startedAt:typeof v.startedAt==='string'?v.startedAt:''};
+  if(typeof v.sessionId==='string')d.sessionId=v.sessionId;
+  if(Array.isArray(v.periods)){const seen=new Set(),slots=new Set();d.periods=v.periods.filter(p=>p&&typeof p.id==='string'&&p.id&&!seen.has(p.id)&&(seen.add(p.id),true)).map(p=>({id:p.id,slots:(Array.isArray(p.slots)?p.slots:[]).filter(k=>validPlanSlotForDay(day,k)&&!slots.has(k)&&(slots.add(k),true))}));d.mealAfter=d.periods.some(p=>p.id===v.mealAfter)?v.mealAfter:''}
+  if(Array.isArray(v.evaluations)){const seen=new Set();d.evaluations=v.evaluations.filter(e=>e&&typeof e.id==='string'&&e.id&&!seen.has(e.id)&&(seen.add(e.id),true)).map(e=>({id:e.id,at:typeof e.at==='string'?e.at:'',env:Object.hasOwn(LOCKIN_ENVS,e.env)?e.env:env,checks:Object.fromEntries(Object.keys(LOCKIN_REWARD_RULES).map(k=>[k,!!e.checks?.[k]&&!(e.penalty&&k==='social')])),awarded:[...new Set((Array.isArray(e.awarded)?e.awarded:[]).filter(k=>Object.hasOwn(LOCKIN_REWARD_RULES,k)&&!(e.penalty&&k==='social')))],penalty:!!e.penalty,...(e.penalty?{penaltyReason:LOCKIN_PENALTY_REASON}:{})}))}
+  out.days[day]=d;
+ }
  return out;
 }
+
 function normalizeRemoteState(st){
  if(!st||typeof st!=='object')return null;
  return {
@@ -612,8 +639,8 @@ function sRankDates(end=today()){return trackedDates(end).filter(s=>dayRank(s)==
 function perfectWeekCount(end=today()){let n=0;for(let w=START;add(w,6)<=end;w=add(w,7))if(weekAll(w))n++;return n}
 function comebackDates(end=today()){let out=[];if(end<START)return out;for(let w=START;w<=end;w=add(w,7)){let found=false;for(let i=0;i<7&&!found;i++){let s=add(w,i);if(s>end)break;let prev=add(s,-1);if(beforeStart(prev))continue;let pr=dayRank(prev),cr=dayRank(s);if((pr==='C'||pr==='D')&&rankValue(cr)>=rankValue('A')){out.push(s);found=true}}}return out}
 function chestXP(){return Object.values(state.chestClaims).reduce((a,x)=>a+(Number(x.reward)||0),0)}
-function totals(){let base=baseEarned(),s=sRankDates().length,pw=perfectWeekCount(),cb=comebackDates().length,ch=chestXP();let earned=base+s*50+pw*250+cb*50+ch;let spent=(state.purchases-state.refunds)*PRICE+rewardSpent();return {base,s,pw,cb,ch,earned,spent,balance:earned-spent}}
-function weekCore(w){let p=0,completed=0,total=0;for(let i=0;i<7;i++){let s=add(w,i),planned=isRest(s)?tasks(s).filter(k=>planSlotBase(k)==='tyt'):tasks(s);for(let k of planned){total++;if(isDone(s,k))completed++}p+=completedStudies(s).reduce((sum,x)=>sum+x.xp,0);if(dayRank(s)==='S')p+=50}if(weekAll(w)&&add(w,6)<=today())p+=250;let cb=comebackDates().filter(s=>monday(s)===w).length;p+=cb*50;let chest=state.chestClaims[w]?.reward||0;p+=chest;return {p,completed,total,cb,chest}}
+function totals(){let base=baseEarned(),s=sRankDates().length,pw=perfectWeekCount(),cb=comebackDates().length,ch=chestXP();let li=lockInTotals(),earned=base+s*50+pw*250+cb*50+ch+li.reward;let spent=(state.purchases-state.refunds)*PRICE+rewardSpent()+li.penalty;return {base,s,pw,cb,ch,earned,spent,balance:earned-spent}}
+function weekCore(w){let p=0,completed=0,total=0;for(let i=0;i<7;i++){let s=add(w,i),planned=isRest(s)?tasks(s).filter(k=>planSlotBase(k)==='tyt'):tasks(s);for(let k of planned){total++;if(isDone(s,k))completed++}p+=completedStudies(s).reduce((sum,x)=>sum+x.xp,0);if(dayRank(s)==='S')p+=50}if(weekAll(w)&&add(w,6)<=today())p+=250;let cb=comebackDates().filter(s=>monday(s)===w).length;p+=cb*50;let chest=state.chestClaims[w]?.reward||0;p+=chest+lockInTotals(w,add(w,6)).net;return {p,completed,total,cb,chest}}
 function rankClass(r){return r==='REST'?'':`rank${r}`}
 function analysisXPInRange(a,b){let n=0;for(let s=a;s<=b;s=add(s,1)){if(isRest(s))continue;for(let k of ANALYSIS_KEYS)if(tasks(s).includes(k)&&isDone(s,k))n+=xpFor(s,k)}return n}
 function weekQuestStatus(w){
@@ -641,6 +668,45 @@ function renderTabs(){
 function render(){let t=totals(),st=currentAndBestStreak(),bo=boss(),w=monday(selected);week=w;if(!COACH_MODE&&st.best>=30&&!state.streakRewardUnlocked){state.streakRewardUnlocked=true;save()}
  $('balance').textContent=t.balance.toLocaleString('tr-TR')+' XP';$('earned').textContent=t.earned.toLocaleString('tr-TR');$('spent').textContent=t.spent.toLocaleString('tr-TR');$('weekly').textContent=weekCore(monday(today())).p.toLocaleString('tr-TR');$('tickets').textContent=tickets();$('coupons').textContent=state.coupons;$('topStreak').textContent=st.current+' gün';$('bestStreak').textContent=st.best+' gün';$('progress').style.width=Math.min(100,Math.max(0,t.balance/PRICE*100))+'%';$('next').textContent=t.balance>=PRICE?'Yeni boş gün bileti almaya hazırsın!':`Bilete ${Math.max(0,PRICE-t.balance).toLocaleString('tr-TR')} XP kaldı`;$('bossMini').textContent=`${bo.power}/100`;
  renderDaily(w);renderStudyTimer();renderDashboard();renderQuestionVault();renderTeacherQuestions();renderDailyVaultShortcut();const radar=radarData();renderRadar(radar);renderPlanner(radar);renderErrorProfile();renderSwap();renderExtra();renderCountdown();renderLongProgress();renderMocks();renderRPG(w);renderStats(w);renderShop(t,st);renderCheckin();renderHistory();cloudUi();if(COACH_MODE)setTimeout(enforceCoachReadOnly,0);}
+const STUDY_BREAK_TYPES={short:{name:'Kısa mola',seconds:300},period:{name:'Periyot molası',seconds:1500},meal:{name:'Yemek molası',seconds:3600},free:{name:'Serbest mola',seconds:0}};
+function studyBreakRunning(){return state.studyTimer?.breakRunning||null}
+function studyBreakElapsed(br=studyBreakRunning()){return br?Math.max(0,Math.floor((Date.now()-Date.parse(br.startedAt))/1000)):0}
+function studyBreakSeconds(day,includeRunning=true){let n=(state.studyTimer.breaks||[]).filter(b=>b.day===day).reduce((sum,b)=>sum+b.seconds,0);const br=studyBreakRunning();if(includeRunning&&br?.day===day)n+=studyBreakElapsed(br);return n}
+function startStudyBreak(type){
+ if(COACH_MODE||selected!==today()||!Object.hasOwn(STUDY_BREAK_TYPES,type)||studyBreakRunning())return false;
+ const run=studyRunning();if(run&&(run.pausedAt||run.day!==selected))return false;
+ const startedAt=new Date().toISOString();if(run)run.pausedAt=startedAt;
+ state.studyTimer.breakRunning={id:vaultId('break'),day:selected,startedAt,type,plannedSeconds:STUDY_BREAK_TYPES[type].seconds,taskKey:run?.taskKey||'',label:run?.label||STUDY_BREAK_TYPES[type].name};
+ save();renderStudyTimer();return true;
+}
+function finishStudyBreak(){
+ if(COACH_MODE)return false;const run=studyRunning();let br=studyBreakRunning();
+ if(!br&&run?.pausedAt)br={id:vaultId('break'),day:run.day,startedAt:run.pausedAt,type:'free',plannedSeconds:0,taskKey:run.taskKey||'',label:run.label||'Serbest mola'};
+ if(!br)return false;
+ const endedAt=new Date().toISOString(),seconds=studyBreakElapsed(br);
+ state.studyTimer.breaks??=[];
+ if(!state.studyTimer.breaks.some(b=>b.id===br.id))state.studyTimer.breaks.push({...br,endedAt,seconds,overrunSeconds:br.plannedSeconds?Math.max(0,seconds-br.plannedSeconds):0});
+ if(run?.pausedAt){run.pausedSeconds=(Number(run.pausedSeconds)||0)+Math.max(0,(Date.now()-Date.parse(run.pausedAt))/1000);run.pausedAt=null}
+ state.studyTimer.breakRunning=null;return true;
+}
+function endStudyBreak(){if(COACH_MODE||!finishStudyBreak())return;save();render()}
+function renderStudyBreakClock(){
+ const br=studyBreakRunning(),run=studyRunning();let text='Mola hazır · Süre aşılırsa sayaç devam eder; sesli uyarı yok.';
+ if(br){const seconds=studyBreakElapsed(br),limit=br.plannedSeconds;const rest=limit-seconds;text=STUDY_BREAK_TYPES[br.type].name+' · '+(limit?(rest>=0?'Kalan '+formatStudyClock(rest):'Aşım +'+formatStudyClock(-rest)):'Geçen '+formatStudyClock(seconds))+' · Toplam '+formatStudyClock(seconds)}
+ $('studyBreakStatus').textContent=text;if($('lockBreakStatus')){$('lockBreakStatus').textContent=text;$('lockBreakEnd').disabled=COACH_MODE||!br&&!run?.pausedAt}$('studyBreakStatus').classList.toggle('breakOverrun',!!br&&!!br.plannedSeconds&&studyBreakElapsed(br)>br.plannedSeconds);
+ $('studyDayBreakTotal').textContent=formatStudyDuration(studyBreakSeconds(selected));
+ $('studyWeekBreakTotal').textContent=formatStudyDuration(datesBetween(monday(selected),add(monday(selected),6)).reduce((n,d)=>n+studyBreakSeconds(d),0));
+ for(const b of document.querySelectorAll('[data-study-break]'))b.disabled=COACH_MODE||selected!==today()||!!br||!!run?.pausedAt||!!run&&run.day!==selected;
+ $('studyBreakEnd').disabled=COACH_MODE||!br&&!run?.pausedAt;
+}
+function renderStudyBreakHistory(){
+ const list=$('studyBreakList');list.replaceChildren();
+ for(const br of [...(state.studyTimer.breaks||[])].filter(b=>b.day===selected).reverse()){
+  const row=document.createElement('p');row.className='notice';row.textContent=STUDY_BREAK_TYPES[br.type].name+' · '+formatStudyClock(br.seconds)+(br.overrunSeconds?' · Aşım +'+formatStudyClock(br.overrunSeconds):'')+' · '+(br.label||'');list.append(row);
+ }
+ if(!list.children.length)list.textContent='Bu günün kayıtlı molası yok.';
+}
+
 function studySessions(day){return state.studyTimer?.sessions?.filter(x=>x.day===day)||[]}
 function studyRunning(){return state.studyTimer?.running||null}
 function runningStudySeconds(){const run=studyRunning();if(!run)return 0;const start=new Date(run.startedAt).getTime();if(!Number.isFinite(start))return 0;const now=run.pausedAt?new Date(run.pausedAt).getTime():Date.now();const paused=Math.max(0,Number(run.pausedSeconds)||0);return Math.max(0,Math.floor((now-start)/1000-paused))}
@@ -671,7 +737,7 @@ function renderStudySubjectTimes(){
 function formatStudyClock(seconds){const s=Math.max(0,Math.floor(Number(seconds)||0)),h=Math.floor(s/3600),m=Math.floor((s%3600)/60),sec=s%60;return String(h).padStart(2,'0')+':'+String(m).padStart(2,'0')+':'+String(sec).padStart(2,'0')}
 function formatStudyDuration(seconds){const s=Math.max(0,Math.round(Number(seconds)||0)),h=Math.floor(s/3600),m=Math.floor((s%3600)/60);if(h)return h+' sa '+m+' dk';if(m)return m+' dk';return s+' sn'}
 function formatStudyDurationShort(seconds){const s=Math.max(0,Math.round(Number(seconds)||0)),h=Math.floor(s/3600),m=Math.floor((s%3600)/60);return h?(h+'s '+m+'d'):(m?m+'d':'<1d')}
-function endRunningStudySession(label='Odak oturumu',taskKey=''){const run=studyRunning();if(!run)return null;const endedAt=new Date();if(!Number.isFinite(new Date(run.startedAt).getTime())){state.studyTimer.running=null;return null}const seconds=Math.max(1,runningStudySeconds());const session={id:'study_'+Date.now()+'_'+Math.random().toString(36).slice(2,7),day:run.day,startedAt:run.startedAt,endedAt:endedAt.toISOString(),seconds,label:(label||'Odak oturumu').slice(0,120),taskKey:taskKey||''};state.studyTimer.sessions.push(session);state.studyTimer.running=null;return session}
+function endRunningStudySession(label='Odak oturumu',taskKey=''){const run=studyRunning();if(!run)return null;finishStudyBreak();const endedAt=new Date();if(!Number.isFinite(new Date(run.startedAt).getTime())){state.studyTimer.running=null;return null}const seconds=Math.max(1,runningStudySeconds());const session={id:'study_'+Date.now()+'_'+Math.random().toString(36).slice(2,7),day:run.day,startedAt:run.startedAt,endedAt:endedAt.toISOString(),seconds,label:(label||'Odak oturumu').slice(0,120),taskKey:taskKey||''};state.studyTimer.sessions.push(session);state.studyTimer.running=null;return session}
 function closeStudyTimerTaskPicker(){if($('studyTimerTaskModal'))$('studyTimerTaskModal').classList.remove('show')}
 function studyTaskGroups(day){
  const planned=tasks(day).map(key=>({key,label:taskDisplayName(day,key),planned:true}));
@@ -686,7 +752,7 @@ function studyTaskGroups(day){
  const seen=new Set();for(const group of groups)group.items=group.items.filter(x=>{if(seen.has(x.key))return false;seen.add(x.key);return true});return groups;
 }
 function openStudyTimerTaskPicker(){
- if(COACH_MODE||studyRunning())return;
+ if(COACH_MODE||studyRunning()||studyBreakRunning())return;
  if(selected!==today()){alert('Kronometre yalnızca bugünün çalışması için başlatılabilir. Önce bugünü seç.');return}
  const groups=studyTaskGroups(today());
  if(!groups.some(group=>group.items.length)){alert('Bugün için çalışma seçeneği yok.');return}
@@ -705,12 +771,13 @@ function openStudyTimerTaskPicker(){
 function extraStudyLabel(key){return '➕ Ek · '+EXTRA_NAMES[key]}
 function startExtraStudyTimer(key){if(COACH_MODE||selected!==today()||!extraTasks(selected).includes(key))return;startStudyTimerForTask(extraKey(key),extraStudyLabel(key))}
 function startStudyTimerForTask(taskKey,label){
- if(COACH_MODE||studyRunning())return;
+ if(COACH_MODE||studyRunning()||studyBreakRunning())return;
  if(selected!==today())return;
  state.studyTimer.running={day:today(),startedAt:new Date().toISOString(),pausedSeconds:0,pausedAt:null,label:(label||'Odak oturumu').slice(0,120),taskKey:taskKey||''};
  closeStudyTimerTaskPicker();save();renderStudyTimer();
 }
-function toggleStudyTimerPause(){if(COACH_MODE)return;const run=studyRunning();if(!run)return;if(run.pausedAt){const pausedMs=Date.now()-new Date(run.pausedAt).getTime();run.pausedSeconds=Math.max(0,Number(run.pausedSeconds)||0)+Math.max(0,pausedMs/1000);run.pausedAt=null}else run.pausedAt=new Date().toISOString();save();renderStudyTimer()}
+function toggleStudyTimerPause(){if(COACH_MODE)return;const run=studyRunning();if(!run)return;if(run.pausedAt){finishStudyBreak();save();renderStudyTimer()}else startStudyBreak('free')}
+
 function stopStudyTimer(){if(COACH_MODE||!studyRunning())return;const run=studyRunning();endRunningStudySession(run.label||'Odak oturumu',run.taskKey||'');save();render()}
 function confirmStopStudyTimerForTask(day,label,taskKey){const run=studyRunning();if(!run||run.day!==day||(run.taskKey&&run.taskKey!==taskKey))return true;const sessionLabel=run.label||label,sessionTaskKey=run.taskKey||taskKey,elapsed=formatStudyDuration(runningStudySeconds());const ok=confirm('⏱️ '+sessionLabel+' oturumunu bitirip kronometreyi durdurmak istediğine emin misin?\n\nBu oturum: '+elapsed+'\nSüre '+fmt(day)+' gününe kaydedilecek.');if(!ok)return false;endRunningStudySession(sessionLabel,sessionTaskKey);return true}
 let studySessionEdit=null;
@@ -742,8 +809,8 @@ function saveStudySessionEdit(event){
 }
 
 function deleteStudySession(id){if(COACH_MODE)return;const session=state.studyTimer?.sessions?.find(x=>x.id===id);if(!session)return;if(!confirm(formatStudyDuration(session.seconds)+' süreli bu çalışma oturumu silinsin mi?'))return;state.studyTimer.sessions=state.studyTimer.sessions.filter(x=>x.id!==id);save();render()}
-function renderStudyTimerClock(){if(!$('studyTimerClock'))return;const run=studyRunning(),selectedTotal=studyDaySeconds(selected,true);$('studyTimerClock').textContent=run?formatStudyClock(runningStudySeconds()):'00:00:00';$('studyDayTotal').textContent=formatStudyDuration(selectedTotal);if($('dayStudyPill'))$('dayStudyPill').textContent='⏱ '+formatStudyDuration(selectedTotal);if(run){const card=document.querySelector('.weeklyTimeCard[data-study-day="'+run.day+'"] .weeklyTimeValue');if(card)card.textContent=formatStudyDuration(studyDaySeconds(run.day,true));const weekGrid=$('weeklyTimeGrid');if(weekGrid&&$('weeklyStudyTotal')){let weekly=0;for(const el of weekGrid.querySelectorAll('.weeklyTimeCard'))weekly+=studyDaySeconds(el.dataset.studyDay,true);$('weeklyStudyTotal').textContent=formatStudyDuration(weekly)}}if($('studyTimerStatus')){$('studyTimerStatus').classList.remove('studyTimerRunning','studyTimerPaused');if(run?.pausedAt){$('studyTimerStatus').textContent='⏸ Molada';$('studyTimerStatus').classList.add('studyTimerPaused')}else if(run){$('studyTimerStatus').textContent='● Çalışıyor';$('studyTimerStatus').classList.add('studyTimerRunning')}else $('studyTimerStatus').textContent='Hazır'}renderExtraStudyTimers();if($('studySubjectSummary').open)renderStudySubjectTimes()}
-function renderStudyTimer(){if(!$('studyTimerPanel'))return;const run=studyRunning(),sessions=[...studySessions(selected)].sort((a,b)=>String(b.startedAt).localeCompare(String(a.startedAt)));$('studyTimerStart').disabled=COACH_MODE||!!run||selected!==today();$('studyTimerStop').disabled=COACH_MODE||!run;$('studyTimerPause').disabled=COACH_MODE||!run;$('studyTimerPause').textContent=run?.pausedAt?'▶ Devam':'⏸ Mola';$('studySessionCount').textContent=String(sessions.length);$('addStudySession').disabled=COACH_MODE||selected>today()||selected<START;let notice='Net çalışma için Başlat; kısa tuvalet/su molalarında ⏸ Mola kullan. ■ Durdur oturumu tamamen bitirir.';if(selected!==today()&&!run)notice='Geçmiş gün görünümü · Kayıtlı süreleri düzenleyebilir veya eksik süre ekleyebilirsin; canlı kronometre yalnızca bugün başlatılır.';if(run?.pausedAt)notice='⏸ '+(run.label||'Oturum')+' molada. Mola süresi net çalışmaya eklenmiyor; dönünce ▶ Devam’a bas.';else if(run){const age=runningStudySeconds();notice='📚 '+(run.label||'Odak oturumu')+' çalışıyorsun. Kısa ara için ⏸ Mola; dersi bitirirken görev kutusu veya ■ Durdur kullan.'+(age>=4*3600?' ⚠️ Bu oturum 4 saat net çalışmayı geçti; kronometreyi açık unutmadığını kontrol et.':'')}$('studyTimerNotice').textContent=notice;const list=$('studySessionList');list.replaceChildren();if(!sessions.length){const empty=document.createElement('div');empty.className='vaultEmpty';empty.textContent='Bu gün için kaydedilmiş çalışma oturumu yok.';list.append(empty)}else for(const s of sessions){const row=document.createElement('div');row.className='studySessionRow';row.dataset.sessionId=s.id;const info=document.createElement('div');const title=document.createElement('strong');title.textContent=s.label||'Odak oturumu';const meta=document.createElement('small');const a=new Date(s.startedAt),b=new Date(s.endedAt);meta.textContent=s.manual?'Manuel süre kaydı':(isNaN(a.getTime())?'':a.toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit'}))+' – '+(isNaN(b.getTime())?'':b.toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit'}));info.append(title,meta);const right=document.createElement('div');right.className='studySessionActions';const duration=document.createElement('span');duration.className='studySessionDuration';duration.textContent=formatStudyDuration(s.seconds);right.append(duration);if(!COACH_MODE){const edit=document.createElement('button');edit.type='button';edit.textContent='Düzenle';edit.onclick=()=>openStudySessionEditor(s.id);right.append(edit);const del=document.createElement('button');del.type='button';del.textContent='Sil';del.onclick=()=>deleteStudySession(s.id);right.append(del)}row.append(info,right);list.append(row)}renderStudyTimerClock()}
+function renderStudyTimerClock(){if(!$('studyTimerClock'))return;const run=studyRunning(),selectedTotal=studyDaySeconds(selected,true);$('studyTimerClock').textContent=run?formatStudyClock(runningStudySeconds()):'00:00:00';$('studyDayTotal').textContent=formatStudyDuration(selectedTotal);if($('dayStudyPill'))$('dayStudyPill').textContent='⏱ '+formatStudyDuration(selectedTotal);if(run){const card=document.querySelector('.weeklyTimeCard[data-study-day="'+run.day+'"] .weeklyTimeValue');if(card)card.textContent=formatStudyDuration(studyDaySeconds(run.day,true));const weekGrid=$('weeklyTimeGrid');if(weekGrid&&$('weeklyStudyTotal')){let weekly=0;for(const el of weekGrid.querySelectorAll('.weeklyTimeCard'))weekly+=studyDaySeconds(el.dataset.studyDay,true);$('weeklyStudyTotal').textContent=formatStudyDuration(weekly)}}if($('studyTimerStatus')){$('studyTimerStatus').classList.remove('studyTimerRunning','studyTimerPaused');if(run?.pausedAt){$('studyTimerStatus').textContent='⏸ Molada';$('studyTimerStatus').classList.add('studyTimerPaused')}else if(run){$('studyTimerStatus').textContent='● Çalışıyor';$('studyTimerStatus').classList.add('studyTimerRunning')}else $('studyTimerStatus').textContent='Hazır'}renderExtraStudyTimers();if($('studySubjectSummary').open)renderStudySubjectTimes();renderStudyBreakClock()}
+function renderStudyTimer(){if(!$('studyTimerPanel'))return;renderStudyBreakHistory();const run=studyRunning(),sessions=[...studySessions(selected)].sort((a,b)=>String(b.startedAt).localeCompare(String(a.startedAt)));$('studyTimerStart').disabled=COACH_MODE||!!run||!!studyBreakRunning()||selected!==today();$('studyTimerStop').disabled=COACH_MODE||!run;$('studyTimerPause').disabled=COACH_MODE||!run;$('studyTimerPause').textContent=run?.pausedAt?'▶ Devam':'⏸ Mola';$('studySessionCount').textContent=String(sessions.length);$('addStudySession').disabled=COACH_MODE||selected>today()||selected<START;let notice='Net çalışma için Başlat; kısa tuvalet/su molalarında ⏸ Mola kullan. ■ Durdur oturumu tamamen bitirir.';if(selected!==today()&&!run)notice='Geçmiş gün görünümü · Kayıtlı süreleri düzenleyebilir veya eksik süre ekleyebilirsin; canlı kronometre yalnızca bugün başlatılır.';if(run?.pausedAt)notice='⏸ '+(run.label||'Oturum')+' molada. Mola süresi net çalışmaya eklenmiyor; dönünce ▶ Devam’a bas.';else if(run){const age=runningStudySeconds();notice='📚 '+(run.label||'Odak oturumu')+' çalışıyorsun. Kısa ara için ⏸ Mola; dersi bitirirken görev kutusu veya ■ Durdur kullan.'+(age>=4*3600?' ⚠️ Bu oturum 4 saat net çalışmayı geçti; kronometreyi açık unutmadığını kontrol et.':'')}$('studyTimerNotice').textContent=notice;const list=$('studySessionList');list.replaceChildren();if(!sessions.length){const empty=document.createElement('div');empty.className='vaultEmpty';empty.textContent='Bu gün için kaydedilmiş çalışma oturumu yok.';list.append(empty)}else for(const s of sessions){const row=document.createElement('div');row.className='studySessionRow';row.dataset.sessionId=s.id;const info=document.createElement('div');const title=document.createElement('strong');title.textContent=s.label||'Odak oturumu';const meta=document.createElement('small');const a=new Date(s.startedAt),b=new Date(s.endedAt);meta.textContent=s.manual?'Manuel süre kaydı':(isNaN(a.getTime())?'':a.toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit'}))+' – '+(isNaN(b.getTime())?'':b.toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit'}));info.append(title,meta);const right=document.createElement('div');right.className='studySessionActions';const duration=document.createElement('span');duration.className='studySessionDuration';duration.textContent=formatStudyDuration(s.seconds);right.append(duration);if(!COACH_MODE){const edit=document.createElement('button');edit.type='button';edit.textContent='Düzenle';edit.onclick=()=>openStudySessionEditor(s.id);right.append(edit);const del=document.createElement('button');del.type='button';del.textContent='Sil';del.onclick=()=>deleteStudySession(s.id);right.append(del)}row.append(info,right);list.append(row)}renderStudyTimerClock()}
 function renderStudyWeekTimes(w){
  const grid=$('weeklyTimeGrid');if(!grid)return;grid.replaceChildren();let total=0;
  for(let i=0;i<7;i++){
@@ -755,24 +822,105 @@ function renderStudyWeekTimes(w){
  }
  $('weeklyStudyTotal').textContent=formatStudyDuration(total);
 }
-const LOCKIN_RULES={
- university:['📵 Sosyal telefon görüşmesi çalışma saatinde yok. Geri dönüş akşam penceresinde.','🎯 Ders blokları arasında telefona kayma yok; mola kısa ve fiziksel.','🏛️ Üniversite kütüphanesi ana çalışma üssü: masaya oturunca plan + kronometre.'],
- bilim:['📵 Sosyal telefon görüşmesi çalışma saatinde yok. Geri dönüş akşam penceresinde.','👥 Kız arkadaşınla yan yana çalışabilirsin; masada sohbet yok, konuşma yalnız planlı molada.','⏱️ 60–90 dk çalışma → 5–10 dk ortak mola → tekrar masa.','🔒 17:30 sonrası sıkı mod: spontane arkadaş grubu, uzun sohbet, çay muhabbeti yok.','🏁 19:00–20:00 arası günü kapat; çıkışa kadar sistemi bırakma.'],
- home:['📵 Sosyal telefon görüşmesi çalışma saatinde yok. Geri dönüş akşam penceresinde.','🏠 Ders arasında telefon sohbeti başlatma; kısa mola fiziksel olsun.','🍽️ Balkaya yalnız Mağaza’dan XP ile satın alınmış ödülse var. Plan bitmiş olması tek başına yetmez.','🎯 Evde ilk görev: siteyi aç → planı gör → kronometreyi başlat.']
-};
-function lockInDay(day=selected){state.lockIn??={days:{}};state.lockIn.days??={};return state.lockIn.days[day]||null}
+const LOCKIN_ENVS={university:'Üniversite',bilim:'Bilim',home:'Ev'};
+const LOCKIN_REWARD_RULES={phone:{text:'Dersler bitene kadar telefona bakmadım.',xp:10},period:{text:'Periyotlar bitmeden uzun mola vermedim.',xp:10},breaks:{text:'Belirlenen mola sürelerini aşmadım.',xp:15},social:{text:'Sosyal sebeplerle programımı yarıda bırakmadım.',xp:20}};
+const LOCKIN_PENALTY_REASON='Arkadaşlarımla takılmak için günlük ders programımı yarıda bıraktım.';
+const LOCKIN_RULES=['📵 Dersler bitene kadar telefona bakma.','⏱️ Periyot içindeki dersler arasında 5 dk, periyotlar arasında 25 dk mola.','🍽️ Seçtiğin periyottan sonra 60 dk yemek molası; süre aşımını takip et.','🎯 Programını sosyal sebeplerle yarıda bırakma. Acil durumlar, sağlık sorunları ve zorunlu değişiklikler ceza kapsamında değildir.'];
+function lockInDay(day=selected){return state.lockIn?.days?.[day]||null}
+function ensureLockInDay(day=selected){state.lockIn??={days:{}};state.lockIn.days??={};return state.lockIn.days[day]??={env:'university',active:false,startedAt:''}}
 function selectedLockInEnv(){return lockInDay(selected)?.env||'university'}
-function setLockInEnv(env){if(COACH_MODE||selected!==today()||!LOCKIN_RULES[env])return;state.lockIn??={days:{}};state.lockIn.days??={};const old=lockInDay(selected);state.lockIn.days[selected]={env,active:!!old?.active,startedAt:old?.startedAt||''};save();renderLockIn()}
-function startLockIn(){if(COACH_MODE||selected!==today())return;const env=selectedLockInEnv();state.lockIn??={days:{}};state.lockIn.days??={};state.lockIn.days[selected]={env,active:true,startedAt:new Date().toISOString()};save();renderLockIn()}
-function stopLockIn(){if(COACH_MODE||selected!==today())return;const d=lockInDay(selected);if(!d)return;d.active=false;save();renderLockIn()}
-function renderLockIn(){
- if(!$('lockInPanel'))return;const d=lockInDay(selected),env=d?.env||'university',active=!!d?.active;$('lockInStatus').textContent=active?'AKTİF':'Kapalı';$('lockInStatus').className='pill'+(active?' rankA':'');
- for(const b of $('lockInModes').querySelectorAll('[data-lockin-env]')){b.classList.toggle('active',b.dataset.lockinEnv===env);b.disabled=COACH_MODE||selected!==today()}
- const rules=$('lockInRules');rules.replaceChildren();for(const [i,txt] of LOCKIN_RULES[env].entries()){const row=document.createElement('div');row.className='lockInRule'+(i===0?' global':'');row.textContent=txt;rules.append(row)}
- $('lockInStart').disabled=COACH_MODE||selected!==today()||active;$('lockInStop').disabled=COACH_MODE||selected!==today()||!active;
- $('lockInState').textContent=selected!==today()?'Geçmiş gün görünümü · Lock-In değiştirilemez.':active?('🔒 '+(env==='university'?'Üniversite':env==='bilim'?'Bilim':'Ev')+' modu açık. Bugünün işi: sistemde kal, plansız sosyalliğe çıkma.'):'Ortamı seç ve modu aç.';
+function lockInDayLedger(day){
+ const awarded=new Set(),seen=new Set(),transactions=[];let reward=0,penalty=0;
+ for(const e of lockInDay(day)?.evaluations||[]){
+  if(seen.has(e.id))continue;seen.add(e.id);
+  for(const key of e.awarded||[]){if(!Object.hasOwn(LOCKIN_REWARD_RULES,key)||awarded.has(key)||e.penalty&&key==='social')continue;awarded.add(key);const rule=LOCKIN_REWARD_RULES[key];reward+=rule.xp;transactions.push({id:e.id,at:e.at,day,env:e.env,xp:rule.xp,reason:rule.text})}
+  if(e.penalty){penalty+=1500;transactions.push({id:e.id,at:e.at,day,env:e.env,xp:-1500,reason:LOCKIN_PENALTY_REASON})}
+ }
+ return {reward,penalty,net:reward-penalty,awarded,transactions};
 }
-function renderDaily(w){renderLockIn();$('date').value=selected;$('days').innerHTML='';for(let i=0;i<7;i++){let s=add(w,i),b=document.createElement('button');b.textContent=DAY[i].slice(0,3)+' '+parse(s).getDate();b.className=s===selected?'active':'';b.onclick=()=>{selected=s;render()};$('days').append(b)}renderStudyWeekTimes(w);$('daytitle').textContent=DAY[idx(selected)];$('daydate').textContent=fmt(selected);let r=dayRank(selected),pill=$('rankPill');pill.className='pill '+rankClass(r);pill.textContent=r==='REST'?'🎟️ Dinlenme Günü':`${r}-Rank · ${formatNumber(completionPct(selected),1)}%`;$('rankbar').style.width=Math.min(100,completionPct(selected))+'%';let keys=tasks(selected),rest=isRest(selected);$('tasks').innerHTML='';if(!keys.length&&selected>=PLAN_ONLY_START){$('tasks').append(emptyView('🗓️','Bu gün için ders planlanmadı','Plan bölümüne ders eklediğinde burada görünecek.',true))}for(let k of keys){if(selected>=FLOW_START&&k===keys[0]){const group=document.createElement('div');group.className='taskGroup';group.textContent='ANA DERSLER';$('tasks').append(group)}let el=document.createElement('label');el.className='task'+(isDone(selected,k)?' done':'');let inp=document.createElement('input');inp.type='checkbox';inp.checked=isDone(selected,k);inp.disabled=COACH_MODE||(rest&&planSlotBase(k)!=='tyt')||selected>today();inp.onchange=()=>{if(COACH_MODE||selected>today())return;let before=dayRank(selected);if(inp.checked){const lessonName=taskDisplayName(selected,k);if(!confirmStopStudyTimerForTask(selected,lessonName,k)){inp.checked=false;return}state.checks[checkKey(selected,k)]=true}else delete state.checks[checkKey(selected,k)];save();let after=dayRank(selected);render();if(before!=='S'&&after==='S'&&selected<=today()&&!state.checkins[selected])setTimeout(()=>{celebrateRank();openCheckinModal()},80)};let n=document.createElement('span');n.className='name';let b=document.createElement('b');b.textContent=taskDisplayName(selected,k);n.append(b);const swap=currentSwap(selected);if(swap?.outKey===k){const tag=document.createElement('small');tag.className='swapTag';tag.textContent='↔ '+planSlotName(selected,k)+' yerine '+EXTRA_NAMES[swap.inKey]+' · Rank ağırlığı '+xpFor(selected,planSlotBase(k));n.append(tag)}const planNote=planNoteViewer(selected,k);if(planNote)n.append(planNote);let xp=document.createElement('span');xp.className='xp';xp.textContent='+'+taskXP(selected,k)+' XP';el.append(inp,subjectIcon(taskSubject(selected,k)),n,xp);$('tasks').append(el)}let actual=completedStudies(selected).reduce((sum,x)=>sum+x.xp,0),sbonus=r==='S'?50:0,cb=comebackDates().includes(selected)?50:0;let parts=[`${actual+sbonus+cb} XP`];if(sbonus)parts.push('S +50');if(cb)parts.push('🔥 Comeback +50');let c=taskCounts(selected);$('daynotice').innerHTML=rest?(selected>=FLOW_START?`🎟️ Boş Gün Bileti kullanıldı. Ana görevlerden muafsın; streak korunur. Ek çalışmalar: +${extraXP(selected)} XP.`:`🎟️ Boş Gün Bileti kullanıldı. Genel TYT deneme analizi XP'si korundu; Pazartesi soru analizleri ve kalan dersler muaf. Streak korunur, Rank/Perfect Day verilmez.`):`${c.done}/${c.total} görev tamamlandı · ${parts.join(' · ')}${protectedDay(selected)?' · 🛡️ Streak Koruyucu aktif':''}`;
+function lockInTotals(a=START,b=today()){b=b<today()?b:today();let reward=0,penalty=0;for(const day of Object.keys(state.lockIn?.days||{})){if(day<a||day>b)continue;const d=lockInDayLedger(day);reward+=d.reward;penalty+=d.penalty}return {reward,penalty,net:reward-penalty}}
+function setLockInEnv(env){if(COACH_MODE||selected!==today()||!Object.hasOwn(LOCKIN_ENVS,env))return;ensureLockInDay().env=env;save();renderLockIn()}
+function startLockIn(){if(COACH_MODE||selected!==today()||lockInDay()?.active)return;const d=ensureLockInDay();d.active=true;d.startedAt=new Date().toISOString();d.sessionId=vaultId('lock');save();renderLockIn()}
+let lockInEvaluation=null;
+function closeLockInEvaluation(){lockInEvaluation=null;$('lockInEvaluation').classList.remove('show')}
+function stopLockIn(){
+ if(COACH_MODE||selected!==today()||!lockInDay()?.active)return;
+ const d=ensureLockInDay();if(!d.sessionId){d.sessionId=vaultId('lock');save()}
+ lockInEvaluation={day:selected,id:d.sessionId};$('lockInChecklist').replaceChildren();
+ for(const [key,rule] of Object.entries(LOCKIN_REWARD_RULES)){
+  const label=document.createElement('label');label.className='lockCheck';const input=document.createElement('input');input.type='checkbox';input.dataset.lockRule=key;
+  input.onchange=()=>{if(key==='social'&&input.checked)$('lockInPenalty').checked=false;renderLockInEvaluation()};
+  const text=document.createElement('span');text.textContent=rule.text+' +'+rule.xp+' XP'+(lockInDayLedger(selected).awarded.has(key)?' · Bugünkü ödül alındı':'');label.append(input,text);$('lockInChecklist').append(label);
+ }
+ $('lockInPenalty').checked=false;$('lockInEvaluation').classList.add('show');renderLockInEvaluation();
+}
+function lockInEvaluationValues(){
+ const checks={};for(const input of $('lockInChecklist').querySelectorAll('[data-lock-rule]'))checks[input.dataset.lockRule]=input.checked;
+ const penalty=$('lockInPenalty').checked;if(penalty)checks.social=false;
+ const claimed=lockInDayLedger(lockInEvaluation?.day||selected).awarded;
+ const awarded=Object.keys(LOCKIN_REWARD_RULES).filter(k=>checks[k]&&!claimed.has(k));
+ return {checks,penalty,awarded,reward:awarded.reduce((n,k)=>n+LOCKIN_REWARD_RULES[k].xp,0)};
+}
+function renderLockInEvaluation(){if(!lockInEvaluation)return;const e=lockInEvaluationValues();$('lockInEvaluationTotals').textContent='Kazanılacak: +'+e.reward+' XP · Ceza: '+(e.penalty?'−1500':'0')+' XP · Net: '+(e.reward-(e.penalty?1500:0))+' XP'}
+function submitLockInEvaluation(event){
+ event?.preventDefault();if(COACH_MODE||!lockInEvaluation)return false;
+ const {day,id}=lockInEvaluation,d=lockInDay(day);
+ if(day!==today()||day!==selected||!d?.active||d.sessionId!==id||(d.evaluations||[]).some(e=>e.id===id))return false;
+ const values=lockInEvaluationValues();
+ if(values.penalty&&!confirm('Arkadaşlarla takılmak için programını yarıda bıraktığını onaylıyor musun?\n\n1500 XP bakiyenden düşülecek. Acil durumlar, sağlık sorunları ve zorunlu değişiklikler bu cezanın kapsamında değildir.'))return false;
+ d.evaluations??=[];d.evaluations.push({id,at:new Date().toISOString(),env:d.env,checks:values.checks,awarded:values.awarded,penalty:values.penalty,...(values.penalty?{penaltyReason:LOCKIN_PENALTY_REASON}:{})});d.active=false;
+ closeLockInEvaluation();save();render();return true;
+}
+function canEditLockPeriods(){return !COACH_MODE&&selected===today()}
+function addLockPeriod(){if(!canEditLockPeriods())return;const d=ensureLockInDay();d.periods??=[];d.periods.push({id:vaultId('period'),slots:[]});save();renderLockIn()}
+function assignLockPeriod(slot,id){
+ if(!canEditLockPeriods()||!tasks(selected).includes(slot))return;const d=ensureLockInDay();if(id&&!(d.periods||[]).some(p=>p.id===id))return;
+ for(const p of d.periods||[]){p.slots=p.slots.filter(k=>k!==slot);if(p.id===id)p.slots.push(slot)}save();renderLockIn();
+}
+function deleteLockPeriod(id){if(!canEditLockPeriods())return;const d=lockInDay();if(!d?.periods?.some(p=>p.id===id)||!confirm('Bu periyot kaldırılsın mı? Günlük ders planı ve tamamlanma işaretleri korunur.'))return;d.periods=d.periods.filter(p=>p.id!==id);if(d.mealAfter===id)d.mealAfter='';save();renderLockIn()}
+function setLockMeal(id){if(!canEditLockPeriods())return;const d=ensureLockInDay();if(id&&!(d.periods||[]).some(p=>p.id===id))return;d.mealAfter=id;save();renderLockIn()}
+function renderLockPeriods(){
+ const d=lockInDay(),periods=d?.periods||[],wrap=$('lockPeriods'),assign=$('lockPeriodAssignments');wrap.replaceChildren();assign.replaceChildren();
+ $('addLockPeriod').disabled=!canEditLockPeriods();
+ const meal=$('lockMealAfter');meal.replaceChildren(new Option('Yemek molası konumu seç',''));periods.forEach((p,i)=>meal.add(new Option((i+1)+'. periyottan sonra',p.id)));meal.value=d?.mealAfter||'';meal.disabled=!canEditLockPeriods();
+ for(const slot of tasks(selected)){
+  const label=document.createElement('label');label.textContent=taskDisplayName(selected,slot);const select=document.createElement('select');select.dataset.periodSlot=slot;select.add(new Option('Henüz atanmadı',''));periods.forEach((p,i)=>select.add(new Option('Periyot '+(i+1),p.id)));select.value=periods.find(p=>p.slots.includes(slot))?.id||'';select.disabled=!canEditLockPeriods();select.onchange=()=>assignLockPeriod(slot,select.value);label.append(select);assign.append(label);
+ }
+ if(!tasks(selected).length)assign.textContent='Bu günün planı boş. Plan bölümünden ders ekleyebilirsin; periyotlar planını değiştirmez.';
+ periods.forEach((p,i)=>{
+  const slots=p.slots.filter(k=>tasks(selected).includes(k)),done=slots.filter(k=>isDone(selected,k)).length,card=document.createElement('div');card.className='periodCard'+(slots.length&&done===slots.length?' done':'');card.dataset.periodId=p.id;
+  const title=document.createElement('h3');title.textContent='Periyot '+(i+1)+' · '+done+'/'+slots.length+(slots.length&&done===slots.length?' · Tamamlandı':'');card.append(title);
+  slots.forEach((slot,j)=>{const row=document.createElement('p');row.textContent=(isDone(selected,slot)?'✓ ':'○ ')+taskDisplayName(selected,slot);card.append(row);if(j<slots.length-1){const button=document.createElement('button');button.type='button';button.textContent='☕ Kısa mola · 5 dk';button.dataset.studyBreak='short';button.onclick=()=>startStudyBreak('short');card.append(button)}});
+  if(!slots.length){const empty=document.createElement('p');empty.className='notice';empty.textContent='Yukarıdan istediğin sayıda ders ata.';card.append(empty)}
+  if(d?.mealAfter===p.id||i<periods.length-1){const type=d?.mealAfter===p.id?'meal':'period',button=document.createElement('button');button.type='button';button.textContent=STUDY_BREAK_TYPES[type].name+' · '+STUDY_BREAK_TYPES[type].seconds/60+' dk';button.dataset.studyBreak=type;button.onclick=()=>startStudyBreak(type);card.append(button)}
+  const del=document.createElement('button');del.type='button';del.textContent='Periyodu kaldır';del.disabled=!canEditLockPeriods();del.onclick=()=>deleteLockPeriod(p.id);card.append(del);wrap.append(card);
+ });
+}
+function renderLockInTransactions(wrap,day=null){
+ wrap.replaceChildren();const transactions=Object.keys(state.lockIn?.days||{}).filter(s=>s<=today()&&(!day||s===day)).sort().reverse().flatMap(s=>lockInDayLedger(s).transactions).slice(0,150);
+ for(const t of transactions){const row=document.createElement('div');row.className='lockTransaction';const text=document.createElement('span');text.textContent=fmt(t.day)+' · '+LOCKIN_ENVS[t.env]+' · '+t.reason;const xp=document.createElement('b');xp.textContent=(t.xp>0?'+':'')+t.xp+' XP';row.append(text,xp);wrap.append(row)}
+ if(!transactions.length)wrap.textContent='Henüz Lock-In XP işlemi yok.';
+}
+function renderLockIn(){
+ const d=lockInDay(),env=d?.env||'university',active=!!d?.active,current=lockInDay(today());$('lockInDate').value=selected;
+ $('lockInIndicator').textContent=current?.active?'🔒 '+LOCKIN_ENVS[current.env]+' aktif':'🔒 Lock-In kapalı';
+ $('lockInStatus').textContent=active?'AKTİF':'Kapalı';$('lockInStatus').className='pill'+(active?' rankA':'');
+ for(const b of $('lockInModes').querySelectorAll('[data-lockin-env]')){b.classList.toggle('active',b.dataset.lockinEnv===env);b.disabled=COACH_MODE||selected!==today()}
+ const rules=$('lockInRules');rules.replaceChildren();for(const txt of LOCKIN_RULES){const row=document.createElement('div');row.className='lockInRule';row.textContent=txt;rules.append(row)}
+ $('lockInStart').disabled=COACH_MODE||selected!==today()||active;$('lockInStop').disabled=COACH_MODE||selected!==today()||!active;
+ const ledger=lockInDayLedger(selected);$('lockInState').textContent=(selected!==today()?'Geçmiş gün · Salt okunur. ':active?'Mod açık. ':'Ortamı seç ve modu aç. ')+'Bugünkü ödül: '+ledger.reward+'/55 XP · Ceza: '+ledger.penalty+' XP';
+ renderLockPeriods();renderLockInTransactions($('lockInHistory'),selected);renderLockInTransactions($('xpTransactions'));renderStudyBreakClock();
+}
+function initLockInV334(){
+ $('lockInDate').onchange=()=>{if(validDay($('lockInDate').value)){selected=$('lockInDate').value;render()}};
+ $('lockInIndicator').onclick=()=>{selected=today();render();showTab('lockInTab')};$('addLockPeriod').onclick=addLockPeriod;$('lockMealAfter').onchange=()=>setLockMeal($('lockMealAfter').value);
+ $('lockDailyLink').onclick=()=>showTab('daily');$('lockBreakEnd').onclick=endStudyBreak;$('lockTimerLink').onclick=()=>{showTab('daily');$('studyTimerPanel').scrollIntoView({block:'start'})};$('lockInEvaluationForm').onsubmit=submitLockInEvaluation;$('cancelLockInEvaluation').onclick=closeLockInEvaluation;
+ $('lockInPenalty').onchange=()=>{if($('lockInPenalty').checked){const s=$('lockInChecklist').querySelector('[data-lock-rule="social"]');if(s)s.checked=false}renderLockInEvaluation()};
+ for(const b of document.querySelectorAll('#studyBreakButtons [data-study-break]'))b.onclick=()=>startStudyBreak(b.dataset.studyBreak);$('studyBreakEnd').onclick=endStudyBreak;
+ document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLockInEvaluation()});
+}
+
+function renderDaily(w){renderLockIn();$('date').value=selected;$('days').innerHTML='';for(let i=0;i<7;i++){let s=add(w,i),b=document.createElement('button');b.textContent=DAY[i].slice(0,3)+' '+parse(s).getDate();b.className=s===selected?'active':'';b.onclick=()=>{selected=s;render()};$('days').append(b)}renderStudyWeekTimes(w);$('daytitle').textContent=DAY[idx(selected)];$('daydate').textContent=fmt(selected);let r=dayRank(selected),pill=$('rankPill');pill.className='pill '+rankClass(r);pill.textContent=r==='REST'?'🎟️ Dinlenme Günü':`${r}-Rank · ${formatNumber(completionPct(selected),1)}%`;$('rankbar').style.width=Math.min(100,completionPct(selected))+'%';let keys=tasks(selected),rest=isRest(selected);$('tasks').innerHTML='';if(!keys.length&&selected>=PLAN_ONLY_START){$('tasks').append(emptyView('🗓️','Bu gün için ders planlanmadı','Plan bölümüne ders eklediğinde burada görünecek.',true))}for(let k of keys){if(selected>=FLOW_START&&k===keys[0]){const group=document.createElement('div');group.className='taskGroup';group.textContent='ANA DERSLER';$('tasks').append(group)}let el=document.createElement('label');el.className='task'+(isDone(selected,k)?' done':'');let inp=document.createElement('input');inp.type='checkbox';inp.checked=isDone(selected,k);inp.disabled=COACH_MODE||(rest&&planSlotBase(k)!=='tyt')||selected>today();inp.onchange=()=>{if(COACH_MODE||selected>today())return;let before=dayRank(selected);if(inp.checked){const lessonName=taskDisplayName(selected,k);if(!confirmStopStudyTimerForTask(selected,lessonName,k)){inp.checked=false;return}state.checks[checkKey(selected,k)]=true}else delete state.checks[checkKey(selected,k)];save();let after=dayRank(selected);render();if(before!=='S'&&after==='S'&&selected<=today()&&!state.checkins[selected])setTimeout(()=>{celebrateRank();openCheckinModal()},80)};let n=document.createElement('span');n.className='name';let b=document.createElement('b');b.textContent=taskDisplayName(selected,k);n.append(b);const swap=currentSwap(selected);if(swap?.outKey===k){const tag=document.createElement('small');tag.className='swapTag';tag.textContent='↔ '+planSlotName(selected,k)+' yerine '+EXTRA_NAMES[swap.inKey]+' · Rank ağırlığı '+xpFor(selected,planSlotBase(k));n.append(tag)}const planNote=planNoteViewer(selected,k);if(planNote)n.append(planNote);let xp=document.createElement('span');xp.className='xp';xp.textContent='+'+taskXP(selected,k)+' XP';el.append(inp,subjectIcon(taskSubject(selected,k)),n,xp);$('tasks').append(el)}let actual=completedStudies(selected).reduce((sum,x)=>sum+x.xp,0),sbonus=r==='S'?50:0,cb=comebackDates().includes(selected)?50:0;let lockNet=lockInDayLedger(selected).net;let parts=[`${actual+sbonus+cb+lockNet} XP`];if(lockNet)parts.push(`🔒 Lock-In ${lockNet>0?"+":""}${lockNet} XP`);if(sbonus)parts.push('S +50');if(cb)parts.push('🔥 Comeback +50');let c=taskCounts(selected);$('daynotice').innerHTML=rest?(selected>=FLOW_START?`🎟️ Boş Gün Bileti kullanıldı. Ana görevlerden muafsın; streak korunur. Ek çalışmalar: +${extraXP(selected)} XP.`:`🎟️ Boş Gün Bileti kullanıldı. Genel TYT deneme analizi XP'si korundu; Pazartesi soru analizleri ve kalan dersler muaf. Streak korunur, Rank/Perfect Day verilmez.`):`${c.done}/${c.total} görev tamamlandı · ${parts.join(' · ')}${protectedDay(selected)?' · 🛡️ Streak Koruyucu aktif':''}`;
  $('rest').textContent=selected>=FLOW_START?'🎟️ Boş Gün Bileti kullan':'🎟️ Analiz sonrası Boş Gün Bileti kullan';$('rest').disabled=rest||tickets()<1||!canUseRest(selected);$('undoRest').disabled=!rest;$('useShield').disabled=shieldInventory()<1||selected>today()||rest||protectedDay(selected)||rankValue(r)>=rankValue('B');$('useShield').textContent=`🛡️ Streak Koruyucu kullan (${shieldInventory()} adet)`;$('undoShield').disabled=!protectedDay(selected);let wp=weekCore(w);$('weekprogress').textContent=`${wp.completed}/${wp.total} görev · ${wp.p.toLocaleString('tr-TR')} XP`;$('weekbar').style.width=(wp.total?wp.completed/wp.total*100:0)+'%'}
 function renderExtra(){
  const keys=extraTasks(selected),wrap=$('extraTasks'),doneWrap=$('completedExtraTasks');$('extraPanel').hidden=keys.length===0;wrap.replaceChildren();doneWrap.replaceChildren();
@@ -798,7 +946,7 @@ function renderExtraStudyTimers(){
   const key=row.dataset.studyExtra,active=!!run&&run.day===selected&&run.taskKey===extraKey(key);
   row.classList.toggle('timerActive',active);row.querySelector('.extraStudyTime').textContent='⏱ Toplam '+formatStudyClock(studyTaskSeconds(selected,extraKey(key)))+(active?(run.pausedAt?' · Molada':' · Çalışıyor'):'');
   const start=row.querySelector('[data-extra-timer-action="start"]'),pause=row.querySelector('[data-extra-timer-action="pause"]'),stop=row.querySelector('[data-extra-timer-action="stop"]');
-  start.hidden=active;start.disabled=COACH_MODE||selected!==today()||!!run;
+  start.hidden=active;start.disabled=COACH_MODE||selected!==today()||!!run||!!studyBreakRunning();
   pause.hidden=!active;pause.disabled=COACH_MODE||!active;pause.textContent=run?.pausedAt?'▶ Devam Et':'⏸ Duraklat';pause.setAttribute('aria-label',EXTRA_NAMES[key]+' ek çalışma · '+pause.textContent);
   stop.hidden=!active;stop.disabled=COACH_MODE||!active;
  }
@@ -902,6 +1050,7 @@ function earnedByDay(){
   const earnedOn=date&&!isNaN(date.getTime())?iso(date):fallback;
   credit(earnedOn,Number(claim.reward)||0);
  }
+ for(const day of Object.keys(state.lockIn?.days||{}))credit(day,lockInDayLedger(day).net);
  return ledger;
 }
 function percentageChange(current,previous){return previous>0?(current-previous)/previous*100:current===0?0:null}
@@ -1081,6 +1230,7 @@ function syncMathAnalysisOrigin(){
 }
 function syncMathAnalysisVaultOption(){
  const unseen=$('mathAnalysisForm')?.querySelector('input[name="mathAnalysisOrigin"]:checked')?.value==='unseen',video=$('mathAnalysisForm')?.querySelector('input[name="mathAnalysisMethod"]:checked')?.value==='video',wrap=$('mathAnalysisVaultWrap');
+ $('mathAnalysisDifficulty').disabled=COACH_MODE||unseen||!video;
  if(wrap){wrap.style.opacity=!unseen&&video?'1':'.45';$('mathAnalysisAddVault').disabled=unseen||!video}
 }
 function saveMathAnalysis(event){
@@ -1094,7 +1244,7 @@ function saveMathAnalysis(event){
  let vaultText='';
  if(origin!=='unseen'&&method==='video'&&$('mathAnalysisAddVault').checked){
   const subject=exam.type==='AYT'?'aytMath':'mathStudy',duplicate=vaultQuestions().some(q=>q.sourceType==='mock'&&q.mockId===exam.id&&q.subject===subject&&q.questionNo===questionNo);
-  if(!duplicate){state.questionVault.questions.push({id:vaultId('q'),sourceType:'mock',bookId:'',mockId:exam.id,mockType:exam.type,mockName:exam.name||'',mockDate:exam.date,subject,originStatus:origin,topic:topic||'Konu belirtilmedi',page:'',questionNo:questionNo.slice(0,40),addedAt:date,firstEligibleAt:add(date,7),active:false,successStage:0,lastResult:null,lastAttemptAt:'',nextDueAt:'',mastered:false,history:[]});vaultText=' · Kasaya da eklendi.'}else vaultText=' · Kasada zaten vardı.'
+  if(!duplicate){state.questionVault.questions.push({id:vaultId('q'),difficulty:$('mathAnalysisDifficulty').value,sourceType:'mock',bookId:'',mockId:exam.id,mockType:exam.type,mockName:exam.name||'',mockDate:exam.date,subject,originStatus:origin,topic:topic||'Konu belirtilmedi',page:'',questionNo:questionNo.slice(0,40),addedAt:date,firstEligibleAt:add(date,7),active:false,successStage:0,lastResult:null,lastAttemptAt:'',nextDueAt:'',mastered:false,history:[]});vaultText=' · Kasaya da eklendi.'}else vaultText=' · Kasada zaten vardı.'
  }
  save();$('mathAnalysisNotice').textContent=(existing?'Analiz güncellendi.':'Analiz kaydedildi.')+(origin==='unseen'?' · İşlenmemiş konu olarak performans hesabı dışında tutuluyor.':'')+vaultText;$('mathAnalysisQuestionNo').value='';$('mathAnalysisTopic').value='';$('mathAnalysisMinutes').value='';renderQuestionVault();renderMocks();$('mathAnalysisQuestionNo').focus();
 }
@@ -1485,6 +1635,7 @@ function appendPlanNoteEditor(card,day,key){
 
 
 
+const VAULT_DIFFICULTIES={medium:'🟡 Orta',hard:'🟠 Zor',brutal:'🔴 İnsafsız'};
 const VAULT_SUBJECTS={
  mathStudy:'TYT Matematik',problem:'Problem',geo:'Geometri',physics:'TYT Fizik',chem:'TYT Kimya',bio:'TYT Biyoloji',
  turkishStudy:'Türkçe',grammar:'Dil Bilgisi',geoTYT:'TYT Coğrafya',hist:'TYT Tarih',
@@ -1528,6 +1679,7 @@ function normalizeQuestionVault(raw){
    lastAttemptAt:validDay(q.lastAttemptAt)?q.lastAttemptAt:'',nextDueAt:validDay(q.nextDueAt)?q.nextDueAt:'',
    mastered,history
   };
+  if(Object.hasOwn(VAULT_DIFFICULTIES,q.difficulty))common.difficulty=q.difficulty;
   if(typeof q.masteryCelebratedAt==='string'&&Number.isFinite(Date.parse(q.masteryCelebratedAt)))common.masteryCelebratedAt=q.masteryCelebratedAt;
   if(sourceType==='mock'){
    const subject=VAULT_SUBJECTS[q.subject]?q.subject:'mathStudy';
@@ -1601,18 +1753,25 @@ function vaultDueText(q){
  return 'Sonraki: '+fmt(q.nextDueAt);
 }
 function vaultDueClass(q){return q.active&&q.nextDueAt<today()?'late':q.active&&q.nextDueAt===today()?'today':'future'}
+function vaultMatchesDifficulty(q){const filter=$('vaultFilterDifficulty')?.value||'';return !filter||(filter==='unknown'?!Object.hasOwn(VAULT_DIFFICULTIES,q.difficulty):q.difficulty===filter)}
+function setVaultDifficulty(id,value){
+ if(COACH_MODE||value&&!Object.hasOwn(VAULT_DIFFICULTIES,value))return false;
+ const q=vaultQuestions().find(q=>q.id===id);if(!q)return false;
+ if(value)q.difficulty=value;else delete q.difficulty;save();renderQuestionVault();return true;
+}
 function vaultMakeQuestion(q,selectable=false,showDelete=false){
- const wrap=document.createElement('div');wrap.className='vaultQuestion'+(selectable?' selectable':'');
+ const wrap=document.createElement('div');wrap.className='vaultQuestion'+(selectable?' selectable':'');wrap.dataset.questionId=q.id;
  if(selectable){
   const check=document.createElement('input');check.type='checkbox';check.checked=vaultSelectedReady.has(q.id);check.disabled=COACH_MODE;
   check.onchange=()=>{if(check.checked)vaultSelectedReady.add(q.id);else vaultSelectedReady.delete(q.id);renderVaultSelectionCount()};wrap.append(check);
  }else{const dot=document.createElement('i');dot.className='vaultDot '+vaultState(q).key;dot.title=vaultState(q).label;wrap.append(dot)}
  const body=document.createElement('div');const head=document.createElement('div');head.className='vaultQuestionHead';
- const title=document.createElement('strong');title.className='vaultRef';title.textContent=vaultQuestionLabel(q);head.append(title);body.append(head);
+ const title=document.createElement('strong');title.className='vaultRef';title.textContent=vaultQuestionLabel(q);head.append(title);const difficulty=document.createElement('span');difficulty.className='vaultDifficultyBadge';difficulty.textContent=VAULT_DIFFICULTIES[q.difficulty]||'Zorluk atanmadı';head.append(difficulty);body.append(head);
  const origin=document.createElement('div');origin.className='vaultOrigin';origin.textContent=vaultOriginText(q);body.append(origin);
  const sub=document.createElement('div');sub.className='vaultSub';
  sub.textContent=vaultSubjectLabel(vaultQuestionSubject(q))+' · '+q.topic+' · '+vaultState(q).label+(vaultSourceIsMock(q)?' · '+(MOCK_VAULT_REASON[q.originStatus]||'Deneme'):'');
  body.append(sub);
+ if(!COACH_MODE){const select=document.createElement('select');select.className='vaultDifficultySelect';select.setAttribute('aria-label','Zorluk · '+vaultQuestionLabel(q));select.add(new Option('Zorluk atanmadı',''));for(const [key,label] of Object.entries(VAULT_DIFFICULTIES))select.add(new Option(label,key));select.value=q.difficulty||'';select.onchange=()=>setVaultDifficulty(q.id,select.value);body.append(select)}
  const due=document.createElement('div');due.className='vaultDue '+vaultDueClass(q);due.textContent=vaultDueText(q);body.append(due);wrap.append(body);
  if(showDelete&&!COACH_MODE){const actions=document.createElement('div');actions.className='actions';const del=document.createElement('button');del.type='button';del.textContent='Sil';del.onclick=()=>deleteVaultQuestion(q.id);actions.append(del);wrap.append(actions)}
  return wrap;
@@ -1630,7 +1789,7 @@ function renderVaultFilters(){
 function filteredVaultReady(){
  const s=$('vaultFilterSubject')?.value||'',b=$('vaultFilterBook')?.value||'',topic=($('vaultFilterTopic')?.value||'').trim().toLocaleLowerCase('tr-TR');
  return vaultReadyQuestions().filter(q=>{
-  return (!s||vaultQuestionSubject(q)===s)&&(!b||(q.sourceType==='book'&&q.bookId===b))&&(!topic||q.topic.toLocaleLowerCase('tr-TR').includes(topic));
+  return vaultMatchesDifficulty(q)&&(!s||vaultQuestionSubject(q)===s)&&(!b||(q.sourceType==='book'&&q.bookId===b))&&(!topic||q.topic.toLocaleLowerCase('tr-TR').includes(topic));
  });
 }
 function renderVaultReady(){
@@ -1641,9 +1800,9 @@ function renderVaultReady(){
  renderVaultSelectionCount();
 }
 function renderVaultDue(){
- const list=$('vaultDueList');if(!list)return;const due=vaultDueQuestions();list.replaceChildren();
+ const list=$('vaultDueList');if(!list)return;const due=vaultDueQuestions().filter(vaultMatchesDifficulty);list.replaceChildren();
  $('vaultStartDue').disabled=COACH_MODE||!due.length;
- if(!due.length){const box=document.createElement('div');box.className='vaultEmpty';box.textContent='Bugün zorunlu tekrarın yok. Mavi Serbest Havuz’dan istediğin soruları seçebilirsin.';list.append(box);return}
+ if(!due.length){const box=document.createElement('div');box.className='vaultEmpty';box.textContent=$('vaultFilterDifficulty').value?'Bu zorluk filtresinde gösterilecek tekrar yok. Diğer tekrarların takvimde korunur.':'Bugün zorunlu tekrarın yok. Mavi Serbest Havuz’dan istediğin soruları seçebilirsin.';list.append(box);return}
  for(const q of due)list.append(vaultMakeQuestion(q,false,false));
 }
 function renderVaultSummary(){
@@ -1812,14 +1971,14 @@ function renderVaultBookMap(){
   if(qs.length){
    const details=document.createElement('details');details.className='vaultBookQuestions';const summary=document.createElement('summary');summary.textContent='Soruları göster / düzenle';details.append(summary);
    const sorted=[...qs].sort((a,b)=>a.topic.localeCompare(b.topic,'tr')||Number(a.page)-Number(b.page)||String(a.questionNo).localeCompare(String(b.questionNo),'tr'));
-   for(const q of sorted)details.append(vaultMakeQuestion(q,false,true));card.append(details);
+   for(const q of sorted.filter(vaultMatchesDifficulty))details.append(vaultMakeQuestion(q,false,true));card.append(details);
   }
   map.append(card);
  }
 }
 function renderVaultMockMap(){
  const map=$('vaultMockMap');if(!map)return;map.replaceChildren();
- const qs=vaultQuestions().filter(vaultSourceIsMock);
+ const qs=vaultQuestions().filter(vaultSourceIsMock).filter(vaultMatchesDifficulty);
  if(!qs.length){const box=document.createElement('div');box.className='vaultEmpty';box.textContent='Henüz deneme sorusu kasaya eklenmedi.';map.append(box);return}
  const groups=new Map();
  for(const q of qs){const key=q.mockId||[q.mockType,q.mockDate,q.mockName].join('|');if(!groups.has(key,))groups.set(key,[]);groups.get(key).push(q)}
@@ -1852,6 +2011,7 @@ function renderVaultSession(){
  $('vaultSessionRef').textContent=vaultSourceIsMock(q)?'Deneme · S.'+(q.questionNo||'—'):'s.'+(q.page||'—')+' · S.'+(q.questionNo||'—');
  if(vaultSourceIsMock(q))$('vaultSessionSub').textContent=vaultMockName(q)+' · '+fmt(q.mockDate)+' · '+vaultSubjectLabel(q.subject)+' · '+q.topic;
  else{const b=vaultBook(q.bookId);$('vaultSessionSub').textContent=(b?b.name:'Kaynak')+' · '+q.topic+' · '+vaultSubjectLabel(b?.subject)}
+ $('vaultSessionSub').textContent+=' · '+(VAULT_DIFFICULTIES[q.difficulty]||'Zorluk atanmadı');
 }
 function renderQuestionVault(){
  if(!$('vaultTab'))return;renderVaultSummary();renderVaultDue();renderVaultReady();renderVaultBookOptions();renderSourceProgress();renderVaultTopicMap();renderVaultBookMap();renderVaultMockMap();renderVaultSession();
@@ -1867,7 +2027,7 @@ function addVaultBook(event){
  if(rawTotal!==''&&(!Number.isInteger(totalUnits)||totalUnits<1||totalUnits>10000)){alert('Toplam adet 1–10.000 arasında tam sayı olmalı.');return}
  const id=vaultId('book');state.questionVault.books.push({id,subject,name:name.slice(0,160),createdAt:today(),progressUnit,totalUnits,completedUnits:0,progressUpdatedAt:totalUnits?today():''});vaultLastBookId=id;$('vaultBookName').value='';$('vaultBookTotal').value='';save();renderQuestionVault();
 }
-function createBookVaultQuestions({bookId,topic,page,learned,questionNos}){
+function createBookVaultQuestions({bookId,topic,page,learned,questionNos,difficulty='medium'}){
  if(!vaultBook(bookId)||!topic||!page||!validDay(learned))return {added:0,skipped:0,error:'Kitap, konu, tarih ve sayfa alanlarını kontrol et.'};
  const nums=(Array.isArray(questionNos)?questionNos:String(questionNos||'').split(/[;,]+/)).map(x=>String(x).trim()).filter(Boolean);
  if(!nums.length)return {added:0,skipped:0,error:'En az bir soru numarası gir.'};
@@ -1875,13 +2035,13 @@ function createBookVaultQuestions({bookId,topic,page,learned,questionNos}){
  for(const questionNo of nums){
   const duplicate=vaultQuestions().some(q=>q.sourceType!=='mock'&&q.bookId===bookId&&q.topic.toLocaleLowerCase('tr-TR')===topic.toLocaleLowerCase('tr-TR')&&q.page===page&&q.questionNo===questionNo);
   if(duplicate){skipped++;continue}
-  state.questionVault.questions.push({id:vaultId('q'),sourceType:'book',bookId,topic:topic.slice(0,120),page:page.slice(0,20),questionNo:questionNo.slice(0,40),addedAt:learned,firstEligibleAt:add(learned,7),active:false,successStage:0,lastResult:null,lastAttemptAt:'',nextDueAt:'',mastered:false,history:[]});added++;
+  state.questionVault.questions.push({id:vaultId('q'),...(Object.hasOwn(VAULT_DIFFICULTIES,difficulty)?{difficulty}:{}),sourceType:'book',bookId,topic:topic.slice(0,120),page:page.slice(0,20),questionNo:questionNo.slice(0,40),addedAt:learned,firstEligibleAt:add(learned,7),active:false,successStage:0,lastResult:null,lastAttemptAt:'',nextDueAt:'',mastered:false,history:[]});added++;
  }
  vaultLastBookId=bookId;vaultLastTopic=topic;return {added,skipped,error:''};
 }
 function addVaultQuestions(event){
  event.preventDefault();if(COACH_MODE)return;
- const result=createBookVaultQuestions({bookId:$('vaultQuestionBook').value,topic:$('vaultQuestionTopic').value.trim(),page:$('vaultPage').value.trim(),learned:$('vaultLearnedDate').value,questionNos:$('vaultQuestionNo').value});
+ const result=createBookVaultQuestions({bookId:$('vaultQuestionBook').value,topic:$('vaultQuestionTopic').value.trim(),page:$('vaultPage').value.trim(),learned:$('vaultLearnedDate').value,questionNos:$('vaultQuestionNo').value,difficulty:$('vaultDifficulty').value});
  if(result.error){alert(result.error);return}
  $('vaultPage').value='';$('vaultQuestionNo').value='';save();renderQuestionVault();renderDailyVaultShortcut();
  $('vaultQuestionNotice').textContent=result.added+' soru kasaya eklendi.'+(result.skipped?' '+result.skipped+' tekrar kayıt atlandı.':'');$('vaultPage').focus();
@@ -1937,7 +2097,7 @@ function openQuickVault(){
 function closeQuickVault(){$('quickVaultModal').classList.remove('show')}
 function saveQuickVault(event){
  event.preventDefault();if(COACH_MODE)return;
- const result=createBookVaultQuestions({bookId:$('quickVaultBook').value,topic:$('quickVaultTopic').value.trim(),page:$('quickVaultPage').value.trim(),learned:$('quickVaultDate').value,questionNos:$('quickVaultQuestionNo').value});
+ const result=createBookVaultQuestions({bookId:$('quickVaultBook').value,topic:$('quickVaultTopic').value.trim(),page:$('quickVaultPage').value.trim(),learned:$('quickVaultDate').value,questionNos:$('quickVaultQuestionNo').value,difficulty:$('quickVaultDifficulty').value});
  if(result.error){$('quickVaultNotice').textContent=result.error;return}
  $('quickVaultPage').value='';$('quickVaultQuestionNo').value='';save();renderQuestionVault();renderDailyVaultShortcut();fillQuickVaultBooks();
  $('quickVaultNotice').textContent=result.added+' soru eklendi.'+(result.skipped?' '+result.skipped+' tekrar kayıt atlandı.':'');$('quickVaultPage').focus();
@@ -1966,7 +2126,7 @@ function saveMockVaultQuestions(event){
   const duplicate=vaultQuestions().some(q=>q.sourceType==='mock'&&q.mockId===exam.id&&q.subject===subject&&q.questionNo===questionNo);
   if(duplicate){skipped++;continue}
   state.questionVault.questions.push({
-   id:vaultId('q'),sourceType:'mock',bookId:'',mockId:exam.id,mockType:exam.type,mockName:exam.name||'',mockDate:exam.date,subject,
+   id:vaultId('q'),difficulty:$('mockVaultDifficulty').value,sourceType:'mock',bookId:'',mockId:exam.id,mockType:exam.type,mockName:exam.name||'',mockDate:exam.date,subject,
    originStatus:MOCK_VAULT_REASON[reason]?reason:'wrong',topic:topic.slice(0,120),page:'',questionNo:questionNo.slice(0,40),
    addedAt:learned,firstEligibleAt:add(learned,7),active:false,successStage:0,lastResult:null,lastAttemptAt:'',nextDueAt:'',mastered:false,history:[]
   });added++;
@@ -2049,14 +2209,14 @@ function initTeacherQuestions(){
 function initQuestionVault(){
  if(!$('vaultTab'))return;
  $('closeVaultMasteryCelebration').onclick=closeVaultMasteryCelebration;document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!$('vaultMasteryCelebration').hidden)closeVaultMasteryCelebration()});
- $('vaultBookForm').onsubmit=addVaultBook;$('vaultQuestionForm').onsubmit=addVaultQuestions;
+ $('vaultFilterDifficulty').onchange=()=>renderQuestionVault();$('vaultBookForm').onsubmit=addVaultBook;$('vaultQuestionForm').onsubmit=addVaultQuestions;
  $('vaultQuestionBook').onchange=()=>{vaultLastBookId=$('vaultQuestionBook').value;vaultLastTopic='';$('vaultQuestionTopic').value='';updateVaultTopicOptions()};
  for(const id of ['vaultFilterSubject','vaultFilterBook'])$(id).onchange=()=>renderVaultReady();$('vaultFilterTopic').oninput=()=>renderVaultReady();
  $('vaultFilterSubject').onchange=()=>{renderVaultFilters();renderVaultReady()};
  $('vaultRandom20').onclick=()=>{vaultSelectedReady=new Set(shuffledVaultReady(filteredVaultReady()).slice(0,20).map(q=>q.id));renderVaultReady()};
  $('vaultClearSelection').onclick=()=>{vaultSelectedReady.clear();renderVaultReady()};
  $('vaultStartSelected').onclick=()=>startVaultSession([...vaultSelectedReady]);
- $('vaultStartDue').onclick=()=>startVaultSession(vaultDueQuestions().map(q=>q.id));
+ $('vaultStartDue').onclick=()=>startVaultSession(vaultDueQuestions().filter(vaultMatchesDifficulty).map(q=>q.id));
  $('vaultStopSession').onclick=()=>{vaultSessionIds=[];vaultSessionIndex=0;renderVaultSession()};
  $('vaultSolved').onclick=()=>recordVaultResult('solved');$('vaultPartial').onclick=()=>recordVaultResult('partial');$('vaultFailed').onclick=()=>recordVaultResult('failed');
  $('vaultLearnedDate').value=today();
@@ -2070,12 +2230,12 @@ function initQuestionVault(){
 
 
 async function init(){
- renderTabs();load();initV32();initV33();initQuestionVault();initTeacherQuestions();selected=today()<START?START:today();setCheckinButtons();cloudUi();$('studySubjectSummary').ontoggle=renderStudySubjectTimes;$('addStudySession').onclick=()=>openStudySessionEditor();$('closeStudySessionEditor').onclick=closeStudySessionEditor;$('studySessionForm').onsubmit=saveStudySessionEdit;$('studySessionEditor').onclick=e=>{if(e.target===$('studySessionEditor'))closeStudySessionEditor()};document.addEventListener('keydown',e=>{if(e.key==='Escape')closeStudySessionEditor()});$('studyTimerStart').onclick=openStudyTimerTaskPicker;$('studyTimerPause').onclick=toggleStudyTimerPause;$('studyTimerStop').onclick=stopStudyTimer;$('closeStudyTimerTaskModal').onclick=closeStudyTimerTaskPicker;$('studyTimerTaskModal').onclick=e=>{if(e.target===$('studyTimerTaskModal'))closeStudyTimerTaskPicker()};render();setInterval(()=>{renderStudyTimerClock();updateMathFinishClocks()},1000);
+ renderTabs();load();initV32();initV33();initLockInV334();initQuestionVault();initTeacherQuestions();selected=today()<START?START:today();setCheckinButtons();cloudUi();$('studySubjectSummary').ontoggle=renderStudySubjectTimes;$('addStudySession').onclick=()=>openStudySessionEditor();$('closeStudySessionEditor').onclick=closeStudySessionEditor;$('studySessionForm').onsubmit=saveStudySessionEdit;$('studySessionEditor').onclick=e=>{if(e.target===$('studySessionEditor'))closeStudySessionEditor()};document.addEventListener('keydown',e=>{if(e.key==='Escape')closeStudySessionEditor()});$('studyTimerStart').onclick=openStudyTimerTaskPicker;$('studyTimerPause').onclick=toggleStudyTimerPause;$('studyTimerStop').onclick=stopStudyTimer;$('closeStudyTimerTaskModal').onclick=closeStudyTimerTaskPicker;$('studyTimerTaskModal').onclick=e=>{if(e.target===$('studyTimerTaskModal'))closeStudyTimerTaskPicker()};render();setInterval(()=>{renderStudyTimerClock();updateMathFinishClocks()},1000);
  if(COACH_MODE){await loadCoachCloud();setInterval(loadCoachCloud,30000)}
  else if(ownerToken){await pullOwnerCloud();render()}
 }
 init();
 </script>
-<!-- deploy-refresh: 2026-11-17-v333 -->
+<!-- deploy-refresh: 2026-11-17-v334 -->
 </body>
 </html>
