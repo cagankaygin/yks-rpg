@@ -104,7 +104,7 @@ button,input,select,textarea{font:inherit}button{min-height:44px;display:inline-
 <section class="panel"><div class="top"><div><h2>🏁 Matematik Bitiriş Süresi</h2><p class="notice">Denemede matematiğe ayırdığın süre + süre bitince bakamadığın soruları çözmek için kullandığın net ek süre. Video çözümü ve ayrıntılı analiz bu kronometreye dahil değildir. Her denemede toplam süreyi aşağı çekmeye çalış.</p></div></div><div class="stats" id="mathFinishSummary"></div><div id="mathFinishTrend"></div></section>
 <section class="panel"><div class="top"><div><h2>🧠 Matematik Analiz Gücü</h2><p class="notice">Yanlış/boş sorularda asıl hedef: çözümü görmeden geri dönebildiğin soru oranını artırmak. Süreyi uygulama kronometresiyle veya saatinle tutup manuel girebilirsin.</p></div></div><div class="stats" id="mathAnalysisSummary"></div><div id="mathAnalysisTrend"></div></section>
 <section class="panel"><h2>🧠 Hata Profili</h2><div id="errorProfile"></div></section>
-<section class="panel"><h2>XP işlem geçmişi · Lock-In</h2><p class="notice">Ödüller günlük en fazla 55 XP. Onaylanan sosyal programı yarıda bırakma cezası bakiyeden düşer. Haftalık ve uzun dönem XP özetleri Lock-In net değişimini içerir.</p><div id="xpTransactions"></div></section><section class="panel"><h2>📈 Haftalık geçmiş</h2><div class="actions"><button id="prev">← Önceki hafta</button><button id="current">Bu hafta</button><button id="following">Sonraki hafta →</button></div><div id="history"></div></section>
+<section class="panel"><h2>XP işlem geçmişi · Lock-In</h2><p class="notice">Ortak kuralların ödülü günlük en fazla 55 XP; Ev modunun televizyon kuralı ayrıca günde bir kez 10 XP verir. Onaylanan sosyal programı yarıda bırakma cezası bakiyeden düşer. Haftalık ve uzun dönem XP özetleri Lock-In net değişimini içerir.</p><div id="xpTransactions"></div></section><section class="panel"><h2>📈 Haftalık geçmiş</h2><div class="actions"><button id="prev">← Önceki hafta</button><button id="current">Bu hafta</button><button id="following">Sonraki hafta →</button></div><div id="history"></div></section>
 </div>
 
 <div id="shopTab" class="tab" role="tabpanel" aria-labelledby="nav-shopTab"><div class="sectionIntro"><span class="overline">EMEĞİNİ ÖDÜLLENDİR</span><h2>🛍️ Ödül mağazası</h2><p>Biriktirdiğin XP ile kendine küçük molalar ve yeni hedefler aç.</p></div>
@@ -120,7 +120,7 @@ button,input,select,textarea{font:inherit}button{min-height:44px;display:inline-
 </div>
 <div id="lockInTab" class="tab" role="tabpanel" aria-labelledby="nav-lockInTab"><div class="sectionIntro"><span class="overline">KENDİ ÇALIŞMA DÜZENİN</span><h2>🔒 Lock-In</h2><label>Gün <input id="lockInDate" type="date" class="viewControl"></label></div><section class="panel lockInPanel" id="lockInPanel">
   <div class="lockInTop"><div><span class="overline">YKS İZOLASYON MODU</span><h2>🔒 Lock-In</h2></div><span class="pill" id="lockInStatus">Kapalı</span></div>
-  <p class="notice">Üç ortamda da aynı kurallar geçerli. Planını değiştirmeden periyotlarını kendin oluştur.</p>
+  <p class="notice">Ortak kurallar üç ortamda da geçerli. Planını değiştirmeden periyotlarını kendin oluştur.</p>
   <div class="lockInModes" id="lockInModes">
     <button type="button" class="lockInMode" data-lockin-env="university"><b>🏛️ Üniversite</b><small>Aynı kurallar · Kendi periyotların</small></button>
     <button type="button" class="lockInMode" data-lockin-env="bilim"><b>📚 Bilim</b><small>Aynı kurallar · Kendi periyotların</small></button>
@@ -349,7 +349,7 @@ button,input,select,textarea{font:inherit}button{min-height:44px;display:inline-
   </div>
 </div>
 
-<div class="modal" id="lockInEvaluation" role="dialog" aria-modal="true" aria-labelledby="lockInEvaluationTitle"><form class="modalBox" id="lockInEvaluationForm"><div class="top"><h2 id="lockInEvaluationTitle">🔒 Lock-In değerlendirmesi</h2><button type="button" id="cancelLockInEvaluation">Vazgeç</button></div><p class="notice">Uyduğun kuralları işaretle. Her kuralın ödülü günde yalnızca bir kez, tüm modlar toplamında en fazla 55 XP kazanılır.</p><div id="lockInChecklist"></div><div class="divider"></div><label class="lockCheck"><input id="lockInPenalty" type="checkbox"><span>Arkadaşlarımla takılmak için günlük ders programımı yarıda bıraktım. <b>−1500 XP</b></span></label><p class="notice">Acil durumlar, sağlık sorunları ve zorunlu program değişiklikleri ceza kapsamında değildir. İşaretlemezsen ceza uygulanmaz.</p><p id="lockInEvaluationTotals" class="notice" aria-live="polite"></p><button type="submit" class="primary">Değerlendirmeyi kaydet ve modu kapat</button></form></div>
+<div class="modal" id="lockInEvaluation" role="dialog" aria-modal="true" aria-labelledby="lockInEvaluationTitle"><form class="modalBox" id="lockInEvaluationForm"><div class="top"><h2 id="lockInEvaluationTitle">🔒 Lock-In değerlendirmesi</h2><button type="button" id="cancelLockInEvaluation">Vazgeç</button></div><p class="notice" id="lockInEvaluationNotice">Uyduğun kuralları işaretle. Her kuralın ödülü günde yalnızca bir kez kazanılır.</p><div id="lockInChecklist"></div><div class="divider"></div><label class="lockCheck"><input id="lockInPenalty" type="checkbox"><span>Arkadaşlarımla takılmak için günlük ders programımı yarıda bıraktım. <b>−1500 XP</b></span></label><p class="notice">Acil durumlar, sağlık sorunları ve zorunlu program değişiklikleri ceza kapsamında değildir. İşaretlemezsen ceza uygulanmaz.</p><p id="lockInEvaluationTotals" class="notice" aria-live="polite"></p><button type="submit" class="primary">Değerlendirmeyi kaydet ve modu kapat</button></form></div>
 <div class="modal" id="studyTimerTaskModal">
   <div class="modalBox">
     <div class="top"><div><span class="overline">OTURUM BAŞLAT</span><h2>⏱️ Bu oturumda hangi dersi çalışıyorsun?</h2></div><button id="closeStudyTimerTaskModal" type="button">Kapat</button></div>
@@ -550,7 +550,7 @@ function normalizeLockIn(raw){
   const env=Object.hasOwn(LOCKIN_ENVS,v.env)?v.env:'university',d={env,active:!!v.active,startedAt:typeof v.startedAt==='string'?v.startedAt:''};
   if(typeof v.sessionId==='string')d.sessionId=v.sessionId;
   if(Array.isArray(v.periods)){const seen=new Set(),slots=new Set();d.periods=v.periods.filter(p=>p&&typeof p.id==='string'&&p.id&&!seen.has(p.id)&&(seen.add(p.id),true)).map(p=>({id:p.id,slots:(Array.isArray(p.slots)?p.slots:[]).filter(k=>validPlanSlotForDay(day,k)&&!slots.has(k)&&(slots.add(k),true))}));d.mealAfter=d.periods.some(p=>p.id===v.mealAfter)?v.mealAfter:''}
-  if(Array.isArray(v.evaluations)){const seen=new Set();d.evaluations=v.evaluations.filter(e=>e&&typeof e.id==='string'&&e.id&&!seen.has(e.id)&&(seen.add(e.id),true)).map(e=>({id:e.id,at:typeof e.at==='string'?e.at:'',env:Object.hasOwn(LOCKIN_ENVS,e.env)?e.env:env,checks:Object.fromEntries(Object.keys(LOCKIN_REWARD_RULES).map(k=>[k,!!e.checks?.[k]&&!(e.penalty&&k==='social')])),awarded:[...new Set((Array.isArray(e.awarded)?e.awarded:[]).filter(k=>Object.hasOwn(LOCKIN_REWARD_RULES,k)&&!(e.penalty&&k==='social')))],penalty:!!e.penalty,...(e.penalty?{penaltyReason:LOCKIN_PENALTY_REASON}:{})}))}
+  if(Array.isArray(v.evaluations)){const seen=new Set();d.evaluations=v.evaluations.filter(e=>e&&typeof e.id==='string'&&e.id&&!seen.has(e.id)&&(seen.add(e.id),true)).map(e=>({id:e.id,at:typeof e.at==='string'?e.at:'',env:Object.hasOwn(LOCKIN_ENVS,e.env)?e.env:env,checks:Object.fromEntries(lockInRuleKeys(Object.hasOwn(LOCKIN_ENVS,e.env)?e.env:env).filter(k=>k!=='tv'||Object.hasOwn(e.checks||{},k)).map(k=>[k,!!e.checks?.[k]&&!(e.penalty&&k==='social')])),awarded:[...new Set((Array.isArray(e.awarded)?e.awarded:[]).filter(k=>lockInRuleAllowed(k,Object.hasOwn(LOCKIN_ENVS,e.env)?e.env:env)&&!(e.penalty&&k==='social')))],penalty:!!e.penalty,...(e.penalty?{penaltyReason:LOCKIN_PENALTY_REASON}:{})}))}
   out.days[day]=d;
  }
  return out;
@@ -826,9 +826,11 @@ function renderStudyWeekTimes(w){
  $('weeklyStudyTotal').textContent=formatStudyDuration(total);
 }
 const LOCKIN_ENVS={university:'Üniversite',bilim:'Bilim',home:'Ev'};
-const LOCKIN_REWARD_RULES={phone:{text:'Dersler bitene kadar telefona bakmadım.',xp:10},period:{text:'Periyotlar bitmeden uzun mola vermedim.',xp:10},breaks:{text:'Belirlenen mola sürelerini aşmadım.',xp:15},social:{text:'Sosyal sebeplerle programımı yarıda bırakmadım.',xp:20}};
+const LOCKIN_REWARD_RULES={phone:{text:'Dersler bitene kadar telefona bakmadım.',xp:10},period:{text:'Periyotlar bitmeden uzun mola vermedim.',xp:10},breaks:{text:'Belirlenen mola sürelerini aşmadım.',xp:15},social:{text:'Sosyal sebeplerle programımı yarıda bırakmadım.',xp:20},tv:{text:'Günlük ders programım tamamlanmadan televizyon izlemedim.',xp:10,env:'home'}};
 const LOCKIN_PENALTY_REASON='Arkadaşlarımla takılmak için günlük ders programımı yarıda bıraktım.';
 const LOCKIN_RULES=['📵 Dersler bitene kadar telefona bakma.','⏱️ Periyot içindeki dersler arasında 5 dk, periyotlar arasında 25 dk mola.','🍽️ Seçtiğin periyottan sonra 60 dk yemek molası; süre aşımını takip et.','🎯 Programını sosyal sebeplerle yarıda bırakma. Acil durumlar, sağlık sorunları ve zorunlu değişiklikler ceza kapsamında değildir.'];
+function lockInRuleAllowed(key,env){const rule=Object.hasOwn(LOCKIN_REWARD_RULES,key)?LOCKIN_REWARD_RULES[key]:null;return !!rule&&(!rule.env||rule.env===env)}
+function lockInRuleKeys(env){return Object.keys(LOCKIN_REWARD_RULES).filter(key=>lockInRuleAllowed(key,env))}
 function lockInDay(day=selected){return state.lockIn?.days?.[day]||null}
 function ensureLockInDay(day=selected){state.lockIn??={days:{}};state.lockIn.days??={};return state.lockIn.days[day]??={env:'university',active:false,startedAt:''}}
 function selectedLockInEnv(){return lockInDay(selected)?.env||'university'}
@@ -836,7 +838,7 @@ function lockInDayLedger(day){
  const awarded=new Set(),seen=new Set(),transactions=[];let reward=0,penalty=0;
  for(const e of lockInDay(day)?.evaluations||[]){
   if(seen.has(e.id))continue;seen.add(e.id);
-  for(const key of e.awarded||[]){if(!Object.hasOwn(LOCKIN_REWARD_RULES,key)||awarded.has(key)||e.penalty&&key==='social')continue;awarded.add(key);const rule=LOCKIN_REWARD_RULES[key];reward+=rule.xp;transactions.push({id:e.id,at:e.at,day,env:e.env,xp:rule.xp,reason:rule.text})}
+  for(const key of e.awarded||[]){if(!lockInRuleAllowed(key,e.env)||awarded.has(key)||e.penalty&&key==='social')continue;awarded.add(key);const rule=LOCKIN_REWARD_RULES[key];reward+=rule.xp;transactions.push({id:e.id,at:e.at,day,env:e.env,xp:rule.xp,reason:rule.text})}
   if(e.penalty){penalty+=1500;transactions.push({id:e.id,at:e.at,day,env:e.env,xp:-1500,reason:LOCKIN_PENALTY_REASON})}
  }
  return {reward,penalty,net:reward-penalty,awarded,transactions};
@@ -850,7 +852,8 @@ function stopLockIn(){
  if(COACH_MODE||selected!==today()||!lockInDay()?.active)return;
  const d=ensureLockInDay();if(!d.sessionId){d.sessionId=vaultId('lock');save()}
  lockInEvaluation={day:selected,id:d.sessionId};$('lockInChecklist').replaceChildren();
- for(const [key,rule] of Object.entries(LOCKIN_REWARD_RULES)){
+ $('lockInEvaluationNotice').textContent='Uyduğun kuralları işaretle. Her kuralın ödülü günde yalnızca bir kez kazanılır. '+(d.env==='home'?'Ev modunda ortak kurallar 55 XP, televizyon kuralı 10 XP; toplam en fazla 65 XP.':'Ortak kurallar tüm modlar toplamında günde en fazla 55 XP.');
+ for(const key of lockInRuleKeys(d.env)){const rule=LOCKIN_REWARD_RULES[key];
   const label=document.createElement('label');label.className='lockCheck';const input=document.createElement('input');input.type='checkbox';input.dataset.lockRule=key;
   input.onchange=()=>{if(key==='social'&&input.checked)$('lockInPenalty').checked=false;renderLockInEvaluation()};
   const text=document.createElement('span');text.textContent=rule.text+' +'+rule.xp+' XP'+(lockInDayLedger(selected).awarded.has(key)?' · Bugünkü ödül alındı':'');label.append(input,text);$('lockInChecklist').append(label);
@@ -861,7 +864,7 @@ function lockInEvaluationValues(){
  const checks={};for(const input of $('lockInChecklist').querySelectorAll('[data-lock-rule]'))checks[input.dataset.lockRule]=input.checked;
  const penalty=$('lockInPenalty').checked;if(penalty)checks.social=false;
  const claimed=lockInDayLedger(lockInEvaluation?.day||selected).awarded;
- const awarded=Object.keys(LOCKIN_REWARD_RULES).filter(k=>checks[k]&&!claimed.has(k));
+ const awarded=lockInRuleKeys(lockInDay(lockInEvaluation?.day||selected)?.env).filter(k=>checks[k]&&!claimed.has(k));
  return {checks,penalty,awarded,reward:awarded.reduce((n,k)=>n+LOCKIN_REWARD_RULES[k].xp,0)};
 }
 function renderLockInEvaluation(){if(!lockInEvaluation)return;const e=lockInEvaluationValues();$('lockInEvaluationTotals').textContent='Kazanılacak: +'+e.reward+' XP · Ceza: '+(e.penalty?'−1500':'0')+' XP · Net: '+(e.reward-(e.penalty?1500:0))+' XP'}
@@ -911,7 +914,7 @@ function renderLockIn(){
  for(const b of $('lockInModes').querySelectorAll('[data-lockin-env]')){b.classList.toggle('active',b.dataset.lockinEnv===env);b.disabled=COACH_MODE||selected!==today()}
  const rules=$('lockInRules');rules.replaceChildren();for(const txt of LOCKIN_RULES){const row=document.createElement('div');row.className='lockInRule';row.textContent=txt;rules.append(row)}
  $('lockInStart').disabled=COACH_MODE||selected!==today()||active;$('lockInStop').disabled=COACH_MODE||selected!==today()||!active;
- const ledger=lockInDayLedger(selected);$('lockInState').textContent=(selected!==today()?'Geçmiş gün · Salt okunur. ':active?'Mod açık. ':'Ortamı seç ve modu aç. ')+'Bugünkü ödül: '+ledger.reward+'/55 XP · Ceza: '+ledger.penalty+' XP';
+ const ledger=lockInDayLedger(selected);$('lockInState').textContent=(selected!==today()?'Geçmiş gün · Salt okunur. ':active?'Mod açık. ':'Ortamı seç ve modu aç. ')+'Bugünkü ödül: '+ledger.reward+'/'+(env==='home'||ledger.awarded.has('tv')?65:55)+' XP · Ceza: '+ledger.penalty+' XP';
  renderLockPeriods();renderLockInTransactions($('lockInHistory'),selected);renderLockInTransactions($('xpTransactions'));renderStudyBreakClock();
 }
 function initLockInV334(){

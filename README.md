@@ -105,7 +105,7 @@ The suite uses isolated fixtures, mocked cloud RPCs and a 360px viewport.
 
 ## Lock-In, breaks and question difficulty (V3.34)
 
-Lock-In has its own tab. Bilim, University and Home share the same rules; the
+Lock-In has its own tab. Bilim, University and Home share the common rules; the
 daily screen shows a small indicator for today's active mode. Existing dated
 Lock-In records are retained. The owner can assign daily plan slot IDs to any
 number of periods, choose where the 60-minute meal break belongs, and remove a
@@ -122,8 +122,13 @@ in the existing session records and excludes all paused time. Reload, backups
 and Coach Sync preserve both stores; legacy untyped pauses still resume safely.
 Neither working nor taking a break changes task completion or grants XP.
 
-Closing Lock-In opens a self-assessment. Four rules award 10, 10, 15 and 20 XP,
-at most once per rule/day across all environments and restarts. Each active
+Closing Lock-In opens a self-assessment. Four common rules award 10, 10, 15 and
+20 XP, at most once per rule/day across all environments and restarts (55 XP).
+Home additionally offers “Günlük ders programım tamamlanmadan televizyon
+izlemedim.” for 10 XP once per day, bringing the available daily total to 65 XP.
+This `tv` rule is absent from Bilim/University checklists and rewards; both the
+live ledger and import normalization reject TV claims from those environments.
+Old evaluations without a TV field remain unchanged. Each active
 Lock-In session has a unique evaluation ID. Repeated submissions or duplicate
 imported IDs cannot multiply a reward or penalty. Confirming that the student
 abandoned the plan to socialize deducts 1500 XP from the balance. That evaluation
@@ -149,6 +154,7 @@ Run the focused suite with Python Playwright and Chromium:
 
 ```sh
 python tests/test_lockin_protocol.py
+python tests/test_home_tv_rule.py
 ```
 
 Use `--supabase-js /path/to/supabase-browser.js` to use a local TLS-verified
