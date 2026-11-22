@@ -398,7 +398,7 @@ const sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
 let ownerToken=localStorage.getItem(CLOUD_TOKEN_KEY)||'';
 let cloudTimer=null,cloudBusy=false,lastCloudSavedAt=null,suppressCloud=false;
 const DAY=['Pazartesi','Salı','Çarşamba','Perşembe','Cuma','Cumartesi','Pazar'];
-const REWARDS={burger:{name:'🍔 Hamburger',price:800,coupon:true},special:{name:'Special',price:1000,coupon:false},balkaya:{name:'🍽️ Ders sonrası Balkaya',price:1200,coupon:true},gaming:{name:'🎮 Tam oyun gecesi',price:1500,coupon:true},friends:{name:'🧑‍🤝‍🧑 Arkadaşlarla uzun akşam',price:1750,coupon:true},shield:{name:'🛡️ Streak Koruyucu',price:2000,coupon:false}};
+const REWARDS={special:{name:'Special',price:1000,coupon:false},gaming:{name:'🎮 Tam oyun gecesi',price:1500,coupon:true},friends:{name:'🧑‍🤝‍🧑 Arkadaşlarla uzun akşam',price:1750,coupon:true},shield:{name:'🛡️ Streak Koruyucu',price:2000,coupon:false}};
 const T={
  dailyAnalysis:['Analiz',100,'Zor soruları, yanlışları, boşları ve zaman kaybettiren soruları sistemli biçimde analiz et.'],
  paragraph:['Paragraf soru çözümü',40,'Paragraf soruları çöz.'],
