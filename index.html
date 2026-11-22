@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#0e1220">
-<title>YKS RPG V3.34</title>
+<title>YKS RPG V3.35</title>
 <style>
 :root{
  color-scheme:dark;--bg:#0c1019;--surface:#141b28;--surface-raised:#1b2535;--surface-soft:#101722;--border:#2a3547;--text:#edf2fa;--muted:#98a7bc;--accent:#84cbb8;--success:#84cbb8;--warning:#e9be76;--danger:#ef9c9d;--gold:#e9be76;--violet:#b5a1e5;
@@ -64,7 +64,7 @@ button,input,select,textarea{font:inherit}button{min-height:44px;display:inline-
 .vaultDifficultyBadge{font-size:10px;color:var(--muted);padding:3px 7px;border:1px solid var(--border);border-radius:7px;white-space:nowrap}.vaultQuestionHead{flex-wrap:wrap}.vaultDifficultySelect{font-size:11px;padding:5px 8px;margin:6px 0;max-width:100%;min-height:36px}
 .vaultBookActions{display:flex;gap:6px;flex-wrap:wrap}.vaultBookHead{flex-wrap:wrap}.vaultBookHead>div:first-child{min-width:0;overflow-wrap:anywhere}.vaultBookRenameButton{font-size:12px;padding:8px 10px}
 #vaultTab .formGrid>label,#quickVaultForm .formGrid>label,#teacherQuestionForm .formGrid>label{min-width:0}#vaultQuestionBook,#vaultFilterBook,#quickVaultBook,#teacherQuestionBook{min-width:0;width:100%;max-width:100%}.vaultRef{overflow-wrap:anywhere}
-</style>
+ .analysisReportPanel{background:linear-gradient(150deg,#182638,#141b28 55%,#17231f);border-color:#3c615b}.analysisKpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:16px 0 22px}.analysisKpi{display:flex;flex-direction:column;gap:5px;padding:17px;background:#0c1523aa;border:1px solid #ffffff16;border-radius:15px}.analysisKpi small{color:var(--muted)}.analysisKpi strong{font-size:25px;line-height:1.2;color:var(--accent)}.analysisKpi span{font-size:11px;color:var(--muted)}.analysisReportGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}.analysisReportSection{padding:18px;background:#0b1320a6;border:1px solid #ffffff15;border-radius:16px}.analysisReportSection h3{margin-bottom:16px}.analysisReportRow{margin:12px 0}.analysisReportRow .top{font-size:12px;margin-bottom:5px}.analysisReportRow b{color:var(--accent)}.analysisReportTrack{height:7px;border-radius:8px;background:#ffffff15;overflow:hidden}.analysisReportTrack span{display:block;height:100%;border-radius:8px;background:linear-gradient(90deg,#528cba,#84cbb8)}.analysisHistory{margin-top:20px;padding:14px;border:1px solid var(--border);border-radius:14px}.analysisHistory summary{cursor:pointer;font-weight:700}.analysisHistoryList{display:grid;gap:8px;margin-top:12px}.analysisHistoryItem{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;padding:12px;border:1px solid #ffffff14;border-radius:12px}.analysisHistoryItem b{font-size:12px;flex:1 1 180px}.analysisHistoryItem small{flex:2 1 220px}.analysisHistoryItem button{margin-left:auto}.analysisCauseField{display:flex;flex-direction:column;gap:7px;margin-top:14px;color:var(--muted)}@media(max-width:720px){.analysisKpis{grid-template-columns:repeat(2,minmax(0,1fr))}.analysisReportGrid{grid-template-columns:1fr}}\n</style>
 </head>
 <body>
 <main>
@@ -115,7 +115,7 @@ button,input,select,textarea{font:inherit}button{min-height:44px;display:inline-
 <div id="mockTab" class="tab" role="tabpanel" aria-labelledby="nav-mockTab"><div class="sectionIntro"><span class="overline">SONUÇTAN İÇGÖRÜYE</span><h2>📝 Denemeler</h2><p>Netlerini, hata dağılımını ve zaman içindeki gelişimini birlikte takip et.</p></div>
 <section class="panel"><div class="top"><h2>📝 Deneme takibi</h2><label>Görünüm <select id="mockFilter" class="viewControl"><option value="TYT">TYT</option><option value="AYT">AYT SAY</option><option value="MAT">Matematik Branş</option></select></label></div><div class="stats" id="mockSummary"></div><div class="actions"><label>Grafik <select id="mockTrend" class="viewControl"></select></label></div><div id="mockChart"></div><p class="notice" id="mockChange"></p></section>
 <section class="panel" id="mockFormPanel"><h2 id="mockFormTitle">Yeni deneme</h2><form id="mockForm"><div class="formGrid"><label>Tarih<input id="mockDate" type="date" required></label><label>Tür<select id="mockType"><option value="TYT">TYT</option><option value="AYT">AYT SAY</option><option value="MAT">Matematik Branş</option></select></label><label>Deneme adı / yayınevi<input id="mockName" type="text" maxlength="160" placeholder="İsteğe bağlı"></label><label>Süre (dakika)<input id="mockDuration" type="number" min="1" max="1440" step="1" placeholder="İsteğe bağlı"></label><label>Matematiğe verilen süre (dk)<input id="mockMathTime" type="number" min="1" max="300" step="1" placeholder="Örn. 70"></label><label>Süre içinde bakılan matematik sorusu<input id="mockMathViewed" type="number" min="0" max="40" step="1" placeholder="Örn. 25"></label></div><table class="examTable"><thead><tr><th>Ders</th><th>Doğru</th><th>Yanlış</th><th>Boş</th><th>Net</th></tr></thead><tbody id="mockScores"></tbody></table><p><b id="mockTotal">Toplam net: 0</b></p><label>Kısa not<textarea id="mockNote" maxlength="2000" placeholder="İsteğe bağlı"></textarea></label><p id="mockError" role="alert" class="warning"></p><div class="actions"><button type="submit" class="primary">Denemeyi kaydet</button><button id="cancelMock" type="button">Yeni kayıt / Vazgeç</button></div></form></section>
-<section class="panel"><h2>🧠 Hata Profili</h2><div class="actions"><label>Aralık <select id="errorWindow" class="viewControl"><option value="5">Son 5 deneme</option><option value="10">Son 10 deneme</option></select></label><label>Ders <select id="errorSubject" class="viewControl"></select></label></div><p class="notice">Üstte seçilen sınav türündeki kayıtların dağılımıdır; kesin neden veya başarı tahmini değildir. Yüzdeler sınıflandırılmamış kayıpları da içerir.</p><div id="errorAnalysis"></div></section>
+<section class="panel analysisReportPanel"><div class="top"><div><span class="overline">EMEĞİNİN KARŞILIĞI</span><h2>📊 Matematik Analiz Karnesi</h2></div><span class="pill">Soru bazlı analiz</span></div><p class="notice">Deneme türüne göre kaydettiğin matematik sorularının nedeni, geri kazanımı, konu dağılımı ve analiz süresi. Yalnızca kaydettiğin veriler gösterilir.</p><div id="mathReport"></div></section><section class="panel"><h2>🧠 Hata Profili</h2><div class="actions"><label>Aralık <select id="errorWindow" class="viewControl"><option value="5">Son 5 deneme</option><option value="10">Son 10 deneme</option></select></label><label>Ders <select id="errorSubject" class="viewControl"></select></label></div><p class="notice">Üstte seçilen sınav türündeki kayıtların dağılımıdır; kesin neden veya başarı tahmini değildir. Yüzdeler sınıflandırılmamış kayıpları da içerir.</p><div id="errorAnalysis"></div></section>
 <section class="panel mockRecordsPanel"><div class="mockRecordsHeader"><div><span class="overline">PERFORMANS ARŞİVİ</span><h2>🏁 Deneme Savaş Kayıtları</h2><p class="notice">Her kart tek bakışta neti, hızını, ders dağılımını ve analizde ne kadarını kendi başına geri kazandığını gösterir.</p></div></div><div id="mockList"></div></section>
 </div>
 <div id="lockInTab" class="tab" role="tabpanel" aria-labelledby="nav-lockInTab"><div class="sectionIntro"><span class="overline">KENDİ ÇALIŞMA DÜZENİN</span><h2>🔒 Lock-In</h2><label>Gün <input id="lockInDate" type="date" class="viewControl"></label></div><section class="panel lockInPanel" id="lockInPanel">
@@ -334,7 +334,7 @@ button,input,select,textarea{font:inherit}button{min-height:44px;display:inline-
         <label><input type="radio" name="mathAnalysisOrigin" value="uncertain">🎯 Doğru ama zorlandım</label>
         <label><input type="radio" name="mathAnalysisOrigin" value="unseen">📘 Konu henüz işlenmedi</label>
       </div>
-      <p class="notice" id="mathAnalysisOriginNotice"></p>
+      <p class="notice" id="mathAnalysisOriginNotice"></p><label class="analysisCauseField">🧩 Hatanın nedeni (Hata Profili için)<select id="mathAnalysisCause"><option value="">Henüz belirlemedim</option><option value="knowledge">📚 Bilgi eksiği</option><option value="attention">🎯 Dikkat hatası</option><option value="calculation">🧮 İşlem hatası</option><option value="time">⏱️ Süre problemi</option><option value="misread">👀 Soruyu yanlış okuma</option></select></label><p class="notice">Bu seçim Hata Profili ve Matematik Karnesi’ne yansır. Önceki soru numarasını tekrar girerek kaydı güncelleyebilirsin.</p>
       <div class="divider"></div>
       <div id="mathAnalysisMethodSection"><small>Analizde nasıl çözüldü?</small>
       <div class="mathAnalysisChoice">
@@ -1183,7 +1183,7 @@ function saveMock(event){
   if((mathTimeMinutes===null)!==(mathViewedCount===null))throw Error('Matematik bitiriş takibi için süre ve bakılan soru sayısını birlikte gir.');
   const previous=editingMockId?state.mockExams.find(e=>e.id===editingMockId):null;
   const rawScores=readMockScores(),scienceDetail=rawScores.science?.scienceDetail||null;if(rawScores.science)delete rawScores.science.scienceDetail;
-  const exam={id:editingMockId||(globalThis.crypto?.randomUUID?.()||'exam-'+Date.now()+'-'+Math.random().toString(36).slice(2)),date,type:$('mockType').value,name:$('mockName').value.trim().slice(0,160),duration,note:$('mockNote').value.trim().slice(0,2000),scores:rawScores,scienceDetail,mathTimeMinutes,mathViewedCount,mathFinishSeconds:Math.max(0,Number(previous?.mathFinishSeconds)||0),mathFinishStartedAt:typeof previous?.mathFinishStartedAt==='string'?previous.mathFinishStartedAt:'',mathFinishCompletedAt:typeof previous?.mathFinishCompletedAt==='string'?previous.mathFinishCompletedAt:''};
+  const exam={id:editingMockId||(globalThis.crypto?.randomUUID?.()||'exam-'+Date.now()+'-'+Math.random().toString(36).slice(2)),date,type:$('mockType').value,name:$('mockName').value.trim().slice(0,160),duration,note:$('mockNote').value.trim().slice(0,2000),scores:rawScores,scienceDetail,mathTimeMinutes,mathViewedCount,mathFinishSeconds:Math.max(0,Number(previous?.mathFinishSeconds)||0),mathFinishStartedAt:typeof previous?.mathFinishStartedAt==='string'?previous.mathFinishStartedAt:'',mathFinishCompletedAt:typeof previous?.mathFinishCompletedAt==='string'?previous.mathFinishCompletedAt:'',mathAnalysis:Array.isArray(previous?.mathAnalysis)?previous.mathAnalysis:[]};
   if(mathViewedCount===40){exam.mathFinishSeconds=0;exam.mathFinishStartedAt='';exam.mathFinishCompletedAt=exam.mathFinishCompletedAt||new Date().toISOString()}
   if(editingMockId){const index=state.mockExams.findIndex(e=>e.id===editingMockId);if(index<0)throw Error('Düzenlenen deneme bulunamadı; yeni kayıt oluştur.');state.mockExams[index]=exam}else state.mockExams.push(exam);
   $('mockFilter').value=exam.type;save();resetMockForm();render();
@@ -1220,16 +1220,48 @@ function renderMathAnalysisSummary(){
  if(!s.total){trend.append(emptyView('🧠','Henüz matematik analiz kaydı yok.','Deneme kartından Matematik Analizi’ni aç; yanlış veya boş soruyu sonradan nasıl çözdüğünü kaydet.',true));return}
  const box=document.createElement('div');box.className='mathAnalysisSummary';const line=document.createElement('div');line.className='notice';line.textContent=s.self+' soru çözümü görmeden geri kazanıldı · '+s.video+' soruda çözüm desteği gerekti'+(s.unseen?' · '+s.unseen+' soru konu henüz işlenmediği için performans hesabı dışında':'')+(s.timed?' · '+s.timed+' soruda süre kaydı var':'');const bar=document.createElement('div');bar.className='mathAnalysisBar';const fill=document.createElement('span');fill.style.width=(s.selfPct||0)+'%';bar.append(fill);box.append(line,bar);trend.append(box);
 }
+
+// Soru bazlı karne: yalnızca gerçekten girilmiş analiz kayıtlarından türetilir.
+function renderMathReport(){
+ const root=$('mathReport');if(!root)return;root.replaceChildren();
+ const type=$('mockFilter').value,records=mockRecords(type),items=records.flatMap(exam=>mathAnalysisItems(exam).map(item=>({...item,examName:exam.name||'İsimsiz deneme',examDate:exam.date,examId:exam.id})));
+ const eligible=items.filter(x=>x.originStatus!=='unseen'),self=eligible.filter(x=>x.method==='self'),video=eligible.filter(x=>x.method==='video'),unseen=items.filter(x=>x.originStatus==='unseen');
+ const causes=items.filter(x=>['wrong','blank','time'].includes(x.originStatus)&&Object.hasOwn(ERROR_TYPES,x.errorCause)),minutes=eligible.filter(x=>Number(x.minutes)>0);
+ const kpis=document.createElement('div');kpis.className='analysisKpis';
+ for(const [label,value,sub] of [
+  ['İncelenen soru',items.length,'Bu deneme türünde'],
+  ['Bağımsız geri kazanım',eligible.length?Math.round(self.length/eligible.length*100)+'%':'—',self.length+' / '+eligible.length+' soru'],
+  ['Çözüm desteği',video.length, 'Video/çözümden öğrenilen'],
+  ['Nedeni belirlenen',causes.length, 'Hata profilinde kullanılır'],
+  ['İşlenmemiş konu',unseen.length,'Performans oranı dışında'],
+  ['Ort. analiz süresi',minutes.length?(minutes.reduce((n,x)=>n+Number(x.minutes),0)/minutes.length).toFixed(1)+' dk':'—',minutes.length+' süre kaydı']
+ ]){const card=document.createElement('div');card.className='analysisKpi';const t=document.createElement('small');t.textContent=label;const b=document.createElement('strong');b.textContent=value;const p=document.createElement('span');p.textContent=sub;card.append(t,b,p);kpis.append(card)}root.append(kpis);
+ if(!items.length){root.append(emptyView('🧠','Henüz soru bazlı analiz yok.','Deneme kartındaki Matematik Analizi bölümünden soruları kaydet; burada gerçek verilerinle karne oluşacak.',true));return}
+ function section(title,entries,denominator){const wrap=document.createElement('div');wrap.className='analysisReportSection';const h=document.createElement('h3');h.textContent=title;wrap.append(h);for(const [name,n] of entries){const row=document.createElement('div');row.className='analysisReportRow';const top=document.createElement('div');top.className='top';const label=document.createElement('span');label.textContent=name;const value=document.createElement('b');value.textContent=n+' · '+(denominator?Math.round(n/denominator*100):0)+'%';top.append(label,value);const track=document.createElement('div');track.className='analysisReportTrack';const fill=document.createElement('span');fill.style.width=(denominator?Math.min(100,n/denominator*100):0)+'%';track.append(fill);row.append(top,track);wrap.append(row)}return wrap}
+ const grid=document.createElement('div');grid.className='analysisReportGrid';
+ const originNames={wrong:'Yanlış yaptım',blank:'Boş bıraktım',time:'Sürede bakamadım',uncertain:'Doğru ama zorlandım',unseen:'Konu henüz işlenmedi'};
+ grid.append(section('🎯 Denemede ne oldu?',Object.entries(originNames).map(([k,v])=>[v,items.filter(x=>x.originStatus===k).length]),items.length));
+ grid.append(section('🧩 Hata nedenleri',Object.entries(ERROR_TYPES).map(([k,v])=>[v,causes.filter(x=>x.errorCause===k).length]),causes.length));
+ const topics={};for(const x of items){const t=x.topic?.trim()||'Konu belirtilmedi';topics[t]=(topics[t]||0)+1}
+ grid.append(section('📚 En çok analiz edilen konular',Object.entries(topics).sort((a,b)=>b[1]-a[1]).slice(0,6),items.length));
+ root.append(grid);
+ const note=document.createElement('p');note.className='notice';note.textContent='Hata nedeni belirtilmeyen '+items.filter(x=>['wrong','blank','time'].includes(x.originStatus)&&!Object.hasOwn(ERROR_TYPES,x.errorCause)).length+' soru var. Bunlar otomatik olarak tahmin edilmez. “Doğru ama zorlandım” ve “Konu henüz işlenmedi” kayıtları hata nedeni sayılmaz.';root.append(note);
+ const history=document.createElement('details');history.className='analysisHistory';const sum=document.createElement('summary');sum.textContent='📋 Kaydettiğim soruları gör ('+items.length+')';history.append(sum);
+ const table=document.createElement('div');table.className='analysisHistoryList';
+ for(const x of [...items].reverse().slice(0,100)){const row=document.createElement('div');row.className='analysisHistoryItem';const head=document.createElement('b');head.textContent=x.examName+' · Soru '+x.questionNo+(x.topic?' · '+x.topic:'');const info=document.createElement('small');info.textContent=(originNames[x.originStatus]||'Belirtilmedi')+' · '+(x.originStatus==='unseen'?'İşlenmemiş konu':x.method==='self'?'Kendim çözdüm':'Çözüm desteği')+' · '+(ERROR_TYPES[x.errorCause]||'Hata nedeni belirtilmedi')+(x.minutes!==null&&x.minutes!==undefined?' · '+x.minutes+' dk':'');row.append(head,info);if(!COACH_MODE){const edit=document.createElement('button');edit.type='button';edit.textContent='Düzenle';edit.onclick=()=>{openMathAnalysis(x.examId);$('mathAnalysisQuestionNo').value=x.questionNo;$('mathAnalysisTopic').value=x.topic||'';$('mathAnalysisMinutes').value=x.minutes??'';$('mathAnalysisDate').value=x.date||today();const origin=$('mathAnalysisForm').querySelector('input[name="mathAnalysisOrigin"][value="'+x.originStatus+'"]');if(origin)origin.checked=true;const method=$('mathAnalysisForm').querySelector('input[name="mathAnalysisMethod"][value="'+x.method+'"]');if(method)method.checked=true;$('mathAnalysisCause').value=x.errorCause||'';syncMathAnalysisOrigin()};row.append(edit)}table.append(row)}
+ history.append(table);root.append(history);
+}
+
 function openMathAnalysis(examId){
  if(COACH_MODE)return;const exam=state.mockExams.find(e=>e.id===examId);if(!validMock(exam)||!EXAM_TYPES[exam.type].subjects.math)return;
  mathAnalysisExamId=examId;$('mathAnalysisExamInfo').textContent=(exam.name?exam.name+' · ':'')+fmt(exam.date)+' · '+EXAM_TYPES[exam.type].name+' · Matematik '+formatNumber(examNet(exam,'math'))+' net';
  $('mathAnalysisQuestionNo').value='';$('mathAnalysisTopic').value='';$('mathAnalysisMinutes').value='';$('mathAnalysisDate').value=today();$('mathAnalysisNotice').textContent='';
- const origin=$('mathAnalysisForm').querySelector('input[name="mathAnalysisOrigin"][value="wrong"]');if(origin)origin.checked=true;const method=$('mathAnalysisForm').querySelector('input[name="mathAnalysisMethod"][value="self"]');if(method)method.checked=true;$('mathAnalysisAddVault').checked=true;syncMathAnalysisOrigin();$('mathAnalysisModal').classList.add('show');$('mathAnalysisQuestionNo').focus();
+ const origin=$('mathAnalysisForm').querySelector('input[name="mathAnalysisOrigin"][value="wrong"]');if(origin)origin.checked=true;const method=$('mathAnalysisForm').querySelector('input[name="mathAnalysisMethod"][value="self"]');if(method)method.checked=true;$('mathAnalysisAddVault').checked=true;$('mathAnalysisCause').value='';syncMathAnalysisOrigin();$('mathAnalysisModal').classList.add('show');$('mathAnalysisQuestionNo').focus();
 }
 function closeMathAnalysis(){$('mathAnalysisModal').classList.remove('show');mathAnalysisExamId=''}
 function syncMathAnalysisOrigin(){
  const unseen=$('mathAnalysisForm')?.querySelector('input[name="mathAnalysisOrigin"]:checked')?.value==='unseen',section=$('mathAnalysisMethodSection'),notice=$('mathAnalysisOriginNotice');
- if(section)section.hidden=unseen;
+ if(section)section.hidden=unseen;const causeField=$('mathAnalysisCause')?.closest('label');if(causeField)causeField.hidden=unseen||$('mathAnalysisForm').querySelector('input[name="mathAnalysisOrigin"]:checked')?.value==='uncertain';
  if(notice)notice.textContent=unseen?'📘 Bu soru performans hatası sayılmayacak. Konuyu işledikten sonra istersen aynı soru kaydını yeniden açıp normal analiz sonucuna çevirebilirsin.':'';
  if(unseen){$('mathAnalysisMinutes').value='';$('mathAnalysisMinutes').disabled=true}else $('mathAnalysisMinutes').disabled=false;
  syncMathAnalysisVaultOption();
@@ -1245,7 +1277,7 @@ function saveMathAnalysis(event){
  const rawMinutes=$('mathAnalysisMinutes').value.trim(),minutes=origin==='unseen'?null:(rawMinutes===''?null:Number(rawMinutes));
  if(!questionNo||!validDay(date)||!['self','video','unseen'].includes(method)||!MOCK_VAULT_REASON[origin]){$('mathAnalysisNotice').textContent='Soru no ve analiz bilgilerini kontrol et.';return}
  if(minutes!==null&&(!Number.isFinite(minutes)||minutes<0||minutes>120)){$('mathAnalysisNotice').textContent='Analiz süresi 0–120 dakika arasında olmalı.';return}
- const items=mathAnalysisItems(exam),existing=items.find(x=>x.questionNo===questionNo),entry={id:existing?.id||vaultId('ma'),questionNo:questionNo.slice(0,40),topic:topic.slice(0,120),originStatus:origin,method,minutes:minutes===null?null:Math.round(minutes*10)/10,date};
+ const items=mathAnalysisItems(exam),existing=items.find(x=>x.questionNo===questionNo),cause=['wrong','blank','time'].includes(origin)?$('mathAnalysisCause').value:'',entry={id:existing?.id||vaultId('ma'),questionNo:questionNo.slice(0,40),topic:topic.slice(0,120),originStatus:origin,method,minutes:minutes===null?null:Math.round(minutes*10)/10,date,errorCause:Object.hasOwn(ERROR_TYPES,cause)?cause:''};
  exam.mathAnalysis=existing?items.map(x=>x.id===existing.id?entry:x):[...items,entry];
  let vaultText='';
  if(origin!=='unseen'&&method==='video'&&$('mathAnalysisAddVault').checked){
@@ -1305,7 +1337,7 @@ function updateMathFinishClocks(){
 }
 
 function renderMocks(){
- $('mockDate').max=today();renderMathFinishSummary();renderMathAnalysisSummary();
+ $('mockDate').max=today();renderMathFinishSummary();renderMathAnalysisSummary();renderMathReport();
  const type=$('mockFilter').value,def=EXAM_TYPES[type],records=mockRecords(type),m=mockMetrics(type),net=x=>x===null?'—':formatNumber(x);
  $('mockSummary').innerHTML=statHTML('Son deneme neti',net(m.last))+statHTML('En iyi net',net(m.best))+statHTML('Son 5 ortalaması',net(m.average))+statHTML('Deneme sayısı',m.count);
  const previous=$('mockTrend').value;$('mockTrend').replaceChildren(new Option('Toplam net','total'));for(const [key,[name]] of Object.entries(def.subjects))$('mockTrend').add(new Option(name,key));$('mockTrend').value=previous==='total'||def.subjects[previous]?previous:'total';
@@ -1330,7 +1362,7 @@ function renderMocks(){
    }else{const v=exam.scores[key],tile=document.createElement('div');tile.className='examScoreTile';tile.innerHTML='<small>'+name+'</small><b>'+formatNumber(scoreNet(v))+' net</b><span>'+v.correct+'D · '+v.wrong+'Y · '+(max-v.correct-v.wrong)+'B</span>';grid.append(tile)}
   }card.append(grid);
   const analysis=mathAnalysisStats([exam]),insights=document.createElement('div');insights.className='examInsights';
-  const insightData=[['🧠 Matematik geri kazanım',analysis.eligible?(analysis.self+'/'+analysis.eligible+' · '+formatNumber(analysis.selfPct,0)+'% kendim'):(analysis.unseen?'📘 '+analysis.unseen+' işlenmemiş konu':'Henüz analiz yok')],['📘 İşlenmemiş konu',analysis.unseen?analysis.unseen+' soru':'Yok'],['⏱️ Analiz temposu',analysis.avgMinutes===null?'Süre kaydı yok':formatNumber(analysis.avgMinutes,1)+' dk / soru'],['🏁 Matematik bitiriş',mathFinishTotalSeconds(exam)===null?'Tamamlanmadı':formatStudyDuration(mathFinishTotalSeconds(exam))]];
+  const insightData=[['🧠 Matematik geri kazanım',analysis.eligible?(analysis.self+'/'+analysis.eligible+' · '+formatNumber(analysis.selfPct,0)+'% kendim'):(analysis.unseen?'📘 '+analysis.unseen+' işlenmemiş konu':'Henüz analiz yok')],['📘 İşlenmemiş konu',analysis.unseen?analysis.unseen+' soru':'Yok'],['⏱️ Analiz temposu',analysis.avgMinutes===null?'Süre kaydı yok':formatNumber(analysis.avgMinutes,1)+' dk / soru'],['🏁 Matematik bitiriş',mathFinishTotalSeconds(exam)===null?'Tamamlanmadı':formatStudyDuration(mathFinishTotalSeconds(exam))],['🧩 Nedeni bilinen soru',mathAnalysisItems(exam).filter(x=>Object.hasOwn(ERROR_TYPES,x.errorCause)).length+'/'+analysis.total]];
   for(const [label,value] of insightData){const d=document.createElement('div');d.className='examInsight';const s=document.createElement('small');s.textContent=label;const b=document.createElement('b');b.textContent=value;d.append(s,b);insights.append(d)}card.append(insights);
   const body=document.createElement('div');body.className='examCardBody';appendSavedErrors(body,exam);
   if(exam.note){const note=document.createElement('p');note.className='notice';note.textContent='📝 '+exam.note;body.append(note)}
@@ -1360,7 +1392,7 @@ function initV32(){
 
 // Optional error counts never change scores or earned XP.
 const ERROR_TYPES={knowledge:'Bilgi eksiği',attention:'Dikkat hatası',calculation:'İşlem hatası',time:'Süre problemi',misread:'Soruyu yanlış okuma'};
-function errorCounts(score,max){
+function errorCounts(score,max,exam=null,subject=''){
  const counts=Object.fromEntries(Object.keys(ERROR_TYPES).map(k=>[k,0]));
  const lost=max-score.correct,raw=score.errorBreakdown;
  if(raw&&typeof raw==='object'){
@@ -1368,7 +1400,7 @@ function errorCounts(score,max){
   const sum=Object.keys(ERROR_TYPES).reduce((n,k)=>n+(raw[k]||0),0);
   if(valid&&sum<=lost)for(const k of Object.keys(ERROR_TYPES))counts[k]=raw[k]||0;
  }
- const classified=Object.values(counts).reduce((n,x)=>n+x,0);return {...counts,unclassified:lost-classified,classified,total:lost};
+ // Soru bazlı analiz ve deneme formundaki manuel sayıları aynı soruyu iki kez saymadan birleştir.\n  if(subject==='math'&&exam){const byQuestion={};for(const item of mathAnalysisItems(exam)){if(!['wrong','blank','time'].includes(item.originStatus)||!Object.hasOwn(ERROR_TYPES,item.errorCause))continue;byQuestion[item.questionNo]=item.errorCause}const derived=Object.fromEntries(Object.keys(ERROR_TYPES).map(k=>[k,Object.values(byQuestion).filter(v=>v===k).length]));for(const k of Object.keys(ERROR_TYPES))counts[k]=Math.max(counts[k],derived[k]);}\n  let available=lost;for(const k of Object.keys(ERROR_TYPES)){counts[k]=Math.min(counts[k],available);available-=counts[k]}const classified=lost-available;return {...counts,unclassified:available,classified,total:lost};
 }
 function appendErrorInputs(key,name,breakdown={}){
  const row=document.createElement('tr'),cell=document.createElement('td');cell.colSpan=5;
@@ -1378,14 +1410,14 @@ function appendErrorInputs(key,name,breakdown={}){
  const remaining=document.createElement('p');remaining.className='notice';remaining.id=`error-unclassified-${key}`;details.append(grid,remaining);cell.append(details);row.append(cell);$('mockScores').append(row);
 }
 function appendSavedErrors(card,exam){
- const parts=[];for(const [key,[name,max]] of Object.entries(EXAM_TYPES[exam.type].subjects)){const counts=errorCounts(exam.scores[key],max);if(counts.classified)parts.push(name+': '+Object.entries(ERROR_TYPES).filter(([k])=>counts[k]).map(([k,label])=>label+' '+counts[k]).join(', ')+` · Sınıflandırılmamış ${counts.unclassified}`)}
+ const parts=[];for(const [key,[name,max]] of Object.entries(EXAM_TYPES[exam.type].subjects)){const counts=errorCounts(exam.scores[key],max,exam,key);if(counts.classified)parts.push(name+': '+Object.entries(ERROR_TYPES).filter(([k])=>counts[k]).map(([k,label])=>label+' '+counts[k]).join(', ')+` · Sınıflandırılmamış ${counts.unclassified}`)}
  if(parts.length){const note=document.createElement('p');note.className='notice';note.textContent='🧠 '+parts.join(' — ');card.append(note)}
 }
 function allMockRecords(){return state.mockExams.filter(validMock).map((exam,index)=>({exam,index})).sort((a,b)=>a.exam.date.localeCompare(b.exam.date)||a.index-b.index).map(x=>x.exam)}
 function errorAggregate(records,subject='all'){
  const totals={...Object.fromEntries(Object.keys(ERROR_TYPES).map(k=>[k,0])),unclassified:0,classified:0,total:0,analyzedExams:0,subjects:{}};
  for(const exam of records){let analyzed=false;for(const [key,[name,max]] of Object.entries(EXAM_TYPES[exam.type].subjects)){
-   if(subject!=='all'&&key!==subject)continue;const counts=errorCounts(exam.scores[key],max);analyzed ||= counts.classified>0;
+   if(subject!=='all'&&key!==subject)continue;const counts=errorCounts(exam.scores[key],max,exam,key);analyzed ||= counts.classified>0;
    for(const k of [...Object.keys(ERROR_TYPES),'unclassified','classified','total'])totals[k]+=counts[k];
    if(!totals.subjects[key])totals.subjects[key]={name,classified:0,counts:Object.fromEntries(Object.keys(ERROR_TYPES).map(k=>[k,0]))};
    totals.subjects[key].classified+=counts.classified;for(const k of Object.keys(ERROR_TYPES))totals.subjects[key].counts[k]+=counts[k];
@@ -1405,7 +1437,7 @@ function errorTrendComments(records,subject='all'){
  for(const [key,[name,max]] of Object.entries(EXAM_TYPES[type].subjects)){
   if(subject!=='all'&&key!==subject)continue;
   const recent=records.slice(-3);if(recent.length!==3)continue;
-  const counts=recent.map(e=>errorCounts(e.scores[key],max));
+  const counts=recent.map(e=>errorCounts(e.scores[key],max,e,key));
   if(counts.every(c=>c.classified>0)&&counts[0].knowledge>counts[1].knowledge&&counts[1].knowledge>counts[2].knowledge)comments.push(`${name}: bilgi eksiği olarak sınıflandırılan hata sayısı son 3 ${EXAM_TYPES[type].name} denemesinde azaldı (${counts.map(c=>c.knowledge).join(' → ')}).`);
  }return comments;
 }
