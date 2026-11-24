@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#0e1220">
-<title>YKS RPG V3.43</title>
+<title>YKS RPG V3.44</title>
 <style>
 :root{
  color-scheme:dark;--bg:#0c1019;--surface:#141b28;--surface-raised:#1b2535;--surface-soft:#101722;--border:#2a3547;--text:#edf2fa;--muted:#98a7bc;--accent:#84cbb8;--success:#84cbb8;--warning:#e9be76;--danger:#ef9c9d;--gold:#e9be76;--violet:#b5a1e5;
@@ -70,11 +70,12 @@ button,input,select,textarea{font:inherit}button{min-height:44px;display:inline-
 .analysisDeleteBtn{border-color:#b85c5c66!important;color:#f1a2a2!important}.analysisDeleteBtn:hover{background:#6f262633!important}@media(max-width:720px){.analysisHistoryItem button{margin-left:0}}
 .mathQuestionOverview{padding:16px;margin:14px 0 20px;border:1px solid #ffffff24;border-radius:15px;background:#0b1625}.mathQuestionOverview .top{gap:12px}.mathQuestionGrid{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:7px;margin:14px 0}.mathQuestionCell{min-width:0;padding:9px 2px;border:1px solid #ffffff2b;border-radius:9px;font-weight:700;cursor:pointer}.mq-correct{background:#174b3b;color:#b6f5d7}.mq-wrong{background:#702e38;color:#ffe1e5}.mq-blank{background:#394355;color:#f2f4f8}.mq-time{background:#5c4124;color:#ffe1a7}.mq-uncertain{background:#5d521d;color:#fff2a5}.mq-unseen{background:#2b4864;color:#cde8ff}.mathQuestionCell:hover,.mathQuestionCell:focus-visible{outline:2px solid #8bd9c4;outline-offset:1px}.mathQuestionLegend{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:11px;color:var(--muted)}@media(max-width:500px){.mathQuestionGrid{grid-template-columns:repeat(8,minmax(0,1fr));gap:5px}.mathQuestionCell{padding:8px 1px}}
 .vaultPoolBody .vaultToolbar{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.vaultPoolBody .vaultToolbar>label{min-width:0}.vaultPoolBody .vaultToolbar input,.vaultPoolBody .vaultToolbar select{width:100%;min-width:0}@media(max-width:800px){.vaultPoolBody .vaultToolbar{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:430px){.vaultPoolBody .vaultToolbar{grid-template-columns:1fr}}
+.vaultDailyGroup{border:1px solid var(--border);border-radius:12px;padding:12px;margin:9px 0}.vaultDailyGroup summary{cursor:pointer;font-weight:700}.vaultDailyGroup progress{width:100%;height:8px;accent-color:#84cbb8;margin:10px 0}.vaultDailyHistoryRow{display:flex;flex-direction:column;gap:5px;padding:10px 0;border-top:1px solid var(--border)}.vaultDailyHistoryRow small{color:var(--muted)}
 </style>
 </head>
 <body>
 <main>
-<header class="appHeader"><div class="brand"><span class="brandMark" aria-hidden="true">🎮</span><div><div class="brandLine"><h1>YKS RPG</h1><span class="version">V3.43</span></div><p class="sub">Her gün biraz daha güçlü.</p></div></div><div class="headerBadges"><span class="pill" id="cloudPill">☁️ <span id="cloudStatus">Yerel</span></span><span class="pill" title="Boş gün bileti">🎟️ <span id="tickets">0</span></span><span class="pill" title="İndirim kuponu">🏷️ <span id="coupons">0</span></span></div></header>
+<header class="appHeader"><div class="brand"><span class="brandMark" aria-hidden="true">🎮</span><div><div class="brandLine"><h1>YKS RPG</h1><span class="version">V3.44</span></div><p class="sub">Her gün biraz daha güçlü.</p></div></div><div class="headerBadges"><span class="pill" id="cloudPill">☁️ <span id="cloudStatus">Yerel</span></span><span class="pill" title="Boş gün bileti">🎟️ <span id="tickets">0</span></span><span class="pill" title="İndirim kuponu">🏷️ <span id="coupons">0</span></span></div></header>
 <section class="panel hero"><div class="heroHeading"><div><span class="overline">LEVEL / XP · KULLANILABİLİR BAKİYE</span><div class="big" id="balance">0 XP</div></div><div class="heroEmblem" aria-hidden="true">✦</div></div><div class="bar"><div id="progress"></div></div><div class="heroReward"><small id="next">Sonraki boş gün biletine 3.000 XP</small><span class="pill">🎟️ 3.000 XP</span></div><div class="stats heroStats"><div class="stat"><small>BU HAFTA</small><b id="weekly">0</b></div><div class="stat"><small>🔥 STREAK</small><b id="topStreak">0 gün</b></div><div class="stat"><small>BUGÜNKÜ RANK</small><b id="heroRank">D-Rank</b></div><div class="stat"><small>👹 BOSS POWER</small><b id="bossMini">0/100</b><div class="bar miniBoss"><div id="heroBossProgress"></div></div></div></div><div class="heroFooter"><button id="countdown" class="viewControl" type="button">🎯 YKS tarihini ayarla</button><div class="ledgerRow"><span>Toplam <b id="earned">0</b> XP</span><span>Harcanan <b id="spent">0</b> XP</span><span>En iyi seri <b id="bestStreak">0 gün</b></span></div></div></section>
 <nav class="tabs" role="tablist" aria-label="Uygulama bölümleri"><button id="nav-daily" data-tab="daily" role="tab" aria-controls="daily" aria-selected="true" class="active"><span class="navIcon" aria-hidden="true">📅</span>Günlük</button><button id="nav-lockInTab" data-tab="lockInTab" role="tab" aria-controls="lockInTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🔒</span>Lock-In</button><button id="nav-rpg" data-tab="rpg" role="tab" aria-controls="rpg" aria-selected="false"><span class="navIcon" aria-hidden="true">⚔️</span>RPG</button><button id="nav-mockTab" data-tab="mockTab" role="tab" aria-controls="mockTab" aria-selected="false"><span class="navIcon" aria-hidden="true">📝</span>Denemeler</button><button id="nav-planTab" data-tab="planTab" role="tab" aria-controls="planTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🗓️</span>Plan</button><button id="nav-vaultTab" data-tab="vaultTab" role="tab" aria-controls="vaultTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🧠</span>Zor Soru</button><button id="nav-teacherTab" data-tab="teacherTab" role="tab" aria-controls="teacherTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🙋</span>Hocaya Sor</button><button id="nav-shopTab" data-tab="shopTab" role="tab" aria-controls="shopTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🛍️</span>Mağaza</button><button id="nav-backupTab" data-tab="backupTab" role="tab" aria-controls="backupTab" aria-selected="false"><span class="navIcon" aria-hidden="true">💾</span>Yedek</button></nav>
 
@@ -166,7 +167,7 @@ button,input,select,textarea{font:inherit}button{min-height:44px;display:inline-
     <div class="top"><div><span class="overline">BUGÜNÜN TEKRAR NABZI</span><h2>🔥 Bugün yapılacaklar</h2></div><button id="vaultStartDue" class="primary" type="button">Bugünküleri çöz</button></div>
     <div class="stats vaultStats" id="vaultSummary"></div>
     <p class="notice">Yalnızca daha önce senin aktif tekrar zincirine soktuğun sorular burada günü geldiğinde görünür. Hiç dokunmadığın mavi Serbest Havuz soruları otomatik görev olmaz.</p>
-    <div id="vaultDueList"></div>
+    <div id="vaultDueList"></div></section><section class="panel"><h2>🎯 Bugünkü analizlerim — 40 soru hedefi</h2><div id="vaultDailyHistory"></div>
   </section>
 
   <section class="panel vaultSession" id="vaultSessionPanel" hidden>
@@ -2109,8 +2110,26 @@ function renderVaultSession(){
  else{const b=vaultBook(q.bookId);$('vaultSessionSub').textContent=(b?b.name:'Kaynak')+' · '+q.topic+' · '+vaultSubjectLabel(b?.subject)}
  $('vaultSessionSub').textContent+=' · '+(VAULT_DIFFICULTIES[q.difficulty]||'Zorluk atanmadı');
 }
+function renderVaultDailyHistory(){
+ const root=$('vaultDailyHistory');if(!root)return;
+ const open=new Set([...root.querySelectorAll('details[open]')].map(d=>d.dataset.group));root.replaceChildren();
+ const groups=[['Matematik',['mathStudy','aytMath','problem']],['Geometri',['geo']],['Fizik',['physics','aytPhysics']],['Kimya',['chem','aytChem']],['Biyoloji',['bio','aytBio']]];
+ const rows=vaultQuestions().filter(q=>q.lastAttemptAt===today()||q.history?.some(h=>h.date===today()));
+ const total=groups.reduce((n,g)=>n+rows.filter(q=>g[1].includes(vaultQuestionSubject(q))).length,0);
+ const headline=document.createElement('h3');headline.textContent=total+' / 40 soru · '+Math.max(0,40-total)+' soru kaldı';root.append(headline);
+ const note=document.createElement('p');note.className='notice';note.textContent='Her dersten 8 farklı soru hedefi. Çözüldü, kısmen çözüldü ve çözülemedi sonuçlarının tümü bir analiz sayılır. Aynı soru günde bir kez sayılır.';root.append(note);
+ const other=rows.filter(q=>!groups.some(g=>g[1].includes(vaultQuestionSubject(q))));
+ for(const [name,keys] of [...groups,...(other.length?[['Diğer dersler',null]]:[])]){
+  const items=keys?rows.filter(q=>keys.includes(vaultQuestionSubject(q))):other;
+  const details=document.createElement('details');details.className='vaultDailyGroup';details.dataset.group=name;details.open=open.has(name);
+  const summary=document.createElement('summary');summary.textContent=name+' · '+items.length+(keys?' / 8 · '+(items.length>=8?'Tamamlandı':(8-items.length)+' kaldı'):' soru');details.append(summary);
+  if(keys){const bar=document.createElement('progress');bar.max=8;bar.value=Math.min(8,items.length);bar.setAttribute('aria-label',name+' günlük hedefi');details.append(bar)}
+  for(const q of items){const line=document.createElement('div');line.className='vaultDailyHistoryRow';const title=document.createElement('strong');title.textContent=vaultQuestionLabel(q)+(vaultSourceIsMock(q)?' · '+q.topic:'');const sub=document.createElement('small');const result=q.history?.filter(h=>h.date===today()).at(-1)?.result||q.lastResult;sub.textContent=(VAULT_DIFFICULTIES[q.difficulty]||'Zorluk atanmadı')+' · '+({solved:'Çözdüm',partial:'Kısmen çözdüm',failed:'Çözemedim'}[result]||'Sonuç belirtilmedi');line.append(title,sub);details.append(line)}
+  if(!items.length){const p=document.createElement('p');p.className='notice';p.textContent='Bugün henüz analiz yok.';details.append(p)}root.append(details);
+ }
+}
 function renderQuestionVault(){
- if(!$('vaultTab'))return;renderVaultSummary();renderVaultDue();renderVaultReady();renderVaultBookOptions();renderSourceProgress();renderVaultTopicMap();renderVaultBookMap();renderVaultMockMap();renderVaultSession();
+ if(!$('vaultTab'))return;renderVaultSummary();renderVaultDue();renderVaultReady();renderVaultBookOptions();renderSourceProgress();renderVaultTopicMap();renderVaultBookMap();renderVaultMockMap();renderVaultSession();renderVaultDailyHistory();
  if($('vaultLearnedDate')&&!$('vaultLearnedDate').value)$('vaultLearnedDate').value=today();
  if($('quickVaultModal')?.classList.contains('show'))fillQuickVaultBooks();
 }
