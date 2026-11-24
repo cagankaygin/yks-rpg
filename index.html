@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#0e1220">
-<title>YKS RPG V3.45</title>
+<title>YKS RPG V3.46</title>
 <style>
 :root{
  color-scheme:dark;--bg:#0c1019;--surface:#141b28;--surface-raised:#1b2535;--surface-soft:#101722;--border:#2a3547;--text:#edf2fa;--muted:#98a7bc;--accent:#84cbb8;--success:#84cbb8;--warning:#e9be76;--danger:#ef9c9d;--gold:#e9be76;--violet:#b5a1e5;
@@ -75,7 +75,7 @@ button,input,select,textarea{font:inherit}button{min-height:44px;display:inline-
 </head>
 <body>
 <main>
-<header class="appHeader"><div class="brand"><span class="brandMark" aria-hidden="true">🎮</span><div><div class="brandLine"><h1>YKS RPG</h1><span class="version">V3.45</span></div><p class="sub">Her gün biraz daha güçlü.</p></div></div><div class="headerBadges"><span class="pill" id="cloudPill">☁️ <span id="cloudStatus">Yerel</span></span><span class="pill" title="Boş gün bileti">🎟️ <span id="tickets">0</span></span><span class="pill" title="İndirim kuponu">🏷️ <span id="coupons">0</span></span></div></header>
+<header class="appHeader"><div class="brand"><span class="brandMark" aria-hidden="true">🎮</span><div><div class="brandLine"><h1>YKS RPG</h1><span class="version">V3.46</span></div><p class="sub">Her gün biraz daha güçlü.</p></div></div><div class="headerBadges"><span class="pill" id="cloudPill">☁️ <span id="cloudStatus">Yerel</span></span><span class="pill" title="Boş gün bileti">🎟️ <span id="tickets">0</span></span><span class="pill" title="İndirim kuponu">🏷️ <span id="coupons">0</span></span></div></header>
 <section class="panel hero"><div class="heroHeading"><div><span class="overline">LEVEL / XP · KULLANILABİLİR BAKİYE</span><div class="big" id="balance">0 XP</div></div><div class="heroEmblem" aria-hidden="true">✦</div></div><div class="bar"><div id="progress"></div></div><div class="heroReward"><small id="next">Sonraki boş gün biletine 3.000 XP</small><span class="pill">🎟️ 3.000 XP</span></div><div class="stats heroStats"><div class="stat"><small>BU HAFTA</small><b id="weekly">0</b></div><div class="stat"><small>🔥 STREAK</small><b id="topStreak">0 gün</b></div><div class="stat"><small>BUGÜNKÜ RANK</small><b id="heroRank">D-Rank</b></div><div class="stat"><small>👹 BOSS POWER</small><b id="bossMini">0/100</b><div class="bar miniBoss"><div id="heroBossProgress"></div></div></div></div><div class="heroFooter"><button id="countdown" class="viewControl" type="button">🎯 YKS tarihini ayarla</button><div class="ledgerRow"><span>Toplam <b id="earned">0</b> XP</span><span>Harcanan <b id="spent">0</b> XP</span><span>En iyi seri <b id="bestStreak">0 gün</b></span></div></div></section>
 <nav class="tabs" role="tablist" aria-label="Uygulama bölümleri"><button id="nav-daily" data-tab="daily" role="tab" aria-controls="daily" aria-selected="true" class="active"><span class="navIcon" aria-hidden="true">📅</span>Günlük</button><button id="nav-lockInTab" data-tab="lockInTab" role="tab" aria-controls="lockInTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🔒</span>Lock-In</button><button id="nav-rpg" data-tab="rpg" role="tab" aria-controls="rpg" aria-selected="false"><span class="navIcon" aria-hidden="true">⚔️</span>RPG</button><button id="nav-mockTab" data-tab="mockTab" role="tab" aria-controls="mockTab" aria-selected="false"><span class="navIcon" aria-hidden="true">📝</span>Denemeler</button><button id="nav-planTab" data-tab="planTab" role="tab" aria-controls="planTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🗓️</span>Plan</button><button id="nav-vaultTab" data-tab="vaultTab" role="tab" aria-controls="vaultTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🧠</span>Zor Soru</button><button id="nav-teacherTab" data-tab="teacherTab" role="tab" aria-controls="teacherTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🙋</span>Hocaya Sor</button><button id="nav-shopTab" data-tab="shopTab" role="tab" aria-controls="shopTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🛍️</span>Mağaza</button><button id="nav-backupTab" data-tab="backupTab" role="tab" aria-controls="backupTab" aria-selected="false"><span class="navIcon" aria-hidden="true">💾</span>Yedek</button></nav>
 
@@ -127,17 +127,17 @@ button,input,select,textarea{font:inherit}button{min-height:44px;display:inline-
 </div>
 <div id="lockInTab" class="tab" role="tabpanel" aria-labelledby="nav-lockInTab"><div class="sectionIntro"><span class="overline">KENDİ ÇALIŞMA DÜZENİN</span><h2>🔒 Lock-In</h2><label>Gün <input id="lockInDate" type="date" class="viewControl"></label></div><section class="panel lockInPanel" id="lockInPanel">
   <div class="lockInTop"><div><span class="overline">YKS İZOLASYON MODU</span><h2>🔒 Lock-In</h2></div><span class="pill" id="lockInStatus">Kapalı</span></div>
-  <p class="notice">Ortak kurallar üç ortamda da geçerli. Planını değiştirmeden periyotlarını kendin oluştur.</p>
+  <p class="notice">Ortamını seç, odaklan ve modu kapatırken uyduğun kuralları işaretleyerek XP kazan.</p>
   <div class="lockInModes" id="lockInModes">
-    <button type="button" class="lockInMode" data-lockin-env="university"><b>🏛️ Üniversite</b><small>Aynı kurallar · Kendi periyotların</small></button>
-    <button type="button" class="lockInMode" data-lockin-env="bilim"><b>📚 Bilim</b><small>Aynı kurallar · Kendi periyotların</small></button>
-    <button type="button" class="lockInMode" data-lockin-env="home"><b>🏠 Ev</b><small>Aynı kurallar · Kendi periyotların</small></button>
+    <button type="button" class="lockInMode" data-lockin-env="university"><b>🏛️ Üniversite</b><small>Aynı kurallar · XP ödülleri</small></button>
+    <button type="button" class="lockInMode" data-lockin-env="bilim"><b>📚 Bilim</b><small>Aynı kurallar · XP ödülleri</small></button>
+    <button type="button" class="lockInMode" data-lockin-env="home"><b>🏠 Ev</b><small>Aynı kurallar · XP ödülleri</small></button>
   </div>
   <div class="lockInRules" id="lockInRules"></div>
   <div class="actions"><button type="button" class="primary" id="lockInStart">🔒 Modu aç</button><button type="button" id="lockInStop">Modu kapat</button></div>
   <p class="lockInState" id="lockInState"></p>
 </section>
-<section class="panel"><h2>🧩 Günün periyotları</h2><p class="notice">Önce periyot ekle, sonra planındaki dersleri istediğin sayıda ve sırada gruplara ata. Ders tamamlanmaları Günlük ekranından takip edilir. Periyot oluşturmak planı veya XP'yi değiştirmez.</p><div class="actions"><button id="addLockPeriod">➕ Periyot ekle</button><button id="lockDailyLink" class="viewControl">Günlük görevleri aç</button></div><div class="formGrid" id="lockPeriodAssignments"></div><label>Yemek molası<select id="lockMealAfter"></select></label><div class="actions"><button id="lockTimerLink" class="viewControl">⏱️ Kronometreyi aç</button><button id="lockBreakEnd">▶ Molayı bitir / Devam et</button></div><p class="notice" id="lockBreakStatus" aria-live="off"></p><div id="lockPeriods"></div><p class="notice">Molaları buradan veya Kronometre'den başlatabilirsin. Periyot tamamlanması, içindeki bütün plan görevlerinin işaretlenmesine bağlıdır.</p></section>
+<section class="panel" hidden style="display:none"><h2>🧩 Günün periyotları</h2><p class="notice">Önce periyot ekle, sonra planındaki dersleri istediğin sayıda ve sırada gruplara ata. Ders tamamlanmaları Günlük ekranından takip edilir. Periyot oluşturmak planı veya XP'yi değiştirmez.</p><div class="actions"><button id="addLockPeriod">➕ Periyot ekle</button><button id="lockDailyLink" class="viewControl">Günlük görevleri aç</button></div><div class="formGrid" id="lockPeriodAssignments"></div><label>Yemek molası<select id="lockMealAfter"></select></label><div class="actions"><button id="lockTimerLink" class="viewControl">⏱️ Kronometreyi aç</button><button id="lockBreakEnd">▶ Molayı bitir / Devam et</button></div><p class="notice" id="lockBreakStatus" aria-live="off"></p><div id="lockPeriods"></div><p class="notice">Molaları buradan veya Kronometre'den başlatabilirsin. Periyot tamamlanması, içindeki bütün plan görevlerinin işaretlenmesine bağlıdır.</p></section>
 <section class="panel"><h2>XP işlem geçmişi · Seçili gün</h2><div id="lockInHistory"></div></section></div>
 <div id="planTab" class="tab" role="tabpanel" aria-labelledby="nav-planTab"><div class="sectionIntro"><span class="overline">HAFTANA YÖN VER</span><h2>🗓️ Haftalık plan</h2><p>Günlük ekranın artık tamamen bu plana bağlı. Buraya eklemediğin hiçbir ders Günlükte görünmez.</p></div>
 <section class="panel"><div class="top"><h2>🗓️ Haftalık plan</h2><label>Hafta <input id="planWeek" class="viewControl" type="date"></label></div><div class="actions"><button id="planPrev" class="viewControl">← Önceki hafta</button><button id="planCurrent" class="viewControl">Bu hafta</button><button id="planNext" class="viewControl">Sonraki hafta →</button><button id="resetPlanWeek">Haftanın planını temizle</button></div><p class="notice">5 Kasım 2026'dan itibaren otomatik/standart ders yoktur. Türkçe, TYT Matematik, Geometri, Fizik, Kimya, Biyoloji, Paragraf, Problem, deneme ve diğer tüm çalışmalar yalnızca Plan’a eklendiğinde Günlükte görünür ve Rank ağırlığı kazanır. Geçmiş günlerin planını da düzenleyebilirsin. Tamamlanan dersleri kaldırmak XP, Rank ve streak hesaplarını günceller; kayıtlı süreler ve alınmış sandık/ödüller korunur. Bugün ve gelecekte çalışma / swap / bilet / koruyucu kaydı olan planlar kilitlidir. İkinci oturum için Ek Çalışma veya günlük Swap kullan.</p><div class="stats" id="planSummary"></div><div class="plannerGrid" id="planDays"></div></section>
@@ -180,7 +180,7 @@ button,input,select,textarea{font:inherit}button{min-height:44px;display:inline-
     <div class="vaultResultButtons">
       <button id="vaultSolved" class="solved" type="button">✅ Çözdüm</button>
       <button id="vaultPartial" class="partial" type="button">◐ Kısmen çözdüm</button>
-      <button id="vaultFailed" class="failed" type="button">❌ Çözemedim</button>
+      <button id="vaultFailed" class="failed" type="button">❌ Çözemedim</button><button id="vaultAskTeacher" type="button">🙋 Hocaya Sor’a aktar</button>
     </div>
   </section>
 
@@ -577,7 +577,7 @@ function normalizeRemoteState(st){
   planNotes:normalizePlanNotes(st.planNotes),
   weekPlans:st.weekPlans&&typeof st.weekPlans==='object'&&!Array.isArray(st.weekPlans)?st.weekPlans:{},
   questionVault:normalizeQuestionVault(st.questionVault),
-  teacherQuestions:Array.isArray(st.teacherQuestions)?st.teacherQuestions.filter(q=>q&&typeof q==='object'&&typeof q.id==='string'&&q.id&&typeof q.bookId==='string'&&typeof q.topic==='string'&&typeof q.page==='string'&&typeof q.questionNo==='string').map(q=>({id:q.id,bookId:q.bookId,topic:q.topic.slice(0,120),page:q.page.slice(0,20),questionNo:q.questionNo.slice(0,40),note:typeof q.note==='string'?q.note.slice(0,500):'',addedAt:validDay(q.addedAt)?q.addedAt:today()})):[],
+  teacherQuestions:Array.isArray(st.teacherQuestions)?st.teacherQuestions.filter(q=>q&&typeof q==='object'&&typeof q.id==='string'&&q.id&&typeof q.bookId==='string'&&typeof q.topic==='string'&&typeof q.page==='string'&&typeof q.questionNo==='string').map(q=>({id:q.id,vaultQuestionId:typeof q.vaultQuestionId==='string'?q.vaultQuestionId:'',bookId:q.bookId,topic:q.topic.slice(0,120),page:q.page.slice(0,20),questionNo:q.questionNo.slice(0,40),note:typeof q.note==='string'?q.note.slice(0,500):'',addedAt:validDay(q.addedAt)?q.addedAt:today()})):[],
   studyTimer:normalizeStudyTimer(st.studyTimer),
   lockIn:normalizeLockIn(st.lockIn),
   settings:{examDate:typeof st.settings?.examDate==='string'&&validDay(st.settings.examDate)?st.settings.examDate:''}
@@ -835,9 +835,9 @@ function renderStudyWeekTimes(w){
  $('weeklyStudyTotal').textContent=formatStudyDuration(total);
 }
 const LOCKIN_ENVS={university:'Üniversite',bilim:'Bilim',home:'Ev'};
-const LOCKIN_REWARD_RULES={phone:{text:'Dersler bitene kadar telefona bakmadım.',xp:10},period:{text:'Periyotlar bitmeden uzun mola vermedim.',xp:10},breaks:{text:'Belirlenen mola sürelerini aşmadım.',xp:15},social:{text:'Sosyal sebeplerle programımı yarıda bırakmadım.',xp:20},tv:{text:'Günlük ders programım tamamlanmadan televizyon izlemedim.',xp:10,env:'home'}};
+const LOCKIN_REWARD_RULES={phone:{text:'Dersler bitene kadar telefona bakmadım.',xp:10},period:{text:'Planladığım çalışma blokları bitmeden uzun mola vermedim.',xp:10},breaks:{text:'Belirlenen mola sürelerini aşmadım.',xp:15},social:{text:'Sosyal sebeplerle programımı yarıda bırakmadım.',xp:20},tv:{text:'Günlük ders programım tamamlanmadan televizyon izlemedim.',xp:10,env:'home'}};
 const LOCKIN_PENALTY_REASON='Arkadaşlarımla takılmak için günlük ders programımı yarıda bıraktım.';
-const LOCKIN_RULES=['📵 Dersler bitene kadar telefona bakma.','⏱️ Periyot içindeki dersler arasında 5 dk, periyotlar arasında 25 dk mola.','🍽️ Seçtiğin periyottan sonra 60 dk yemek molası; süre aşımını takip et.','🎯 Programını sosyal sebeplerle yarıda bırakma. Acil durumlar, sağlık sorunları ve zorunlu değişiklikler ceza kapsamında değildir.'];
+const LOCKIN_RULES=['📵 Dersler bitene kadar telefona bakma.','⏱️ Çalışma bloklarını tamamlamadan uzun mola verme.','🍽️ Belirlediğin mola sürelerini aşma.','🎯 Programını sosyal sebeplerle yarıda bırakma. Acil durumlar, sağlık sorunları ve zorunlu değişiklikler ceza kapsamında değildir.'];
 function lockInRuleAllowed(key,env){const rule=Object.hasOwn(LOCKIN_REWARD_RULES,key)?LOCKIN_REWARD_RULES[key]:null;return !!rule&&(!rule.env||rule.env===env)}
 function lockInRuleKeys(env){return Object.keys(LOCKIN_REWARD_RULES).filter(key=>lockInRuleAllowed(key,env))}
 function lockInDay(day=selected){return state.lockIn?.days?.[day]||null}
@@ -2177,6 +2177,13 @@ function startVaultSession(ids){
  if(COACH_MODE)return;const unique=[...new Set(ids)].filter(id=>vaultQuestions().some(q=>q.id===id&&!q.mastered));if(!unique.length)return;
  vaultSessionIds=unique;vaultSessionIndex=0;$('vaultSessionDifficulty').dataset.questionId='';renderVaultSession();$('vaultSessionPanel').scrollIntoView({behavior:'smooth',block:'start'});
 }
+function sendVaultQuestionToTeacher(){
+ if(COACH_MODE)return;const q=vaultQuestions().find(x=>x.id===vaultSessionIds[vaultSessionIndex]);if(!q)return;
+ if(teacherQuestions().some(t=>t.vaultQuestionId===q.id||(!vaultSourceIsMock(q)&&t.bookId===q.bookId&&t.topic===q.topic&&t.page===q.page&&t.questionNo===q.questionNo))){alert('Bu soru zaten Hocaya Sor listesinde.');return}
+ if(!confirm('Soru Hocaya Sor listesine eklensin mi? Kasadaki kayıt korunur ve bu deneme çözülemedi olarak kaydedilir.'))return;
+ state.teacherQuestions??=[];state.teacherQuestions.push({id:vaultId('ask'),vaultQuestionId:q.id,bookId:q.bookId||'',topic:q.topic||'',page:q.page||'',questionNo:q.questionNo||'',note:'',addedAt:today()});
+ recordVaultResult('failed');renderTeacherQuestions();
+}
 function recordVaultResult(result){
  if(COACH_MODE||!['solved','partial','failed'].includes(result)||vaultSessionIndex>=vaultSessionIds.length)return;
  const q=vaultQuestions().find(x=>x.id===vaultSessionIds[vaultSessionIndex]);if(!q||q.mastered)return;const difficulty=$('vaultSessionDifficulty');if(difficulty.dataset.questionId===q.id){if(Object.hasOwn(VAULT_DIFFICULTIES,difficulty.value))q.difficulty=difficulty.value;else delete q.difficulty;}difficulty.dataset.questionId='';const day=today();q.active=true;q.lastAttemptAt=day;q.lastResult=result;q.history??=[];q.history.push({date:day,result});if(q.history.length>30)q.history=q.history.slice(-30);
@@ -2259,8 +2266,8 @@ function mockVaultCounts(exam){
 
 function teacherQuestions(){return Array.isArray(state.teacherQuestions)?state.teacherQuestions:[]}
 function teacherQuestionBook(q){return vaultBook(q?.bookId)}
-function teacherQuestionSubject(q){return teacherQuestionBook(q)?.subject||''}
-function teacherQuestionLabel(q){const b=teacherQuestionBook(q);return (b?b.name:'Kaynak')+' · '+q.topic+' · s.'+(q.page||'—')+' / S.'+(q.questionNo||'—')}
+function teacherQuestionSubject(q){const linked=vaultQuestions().find(x=>x.id===q.vaultQuestionId);return linked?vaultQuestionSubject(linked):teacherQuestionBook(q)?.subject||''}
+function teacherQuestionLabel(q){const linked=vaultQuestions().find(x=>x.id===q.vaultQuestionId);if(linked)return vaultQuestionLabel(linked);const b=teacherQuestionBook(q);return (b?b.name:'Kaynak')+' · '+q.topic+' · s.'+(q.page||'—')+' / S.'+(q.questionNo||'—')}
 function renderTeacherBookOptions(){
  const select=$('teacherQuestionBook');if(!select)return;const old=select.value;select.replaceChildren();
  if(!vaultBooks().length)select.add(new Option('Önce Zor Soru bölümünden kaynak ekle',''));
@@ -2284,6 +2291,8 @@ function deleteTeacherQuestion(id){
 }
 function moveTeacherQuestionToVault(id){
  if(COACH_MODE)return;const q=teacherQuestions().find(x=>x.id===id);if(!q)return;
+ const linked=vaultQuestions().find(x=>x.id===q.vaultQuestionId);
+ if(linked){if(!confirm('Hocaya sordun ve çözümü anladın mı? İlk tekrar 7 gün sonra yapılacak.'))return;linked.active=true;linked.mastered=false;linked.successStage=0;linked.nextDueAt=add(today(),7);state.teacherQuestions=teacherQuestions().filter(x=>x.id!==id);save();renderTeacherQuestions();renderQuestionVault();renderDailyVaultShortcut();return}
  const b=vaultBook(q.bookId);if(!b){alert('Bu sorunun kaynağı artık bulunamıyor. Önce kaynağı yeniden ekle.');return}
  if(!confirm('Hocaya sordun ve artık çözüm mantığını anladın mı?\n\nOnaylarsan soru Zor Soru Kasası’na aktarılır ve 7 günlük bekleme bugün başlar.'))return;
  const result=createBookVaultQuestions({bookId:q.bookId,topic:q.topic,page:q.page,learned:today(),questionNos:[q.questionNo]});
@@ -2294,7 +2303,7 @@ function moveTeacherQuestionToVault(id){
 }
 function renderTeacherQuestions(){
  if(!$('teacherTab'))return;renderTeacherBookOptions();
- const items=teacherQuestions().filter(q=>vaultBook(q.bookId));
+ const items=teacherQuestions().filter(q=>vaultBook(q.bookId)||vaultQuestions().some(x=>x.id===q.vaultQuestionId));
  $('teacherPendingCount').textContent=String(items.length);
  const groups=new Map();
  for(const q of items){const subject=teacherQuestionSubject(q)||'other';if(!groups.has(subject))groups.set(subject,[]);groups.get(subject).push(q)}
@@ -2345,6 +2354,7 @@ function initQuestionVault(){
   startVaultSession([...groups.values()].flat());
  };
  $('vaultStopSession').onclick=()=>{vaultSessionIds=[];vaultSessionIndex=0;renderVaultSession()};
+ $('vaultAskTeacher').onclick=()=>sendVaultQuestionToTeacher();
  $('vaultSolved').onclick=()=>recordVaultResult('solved');$('vaultPartial').onclick=()=>recordVaultResult('partial');$('vaultFailed').onclick=()=>recordVaultResult('failed');
  $('vaultLearnedDate').value=today();
  $('mockVaultForm').onsubmit=saveMockVaultQuestions;$('closeMockVault').onclick=closeMockVault;
