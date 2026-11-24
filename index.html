@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#0e1220">
-<title>YKS RPG V3.44</title>
+<title>YKS RPG V3.45</title>
 <style>
 :root{
  color-scheme:dark;--bg:#0c1019;--surface:#141b28;--surface-raised:#1b2535;--surface-soft:#101722;--border:#2a3547;--text:#edf2fa;--muted:#98a7bc;--accent:#84cbb8;--success:#84cbb8;--warning:#e9be76;--danger:#ef9c9d;--gold:#e9be76;--violet:#b5a1e5;
@@ -75,7 +75,7 @@ button,input,select,textarea{font:inherit}button{min-height:44px;display:inline-
 </head>
 <body>
 <main>
-<header class="appHeader"><div class="brand"><span class="brandMark" aria-hidden="true">🎮</span><div><div class="brandLine"><h1>YKS RPG</h1><span class="version">V3.44</span></div><p class="sub">Her gün biraz daha güçlü.</p></div></div><div class="headerBadges"><span class="pill" id="cloudPill">☁️ <span id="cloudStatus">Yerel</span></span><span class="pill" title="Boş gün bileti">🎟️ <span id="tickets">0</span></span><span class="pill" title="İndirim kuponu">🏷️ <span id="coupons">0</span></span></div></header>
+<header class="appHeader"><div class="brand"><span class="brandMark" aria-hidden="true">🎮</span><div><div class="brandLine"><h1>YKS RPG</h1><span class="version">V3.45</span></div><p class="sub">Her gün biraz daha güçlü.</p></div></div><div class="headerBadges"><span class="pill" id="cloudPill">☁️ <span id="cloudStatus">Yerel</span></span><span class="pill" title="Boş gün bileti">🎟️ <span id="tickets">0</span></span><span class="pill" title="İndirim kuponu">🏷️ <span id="coupons">0</span></span></div></header>
 <section class="panel hero"><div class="heroHeading"><div><span class="overline">LEVEL / XP · KULLANILABİLİR BAKİYE</span><div class="big" id="balance">0 XP</div></div><div class="heroEmblem" aria-hidden="true">✦</div></div><div class="bar"><div id="progress"></div></div><div class="heroReward"><small id="next">Sonraki boş gün biletine 3.000 XP</small><span class="pill">🎟️ 3.000 XP</span></div><div class="stats heroStats"><div class="stat"><small>BU HAFTA</small><b id="weekly">0</b></div><div class="stat"><small>🔥 STREAK</small><b id="topStreak">0 gün</b></div><div class="stat"><small>BUGÜNKÜ RANK</small><b id="heroRank">D-Rank</b></div><div class="stat"><small>👹 BOSS POWER</small><b id="bossMini">0/100</b><div class="bar miniBoss"><div id="heroBossProgress"></div></div></div></div><div class="heroFooter"><button id="countdown" class="viewControl" type="button">🎯 YKS tarihini ayarla</button><div class="ledgerRow"><span>Toplam <b id="earned">0</b> XP</span><span>Harcanan <b id="spent">0</b> XP</span><span>En iyi seri <b id="bestStreak">0 gün</b></span></div></div></section>
 <nav class="tabs" role="tablist" aria-label="Uygulama bölümleri"><button id="nav-daily" data-tab="daily" role="tab" aria-controls="daily" aria-selected="true" class="active"><span class="navIcon" aria-hidden="true">📅</span>Günlük</button><button id="nav-lockInTab" data-tab="lockInTab" role="tab" aria-controls="lockInTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🔒</span>Lock-In</button><button id="nav-rpg" data-tab="rpg" role="tab" aria-controls="rpg" aria-selected="false"><span class="navIcon" aria-hidden="true">⚔️</span>RPG</button><button id="nav-mockTab" data-tab="mockTab" role="tab" aria-controls="mockTab" aria-selected="false"><span class="navIcon" aria-hidden="true">📝</span>Denemeler</button><button id="nav-planTab" data-tab="planTab" role="tab" aria-controls="planTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🗓️</span>Plan</button><button id="nav-vaultTab" data-tab="vaultTab" role="tab" aria-controls="vaultTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🧠</span>Zor Soru</button><button id="nav-teacherTab" data-tab="teacherTab" role="tab" aria-controls="teacherTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🙋</span>Hocaya Sor</button><button id="nav-shopTab" data-tab="shopTab" role="tab" aria-controls="shopTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🛍️</span>Mağaza</button><button id="nav-backupTab" data-tab="backupTab" role="tab" aria-controls="backupTab" aria-selected="false"><span class="navIcon" aria-hidden="true">💾</span>Yedek</button></nav>
 
@@ -176,6 +176,7 @@ button,input,select,textarea{font:inherit}button{min-height:44px;display:inline-
     <div class="vaultSessionRef" id="vaultSessionRef"></div>
     <div class="vaultSub" id="vaultSessionSub"></div>
     <p class="notice">Önce çözümü açmadan gerçek bir deneme yap. Sonucu ancak denemenden sonra işaretle.</p>
+    <label style="margin:12px 0;display:block">Çözüm sonrası zorluk seviyesi<select id="vaultSessionDifficulty"><option value="">Henüz atanmadı</option><option value="medium">🟡 Orta</option><option value="hard">🟠 Zor</option><option value="brutal">🔴 İnsafsız</option></select></label>
     <div class="vaultResultButtons">
       <button id="vaultSolved" class="solved" type="button">✅ Çözdüm</button>
       <button id="vaultPartial" class="partial" type="button">◐ Kısmen çözdüm</button>
@@ -2109,6 +2110,7 @@ function renderVaultSession(){
  if(vaultSourceIsMock(q))$('vaultSessionSub').textContent=vaultMockName(q)+' · '+fmt(q.mockDate)+' · '+vaultSubjectLabel(q.subject)+' · '+q.topic;
  else{const b=vaultBook(q.bookId);$('vaultSessionSub').textContent=(b?b.name:'Kaynak')+' · '+q.topic+' · '+vaultSubjectLabel(b?.subject)}
  $('vaultSessionSub').textContent+=' · '+(VAULT_DIFFICULTIES[q.difficulty]||'Zorluk atanmadı');
+ const difficulty=$('vaultSessionDifficulty');if(difficulty.dataset.questionId!==q.id){difficulty.dataset.questionId=q.id;difficulty.value=VAULT_DIFFICULTIES[q.difficulty]?q.difficulty:'';}difficulty.disabled=COACH_MODE;
 }
 function renderVaultDailyHistory(){
  const root=$('vaultDailyHistory');if(!root)return;
@@ -2173,11 +2175,11 @@ function deleteVaultBook(id){
 }
 function startVaultSession(ids){
  if(COACH_MODE)return;const unique=[...new Set(ids)].filter(id=>vaultQuestions().some(q=>q.id===id&&!q.mastered));if(!unique.length)return;
- vaultSessionIds=unique;vaultSessionIndex=0;renderVaultSession();$('vaultSessionPanel').scrollIntoView({behavior:'smooth',block:'start'});
+ vaultSessionIds=unique;vaultSessionIndex=0;$('vaultSessionDifficulty').dataset.questionId='';renderVaultSession();$('vaultSessionPanel').scrollIntoView({behavior:'smooth',block:'start'});
 }
 function recordVaultResult(result){
  if(COACH_MODE||!['solved','partial','failed'].includes(result)||vaultSessionIndex>=vaultSessionIds.length)return;
- const q=vaultQuestions().find(x=>x.id===vaultSessionIds[vaultSessionIndex]);if(!q||q.mastered)return;const day=today();q.active=true;q.lastAttemptAt=day;q.lastResult=result;q.history??=[];q.history.push({date:day,result});if(q.history.length>30)q.history=q.history.slice(-30);
+ const q=vaultQuestions().find(x=>x.id===vaultSessionIds[vaultSessionIndex]);if(!q||q.mastered)return;const difficulty=$('vaultSessionDifficulty');if(difficulty.dataset.questionId===q.id){if(Object.hasOwn(VAULT_DIFFICULTIES,difficulty.value))q.difficulty=difficulty.value;else delete q.difficulty;}difficulty.dataset.questionId='';const day=today();q.active=true;q.lastAttemptAt=day;q.lastResult=result;q.history??=[];q.history.push({date:day,result});if(q.history.length>30)q.history=q.history.slice(-30);
  if(result==='failed'){q.successStage=0;q.nextDueAt=add(day,7);q.mastered=false}
  else if(result==='partial'){q.nextDueAt=add(day,7);q.mastered=false}
  else{
