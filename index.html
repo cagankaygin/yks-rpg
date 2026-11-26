@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#0e1220">
-<title>YKS RPG V3.53</title>
+<title>YKS RPG V3.54</title>
 <style>
 :root{
  color-scheme:dark;--bg:#0c1019;--surface:#141b28;--surface-raised:#1b2535;--surface-soft:#101722;--border:#2a3547;--text:#edf2fa;--muted:#98a7bc;--accent:#84cbb8;--success:#84cbb8;--warning:#e9be76;--danger:#ef9c9d;--gold:#e9be76;--violet:#b5a1e5;
@@ -75,7 +75,7 @@ button,input,select,textarea{font:inherit}button{min-height:44px;display:inline-
 </head>
 <body>
 <main>
-<header class="appHeader"><div class="brand"><span class="brandMark" aria-hidden="true">🎮</span><div><div class="brandLine"><h1>YKS RPG</h1><span class="version">V3.53</span></div><p class="sub">Her gün biraz daha güçlü.</p></div></div><div class="headerBadges"><span class="pill" id="cloudPill">☁️ <span id="cloudStatus">Yerel</span></span><span class="pill" title="Boş gün bileti">🎟️ <span id="tickets">0</span></span><span class="pill" title="İndirim kuponu">🏷️ <span id="coupons">0</span></span></div></header>
+<header class="appHeader"><div class="brand"><span class="brandMark" aria-hidden="true">🎮</span><div><div class="brandLine"><h1>YKS RPG</h1><span class="version">V3.54</span></div><p class="sub">Her gün biraz daha güçlü.</p></div></div><div class="headerBadges"><span class="pill" id="cloudPill">☁️ <span id="cloudStatus">Yerel</span></span><span class="pill" title="Boş gün bileti">🎟️ <span id="tickets">0</span></span><span class="pill" title="İndirim kuponu">🏷️ <span id="coupons">0</span></span></div></header>
 <section class="panel hero"><div class="heroHeading"><div><span class="overline">LEVEL / XP · KULLANILABİLİR BAKİYE</span><div class="big" id="balance">0 XP</div></div><div class="heroEmblem" aria-hidden="true">✦</div></div><div class="bar"><div id="progress"></div></div><div class="heroReward"><small id="next">Sonraki boş gün biletine 3.000 XP</small><span class="pill">🎟️ 3.000 XP</span></div><div class="stats heroStats"><div class="stat"><small>BU HAFTA</small><b id="weekly">0</b></div><div class="stat"><small>🔥 STREAK</small><b id="topStreak">0 gün</b></div><div class="stat"><small>BUGÜNKÜ RANK</small><b id="heroRank">D-Rank</b></div><div class="stat"><small>👹 BOSS POWER</small><b id="bossMini">0/100</b><div class="bar miniBoss"><div id="heroBossProgress"></div></div></div></div><div class="heroFooter"><button id="countdown" class="viewControl" type="button">🎯 YKS tarihini ayarla</button><div class="ledgerRow"><span>Toplam <b id="earned">0</b> XP</span><span>Harcanan <b id="spent">0</b> XP</span><span>En iyi seri <b id="bestStreak">0 gün</b></span></div></div></section>
 <nav class="tabs" role="tablist" aria-label="Uygulama bölümleri"><button id="nav-daily" data-tab="daily" role="tab" aria-controls="daily" aria-selected="true" class="active"><span class="navIcon" aria-hidden="true">📅</span>Günlük</button><button id="nav-lockInTab" data-tab="lockInTab" role="tab" aria-controls="lockInTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🔒</span>Odaklanma</button><button id="nav-rpg" data-tab="rpg" role="tab" aria-controls="rpg" aria-selected="false"><span class="navIcon" aria-hidden="true">⚔️</span>Gelişme</button><button id="nav-mockTab" data-tab="mockTab" role="tab" aria-controls="mockTab" aria-selected="false"><span class="navIcon" aria-hidden="true">📝</span>Denemeler</button><button id="nav-planTab" data-tab="planTab" role="tab" aria-controls="planTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🗓️</span>Plan</button><button id="nav-vaultTab" data-tab="vaultTab" role="tab" aria-controls="vaultTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🧠</span>Zor Soru</button><button id="nav-teacherTab" data-tab="teacherTab" role="tab" aria-controls="teacherTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🙋</span>Hocaya Sor</button><button id="nav-shopTab" data-tab="shopTab" role="tab" aria-controls="shopTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🛍️</span>Mağaza</button><button id="nav-backupTab" data-tab="backupTab" role="tab" aria-controls="backupTab" aria-selected="false"><span class="navIcon" aria-hidden="true">💾</span>Yedek</button></nav>
 
@@ -711,7 +711,7 @@ function currentSeason(){let delta=Math.floor((parse(today())-parse(START))/8640
 function achievementCandidates(){let list=[],ac=analysisCount(),sc=sRankDates().length;for(let m=15;m<=Math.floor(ac/15)*15;m+=15)list.push({id:'analysis-'+m,name:`🔍 Analiz Ustası · ${m}`,desc:`Toplam ${m} Zor Soru Analizi tamamlandı.`});for(let m=10;m<=Math.floor(sc/10)*10;m+=10)list.push({id:'srank-'+m,name:`👑 S-Rank Koleksiyoncusu · ${m}`,desc:`Toplam ${m} S-Rank gün tamamlandı.`});let i=0;while(true){let st=completedSeasonStats(i);if(!st)break;if(st.ratio>=.85)list.push({id:'season-'+i,name:`🔥 Ay Boyu İstikrar · Sezon ${i+1}`,desc:`4 haftalık sezonda %${Math.round(st.ratio*100)} ana görev tamamlandı.`});i++}return list}
 function monthBounds(s){let d=parse(s),a=new Date(d.getFullYear(),d.getMonth(),1,12),b=new Date(d.getFullYear(),d.getMonth()+1,0,12);return [iso(a),iso(b)]}
 function monthSummary(s){let [a,b]=monthBounds(s),end=b<today()?b:today();if(end<a||end<START)return {a,b,total:0,done:0,sr:0,ar:0,br:0,cr:0,dr:0,analysis:0,geo:0,physics:0,chem:0,bio:0,problem:0,extra:0,extraXP:0,load:0,sat:0,ci:0};if(a<START)a=START;let o={a,b,total:0,done:0,sr:0,ar:0,br:0,cr:0,dr:0,analysis:0,geo:0,physics:0,chem:0,bio:0,problem:0,extra:0,extraXP:0,load:0,sat:0,ci:0};for(let x=a;x<=end;x=add(x,1)){let planned=isRest(x)?tasks(x).filter(k=>k==='tyt'):tasks(x);o.total+=planned.length;o.done+=planned.filter(k=>isDone(x,k)).length;let r=dayRank(x);if(r==='S')o.sr++;if(r==='A')o.ar++;if(r==='B')o.br++;if(r==='C')o.cr++;if(r==='D')o.dr++;if(!isRest(x)){let ax=ANALYSIS_KEYS.filter(k=>tasks(x).includes(k)&&isDone(x,k)).reduce((a,k)=>a+xpFor(x,k),0);o.analysis+=ax/120;}if(x<FLOW_START&&isDone(x,'geo')&&!isRest(x))o.geo++;if(x<FLOW_START&&isDone(x,'physics')&&!isRest(x))o.physics++;if(x<FLOW_START&&isDone(x,'chem')&&!isRest(x))o.chem++;if(x<FLOW_START&&isDone(x,'bio')&&!isRest(x))o.bio++;if(x<FLOW_START&&(isDone(x,'r1')||isDone(x,'r2'))&&!isRest(x))o.problem++;if(x>=FLOW_START)for(const entry of [...completedMain(x),...completedPriorBasics(x)])if(['geo','physics','chem','bio','problem'].includes(entry.subject))o[entry.subject]++;let extras=completedExtras(x);o.extra+=extras.length;o.extraXP+=extraXP(x);for(let k of extras)if(['geo','physics','chem','bio','problem'].includes(k))o[k]++;let c=state.checkins[x];if(c){o.load+=Number(c.load)||0;o.sat+=Number(c.satisfaction)||0;o.ci++}}return o}
-// V3.53: Day navigation updates only day-dependent UI; expensive reports refresh on tab entry.
+// V3.54: Day navigation updates only day-dependent UI; expensive reports refresh on tab entry.
 let dayNavigationNeedsFullRender=false;
 function navigateStudyDay(day){
  if(!validDay(day)||day===selected)return;
@@ -730,9 +730,50 @@ function renderTabs(){
  const buttons=[...document.querySelectorAll('.tabs button')];
  buttons.forEach((button,index)=>{button.onclick=()=>showTab(button.dataset.tab);button.onkeydown=event=>{let next=null;if(event.key==='ArrowRight')next=(index+1)%buttons.length;if(event.key==='ArrowLeft')next=(index+buttons.length-1)%buttons.length;if(event.key==='Home')next=0;if(event.key==='End')next=buttons.length-1;if(next!==null){event.preventDefault();buttons[next].focus();showTab(buttons[next].dataset.tab)}}});
 }
-function render(){dayNavigationNeedsFullRender=false;let t=totals(),st=currentAndBestStreak(),bo=boss(),w=monday(selected);week=w;if(!COACH_MODE&&st.best>=30&&!state.streakRewardUnlocked){state.streakRewardUnlocked=true;save()}
- $('balance').textContent=t.balance.toLocaleString('tr-TR')+' XP';$('earned').textContent=t.earned.toLocaleString('tr-TR');$('spent').textContent=t.spent.toLocaleString('tr-TR');$('weekly').textContent=weekCore(monday(today())).p.toLocaleString('tr-TR');$('tickets').textContent=tickets();$('coupons').textContent=state.coupons;$('topStreak').textContent=st.current+' gün';$('bestStreak').textContent=st.best+' gün';$('progress').style.width=Math.min(100,Math.max(0,t.balance/PRICE*100))+'%';$('next').textContent=t.balance>=PRICE?'Yeni boş gün bileti almaya hazırsın!':`Bilete ${Math.max(0,PRICE-t.balance).toLocaleString('tr-TR')} XP kaldı`;$('bossMini').textContent=`${bo.power}/100`;
- renderDaily(w);renderStudyTimer();renderDashboard();renderQuestionVault();renderTeacherQuestions();renderDailyVaultShortcut();const radar=radarData();renderRadar(radar);renderPlanner(radar);renderErrorProfile();renderSwap();renderExtra();renderCountdown();renderLongProgress();renderMocks();renderRPG(w);renderStats(w);renderShop(t,st);renderCheckin();renderHistory();cloudUi();if(COACH_MODE)setTimeout(enforceCoachReadOnly,0);}
+// V3.54: keep inactive tabs mounted but do not rebuild their large DOM trees
+// after every click. A tab is refreshed when it becomes visible.
+function renderVisibleView(view,w,t,st){
+ switch(view){
+  case 'daily':{
+   renderDaily(w);renderStudyTimer();renderDashboard();renderDailyVaultShortcut();renderSwap();renderExtra();renderCheckin();
+   const items=radarData(),affected=items.filter(x=>x.level!=='balanced').length;
+   $('radarBrief').textContent=affected?`📡 Radar: ${affected} ders dikkat istiyor`:'📡 Radar temiz';
+   break;
+  }
+  case 'lockInTab':renderLockIn();break;
+  case 'rpg':renderRPG(w);break;
+  case 'mockTab':renderMocks();break;
+  case 'planTab':renderPlanner(radarData());break;
+  case 'vaultTab':renderQuestionVault();break;
+  case 'teacherTab':renderTeacherQuestions();break;
+  case 'shopTab':renderShop(t,st);break;
+  case 'radarTab':renderRadar(radarData());break;
+  case 'statsTab':
+   renderStats(w);renderLongProgress();renderMathFinishSummary();renderMathAnalysisSummary();renderErrorProfile();renderLockInTransactions($('xpTransactions'));renderHistory();
+   break;
+  case 'backupTab':break;
+ }
+}
+function render(){
+ dayNavigationNeedsFullRender=false;
+ const t=totals(),st=currentAndBestStreak(),bo=boss(),w=monday(selected);
+ week=w;
+ if(!COACH_MODE&&st.best>=30&&!state.streakRewardUnlocked){state.streakRewardUnlocked=true;save()}
+ $('balance').textContent=t.balance.toLocaleString('tr-TR')+' XP';
+ $('earned').textContent=t.earned.toLocaleString('tr-TR');
+ $('spent').textContent=t.spent.toLocaleString('tr-TR');
+ $('weekly').textContent=weekCore(monday(today())).p.toLocaleString('tr-TR');
+ $('tickets').textContent=tickets();$('coupons').textContent=state.coupons;
+ $('topStreak').textContent=st.current+' gün';$('bestStreak').textContent=st.best+' gün';
+ $('progress').style.width=Math.min(100,Math.max(0,t.balance/PRICE*100))+'%';
+ $('next').textContent=t.balance>=PRICE?'Yeni boş gün bileti almaya hazırsın!':`Bilete ${Math.max(0,PRICE-t.balance).toLocaleString('tr-TR')} XP kaldı`;
+ $('bossMini').textContent=`${bo.power}/100`;
+ renderCountdown();
+ const active=document.querySelector('.tab.active')?.id||'daily';
+ renderVisibleView(active,w,t,st);
+ cloudUi();
+ if(COACH_MODE)setTimeout(enforceCoachReadOnly,0);
+}
 const STUDY_BREAK_TYPES={short:{name:'Kısa mola',seconds:300},period:{name:'Periyot molası',seconds:1500},meal:{name:'Yemek molası',seconds:3600},free:{name:'Serbest mola',seconds:0}};
 function studyBreakRunning(){return state.studyTimer?.breakRunning||null}
 function studyBreakElapsed(br=studyBreakRunning()){return br?Math.max(0,Math.floor((Date.now()-Date.parse(br.startedAt))/1000)):0}
@@ -1061,9 +1102,12 @@ $('forgetOwner').onclick=()=>{if(COACH_MODE)return;if(confirm('Bu cihazın bulut
 function formatNumber(value,digits=2){return Number(value).toLocaleString('tr-TR',{maximumFractionDigits:digits})}
 function formatPercent(value){return value===null?'—':'%'+formatNumber(value,1)}
 function showTab(id){
- if(dayNavigationNeedsFullRender&&id!=='daily'){dayNavigationNeedsFullRender=false;render()}
+ const view=$(id);
+ if(!view||!view.classList.contains('tab'))return;
  document.querySelectorAll('.tabs button').forEach(button=>{const active=button.dataset.tab===id;button.classList.toggle('active',active);button.setAttribute('aria-selected',String(active));if(active)button.scrollIntoView({block:'nearest',inline:'nearest',behavior:'auto'})});
  document.querySelectorAll('.tab').forEach(tab=>tab.classList.toggle('active',tab.id===id));
+ // Update the newly visible panel rather than redrawing every hidden panel.
+ render();
 }
 function canSwap(s){return !COACH_MODE&&s>=FLOW_START&&s<=today()&&!isRest(s)}
 function renderSwap(){
