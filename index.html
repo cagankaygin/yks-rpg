@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#0e1220">
-<title>YKS RPG V3.55</title>
+<title>YKS RPG V3.56</title>
 <style>
 :root{
  color-scheme:dark;--bg:#0c1019;--surface:#141b28;--surface-raised:#1b2535;--surface-soft:#101722;--border:#2a3547;--text:#edf2fa;--muted:#98a7bc;--accent:#84cbb8;--success:#84cbb8;--warning:#e9be76;--danger:#ef9c9d;--gold:#e9be76;--violet:#b5a1e5;
@@ -75,7 +75,7 @@ button,input,select,textarea{font:inherit}button{min-height:44px;display:inline-
 </head>
 <body>
 <main>
-<header class="appHeader"><div class="brand"><span class="brandMark" aria-hidden="true">🎮</span><div><div class="brandLine"><h1>YKS RPG</h1><span class="version">V3.55</span></div><p class="sub">Her gün biraz daha güçlü.</p></div></div><div class="headerBadges"><span class="pill" id="cloudPill">☁️ <span id="cloudStatus">Yerel</span></span><span class="pill" title="Boş gün bileti">🎟️ <span id="tickets">0</span></span><span class="pill" title="İndirim kuponu">🏷️ <span id="coupons">0</span></span></div></header>
+<header class="appHeader"><div class="brand"><span class="brandMark" aria-hidden="true">🎮</span><div><div class="brandLine"><h1>YKS RPG</h1><span class="version">V3.56</span></div><p class="sub">Her gün biraz daha güçlü.</p></div></div><div class="headerBadges"><span class="pill" id="cloudPill">☁️ <span id="cloudStatus">Yerel</span></span><span class="pill" title="Boş gün bileti">🎟️ <span id="tickets">0</span></span><span class="pill" title="İndirim kuponu">🏷️ <span id="coupons">0</span></span></div></header>
 <section class="panel hero"><div class="heroHeading"><div><span class="overline">LEVEL / XP · KULLANILABİLİR BAKİYE</span><div class="big" id="balance">0 XP</div></div><div class="heroEmblem" aria-hidden="true">✦</div></div><div class="bar"><div id="progress"></div></div><div class="heroReward"><small id="next">Sonraki boş gün biletine 3.000 XP</small><span class="pill">🎟️ 3.000 XP</span></div><div class="stats heroStats"><div class="stat"><small>BU HAFTA</small><b id="weekly">0</b></div><div class="stat"><small>🔥 STREAK</small><b id="topStreak">0 gün</b></div><div class="stat"><small>BUGÜNKÜ RANK</small><b id="heroRank">D-Rank</b></div><div class="stat"><small>👹 BOSS POWER</small><b id="bossMini">0/100</b><div class="bar miniBoss"><div id="heroBossProgress"></div></div></div></div><div class="heroFooter"><button id="countdown" class="viewControl" type="button">🎯 YKS tarihini ayarla</button><div class="ledgerRow"><span>Toplam <b id="earned">0</b> XP</span><span>Harcanan <b id="spent">0</b> XP</span><span>En iyi seri <b id="bestStreak">0 gün</b></span></div></div></section>
 <nav class="tabs" role="tablist" aria-label="Uygulama bölümleri"><button id="nav-daily" data-tab="daily" role="tab" aria-controls="daily" aria-selected="true" class="active"><span class="navIcon" aria-hidden="true">📅</span>Günlük</button><button id="nav-lockInTab" data-tab="lockInTab" role="tab" aria-controls="lockInTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🔒</span>Odaklanma</button><button id="nav-rpg" data-tab="rpg" role="tab" aria-controls="rpg" aria-selected="false"><span class="navIcon" aria-hidden="true">⚔️</span>Gelişme</button><button id="nav-mockTab" data-tab="mockTab" role="tab" aria-controls="mockTab" aria-selected="false"><span class="navIcon" aria-hidden="true">📝</span>Denemeler</button><button id="nav-planTab" data-tab="planTab" role="tab" aria-controls="planTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🗓️</span>Plan</button><button id="nav-vaultTab" data-tab="vaultTab" role="tab" aria-controls="vaultTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🧠</span>Zor Soru</button><button id="nav-teacherTab" data-tab="teacherTab" role="tab" aria-controls="teacherTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🙋</span>Hocaya Sor</button><button id="nav-shopTab" data-tab="shopTab" role="tab" aria-controls="shopTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🛍️</span>Mağaza</button><button id="nav-backupTab" data-tab="backupTab" role="tab" aria-controls="backupTab" aria-selected="false"><span class="navIcon" aria-hidden="true">💾</span>Yedek</button></nav>
 
@@ -139,8 +139,8 @@ button,input,select,textarea{font:inherit}button{min-height:44px;display:inline-
 </section>
 <section class="panel" hidden style="display:none"><h2>🧩 Günün periyotları</h2><p class="notice">Önce periyot ekle, sonra planındaki dersleri istediğin sayıda ve sırada gruplara ata. Ders tamamlanmaları Günlük ekranından takip edilir. Periyot oluşturmak planı veya XP'yi değiştirmez.</p><div class="actions"><button id="addLockPeriod">➕ Periyot ekle</button><button id="lockDailyLink" class="viewControl">Günlük görevleri aç</button></div><div class="formGrid" id="lockPeriodAssignments"></div><label>Yemek molası<select id="lockMealAfter"></select></label><div class="actions"><button id="lockTimerLink" class="viewControl">⏱️ Kronometreyi aç</button><button id="lockBreakEnd">▶ Molayı bitir / Devam et</button></div><p class="notice" id="lockBreakStatus" aria-live="off"></p><div id="lockPeriods"></div><p class="notice">Molaları buradan veya Kronometre'den başlatabilirsin. Periyot tamamlanması, içindeki bütün plan görevlerinin işaretlenmesine bağlıdır.</p></section>
 <section class="panel"><h2>XP işlem geçmişi · Seçili gün</h2><div id="lockInHistory"></div></section></div>
-<div id="planTab" class="tab" role="tabpanel" aria-labelledby="nav-planTab"><div class="sectionIntro"><span class="overline">HAFTANA YÖN VER</span><h2>🗓️ Haftalık plan</h2><p>Günlük ekranın artık tamamen bu plana bağlı. Buraya eklemediğin hiçbir ders Günlükte görünmez.</p></div>
-<section class="panel"><div class="top"><h2>🗓️ Haftalık plan</h2><label>Hafta <input id="planWeek" class="viewControl" type="date"></label></div><div class="actions"><button id="planPrev" class="viewControl">← Önceki hafta</button><button id="planCurrent" class="viewControl">Bu hafta</button><button id="planNext" class="viewControl">Sonraki hafta →</button><button id="resetPlanWeek">Haftanın planını temizle</button></div><p class="notice">5 Kasım 2026'dan itibaren otomatik/standart ders yoktur. Türkçe, TYT Matematik, Geometri, Fizik, Kimya, Biyoloji, Paragraf, Problem, deneme ve diğer tüm çalışmalar yalnızca Plan’a eklendiğinde Günlükte görünür ve Rank ağırlığı kazanır. Geçmiş günlerin planını da düzenleyebilirsin. Tamamlanan dersleri kaldırmak XP, Rank ve streak hesaplarını günceller; kayıtlı süreler ve alınmış sandık/ödüller korunur. Bugün ve gelecekte çalışma / swap / bilet / koruyucu kaydı olan planlar kilitlidir. İkinci oturum için Ek Çalışma veya günlük Swap kullan.</p><div class="stats" id="planSummary"></div><div class="plannerGrid" id="planDays"></div></section>
+<div id="planTab" class="tab" role="tabpanel" aria-labelledby="nav-planTab"><div class="sectionIntro"><span class="overline">HAFTANA YÖN VER</span><h2>🗓️ Haftalık plan</h2><p>Günlük ekranın tamamen bu plana bağlı. Aynı dersi bir güne yalnızca bir kez ekleyebilirsin; eklediğin ders seçim listesinden çıkar.</p></div>
+<section class="panel"><div class="top"><h2>🗓️ Haftalık plan</h2><label>Hafta <input id="planWeek" class="viewControl" type="date"></label></div><div class="actions"><button id="planPrev" class="viewControl">← Önceki hafta</button><button id="planCurrent" class="viewControl">Bu hafta</button><button id="planNext" class="viewControl">Sonraki hafta →</button><button id="resetPlanWeek">Haftanın planını temizle</button></div><p class="notice">5 Kasım 2026'dan itibaren otomatik/standart ders yoktur. Türkçe, TYT Matematik, Geometri, Fizik, Kimya, Biyoloji, Paragraf, Problem, deneme ve diğer tüm çalışmalar yalnızca Plan’a eklendiğinde Günlükte görünür ve Rank ağırlığı kazanır. Geçmiş günlerin planını da düzenleyebilirsin. Tamamlanan dersleri kaldırmak XP, Rank ve streak hesaplarını günceller; kayıtlı süreler ve alınmış sandık/ödüller korunur. Bugün ve gelecekte çalışma / swap / bilet / koruyucu kaydı olan planlar kilitlidir. İkinci oturum için Ek Çalışma veya günlük Swap kullan. TYT ve AYT dersleri gruplandırılmıştır; ders bazlı soru analizi yerine tek “Analiz” seçeneği bulunur, deneme analizi ayrıdır.</p><div class="stats" id="planSummary"></div><div class="plannerGrid" id="planDays"></div></section>
 </div>
 
 <div id="vaultTab" class="tab" role="tabpanel" aria-labelledby="nav-vaultTab">
@@ -432,7 +432,12 @@ const T={
  mathStudy:['TYT Matematik',100,'Konu çalışması + soru çözümü.'],
  turkishStudy:['Türkçe',85,'Türkçe konu/soru çalışması.'],
  generalExam:['Genel Deneme',220,'Tam kapsamlı TYT/AYT veya genel deneme sınavı.'],
- generalExamAnalysis:['Genel Deneme Analizi',160,'Yanlış, boş, süre kaybı ve zorlandığın soruların sistemli analizi.']
+ generalExamAnalysis:['Genel Deneme Analizi',160,'Yanlış, boş, süre kaybı ve zorlandığın soruların sistemli analizi.'],
+ aytMath:['AYT Matematik',120,'AYT Matematik konu çalışması ve soru çözümü.'],
+ aytGeo:['AYT Geometri',125,'AYT Geometri konu çalışması ve soru çözümü.'],
+ aytPhysics:['AYT Fizik',115,'AYT Fizik konu çalışması ve soru çözümü.'],
+ aytChem:['AYT Kimya',100,'AYT Kimya konu çalışması ve soru çözümü.'],
+ aytBio:['AYT Biyoloji',90,'AYT Biyoloji konu çalışması ve soru çözümü.']
 };
 const ANALYSIS_KEYS=['anGeo','anPhysics','anChem','anBio','anProblem','anMath','anGeoTYT','anHist','anGrammar'];
 const PLAN=[
@@ -446,16 +451,24 @@ const PLAN=[
 ];
 const DAILY_TASK_KEYS=['dailyAnalysis','paragraph','problem','mathStudy','geo','physics','chem','bio','turkishStudy','grammar','geoTYT','hist'];
 const BRANCH_TASK_KEYS=['mat','tr'],GENERAL_TASK_KEYS=['generalExam','generalExamAnalysis'];
-const PLAN_GROUPS=[{label:'GENEL',keys:GENERAL_TASK_KEYS},{label:'GÜNLÜK ÇALIŞMA',keys:DAILY_TASK_KEYS},{label:'BRANŞ DENEMELERİ',keys:BRANCH_TASK_KEYS}];
+const AYT_TASK_KEYS=['aytMath','aytGeo','aytPhysics','aytChem','aytBio'];
+// A single analysis choice; exam analysis remains separate. Group in study order.
+const PLAN_GROUPS=[
+ {label:'🎯 RUTİN & ANALİZ',keys:['dailyAnalysis','paragraph','problem']},
+ {label:'📘 TYT · SAYISAL',keys:['mathStudy','geo','physics','chem','bio']},
+ {label:'📖 TYT · SÖZEL',keys:['turkishStudy','grammar','hist','geoTYT']},
+ {label:'🚀 AYT · SAYISAL',keys:AYT_TASK_KEYS},
+ {label:'📝 DENEMELER & DENEME ANALİZİ',keys:['generalExam','generalExamAnalysis','mat','tr']}
+];
 const PLAN_KEYS=PLAN_GROUPS.flatMap(group=>group.keys);
 const EXTRA_KEYS=[...DAILY_TASK_KEYS,...BRANCH_TASK_KEYS,...GENERAL_TASK_KEYS];
 // These are independent pools: Paragraph/Problem and general exams can be planned,
 // while swaps remain lesson-only, including the two new normal-study kinds.
-const SWAP_KEYS=['mat','geo','physics','chem','bio','tr','grammar','geoTYT','hist','mathStudy','turkishStudy'];
+const SWAP_KEYS=['mat','geo','physics','chem','bio','tr','grammar','geoTYT','hist','mathStudy','turkishStudy',...AYT_TASK_KEYS];
 const XP_REBALANCE_START='2026-10-17';
-const REBALANCED_XP={dailyAnalysis:100,paragraph:60,problem:100,mathStudy:100,geo:125,physics:115,chem:100,bio:90,turkishStudy:85,grammar:75,geoTYT:65,hist:65,mat:120,tr:90,generalExam:220,generalExamAnalysis:160};
+const REBALANCED_XP={dailyAnalysis:100,paragraph:60,problem:100,mathStudy:100,geo:125,physics:115,chem:100,bio:90,turkishStudy:85,grammar:75,geoTYT:65,hist:65,mat:120,tr:90,generalExam:220,generalExamAnalysis:160,aytMath:120,aytGeo:125,aytPhysics:115,aytChem:100,aytBio:90};
 function xpFor(date,key){return date>=XP_REBALANCE_START?(REBALANCED_XP[key]??T[key]?.[1]??0):(T[key]?.[1]??0)}
-const EXTRA_NAMES={dailyAnalysis:'Analiz',paragraph:'Paragraf',problem:'Problem',mat:'TYT Matematik Branş Denemesi',geo:'Geometri',physics:'TYT Fizik',chem:'TYT Kimya',bio:'TYT Biyoloji',tr:'Türkçe Branş Denemesi',grammar:'Dil Bilgisi',geoTYT:'TYT Coğrafya',hist:'TYT Tarih',mathStudy:'TYT Matematik',turkishStudy:'Türkçe',generalExam:'Genel Deneme',generalExamAnalysis:'Genel Deneme Analizi'};
+const EXTRA_NAMES={dailyAnalysis:'Analiz',paragraph:'Paragraf',problem:'Problem',mat:'TYT Matematik Branş Denemesi',geo:'Geometri',physics:'TYT Fizik',chem:'TYT Kimya',bio:'TYT Biyoloji',tr:'Türkçe Branş Denemesi',grammar:'Dil Bilgisi',geoTYT:'TYT Coğrafya',hist:'TYT Tarih',mathStudy:'TYT Matematik',turkishStudy:'Türkçe',generalExam:'Genel Deneme',generalExamAnalysis:'Genel Deneme Analizi',aytMath:'AYT Matematik',aytGeo:'AYT Geometri',aytPhysics:'AYT Fizik',aytChem:'AYT Kimya',aytBio:'AYT Biyoloji'};
 const PLAN_SLOT_SEP='~';
 function planSlotBase(slot){return typeof slot==='string'?slot.split(PLAN_SLOT_SEP)[0]:''}
 function isPlanSlot(slot){const base=planSlotBase(slot);if(!PLAN_KEYS.includes(base))return false;if(slot===base)return true;const suffix=slot.slice(base.length+1);return slot.startsWith(base+PLAN_SLOT_SEP)&&/^\d+$/.test(suffix)}
@@ -465,7 +478,7 @@ function planSlotName(day,slot){const base=planSlotBase(slot),occ=planSlotOccurr
 function taskDisplayName(day,slot){const occ=planSlotOccurrence(day,slot),name=taskDef(day,slot)[0];return name+(occ.count>1?' · '+occ.index+'. oturum':'')}
 // Keep the historical plan and task IDs intact; the new plan applies only from FLOW_START.
 const STUDY_PLAN=PLAN.map(keys=>keys.filter(k=>k!=='tyt'&&k!=='r1'&&k!=='r2'&&!ANALYSIS_KEYS.includes(k)));
-const SKILLS={geo:{name:'📐 Geometri',sources:{geo:120,anGeo:60}},physics:{name:'⚛️ Fizik',sources:{physics:110,anPhysics:60}},chem:{name:'🧪 Kimya',sources:{chem:100,anChem:60}},bio:{name:'🧬 Biyoloji',sources:{bio:90,anBio:60}},problem:{name:'🧩 Problem',sources:{r1:60,r2:60,anProblem:60,problem:60}},paragraph:{name:'📖 Paragraf',sources:{paragraph:40}},mat:{name:'🔢 TYT Matematik',sources:{mat:120,anMath:90,mathStudy:100}},tr:{name:'📝 Türkçe',sources:{tr:80,turkishStudy:85}},grammar:{name:'✍️ Dil Bilgisi',sources:{grammar:90,anGrammar:40}},geoTYT:{name:'🌍 TYT Coğrafya',sources:{geoTYT:80,anGeoTYT:40}},hist:{name:'📜 TYT Tarih',sources:{hist:80,anHist:40}}};
+const SKILLS={geo:{name:'📐 Geometri',sources:{geo:120,anGeo:60,aytGeo:125}},physics:{name:'⚛️ Fizik',sources:{physics:110,anPhysics:60,aytPhysics:115}},chem:{name:'🧪 Kimya',sources:{chem:100,anChem:60,aytChem:100}},bio:{name:'🧬 Biyoloji',sources:{bio:90,anBio:60,aytBio:90}},problem:{name:'🧩 Problem',sources:{r1:60,r2:60,anProblem:60,problem:60}},paragraph:{name:'📖 Paragraf',sources:{paragraph:40}},mat:{name:'🔢 Matematik',sources:{mat:120,anMath:90,mathStudy:100,aytMath:120}},tr:{name:'📝 Türkçe',sources:{tr:80,turkishStudy:85}},grammar:{name:'✍️ Dil Bilgisi',sources:{grammar:90,anGrammar:40}},geoTYT:{name:'🌍 TYT Coğrafya',sources:{geoTYT:80,anGeoTYT:40}},hist:{name:'📜 TYT Tarih',sources:{hist:80,anHist:40}}};
 function emptyState(){return {checks:{},rests:{},purchases:0,refunds:0,spentRests:0,rewardBuys:[],shieldUses:{},chestClaims:{},checkins:{},claimedAchievements:{},coupons:0,streakRewardUnlocked:false,swaps:{},mockExams:[],settings:{examDate:""},weekPlans:{},planNotes:{},questionVault:{books:[],questions:[]},teacherQuestions:[],studyTimer:{running:null,sessions:[],breaks:[],breakRunning:null},lockIn:{days:{}},xpReset:{earned:0,spent:0}}}
 let state=emptyState();
 let selected=START,week=START,checkinLoad=0,checkinSat=0,modalLoad=0,modalSat=0;
@@ -711,7 +724,7 @@ function currentSeason(){let delta=Math.floor((parse(today())-parse(START))/8640
 function achievementCandidates(){let list=[],ac=analysisCount(),sc=sRankDates().length;for(let m=15;m<=Math.floor(ac/15)*15;m+=15)list.push({id:'analysis-'+m,name:`🔍 Analiz Ustası · ${m}`,desc:`Toplam ${m} Zor Soru Analizi tamamlandı.`});for(let m=10;m<=Math.floor(sc/10)*10;m+=10)list.push({id:'srank-'+m,name:`👑 S-Rank Koleksiyoncusu · ${m}`,desc:`Toplam ${m} S-Rank gün tamamlandı.`});let i=0;while(true){let st=completedSeasonStats(i);if(!st)break;if(st.ratio>=.85)list.push({id:'season-'+i,name:`🔥 Ay Boyu İstikrar · Sezon ${i+1}`,desc:`4 haftalık sezonda %${Math.round(st.ratio*100)} ana görev tamamlandı.`});i++}return list}
 function monthBounds(s){let d=parse(s),a=new Date(d.getFullYear(),d.getMonth(),1,12),b=new Date(d.getFullYear(),d.getMonth()+1,0,12);return [iso(a),iso(b)]}
 function monthSummary(s){let [a,b]=monthBounds(s),end=b<today()?b:today();if(end<a||end<START)return {a,b,total:0,done:0,sr:0,ar:0,br:0,cr:0,dr:0,analysis:0,geo:0,physics:0,chem:0,bio:0,problem:0,extra:0,extraXP:0,load:0,sat:0,ci:0};if(a<START)a=START;let o={a,b,total:0,done:0,sr:0,ar:0,br:0,cr:0,dr:0,analysis:0,geo:0,physics:0,chem:0,bio:0,problem:0,extra:0,extraXP:0,load:0,sat:0,ci:0};for(let x=a;x<=end;x=add(x,1)){let planned=isRest(x)?tasks(x).filter(k=>k==='tyt'):tasks(x);o.total+=planned.length;o.done+=planned.filter(k=>isDone(x,k)).length;let r=dayRank(x);if(r==='S')o.sr++;if(r==='A')o.ar++;if(r==='B')o.br++;if(r==='C')o.cr++;if(r==='D')o.dr++;if(!isRest(x)){let ax=ANALYSIS_KEYS.filter(k=>tasks(x).includes(k)&&isDone(x,k)).reduce((a,k)=>a+xpFor(x,k),0);o.analysis+=ax/120;}if(x<FLOW_START&&isDone(x,'geo')&&!isRest(x))o.geo++;if(x<FLOW_START&&isDone(x,'physics')&&!isRest(x))o.physics++;if(x<FLOW_START&&isDone(x,'chem')&&!isRest(x))o.chem++;if(x<FLOW_START&&isDone(x,'bio')&&!isRest(x))o.bio++;if(x<FLOW_START&&(isDone(x,'r1')||isDone(x,'r2'))&&!isRest(x))o.problem++;if(x>=FLOW_START)for(const entry of [...completedMain(x),...completedPriorBasics(x)])if(['geo','physics','chem','bio','problem'].includes(entry.subject))o[entry.subject]++;let extras=completedExtras(x);o.extra+=extras.length;o.extraXP+=extraXP(x);for(let k of extras)if(['geo','physics','chem','bio','problem'].includes(k))o[k]++;let c=state.checkins[x];if(c){o.load+=Number(c.load)||0;o.sat+=Number(c.satisfaction)||0;o.ci++}}return o}
-// V3.55: Day navigation updates only day-dependent UI; expensive reports refresh on tab entry.
+// V3.56: Day navigation updates only day-dependent UI; expensive reports refresh on tab entry.
 let dayNavigationNeedsFullRender=false;
 function navigateStudyDay(day){
  if(!validDay(day)||day===selected)return;
@@ -730,7 +743,7 @@ function renderTabs(){
  const buttons=[...document.querySelectorAll('.tabs button')];
  buttons.forEach((button,index)=>{button.onclick=()=>showTab(button.dataset.tab);button.onkeydown=event=>{let next=null;if(event.key==='ArrowRight')next=(index+1)%buttons.length;if(event.key==='ArrowLeft')next=(index+buttons.length-1)%buttons.length;if(event.key==='Home')next=0;if(event.key==='End')next=buttons.length-1;if(next!==null){event.preventDefault();buttons[next].focus();showTab(buttons[next].dataset.tab)}}});
 }
-// V3.55: keep inactive tabs mounted but do not rebuild their large DOM trees
+// V3.56: keep inactive tabs mounted but do not rebuild their large DOM trees
 // after every click. A tab is refreshed when it becomes visible.
 function renderVisibleView(view,w,t,st){
  switch(view){
@@ -1607,7 +1620,7 @@ function renderErrorProfile(){
 // A broad TYT Fen/Sosyal total is not evidence for an individual subject decline.
 const RADAR_KEYS=['mat','geo','physics','chem','bio','tr','grammar','geoTYT','hist'];
 const RADAR_NAMES={...EXTRA_NAMES,mat:'TYT Matematik',tr:'Türkçe'};
-function radarSubject(key){key=planSlotBase(key);return key==='mathStudy'?'mat':key==='turkishStudy'?'tr':key}
+function radarSubject(key){key=planSlotBase(key);return {mathStudy:'mat',aytMath:'mat',aytGeo:'geo',aytPhysics:'physics',aytChem:'chem',aytBio:'bio',turkishStudy:'tr'}[key]||key}
 const RADAR_EXAM_MAP={TYT:{math:'mat',turkish:'tr'},AYT:{math:'mat',physics:'physics',chemistry:'chem',biology:'bio'},MAT:{math:'mat'}};
 function radarData(){
  const end=today(),start6=add(end,-5),start7=add(end,-6);
@@ -1685,6 +1698,10 @@ function completedPlanSlot(day,key){return !!(state.checks[checkKey(day,key)]||s
 function setDayPlan(s,keys){
  if(!canEditPlan(s)||!Array.isArray(keys)||keys.some(k=>!validPlanSlotForDay(s,k))||new Set(keys).size!==keys.length)return false;
  const original=plannedTasks(s),removed=original.filter(k=>!keys.includes(k));
+ // Preserve existing historical repeated slots while refusing any newly introduced repeats.
+ const frequencies=slots=>slots.reduce((acc,slot)=>{const key=planSlotBase(slot);acc[key]=(acc[key]||0)+1;return acc},{});
+ const oldCount=frequencies(original),newCount=frequencies(keys);
+ if(Object.entries(newCount).some(([key,n])=>n>Math.max(1,oldCount[key]||0)))return false;
  if(removed.some(k=>completedPlanSlot(s,k)))return false;
  // Past days permit removing unfinished lessons only, not adding or reordering.
  if(s<today()&&keys.join('|')!==original.filter(k=>!removed.includes(k)).join('|'))return false;
@@ -1726,7 +1743,14 @@ function renderPlanner(items=radarData()){
    for(const [text,disabled,action] of [['↑',index===0,()=>{const next=[...keys];[next[index-1],next[index]]=[next[index],next[index-1]];setDayPlan(s,next)}],['↓',index===keys.length-1,()=>{const next=[...keys];[next[index+1],next[index]]=[next[index],next[index+1]];setDayPlan(s,next)}],['Kaldır',false,()=>removePlannedLesson(s,k)]]){const button=document.createElement('button');button.textContent=text;button.setAttribute('aria-label',planSlotName(s,k)+' '+text);button.disabled=!editable||disabled||(s<today()&&(text!=='Kaldır'||completedPlanSlot(s,k)));button.onclick=action;row.append(button)}card.append(row);appendPlanNoteEditor(card,s,k);
   });
   const add=document.createElement('div');add.className='planAdd';const select=document.createElement('select');select.setAttribute('aria-label',s+' eklenecek ders');
-  for(const group of PLAN_GROUPS){const options=document.createElement('optgroup');options.label=group.label;for(const k of group.keys)options.append(new Option(EXTRA_NAMES[k]+' · '+xpFor(s,k)+' XP'+(radar.has(radarSubject(k))?' ⚠️ Radarda':''),k));if(options.children.length)select.append(options)}select.disabled=!editable||s<today()||!select.options.length;
+  const used=new Set(keys.map(planSlotBase));let availableCount=0;
+  for(const group of PLAN_GROUPS){
+   const options=document.createElement('optgroup');options.label=group.label;
+   for(const k of group.keys){if(used.has(k))continue;options.append(new Option(EXTRA_NAMES[k]+' · '+xpFor(s,k)+' XP'+(radar.has(radarSubject(k))?' ⚠️ Radarda':''),k));availableCount++}
+   if(options.children.length)select.append(options);
+  }
+  if(!availableCount)select.append(new Option('✓ Tüm dersler bu güne eklendi',''));
+  select.disabled=!editable||s<today()||!availableCount;
   const draft=planAddDrafts.get(s)||{key:select.value,text:''};if([...select.options].some(option=>option.value===draft.key))select.value=draft.key;
   const label=document.createElement('label');label.textContent='📝 Ders notu (opsiyonel)';const note=document.createElement('textarea');note.rows=2;note.maxLength=PLAN_NOTE_LIMIT;note.value=draft.text;note.placeholder='Örn. Üçgende merkezlerden 20 soru çöz.';note.disabled=select.disabled;note.setAttribute('aria-label',s+' yeni ders notu');label.append(note);
   const remember=()=>planAddDrafts.set(s,{key:select.value,text:note.value});note.oninput=remember;select.onchange=remember;
@@ -1742,7 +1766,7 @@ function initV33(){
  $('editSelectedPlan').onclick=()=>{plannerWeek=monday(selected);showTab('planTab');renderPlanner();if(COACH_MODE)enforceCoachReadOnly();const card=document.querySelector('.planCard[data-date="'+selected+'"]');if(card)card.scrollIntoView({block:'start'})};
 }
 
-const SUBJECT_ICONS={mathStudy:'🔢',turkishStudy:'📝',generalExam:'📝',generalExamAnalysis:'🔍',paragraph:'📖',problem:'🧩',mat:'🔢',geo:'📐',physics:'⚛️',chem:'🧪',bio:'🧬',tr:'📝',grammar:'✍️',geoTYT:'🌍',hist:'🏛️',tyt:'📋',r1:'🔄',r2:'🔄'};
+const SUBJECT_ICONS={mathStudy:'🔢',turkishStudy:'📝',generalExam:'📝',generalExamAnalysis:'🔍',dailyAnalysis:'🔍',paragraph:'📖',problem:'🧩',mat:'🔢',geo:'📐',physics:'⚛️',chem:'🧪',bio:'🧬',aytMath:'🔢',aytGeo:'📐',aytPhysics:'⚛️',aytChem:'🧪',aytBio:'🧬',tr:'📝',grammar:'✍️',geoTYT:'🌍',hist:'🏛️',tyt:'📋',r1:'🔄',r2:'🔄'};
 function subjectIcon(key){const icon=document.createElement('span');icon.className='subjectIcon';icon.setAttribute('aria-hidden','true');icon.textContent=SUBJECT_ICONS[key]||'📘';return icon}
 function emptyView(icon,title,description,compact=false){const box=document.createElement('div');box.className='emptyState'+(compact?' compact':'');const symbol=document.createElement('span');symbol.className='emptyIcon';symbol.setAttribute('aria-hidden','true');symbol.textContent=icon;const heading=document.createElement('strong');heading.textContent=title;const text=document.createElement('p');text.textContent=description;box.append(symbol,heading,text);return box}
 function celebrateRank(){if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;const panel=$('dailyPanel');panel.classList.remove('rankCelebrate');requestAnimationFrame(()=>panel.classList.add('rankCelebrate'));setTimeout(()=>panel.classList.remove('rankCelebrate'),700)}
@@ -1787,8 +1811,9 @@ function prunePlanNotes(day,keys){
 function addPlannedLesson(day,key,text=''){
  const keys=plannedTasks(day);
  if(!canEditPlan(day)||day<today()||!PLAN_KEYS.includes(key)||typeof text!=='string')return false;
+ if(keys.some(slot=>planSlotBase(slot)===key))return false;
  text=text.trim();if(text.length>PLAN_NOTE_LIMIT){alert('Ders notu en fazla '+PLAN_NOTE_LIMIT+' karakter olabilir.');return false}
- const slot=nextPlanSlot(key,keys);writePlanNote(day,slot,text);planAddDrafts.delete(day);return setDayPlan(day,[...keys,slot]);
+ const slot=key;writePlanNote(day,slot,text);planAddDrafts.delete(day);return setDayPlan(day,[...keys,slot]);
 }
 function removePlannedLesson(day,key){
  if(!canEditPlan(day)||completedPlanSlot(day,key)||!validPlanSlotForDay(day,key)||!plannedTasks(day).includes(key))return false;
