@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#0e1220">
-<title>YKS RPG V3.56</title>
+<title>YKS RPG V3.57</title>
 <style>
 :root{
  color-scheme:dark;--bg:#0c1019;--surface:#141b28;--surface-raised:#1b2535;--surface-soft:#101722;--border:#2a3547;--text:#edf2fa;--muted:#98a7bc;--accent:#84cbb8;--success:#84cbb8;--warning:#e9be76;--danger:#ef9c9d;--gold:#e9be76;--violet:#b5a1e5;
@@ -71,13 +71,40 @@ button,input,select,textarea{font:inherit}button{min-height:44px;display:inline-
 .mathQuestionOverview{padding:16px;margin:14px 0 20px;border:1px solid #ffffff24;border-radius:15px;background:#0b1625}.mathQuestionOverview .top{gap:12px}.mathQuestionGrid{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:7px;margin:14px 0}.mathQuestionCell{min-width:0;padding:9px 2px;border:1px solid #ffffff2b;border-radius:9px;font-weight:700;cursor:pointer}.mq-correct{background:#174b3b;color:#b6f5d7}.mq-wrong{background:#702e38;color:#ffe1e5}.mq-blank{background:#394355;color:#f2f4f8}.mq-time{background:#5c4124;color:#ffe1a7}.mq-uncertain{background:#5d521d;color:#fff2a5}.mq-unseen{background:#2b4864;color:#cde8ff}.mathQuestionCell:hover,.mathQuestionCell:focus-visible{outline:2px solid #8bd9c4;outline-offset:1px}.mathQuestionLegend{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:11px;color:var(--muted)}@media(max-width:500px){.mathQuestionGrid{grid-template-columns:repeat(8,minmax(0,1fr));gap:5px}.mathQuestionCell{padding:8px 1px}}
 .vaultPoolBody .vaultToolbar{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.vaultPoolBody .vaultToolbar>label{min-width:0}.vaultPoolBody .vaultToolbar input,.vaultPoolBody .vaultToolbar select{width:100%;min-width:0}@media(max-width:800px){.vaultPoolBody .vaultToolbar{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:430px){.vaultPoolBody .vaultToolbar{grid-template-columns:1fr}}
 .vaultDailyGroup{border:1px solid var(--border);border-radius:12px;padding:12px;margin:9px 0}.vaultDailyGroup summary{cursor:pointer;font-weight:700}.vaultDailyGroup progress{width:100%;height:8px;accent-color:#84cbb8;margin:10px 0}.vaultDailyHistoryRow{display:flex;flex-direction:column;gap:5px;padding:10px 0;border-top:1px solid var(--border)}.vaultDailyHistoryRow small{color:var(--muted)}
+
+/* Sleep journal: compact, responsive, and separate from the XP system. */
+.sleepFormGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.sleepFormGrid label{display:flex;flex-direction:column;gap:7px;color:var(--muted);font-size:12px;font-weight:650}
+.sleepFormGrid input,.sleepFormGrid select{width:100%;min-width:0;color:var(--text)}
+.sleepQualityHint{color:var(--muted);font-size:12px;margin:10px 0 0}
+.sleepWeekChart{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:7px;align-items:end;padding:13px 7px 4px;border:1px solid var(--border);background:var(--surface-soft);border-radius:15px}
+.sleepChartDay{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;min-width:0;gap:5px;font-size:11px;color:var(--muted);text-align:center}
+.sleepChartValue{font-size:11px;white-space:nowrap;min-height:18px;color:var(--text);font-variant-numeric:tabular-nums}
+.sleepChartTrack{display:flex;width:100%;max-width:52px;height:122px;background:#ffffff0a;border-radius:9px 9px 5px 5px;align-items:flex-end;overflow:hidden}
+.sleepChartBar{width:100%;min-height:0;border-radius:9px 9px 5px 5px;background:linear-gradient(180deg,var(--violet),var(--accent));transition:height .2s ease}
+.sleepChartBar.sleepShort{background:linear-gradient(180deg,var(--warning),#af845a)}
+.sleepChartLabel{font-size:10px;white-space:nowrap}
+.sleepHistory{display:grid;gap:9px}
+.sleepHistoryRow{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:13px 14px;border:1px solid var(--border);border-radius:12px;background:var(--surface-soft)}
+.sleepHistoryInfo{display:flex;flex-direction:column;gap:3px;min-width:0}
+.sleepHistoryInfo b{font-size:13px;color:var(--text)}
+.sleepHistoryInfo small{font-size:11px;color:var(--muted);overflow-wrap:anywhere}
+.sleepHistoryActions{display:flex;gap:6px;flex-wrap:wrap}
+.sleepHistoryActions button{min-height:36px;padding:6px 10px;font-size:11px}
+.sleepNotice{font-size:12px;color:var(--muted);line-height:1.7}
+@media(max-width:500px){
+ .sleepFormGrid{grid-template-columns:1fr 1fr;gap:10px}
+ .sleepWeekChart{gap:3px;padding:12px 5px 4px}
+ .sleepChartTrack{height:105px}
+ .sleepChartLabel,.sleepChartValue{font-size:9px}
+}
 </style>
 </head>
 <body>
 <main>
-<header class="appHeader"><div class="brand"><span class="brandMark" aria-hidden="true">🎮</span><div><div class="brandLine"><h1>YKS RPG</h1><span class="version">V3.56</span></div><p class="sub">Her gün biraz daha güçlü.</p></div></div><div class="headerBadges"><span class="pill" id="cloudPill">☁️ <span id="cloudStatus">Yerel</span></span><span class="pill" title="Boş gün bileti">🎟️ <span id="tickets">0</span></span><span class="pill" title="İndirim kuponu">🏷️ <span id="coupons">0</span></span></div></header>
+<header class="appHeader"><div class="brand"><span class="brandMark" aria-hidden="true">🎮</span><div><div class="brandLine"><h1>YKS RPG</h1><span class="version">V3.57</span></div><p class="sub">Her gün biraz daha güçlü.</p></div></div><div class="headerBadges"><span class="pill" id="cloudPill">☁️ <span id="cloudStatus">Yerel</span></span><span class="pill" title="Boş gün bileti">🎟️ <span id="tickets">0</span></span><span class="pill" title="İndirim kuponu">🏷️ <span id="coupons">0</span></span></div></header>
 <section class="panel hero"><div class="heroHeading"><div><span class="overline">LEVEL / XP · KULLANILABİLİR BAKİYE</span><div class="big" id="balance">0 XP</div></div><div class="heroEmblem" aria-hidden="true">✦</div></div><div class="bar"><div id="progress"></div></div><div class="heroReward"><small id="next">Sonraki boş gün biletine 3.000 XP</small><span class="pill">🎟️ 3.000 XP</span></div><div class="stats heroStats"><div class="stat"><small>BU HAFTA</small><b id="weekly">0</b></div><div class="stat"><small>🔥 STREAK</small><b id="topStreak">0 gün</b></div><div class="stat"><small>BUGÜNKÜ RANK</small><b id="heroRank">D-Rank</b></div><div class="stat"><small>👹 BOSS POWER</small><b id="bossMini">0/100</b><div class="bar miniBoss"><div id="heroBossProgress"></div></div></div></div><div class="heroFooter"><button id="countdown" class="viewControl" type="button">🎯 YKS tarihini ayarla</button><div class="ledgerRow"><span>Toplam <b id="earned">0</b> XP</span><span>Harcanan <b id="spent">0</b> XP</span><span>En iyi seri <b id="bestStreak">0 gün</b></span></div></div></section>
-<nav class="tabs" role="tablist" aria-label="Uygulama bölümleri"><button id="nav-daily" data-tab="daily" role="tab" aria-controls="daily" aria-selected="true" class="active"><span class="navIcon" aria-hidden="true">📅</span>Günlük</button><button id="nav-lockInTab" data-tab="lockInTab" role="tab" aria-controls="lockInTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🔒</span>Odaklanma</button><button id="nav-rpg" data-tab="rpg" role="tab" aria-controls="rpg" aria-selected="false"><span class="navIcon" aria-hidden="true">⚔️</span>Gelişme</button><button id="nav-mockTab" data-tab="mockTab" role="tab" aria-controls="mockTab" aria-selected="false"><span class="navIcon" aria-hidden="true">📝</span>Denemeler</button><button id="nav-planTab" data-tab="planTab" role="tab" aria-controls="planTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🗓️</span>Plan</button><button id="nav-vaultTab" data-tab="vaultTab" role="tab" aria-controls="vaultTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🧠</span>Zor Soru</button><button id="nav-teacherTab" data-tab="teacherTab" role="tab" aria-controls="teacherTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🙋</span>Hocaya Sor</button><button id="nav-shopTab" data-tab="shopTab" role="tab" aria-controls="shopTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🛍️</span>Mağaza</button><button id="nav-backupTab" data-tab="backupTab" role="tab" aria-controls="backupTab" aria-selected="false"><span class="navIcon" aria-hidden="true">💾</span>Yedek</button></nav>
+<nav class="tabs" role="tablist" aria-label="Uygulama bölümleri"><button id="nav-daily" data-tab="daily" role="tab" aria-controls="daily" aria-selected="true" class="active"><span class="navIcon" aria-hidden="true">📅</span>Günlük</button><button id="nav-lockInTab" data-tab="lockInTab" role="tab" aria-controls="lockInTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🔒</span>Odaklanma</button><button id="nav-rpg" data-tab="rpg" role="tab" aria-controls="rpg" aria-selected="false"><span class="navIcon" aria-hidden="true">⚔️</span>Gelişme</button><button id="nav-mockTab" data-tab="mockTab" role="tab" aria-controls="mockTab" aria-selected="false"><span class="navIcon" aria-hidden="true">📝</span>Denemeler</button><button id="nav-planTab" data-tab="planTab" role="tab" aria-controls="planTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🗓️</span>Plan</button><button id="nav-sleepTab" data-tab="sleepTab" role="tab" aria-controls="sleepTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🌙</span>Uyku</button><button id="nav-vaultTab" data-tab="vaultTab" role="tab" aria-controls="vaultTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🧠</span>Zor Soru</button><button id="nav-teacherTab" data-tab="teacherTab" role="tab" aria-controls="teacherTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🙋</span>Hocaya Sor</button><button id="nav-shopTab" data-tab="shopTab" role="tab" aria-controls="shopTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🛍️</span>Mağaza</button><button id="nav-backupTab" data-tab="backupTab" role="tab" aria-controls="backupTab" aria-selected="false"><span class="navIcon" aria-hidden="true">💾</span>Yedek</button></nav>
 
 <div id="daily" class="tab active" role="tabpanel" aria-labelledby="nav-daily">
 <button id="radarShortcut" class="radarLink viewControl"><strong id="radarBrief">📡 Radar</strong><span aria-hidden="true">İncele →</span></button>
@@ -266,6 +293,44 @@ button,input,select,textarea{font:inherit}button{min-height:44px;display:inline-
   </section>
 </div>
 
+
+<div id="sleepTab" class="tab" role="tabpanel" aria-labelledby="nav-sleepTab">
+ <div class="sectionIntro"><span class="overline">DİNLENME DE İLERLEMENİN PARÇASI</span><h2>🌙 Uyku Takibi</h2><p>Uykunu kolayca kaydet, düzenini ve gündüz nasıl hissettiğini gör. Buradaki kayıtlar XP, Rank veya çalışma planını etkilemez.</p></div>
+ <section class="panel">
+  <div class="top"><h2>🛏️ Uyku kaydı</h2><span class="pill">Elle giriş</span></div>
+  <p class="sleepNotice">Tarih olarak <b>uyandığın günü</b> seç. Yatış saati bir önceki gece olabilir. Aynı tarih için yeni kayıt yaparsan eski kaydı güncellersin.</p>
+  <form id="sleepForm">
+   <div class="sleepFormGrid">
+    <label>Uyandığın tarih<input id="sleepWakeDate" type="date" required></label>
+    <label>Yatış saati<input id="sleepBedTime" type="time" value="23:00" required></label>
+    <label>Uyanış saati<input id="sleepWakeTime" type="time" value="07:00" required></label>
+    <label>Uyandığında nasıl hissediyordun?
+     <select id="sleepQuality" required>
+      <option value="1">1 · Çok yorgun</option>
+      <option value="2">2 · Yorgun</option>
+      <option value="3" selected>3 · Normal</option>
+      <option value="4">4 · Dinlenmiş</option>
+      <option value="5">5 · Çok dinlenmiş</option>
+     </select>
+    </label>
+   </div>
+   <label class="sleepNotice" for="sleepNote">Kısa not (isteğe bağlı)</label>
+   <textarea id="sleepNote" rows="2" maxlength="200" placeholder="Örn. Geç uyudum, sabah dinç uyandım."></textarea>
+   <div class="actions"><button type="submit" id="sleepSave" class="primary">💾 Uyku kaydını kaydet</button></div>
+   <p id="sleepFeedback" class="sleepNotice" aria-live="polite"></p>
+  </form>
+ </section>
+ <section class="panel">
+  <h2>📊 Son 7 gün</h2>
+  <div id="sleepSummary" class="stats"></div>
+  <p class="sleepNotice">Ortalamalar yalnızca kaydettiğin gecelere göre hesaplanır. 8 saat çizgisi kişisel bir karşılaştırma hedefidir, sağlık değerlendirmesi değildir.</p>
+  <div id="sleepWeekChart" class="sleepWeekChart" role="img" aria-label="Son yedi günün kaydedilen uyku süreleri"></div>
+ </section>
+ <section class="panel">
+  <h2>📖 Uyku geçmişi</h2>
+  <div id="sleepHistory" class="sleepHistory"></div>
+ </section>
+</div>
 <div id="backupTab" class="tab" role="tabpanel" aria-labelledby="nav-backupTab"><div class="sectionIntro"><span class="overline">KAYITLARIN GÜVENDE</span><h2>💾 Yedek ve ayarlar</h2><p>Verilerini yedekle, sınav tarihini ayarla ve Coach Sync bağlantını yönet.</p></div>
 <section class="panel" id="settingsPanel"><h2>🎯 YKS tarihi</h2><p class="notice">Sınav tarihini kendin belirle. Denemeler ve bu ayar diğer kayıtlarınla birlikte yedeklenir ve senkronize edilir.</p><label>YKS sınav tarihi <input type="date" id="examDate"></label><div class="actions"><button id="saveSettings" class="primary">Tarihi kaydet</button><button id="clearExamDate">Tarihi kaldır</button></div><p class="notice" id="settingsStatus"></p></section>
 
@@ -479,7 +544,7 @@ function taskDisplayName(day,slot){const occ=planSlotOccurrence(day,slot),name=t
 // Keep the historical plan and task IDs intact; the new plan applies only from FLOW_START.
 const STUDY_PLAN=PLAN.map(keys=>keys.filter(k=>k!=='tyt'&&k!=='r1'&&k!=='r2'&&!ANALYSIS_KEYS.includes(k)));
 const SKILLS={geo:{name:'📐 Geometri',sources:{geo:120,anGeo:60,aytGeo:125}},physics:{name:'⚛️ Fizik',sources:{physics:110,anPhysics:60,aytPhysics:115}},chem:{name:'🧪 Kimya',sources:{chem:100,anChem:60,aytChem:100}},bio:{name:'🧬 Biyoloji',sources:{bio:90,anBio:60,aytBio:90}},problem:{name:'🧩 Problem',sources:{r1:60,r2:60,anProblem:60,problem:60}},paragraph:{name:'📖 Paragraf',sources:{paragraph:40}},mat:{name:'🔢 Matematik',sources:{mat:120,anMath:90,mathStudy:100,aytMath:120}},tr:{name:'📝 Türkçe',sources:{tr:80,turkishStudy:85}},grammar:{name:'✍️ Dil Bilgisi',sources:{grammar:90,anGrammar:40}},geoTYT:{name:'🌍 TYT Coğrafya',sources:{geoTYT:80,anGeoTYT:40}},hist:{name:'📜 TYT Tarih',sources:{hist:80,anHist:40}}};
-function emptyState(){return {checks:{},rests:{},purchases:0,refunds:0,spentRests:0,rewardBuys:[],shieldUses:{},chestClaims:{},checkins:{},claimedAchievements:{},coupons:0,streakRewardUnlocked:false,swaps:{},mockExams:[],settings:{examDate:""},weekPlans:{},planNotes:{},questionVault:{books:[],questions:[]},teacherQuestions:[],studyTimer:{running:null,sessions:[],breaks:[],breakRunning:null},lockIn:{days:{}},xpReset:{earned:0,spent:0}}}
+function emptyState(){return {checks:{},rests:{},purchases:0,refunds:0,spentRests:0,rewardBuys:[],shieldUses:{},chestClaims:{},checkins:{},claimedAchievements:{},coupons:0,streakRewardUnlocked:false,swaps:{},mockExams:[],settings:{examDate:""},weekPlans:{},planNotes:{},questionVault:{books:[],questions:[]},teacherQuestions:[],studyTimer:{running:null,sessions:[],breaks:[],breakRunning:null},sleepTracking:{nights:{}},lockIn:{days:{}},xpReset:{earned:0,spent:0}}}
 let state=emptyState();
 let selected=START,week=START,checkinLoad=0,checkinSat=0,modalLoad=0,modalSat=0;
 const $=id=>document.getElementById(id);
@@ -592,6 +657,7 @@ function normalizeRemoteState(st){
   questionVault:normalizeQuestionVault(st.questionVault),
   teacherQuestions:Array.isArray(st.teacherQuestions)?st.teacherQuestions.filter(q=>q&&typeof q==='object'&&typeof q.id==='string'&&q.id&&typeof q.bookId==='string'&&typeof q.topic==='string'&&typeof q.page==='string'&&typeof q.questionNo==='string').map(q=>({id:q.id,vaultQuestionId:typeof q.vaultQuestionId==='string'?q.vaultQuestionId:'',bookId:q.bookId,topic:q.topic.slice(0,120),page:q.page.slice(0,20),questionNo:q.questionNo.slice(0,40),note:typeof q.note==='string'?q.note.slice(0,500):'',addedAt:validDay(q.addedAt)?q.addedAt:today()})):[],
   studyTimer:normalizeStudyTimer(st.studyTimer),
+  sleepTracking:normalizeSleepTracking(st.sleepTracking),
   lockIn:normalizeLockIn(st.lockIn),
   xpReset:{earned:Math.max(0,Number(st.xpReset?.earned)||0),spent:Math.max(0,Number(st.xpReset?.spent)||0),pending:!!st.xpReset?.pending},
   settings:{examDate:typeof st.settings?.examDate==='string'&&validDay(st.settings.examDate)?st.settings.examDate:''}
@@ -724,7 +790,7 @@ function currentSeason(){let delta=Math.floor((parse(today())-parse(START))/8640
 function achievementCandidates(){let list=[],ac=analysisCount(),sc=sRankDates().length;for(let m=15;m<=Math.floor(ac/15)*15;m+=15)list.push({id:'analysis-'+m,name:`🔍 Analiz Ustası · ${m}`,desc:`Toplam ${m} Zor Soru Analizi tamamlandı.`});for(let m=10;m<=Math.floor(sc/10)*10;m+=10)list.push({id:'srank-'+m,name:`👑 S-Rank Koleksiyoncusu · ${m}`,desc:`Toplam ${m} S-Rank gün tamamlandı.`});let i=0;while(true){let st=completedSeasonStats(i);if(!st)break;if(st.ratio>=.85)list.push({id:'season-'+i,name:`🔥 Ay Boyu İstikrar · Sezon ${i+1}`,desc:`4 haftalık sezonda %${Math.round(st.ratio*100)} ana görev tamamlandı.`});i++}return list}
 function monthBounds(s){let d=parse(s),a=new Date(d.getFullYear(),d.getMonth(),1,12),b=new Date(d.getFullYear(),d.getMonth()+1,0,12);return [iso(a),iso(b)]}
 function monthSummary(s){let [a,b]=monthBounds(s),end=b<today()?b:today();if(end<a||end<START)return {a,b,total:0,done:0,sr:0,ar:0,br:0,cr:0,dr:0,analysis:0,geo:0,physics:0,chem:0,bio:0,problem:0,extra:0,extraXP:0,load:0,sat:0,ci:0};if(a<START)a=START;let o={a,b,total:0,done:0,sr:0,ar:0,br:0,cr:0,dr:0,analysis:0,geo:0,physics:0,chem:0,bio:0,problem:0,extra:0,extraXP:0,load:0,sat:0,ci:0};for(let x=a;x<=end;x=add(x,1)){let planned=isRest(x)?tasks(x).filter(k=>k==='tyt'):tasks(x);o.total+=planned.length;o.done+=planned.filter(k=>isDone(x,k)).length;let r=dayRank(x);if(r==='S')o.sr++;if(r==='A')o.ar++;if(r==='B')o.br++;if(r==='C')o.cr++;if(r==='D')o.dr++;if(!isRest(x)){let ax=ANALYSIS_KEYS.filter(k=>tasks(x).includes(k)&&isDone(x,k)).reduce((a,k)=>a+xpFor(x,k),0);o.analysis+=ax/120;}if(x<FLOW_START&&isDone(x,'geo')&&!isRest(x))o.geo++;if(x<FLOW_START&&isDone(x,'physics')&&!isRest(x))o.physics++;if(x<FLOW_START&&isDone(x,'chem')&&!isRest(x))o.chem++;if(x<FLOW_START&&isDone(x,'bio')&&!isRest(x))o.bio++;if(x<FLOW_START&&(isDone(x,'r1')||isDone(x,'r2'))&&!isRest(x))o.problem++;if(x>=FLOW_START)for(const entry of [...completedMain(x),...completedPriorBasics(x)])if(['geo','physics','chem','bio','problem'].includes(entry.subject))o[entry.subject]++;let extras=completedExtras(x);o.extra+=extras.length;o.extraXP+=extraXP(x);for(let k of extras)if(['geo','physics','chem','bio','problem'].includes(k))o[k]++;let c=state.checkins[x];if(c){o.load+=Number(c.load)||0;o.sat+=Number(c.satisfaction)||0;o.ci++}}return o}
-// V3.56: Day navigation updates only day-dependent UI; expensive reports refresh on tab entry.
+// V3.57: Day navigation updates only day-dependent UI; expensive reports refresh on tab entry.
 let dayNavigationNeedsFullRender=false;
 function navigateStudyDay(day){
  if(!validDay(day)||day===selected)return;
@@ -743,7 +809,7 @@ function renderTabs(){
  const buttons=[...document.querySelectorAll('.tabs button')];
  buttons.forEach((button,index)=>{button.onclick=()=>showTab(button.dataset.tab);button.onkeydown=event=>{let next=null;if(event.key==='ArrowRight')next=(index+1)%buttons.length;if(event.key==='ArrowLeft')next=(index+buttons.length-1)%buttons.length;if(event.key==='Home')next=0;if(event.key==='End')next=buttons.length-1;if(next!==null){event.preventDefault();buttons[next].focus();showTab(buttons[next].dataset.tab)}}});
 }
-// V3.56: keep inactive tabs mounted but do not rebuild their large DOM trees
+// V3.57: keep inactive tabs mounted but do not rebuild their large DOM trees
 // after every click. A tab is refreshed when it becomes visible.
 function renderVisibleView(view,w,t,st){
  switch(view){
@@ -757,6 +823,7 @@ function renderVisibleView(view,w,t,st){
   case 'rpg':renderRPG(w);break;
   case 'mockTab':renderMocks();break;
   case 'planTab':renderPlanner(radarData());break;
+  case 'sleepTab':renderSleepTracking();break;
   case 'vaultTab':renderQuestionVault();break;
   case 'teacherTab':renderTeacherQuestions();break;
   case 'shopTab':renderShop(t,st);break;
@@ -2522,8 +2589,109 @@ function initQuestionVault(){
 }
 
 
+
+// Sleep journal (self-reported): each date is the morning on which the user woke.
+function sleepClockMinutes(value){
+ if(typeof value!=='string'||!/^([01]\\d|2[0-3]):[0-5]\\d$/.test(value))return null;
+ const parts=value.split(':').map(Number);
+ return parts[0]*60+parts[1];
+}
+function sleepDurationMinutes(bedtime,wakeTime){
+ const bed=sleepClockMinutes(bedtime),wake=sleepClockMinutes(wakeTime);
+ if(bed===null||wake===null)return null;
+ return (wake-bed+1440)%1440;
+}
+function normalizeSleepTracking(raw){
+ const nights={};
+ const entries=raw?.nights&&typeof raw.nights==='object'&&!Array.isArray(raw.nights)?raw.nights:{};
+ for(const [date,entry] of Object.entries(entries)){
+  if(!validDay(date)||!entry||typeof entry!=='object')continue;
+  const minutes=sleepDurationMinutes(entry.bedtime,entry.wakeTime);
+  if(minutes===null||minutes<15||minutes>960)continue;
+  nights[date]={bedtime:entry.bedtime,wakeTime:entry.wakeTime,quality:Math.max(1,Math.min(5,Math.round(Number(entry.quality)||3))),note:typeof entry.note==='string'?entry.note.slice(0,200):''};
+ }
+ return {nights};
+}
+function sleepNights(){return state.sleepTracking?.nights||{}}
+function sleepTextMinutes(mins){
+ const h=Math.floor(mins/60),m=mins%60;
+ return h+' sa'+(m?' '+String(m).padStart(2,'0')+' dk':'');
+}
+function sleepEditorFill(){
+ const date=$('sleepWakeDate').value,entry=sleepNights()[date];
+ $('sleepBedTime').value=entry?.bedtime||'23:00';
+ $('sleepWakeTime').value=entry?.wakeTime||'07:00';
+ $('sleepQuality').value=String(entry?.quality||3);
+ $('sleepNote').value=entry?.note||'';
+ $('sleepFeedback').textContent=entry?'Bu tarihte kayıt var; kaydedersen güncellenir.':'';
+}
+function sleepSave(event){
+ event.preventDefault();
+ if(COACH_MODE)return;
+ const date=$('sleepWakeDate').value,bedtime=$('sleepBedTime').value,wakeTime=$('sleepWakeTime').value,quality=Number($('sleepQuality').value);
+ const minutes=sleepDurationMinutes(bedtime,wakeTime);
+ if(!validDay(date)||date>today()){alert('Uyandığın tarih bugün veya daha önce olmalı.');return}
+ if(minutes===null||minutes<15||minutes>960){alert('Uyku süresini 15 dakika ile 16 saat arasında olacak şekilde kontrol et.');return}
+ if(!Number.isInteger(quality)||quality<1||quality>5)return;
+ state.sleepTracking??={nights:{}};state.sleepTracking.nights??={};
+ state.sleepTracking.nights[date]={bedtime,wakeTime,quality,note:$('sleepNote').value.trim().slice(0,200)};
+ save();renderSleepTracking();
+ $('sleepFeedback').textContent='✓ '+fmt(date)+' kaydedildi. Toplam '+sleepTextMinutes(minutes)+'.';
+}
+function sleepDelete(date){
+ if(COACH_MODE||!sleepNights()[date])return;
+ if(!confirm(fmt(date)+' tarihli uyku kaydı silinsin mi?'))return;
+ delete state.sleepTracking.nights[date];save();renderSleepTracking();
+ if($('sleepWakeDate').value===date)sleepEditorFill();
+}
+function renderSleepTracking(){
+ const nights=sleepNights(),todayDate=today();
+ const dates=Array.from({length:7},(_,i)=>add(todayDate,i-6));
+ const entries=dates.filter(date=>!!nights[date]).map(date=>({date,...nights[date],minutes:sleepDurationMinutes(nights[date].bedtime,nights[date].wakeTime)}));
+ const avg=entries.length?Math.round(entries.reduce((n,e)=>n+e.minutes,0)/entries.length):null;
+ const rested=entries.length?(entries.reduce((n,e)=>n+e.quality,0)/entries.length).toFixed(1):null;
+ const reached=entries.filter(e=>e.minutes>=480).length;
+ const summary=$('sleepSummary');summary.replaceChildren();
+ for(const [label,value] of [['KAYITLI GECE',entries.length+' / 7'],['ORT. UYKU',avg===null?'—':sleepTextMinutes(avg)],['8 SAAT VE ÜSTÜ',reached+' gece'],['DİNLENMİŞLİK',rested===null?'—':rested+' / 5']]){
+  const tile=document.createElement('div');tile.className='stat';const small=document.createElement('small'),bold=document.createElement('b');small.textContent=label;bold.textContent=value;tile.append(small,bold);summary.append(tile);
+ }
+ const graph=$('sleepWeekChart');graph.replaceChildren();
+ for(const date of dates){
+  const entry=nights[date],minutes=entry?sleepDurationMinutes(entry.bedtime,entry.wakeTime):null;
+  const cell=document.createElement('div');cell.className='sleepChartDay';
+  const value=document.createElement('span');value.className='sleepChartValue';value.textContent=minutes===null?'—':(minutes/60).toFixed(1)+'s';
+  const track=document.createElement('div');track.className='sleepChartTrack';
+  if(minutes!==null){const bar=document.createElement('div');bar.className='sleepChartBar'+(minutes<420?' sleepShort':'');bar.style.height=Math.min(100,minutes/600*100)+'%';track.append(bar)}
+  const label=document.createElement('span');label.className='sleepChartLabel';label.textContent=parse(date).toLocaleDateString('tr-TR',{weekday:'short'});
+  cell.title=fmt(date)+(minutes===null?' · Kayıt yok':' · '+sleepTextMinutes(minutes));
+  cell.append(value,track,label);graph.append(cell);
+ }
+ const history=$('sleepHistory');history.replaceChildren();
+ const all=Object.entries(nights).filter(([date])=>date<=todayDate).sort((a,b)=>b[0].localeCompare(a[0])).slice(0,45);
+ if(!all.length){const empty=document.createElement('p');empty.className='sleepNotice';empty.textContent='Henüz uyku kaydın yok. İlk kaydını yukarıdan ekleyebilirsin.';history.append(empty)}
+ for(const [date,entry] of all){
+  const row=document.createElement('div');row.className='sleepHistoryRow';
+  const info=document.createElement('div');info.className='sleepHistoryInfo';
+  const label=document.createElement('b');label.textContent=fmt(date)+' · '+sleepTextMinutes(sleepDurationMinutes(entry.bedtime,entry.wakeTime));
+  const details=document.createElement('small');details.textContent=entry.bedtime+' → '+entry.wakeTime+' · Dinlenmişlik '+entry.quality+'/5'+(entry.note?' · '+entry.note:'');
+  info.append(label,details);
+  const actions=document.createElement('div');actions.className='sleepHistoryActions';
+  const edit=document.createElement('button');edit.type='button';edit.textContent='Düzenle';edit.onclick=()=>{$('sleepWakeDate').value=date;sleepEditorFill();$('sleepForm').scrollIntoView({behavior:'smooth',block:'start'})};
+  const del=document.createElement('button');del.type='button';del.textContent='Sil';del.className='danger';del.disabled=COACH_MODE;del.onclick=()=>sleepDelete(date);
+  actions.append(edit,del);row.append(info,actions);history.append(row);
+ }
+}
+function initSleepTracking(){
+ $('sleepWakeDate').value=today();
+ $('sleepWakeDate').max=today();
+ $('sleepWakeDate').onchange=sleepEditorFill;
+ $('sleepForm').onsubmit=sleepSave;
+ for(const id of ['sleepWakeDate','sleepBedTime','sleepWakeTime','sleepQuality','sleepNote','sleepSave'])$(id).disabled=COACH_MODE;
+ sleepEditorFill();
+}
+
 async function init(){
- renderTabs();load();$('listPlanBackups').onclick=showPlanBackups;initV32();initV33();initLockInV334();initQuestionVault();initTeacherQuestions();selected=today()<START?START:today();setCheckinButtons();cloudUi();$('studySubjectSummary').ontoggle=renderStudySubjectTimes;$('addStudySession').onclick=()=>openStudySessionEditor();$('closeStudySessionEditor').onclick=closeStudySessionEditor;$('studySessionForm').onsubmit=saveStudySessionEdit;$('studySessionEditor').onclick=e=>{if(e.target===$('studySessionEditor'))closeStudySessionEditor()};document.addEventListener('keydown',e=>{if(e.key==='Escape')closeStudySessionEditor()});$('studyTimerStart').onclick=openStudyTimerTaskPicker;$('studyTimerPause').onclick=toggleStudyTimerPause;$('studyTimerStop').onclick=stopStudyTimer;$('closeStudyTimerTaskModal').onclick=closeStudyTimerTaskPicker;$('studyTimerTaskModal').onclick=e=>{if(e.target===$('studyTimerTaskModal'))closeStudyTimerTaskPicker()};render();setInterval(()=>{renderStudyTimerClock();updateMathFinishClocks()},1000);
+ renderTabs();load();initSleepTracking();$('listPlanBackups').onclick=showPlanBackups;initV32();initV33();initLockInV334();initQuestionVault();initTeacherQuestions();selected=today()<START?START:today();setCheckinButtons();cloudUi();$('studySubjectSummary').ontoggle=renderStudySubjectTimes;$('addStudySession').onclick=()=>openStudySessionEditor();$('closeStudySessionEditor').onclick=closeStudySessionEditor;$('studySessionForm').onsubmit=saveStudySessionEdit;$('studySessionEditor').onclick=e=>{if(e.target===$('studySessionEditor'))closeStudySessionEditor()};document.addEventListener('keydown',e=>{if(e.key==='Escape')closeStudySessionEditor()});$('studyTimerStart').onclick=openStudyTimerTaskPicker;$('studyTimerPause').onclick=toggleStudyTimerPause;$('studyTimerStop').onclick=stopStudyTimer;$('closeStudyTimerTaskModal').onclick=closeStudyTimerTaskPicker;$('studyTimerTaskModal').onclick=e=>{if(e.target===$('studyTimerTaskModal'))closeStudyTimerTaskPicker()};render();setInterval(()=>{renderStudyTimerClock();updateMathFinishClocks()},1000);
  if(COACH_MODE){await loadCoachCloud();setInterval(loadCoachCloud,30000)}
  else if(ownerToken){await pullOwnerCloud();render()}
 }
