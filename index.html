@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#0e1220">
-<title>YKS RPG V3.57</title>
+<title>YKS RPG V3.58</title>
 <style>
 :root{
  color-scheme:dark;--bg:#0c1019;--surface:#141b28;--surface-raised:#1b2535;--surface-soft:#101722;--border:#2a3547;--text:#edf2fa;--muted:#98a7bc;--accent:#84cbb8;--success:#84cbb8;--warning:#e9be76;--danger:#ef9c9d;--gold:#e9be76;--violet:#b5a1e5;
@@ -98,11 +98,22 @@ button,input,select,textarea{font:inherit}button{min-height:44px;display:inline-
  .sleepChartTrack{height:105px}
  .sleepChartLabel,.sleepChartValue{font-size:9px}
 }
+
+.sleepHero{background:radial-gradient(ellipse at 95% 0%,#b5a1e524,transparent 60%),var(--surface);border-color:#5c5370}
+.sleepWakeButton{width:100%;max-width:440px;min-height:56px;margin:8px 0 12px;font-size:16px;border-radius:14px}
+.sleepRoutines{display:grid;gap:9px;margin:15px 0}
+.sleepRoutineRow{display:flex;align-items:center;gap:10px;background:var(--surface-soft);border:1px solid var(--border);border-radius:13px;padding:14px}
+.sleepRoutineRow input{width:21px;height:21px;flex:none;accent-color:var(--accent)}
+.sleepRoutineRow span{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.sleepRoutineRow b{font-size:13px}.sleepRoutineRow small{font-size:11px;color:var(--muted)}
+.sleepRoutineXp{color:var(--accent);font-size:12px;white-space:nowrap}
+#sleepXpSummary{grid-template-columns:repeat(3,minmax(0,1fr));margin-top:13px}
+@media(max-width:500px){#sleepXpSummary .stat{padding:11px 9px}#sleepXpSummary .stat b{font-size:17px}.sleepRoutineRow{padding:12px 10px}}
 </style>
 </head>
 <body>
 <main>
-<header class="appHeader"><div class="brand"><span class="brandMark" aria-hidden="true">🎮</span><div><div class="brandLine"><h1>YKS RPG</h1><span class="version">V3.57</span></div><p class="sub">Her gün biraz daha güçlü.</p></div></div><div class="headerBadges"><span class="pill" id="cloudPill">☁️ <span id="cloudStatus">Yerel</span></span><span class="pill" title="Boş gün bileti">🎟️ <span id="tickets">0</span></span><span class="pill" title="İndirim kuponu">🏷️ <span id="coupons">0</span></span></div></header>
+<header class="appHeader"><div class="brand"><span class="brandMark" aria-hidden="true">🎮</span><div><div class="brandLine"><h1>YKS RPG</h1><span class="version">V3.58</span></div><p class="sub">Her gün biraz daha güçlü.</p></div></div><div class="headerBadges"><span class="pill" id="cloudPill">☁️ <span id="cloudStatus">Yerel</span></span><span class="pill" title="Boş gün bileti">🎟️ <span id="tickets">0</span></span><span class="pill" title="İndirim kuponu">🏷️ <span id="coupons">0</span></span></div></header>
 <section class="panel hero"><div class="heroHeading"><div><span class="overline">LEVEL / XP · KULLANILABİLİR BAKİYE</span><div class="big" id="balance">0 XP</div></div><div class="heroEmblem" aria-hidden="true">✦</div></div><div class="bar"><div id="progress"></div></div><div class="heroReward"><small id="next">Sonraki boş gün biletine 3.000 XP</small><span class="pill">🎟️ 3.000 XP</span></div><div class="stats heroStats"><div class="stat"><small>BU HAFTA</small><b id="weekly">0</b></div><div class="stat"><small>🔥 STREAK</small><b id="topStreak">0 gün</b></div><div class="stat"><small>BUGÜNKÜ RANK</small><b id="heroRank">D-Rank</b></div><div class="stat"><small>👹 BOSS POWER</small><b id="bossMini">0/100</b><div class="bar miniBoss"><div id="heroBossProgress"></div></div></div></div><div class="heroFooter"><button id="countdown" class="viewControl" type="button">🎯 YKS tarihini ayarla</button><div class="ledgerRow"><span>Toplam <b id="earned">0</b> XP</span><span>Harcanan <b id="spent">0</b> XP</span><span>En iyi seri <b id="bestStreak">0 gün</b></span></div></div></section>
 <nav class="tabs" role="tablist" aria-label="Uygulama bölümleri"><button id="nav-daily" data-tab="daily" role="tab" aria-controls="daily" aria-selected="true" class="active"><span class="navIcon" aria-hidden="true">📅</span>Günlük</button><button id="nav-lockInTab" data-tab="lockInTab" role="tab" aria-controls="lockInTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🔒</span>Odaklanma</button><button id="nav-rpg" data-tab="rpg" role="tab" aria-controls="rpg" aria-selected="false"><span class="navIcon" aria-hidden="true">⚔️</span>Gelişme</button><button id="nav-mockTab" data-tab="mockTab" role="tab" aria-controls="mockTab" aria-selected="false"><span class="navIcon" aria-hidden="true">📝</span>Denemeler</button><button id="nav-planTab" data-tab="planTab" role="tab" aria-controls="planTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🗓️</span>Plan</button><button id="nav-sleepTab" data-tab="sleepTab" role="tab" aria-controls="sleepTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🌙</span>Uyku</button><button id="nav-vaultTab" data-tab="vaultTab" role="tab" aria-controls="vaultTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🧠</span>Zor Soru</button><button id="nav-teacherTab" data-tab="teacherTab" role="tab" aria-controls="teacherTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🙋</span>Hocaya Sor</button><button id="nav-shopTab" data-tab="shopTab" role="tab" aria-controls="shopTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🛍️</span>Mağaza</button><button id="nav-backupTab" data-tab="backupTab" role="tab" aria-controls="backupTab" aria-selected="false"><span class="navIcon" aria-hidden="true">💾</span>Yedek</button></nav>
 
@@ -294,23 +305,36 @@ button,input,select,textarea{font:inherit}button{min-height:44px;display:inline-
 </div>
 
 
+
 <div id="sleepTab" class="tab" role="tabpanel" aria-labelledby="nav-sleepTab">
- <div class="sectionIntro"><span class="overline">DİNLENME DE İLERLEMENİN PARÇASI</span><h2>🌙 Uyku Takibi</h2><p>Uykunu kolayca kaydet, düzenini ve gündüz nasıl hissettiğini gör. Buradaki kayıtlar XP, Rank veya çalışma planını etkilemez.</p></div>
+ <div class="sectionIntro"><span class="overline">DİNLENME DE İLERLEMENİN PARÇASI</span><h2>🌙 Uyku ve Rutin Merkezi</h2><p>Hedef: 23.00'te uyku, 07.30'da uyanış ve yaklaşık 8 saat 30 dakika. Uyku XP'si çalışma Rank'ini ve streak'ini etkilemez.</p></div>
+ <section class="panel sleepHero">
+  <div class="top"><div><span class="overline">23.00 UYKU · 07.30 UYANIŞ</span><h2>☀️ Günaydın gptm!</h2><p class="sleepNotice">Uyku hedefin 8 saat 30 dakika. XP için uykunu kısaltma.</p></div><span class="pill">🌙 Günlük en fazla 39 XP</span></div>
+  <button id="sleepWakeButton" class="primary sleepWakeButton" type="button">☀️ Günaydın! Uyandım</button><p id="sleepWakeStatus" class="sleepNotice"></p>
+  <div id="sleepXpSummary" class="stats"></div>
+ </section>
  <section class="panel">
-  <div class="top"><h2>🛏️ Uyku kaydı</h2><span class="pill">Elle giriş</span></div>
-  <p class="sleepNotice">Tarih olarak <b>uyandığın günü</b> seç. Yatış saati bir önceki gece olabilir. Aynı tarih için yeni kayıt yaparsan eski kaydı güncellersin.</p>
+  <div class="top"><h2>🌙 Gece rutini · 6 XP</h2><label class="sleepNotice">Uyanış günü <input id="sleepNightForDay" class="viewControl" type="date"></label></div>
+  <p id="sleepNightDateLabel" class="sleepNotice"></p>
+  <p class="sleepNotice">Bu akşam yapacağın görevlerde <b>yarının tarihini</b> seç; sabah dün geceyi işaretlerken <b>bugünü</b> seç. Her görev 2 XP.</p>
+  <div id="sleepNightRoutines" class="sleepRoutines"></div>
+ </section>
+ <section class="panel">
+  <h2>🌅 Sabah rutini · 6 XP</h2><p id="sleepMorningDateLabel" class="sleepNotice"></p>
+  <p class="sleepNotice">Pzt / Çrş / Cum: ibadet ve egzersiz. Sal / Per / Cmt / Paz: hijyen ve 07.45'te evde derse başlama. Her görev 3 XP.</p>
+  <div id="sleepMorningRoutines" class="sleepRoutines"></div>
+ </section>
+ <section class="panel">
+  <div class="top"><h2>🛏️ Uyku kaydını tamamla</h2><span class="pill">Düzenlenebilir</span></div>
+  <p class="sleepNotice">Tarih, <b>uyandığın gündür</b>. Günaydın butonu basıldığı saati yakalar. Uykuya dalış saatin ve dinlenmişlik durumun elle girilir.</p>
   <form id="sleepForm">
    <div class="sleepFormGrid">
     <label>Uyandığın tarih<input id="sleepWakeDate" type="date" required></label>
-    <label>Yatış saati<input id="sleepBedTime" type="time" value="23:00" required></label>
-    <label>Uyanış saati<input id="sleepWakeTime" type="time" value="07:00" required></label>
+    <label>Uykuya dalış saati<input id="sleepBedTime" type="time" value="23:00" required></label>
+    <label>Uyanış saati<input id="sleepWakeTime" type="time" value="07:30" required></label>
     <label>Uyandığında nasıl hissediyordun?
      <select id="sleepQuality" required>
-      <option value="1">1 · Çok yorgun</option>
-      <option value="2">2 · Yorgun</option>
-      <option value="3" selected>3 · Normal</option>
-      <option value="4">4 · Dinlenmiş</option>
-      <option value="5">5 · Çok dinlenmiş</option>
+      <option value="1">1 · Çok yorgun</option><option value="2">2 · Yorgun</option><option value="3" selected>3 · Normal</option><option value="4">4 · Dinlenmiş</option><option value="5">5 · Çok dinç</option>
      </select>
     </label>
    </div>
@@ -319,17 +343,10 @@ button,input,select,textarea{font:inherit}button{min-height:44px;display:inline-
    <div class="actions"><button type="submit" id="sleepSave" class="primary">💾 Uyku kaydını kaydet</button></div>
    <p id="sleepFeedback" class="sleepNotice" aria-live="polite"></p>
   </form>
+  <p class="sleepNotice">XP: 8+ saat uyku +10 (7,5–8 saat +5); en az 8 saat uyuyup 07.30'a ±20 dk yakın uyanış +15, ±21–40 dk +8. Günaydın +2, günlük rutinler +12. Bir haftada 5 tam hedef gece +35 XP. Eski kayıtları düzenlemek yeni ödül üretmez.</p>
  </section>
- <section class="panel">
-  <h2>📊 Son 7 gün</h2>
-  <div id="sleepSummary" class="stats"></div>
-  <p class="sleepNotice">Ortalamalar yalnızca kaydettiğin gecelere göre hesaplanır. 8 saat çizgisi kişisel bir karşılaştırma hedefidir, sağlık değerlendirmesi değildir.</p>
-  <div id="sleepWeekChart" class="sleepWeekChart" role="img" aria-label="Son yedi günün kaydedilen uyku süreleri"></div>
- </section>
- <section class="panel">
-  <h2>📖 Uyku geçmişi</h2>
-  <div id="sleepHistory" class="sleepHistory"></div>
- </section>
+ <section class="panel"><h2>📊 Son 7 gün</h2><div id="sleepSummary" class="stats"></div><p class="sleepNotice">Grafik yalnızca girdiğin verileri gösterir.</p><div id="sleepWeekChart" class="sleepWeekChart" role="img" aria-label="Son yedi günün uyku süreleri"></div></section>
+ <section class="panel"><h2>📖 Uyku geçmişi</h2><div id="sleepHistory" class="sleepHistory"></div></section>
 </div>
 <div id="backupTab" class="tab" role="tabpanel" aria-labelledby="nav-backupTab"><div class="sectionIntro"><span class="overline">KAYITLARIN GÜVENDE</span><h2>💾 Yedek ve ayarlar</h2><p>Verilerini yedekle, sınav tarihini ayarla ve Coach Sync bağlantını yönet.</p></div>
 <section class="panel" id="settingsPanel"><h2>🎯 YKS tarihi</h2><p class="notice">Sınav tarihini kendin belirle. Denemeler ve bu ayar diğer kayıtlarınla birlikte yedeklenir ve senkronize edilir.</p><label>YKS sınav tarihi <input type="date" id="examDate"></label><div class="actions"><button id="saveSettings" class="primary">Tarihi kaydet</button><button id="clearExamDate">Tarihi kaldır</button></div><p class="notice" id="settingsStatus"></p></section>
@@ -544,7 +561,7 @@ function taskDisplayName(day,slot){const occ=planSlotOccurrence(day,slot),name=t
 // Keep the historical plan and task IDs intact; the new plan applies only from FLOW_START.
 const STUDY_PLAN=PLAN.map(keys=>keys.filter(k=>k!=='tyt'&&k!=='r1'&&k!=='r2'&&!ANALYSIS_KEYS.includes(k)));
 const SKILLS={geo:{name:'📐 Geometri',sources:{geo:120,anGeo:60,aytGeo:125}},physics:{name:'⚛️ Fizik',sources:{physics:110,anPhysics:60,aytPhysics:115}},chem:{name:'🧪 Kimya',sources:{chem:100,anChem:60,aytChem:100}},bio:{name:'🧬 Biyoloji',sources:{bio:90,anBio:60,aytBio:90}},problem:{name:'🧩 Problem',sources:{r1:60,r2:60,anProblem:60,problem:60}},paragraph:{name:'📖 Paragraf',sources:{paragraph:40}},mat:{name:'🔢 Matematik',sources:{mat:120,anMath:90,mathStudy:100,aytMath:120}},tr:{name:'📝 Türkçe',sources:{tr:80,turkishStudy:85}},grammar:{name:'✍️ Dil Bilgisi',sources:{grammar:90,anGrammar:40}},geoTYT:{name:'🌍 TYT Coğrafya',sources:{geoTYT:80,anGeoTYT:40}},hist:{name:'📜 TYT Tarih',sources:{hist:80,anHist:40}}};
-function emptyState(){return {checks:{},rests:{},purchases:0,refunds:0,spentRests:0,rewardBuys:[],shieldUses:{},chestClaims:{},checkins:{},claimedAchievements:{},coupons:0,streakRewardUnlocked:false,swaps:{},mockExams:[],settings:{examDate:""},weekPlans:{},planNotes:{},questionVault:{books:[],questions:[]},teacherQuestions:[],studyTimer:{running:null,sessions:[],breaks:[],breakRunning:null},sleepTracking:{nights:{}},lockIn:{days:{}},xpReset:{earned:0,spent:0}}}
+function emptyState(){return {checks:{},rests:{},purchases:0,refunds:0,spentRests:0,rewardBuys:[],shieldUses:{},chestClaims:{},checkins:{},claimedAchievements:{},coupons:0,streakRewardUnlocked:false,swaps:{},mockExams:[],settings:{examDate:""},weekPlans:{},planNotes:{},questionVault:{books:[],questions:[]},teacherQuestions:[],studyTimer:{running:null,sessions:[],breaks:[],breakRunning:null},sleepTracking:{nights:{},routines:{},wakePresses:{}},lockIn:{days:{}},xpReset:{earned:0,spent:0}}}
 let state=emptyState();
 let selected=START,week=START,checkinLoad=0,checkinSat=0,modalLoad=0,modalSat=0;
 const $=id=>document.getElementById(id);
@@ -765,11 +782,11 @@ function chestXP(){return Object.values(state.chestClaims).reduce((a,x)=>a+(Numb
 function finalizePendingXpReset(){
  if(COACH_MODE||!state.xpReset?.pending)return;
  const base=baseEarned(),s=sRankDates().length,pw=perfectWeekCount(),cb=comebackDates().length,ch=chestXP(),li=lockInTotals();
- state.xpReset={earned:base+s*50+pw*250+cb*50+ch+li.reward,spent:(state.purchases-state.refunds)*PRICE+rewardSpent()+li.penalty,pending:false};
+ state.xpReset={earned:base+s*50+pw*250+cb*50+ch+li.reward+sleepXpTotals().total,spent:(state.purchases-state.refunds)*PRICE+rewardSpent()+li.penalty,pending:false};
  save();
 }
-function totals(){let base=baseEarned(),s=sRankDates().length,pw=perfectWeekCount(),cb=comebackDates().length,ch=chestXP();let li=lockInTotals(),earned=base+s*50+pw*250+cb*50+ch+li.reward;let spent=(state.purchases-state.refunds)*PRICE+rewardSpent()+li.penalty;const reset=state.xpReset||{earned:0,spent:0};return {base,s,pw,cb,ch,earned:earned-reset.earned,spent:spent-reset.spent,balance:(earned-spent)-(reset.earned-reset.spent)}}
-function weekCore(w){let p=0,completed=0,total=0;for(let i=0;i<7;i++){let s=add(w,i),planned=isRest(s)?tasks(s).filter(k=>planSlotBase(k)==='tyt'):tasks(s);for(let k of planned){total++;if(isDone(s,k))completed++}p+=completedStudies(s).reduce((sum,x)=>sum+x.xp,0);if(dayRank(s)==='S')p+=50}if(weekAll(w)&&add(w,6)<=today())p+=250;let cb=comebackDates().filter(s=>monday(s)===w).length;p+=cb*50;let chest=state.chestClaims[w]?.reward||0;p+=chest+lockInTotals(w,add(w,6)).net;return {p,completed,total,cb,chest}}
+function totals(){let base=baseEarned(),s=sRankDates().length,pw=perfectWeekCount(),cb=comebackDates().length,ch=chestXP();let li=lockInTotals(),earned=base+s*50+pw*250+cb*50+ch+li.reward+sleepXpTotals().total;let spent=(state.purchases-state.refunds)*PRICE+rewardSpent()+li.penalty;const reset=state.xpReset||{earned:0,spent:0};return {base,s,pw,cb,ch,earned:earned-reset.earned,spent:spent-reset.spent,balance:(earned-spent)-(reset.earned-reset.spent)}}
+function weekCore(w){let p=0,completed=0,total=0;for(let i=0;i<7;i++){let s=add(w,i),planned=isRest(s)?tasks(s).filter(k=>planSlotBase(k)==='tyt'):tasks(s);for(let k of planned){total++;if(isDone(s,k))completed++}p+=completedStudies(s).reduce((sum,x)=>sum+x.xp,0);if(dayRank(s)==='S')p+=50}if(weekAll(w)&&add(w,6)<=today())p+=250;let cb=comebackDates().filter(s=>monday(s)===w).length;p+=cb*50;let chest=state.chestClaims[w]?.reward||0;p+=chest+lockInTotals(w,add(w,6)).net+sleepXpTotals(w,add(w,6)).total;return {p,completed,total,cb,chest}}
 function rankClass(r){return r==='REST'?'':`rank${r}`}
 function analysisXPInRange(a,b){let n=0;for(let s=a;s<=b;s=add(s,1)){if(isRest(s))continue;for(let k of ANALYSIS_KEYS)if(tasks(s).includes(k)&&isDone(s,k))n+=xpFor(s,k)}return n}
 function weekQuestStatus(w){
@@ -1244,6 +1261,7 @@ function earnedByDay(){
   credit(earnedOn,Number(claim.reward)||0);
  }
  for(const day of Object.keys(state.lockIn?.days||{}))credit(day,lockInDayLedger(day).net);
+ for(const [day,xp] of Object.entries(sleepXpTotals().daily))credit(day,xp);
  return ledger;
 }
 function percentageChange(current,previous){return previous>0?(current-previous)/previous*100:current===0?0:null}
@@ -2591,102 +2609,154 @@ function initQuestionVault(){
 
 
 // Sleep journal (self-reported): each date is the morning on which the user woke.
-function sleepClockMinutes(value){
- if(typeof value!=='string'||!/^([01]\\d|2[0-3]):[0-5]\\d$/.test(value))return null;
- const parts=value.split(':').map(Number);
- return parts[0]*60+parts[1];
-}
-function sleepDurationMinutes(bedtime,wakeTime){
- const bed=sleepClockMinutes(bedtime),wake=sleepClockMinutes(wakeTime);
- if(bed===null||wake===null)return null;
- return (wake-bed+1440)%1440;
-}
+
+const SLEEP_START='2026-11-28',SLEEP_WAKE_TARGET=450;
+const NIGHT_ROUTINE=[['prep','🎒 Hazırlık','Yarının çanta, kıyafet ve ders planını hazırladım.',2],['hygiene','🪥 Hijyen','Gece kişisel bakımımı yaptım.',2],['worship','🌙 İbadet','Kendi ibadet düzenimi tamamladım.',2]];
+const MORNING_MWF=[['worship','🕌 İbadet','Vaktine göre ibadetimi tamamladım.',3],['exercise','💪 Egzersiz','Dead hang ve kısa hareketimi yaptım.',3]];
+const MORNING_OTHER=[['hygiene','🪥 Hijyen','Sabah kişisel bakımımı yaptım.',3],['study','📚 Derse oturdum','07.45 civarı evde çalışmaya başladım.',3]];
+function sleepMorningSet(day){return [0,2,4].includes(idx(day))?MORNING_MWF:MORNING_OTHER}
+function sleepAllowed(day,night=false){return validDay(day)&&day>=SLEEP_START&&day>=add(today(),-2)&&day<=add(today(),night?1:0)}
+function sleepClockMinutes(value){if(typeof value!=='string'||!/^([01]\d|2[0-3]):[0-5]\d$/.test(value))return null;const p=value.split(':').map(Number);return p[0]*60+p[1]}
+function sleepDurationMinutes(bedtime,wakeTime){const b=sleepClockMinutes(bedtime),w=sleepClockMinutes(wakeTime);return b===null||w===null?null:(w-b+1440)%1440}
 function normalizeSleepTracking(raw){
- const nights={};
- const entries=raw?.nights&&typeof raw.nights==='object'&&!Array.isArray(raw.nights)?raw.nights:{};
- for(const [date,entry] of Object.entries(entries)){
-  if(!validDay(date)||!entry||typeof entry!=='object')continue;
-  const minutes=sleepDurationMinutes(entry.bedtime,entry.wakeTime);
-  if(minutes===null||minutes<15||minutes>960)continue;
-  nights[date]={bedtime:entry.bedtime,wakeTime:entry.wakeTime,quality:Math.max(1,Math.min(5,Math.round(Number(entry.quality)||3))),note:typeof entry.note==='string'?entry.note.slice(0,200):''};
+ const nights={},routines={},wakePresses={};
+ for(const [day,e] of Object.entries(raw?.nights||{})){
+  if(!validDay(day)||!e||typeof e!=='object')continue;
+  const m=sleepDurationMinutes(e.bedtime,e.wakeTime);if(m===null||m<15||m>960)continue;
+  nights[day]={bedtime:e.bedtime,wakeTime:e.wakeTime,quality:Math.max(1,Math.min(5,Math.round(Number(e.quality)||3))),note:typeof e.note==='string'?e.note.slice(0,200):'',xpEligible:!!e.xpEligible&&day>=SLEEP_START};
  }
- return {nights};
+ for(const [day,v] of Object.entries(raw?.routines||{})){
+  if(!validDay(day)||!v||typeof v!=='object')continue;
+  routines[day]={night:Object.fromEntries(NIGHT_ROUTINE.map(x=>[x[0],!!v.night?.[x[0]]])),morning:Object.fromEntries(sleepMorningSet(day).map(x=>[x[0],!!v.morning?.[x[0]]])),nightXP:!!v.nightXP&&day>=SLEEP_START,morningXP:!!v.morningXP&&day>=SLEEP_START};
+ }
+ for(const [day,stamp] of Object.entries(raw?.wakePresses||{})){if(validDay(day)&&day>=SLEEP_START&&typeof stamp==='string'&&!isNaN(Date.parse(stamp)))wakePresses[day]=stamp}
+ return {nights,routines,wakePresses};
 }
 function sleepNights(){return state.sleepTracking?.nights||{}}
-function sleepTextMinutes(mins){
- const h=Math.floor(mins/60),m=mins%60;
- return h+' sa'+(m?' '+String(m).padStart(2,'0')+' dk':'');
+function sleepTextMinutes(m){return Math.floor(m/60)+' sa'+(m%60?' '+String(m%60).padStart(2,'0')+' dk':'')}
+function sleepWakeDifference(time){const m=sleepClockMinutes(time);return m===null?1440:Math.min(Math.abs(m-SLEEP_WAKE_TARGET),1440-Math.abs(m-SLEEP_WAKE_TARGET))}
+function sleepAward(day){
+ if(!validDay(day)||day<SLEEP_START||day>today())return {total:0,full:false,minutes:0,punctual:0,record:0,night:0,morning:0};
+ const e=sleepNights()[day],mins=e?.xpEligible?sleepDurationMinutes(e.bedtime,e.wakeTime):null;
+ const minutes=mins===null?0:mins>=480?10:mins>=450?5:0;
+ const diff=mins===null?1440:sleepWakeDifference(e.wakeTime);
+ const punctual=mins>=480?(diff<=20?15:diff<=40?8:0):0;
+ const record=state.sleepTracking?.wakePresses?.[day]?2:0,r=state.sleepTracking?.routines?.[day];
+ const night=r?.nightXP?NIGHT_ROUTINE.reduce((n,x)=>n+(r.night?.[x[0]]?x[3]:0),0):0;
+ const morning=r?.morningXP?sleepMorningSet(day).reduce((n,x)=>n+(r.morning?.[x[0]]?x[3]:0),0):0;
+ return {total:minutes+punctual+record+night+morning,full:minutes===10&&punctual===15,minutes,punctual,record,night,morning};
 }
+function sleepXpTotals(a=SLEEP_START,b=today()){
+ const dayXP={},end=b<today()?b:today(),stateSleep=state.sleepTracking||{},dates=new Set([...Object.keys(stateSleep.nights||{}),...Object.keys(stateSleep.routines||{}),...Object.keys(stateSleep.wakePresses||{})]),qualifying={};
+ if(end<SLEEP_START||end<a)return {total:0,daily:dayXP};
+ for(const day of [...dates].sort()){
+  if(!validDay(day)||day<SLEEP_START||day>end)continue;
+  const xp=sleepAward(day);if(day>=a&&xp.total)dayXP[day]=(dayXP[day]||0)+xp.total;
+  if(xp.full)(qualifying[monday(day)]??=[]).push(day);
+ }
+ for(const days of Object.values(qualifying))if(days.length>=5&&days[4]>=a&&days[4]<=end)dayXP[days[4]]=(dayXP[days[4]]||0)+35;
+ return {total:Object.values(dayXP).reduce((n,x)=>n+x,0),daily:dayXP};
+}
+function sleepState(){state.sleepTracking??={nights:{},routines:{},wakePresses:{}};state.sleepTracking.nights??={};state.sleepTracking.routines??={};state.sleepTracking.wakePresses??={};return state.sleepTracking}
+function sleepRoutine(day){return sleepState().routines[day]??={night:{},morning:{},nightXP:false,morningXP:false}}
 function sleepEditorFill(){
- const date=$('sleepWakeDate').value,entry=sleepNights()[date];
- $('sleepBedTime').value=entry?.bedtime||'23:00';
- $('sleepWakeTime').value=entry?.wakeTime||'07:00';
- $('sleepQuality').value=String(entry?.quality||3);
- $('sleepNote').value=entry?.note||'';
- $('sleepFeedback').textContent=entry?'Bu tarihte kayıt var; kaydedersen güncellenir.':'';
+ const day=$('sleepWakeDate').value,e=sleepNights()[day],stamp=state.sleepTracking?.wakePresses?.[day];
+ $('sleepBedTime').value=e?.bedtime||'23:00';
+ $('sleepWakeTime').value=e?.wakeTime||(stamp?new Date(stamp).toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit',hour12:false}):'07:30');
+ $('sleepQuality').value=String(e?.quality||3);$('sleepNote').value=e?.note||'';
+ $('sleepFeedback').textContent=e?'Bu tarihte kayıt var; kaydedersen güncellenir.':'';
+ renderSleepRoutines();
+}
+function sleepWakeUp(){
+ if(COACH_MODE)return;
+ const day=today(),st=sleepState();if(!st.wakePresses[day])st.wakePresses[day]=new Date().toISOString();
+ $('sleepWakeDate').value=day;$('sleepNightForDay').value=day;
+ sleepEditorFill();save();render();
+ $('sleepForm').scrollIntoView({behavior:'smooth',block:'start'});
 }
 function sleepSave(event){
- event.preventDefault();
- if(COACH_MODE)return;
- const date=$('sleepWakeDate').value,bedtime=$('sleepBedTime').value,wakeTime=$('sleepWakeTime').value,quality=Number($('sleepQuality').value);
- const minutes=sleepDurationMinutes(bedtime,wakeTime);
- if(!validDay(date)||date>today()){alert('Uyandığın tarih bugün veya daha önce olmalı.');return}
- if(minutes===null||minutes<15||minutes>960){alert('Uyku süresini 15 dakika ile 16 saat arasında olacak şekilde kontrol et.');return}
+ event.preventDefault();if(COACH_MODE)return;
+ const day=$('sleepWakeDate').value,bedtime=$('sleepBedTime').value,wakeTime=$('sleepWakeTime').value,quality=Number($('sleepQuality').value);
+ const mins=sleepDurationMinutes(bedtime,wakeTime);
+ if(!validDay(day)||day>today()){alert('Uyandığın tarih bugün veya geçmişte olmalı.');return}
+ if(mins===null||mins<15||mins>960){alert('Uyku süresi 15 dakika ile 16 saat arasında olmalı.');return}
  if(!Number.isInteger(quality)||quality<1||quality>5)return;
- state.sleepTracking??={nights:{}};state.sleepTracking.nights??={};
- state.sleepTracking.nights[date]={bedtime,wakeTime,quality,note:$('sleepNote').value.trim().slice(0,200)};
- save();renderSleepTracking();
- $('sleepFeedback').textContent='✓ '+fmt(date)+' kaydedildi. Toplam '+sleepTextMinutes(minutes)+'.';
+ const st=sleepState(),old=st.nights[day];
+ st.nights[day]={bedtime,wakeTime,quality,note:$('sleepNote').value.trim().slice(0,200),xpEligible:!!old?.xpEligible||sleepAllowed(day)};
+ save();render();$('sleepFeedback').textContent='✓ '+fmt(day)+' kaydedildi · '+sleepTextMinutes(mins);
 }
-function sleepDelete(date){
- if(COACH_MODE||!sleepNights()[date])return;
- if(!confirm(fmt(date)+' tarihli uyku kaydı silinsin mi?'))return;
- delete state.sleepTracking.nights[date];save();renderSleepTracking();
- if($('sleepWakeDate').value===date)sleepEditorFill();
+function sleepDelete(day){
+ if(COACH_MODE||!sleepNights()[day]||!confirm(fmt(day)+' tarihli uyku kaydı silinsin mi?'))return;
+ delete state.sleepTracking.nights[day];save();render();if($('sleepWakeDate').value===day)sleepEditorFill();
+}
+function sleepToggleRoutine(day,phase,key,val){
+ if(COACH_MODE||!sleepAllowed(day,phase==='night'))return;
+ const r=sleepRoutine(day);r[phase][key]=!!val;r[phase==='night'?'nightXP':'morningXP']=true;save();render();
+}
+function renderSleepRoutines(){
+ const nightInput=$('sleepNightForDay');if(!nightInput.value)nightInput.value=add(today(),1);
+ nightInput.min=add(today(),-2);nightInput.max=add(today(),1);
+ const nightDay=nightInput.value,morningDay=$('sleepWakeDate').value;
+ $('sleepNightDateLabel').textContent=validDay(nightDay)?fmt(nightDay)+' sabahına hazırlık':'';
+ $('sleepMorningDateLabel').textContent=validDay(morningDay)?fmt(morningDay)+' · '+([0,2,4].includes(idx(morningDay))?'İbadet ve egzersiz':'Hijyen ve derse başlama'):'';
+ for(const item of [{id:'sleepNightRoutines',day:nightDay,phase:'night',rules:NIGHT_ROUTINE},{id:'sleepMorningRoutines',day:morningDay,phase:'morning',rules:validDay(morningDay)?sleepMorningSet(morningDay):[]}]){
+  const wrap=$(item.id);wrap.replaceChildren();const stored=state.sleepTracking?.routines?.[item.day]?.[item.phase]||{};
+  for(const [key,name,detail,xp] of item.rules){
+   const label=document.createElement('label');label.className='sleepRoutineRow';
+   const check=document.createElement('input');check.type='checkbox';check.checked=!!stored[key];check.disabled=COACH_MODE||!sleepAllowed(item.day,item.phase==='night');
+   check.onchange=()=>sleepToggleRoutine(item.day,item.phase,key,check.checked);
+   const info=document.createElement('span'),b=document.createElement('b'),small=document.createElement('small'),score=document.createElement('strong');
+   b.textContent=name;small.textContent=detail;score.textContent='+'+xp+' XP';score.className='sleepRoutineXp';
+   info.append(b,small);label.append(check,info,score);wrap.append(label);
+  }
+ }
 }
 function renderSleepTracking(){
- const nights=sleepNights(),todayDate=today();
- const dates=Array.from({length:7},(_,i)=>add(todayDate,i-6));
- const entries=dates.filter(date=>!!nights[date]).map(date=>({date,...nights[date],minutes:sleepDurationMinutes(nights[date].bedtime,nights[date].wakeTime)}));
- const avg=entries.length?Math.round(entries.reduce((n,e)=>n+e.minutes,0)/entries.length):null;
- const rested=entries.length?(entries.reduce((n,e)=>n+e.quality,0)/entries.length).toFixed(1):null;
- const reached=entries.filter(e=>e.minutes>=480).length;
+ const nights=sleepNights(),now=today(),days=Array.from({length:7},(_,i)=>add(now,i-6));
+ const entries=days.filter(d=>nights[d]).map(d=>({day:d,minutes:sleepDurationMinutes(nights[d].bedtime,nights[d].wakeTime),quality:nights[d].quality}));
+ const avg=entries.length?Math.round(entries.reduce((n,x)=>n+x.minutes,0)/entries.length):null;
+ const rested=entries.length?(entries.reduce((n,x)=>n+x.quality,0)/entries.length).toFixed(1):null;
+ const scores=$('sleepXpSummary');scores.replaceChildren();
+ for(const [name,value] of [['BUGÜNÜN UYKU XP',sleepAward(now).total+' / 39'],['BU HAFTA',sleepXpTotals(monday(now),now).total+' XP'],['TOPLAM',sleepXpTotals().total+' XP']]){
+  const tile=document.createElement('div');tile.className='stat',k=document.createElement('small'),v=document.createElement('b');k.textContent=name;v.textContent=value;tile.append(k,v);scores.append(tile);
+ }
+ const wake=state.sleepTracking?.wakePresses?.[now],button=$('sleepWakeButton');button.disabled=COACH_MODE||!!wake;
+ button.textContent=wake?'✓ Günaydın kaydı yapıldı':'☀️ Günaydın! Uyandım';
+ $('sleepWakeStatus').textContent=wake?'Uyanış kaydı: '+new Date(wake).toLocaleTimeString('tr-TR',{hour:'2-digit',minute:'2-digit'})+'. Saati aşağıdan düzeltebilirsin.':'Uyanınca bir kez dokun, saatin otomatik kaydedilsin. (+2 XP)';
  const summary=$('sleepSummary');summary.replaceChildren();
- for(const [label,value] of [['KAYITLI GECE',entries.length+' / 7'],['ORT. UYKU',avg===null?'—':sleepTextMinutes(avg)],['8 SAAT VE ÜSTÜ',reached+' gece'],['DİNLENMİŞLİK',rested===null?'—':rested+' / 5']]){
-  const tile=document.createElement('div');tile.className='stat';const small=document.createElement('small'),bold=document.createElement('b');small.textContent=label;bold.textContent=value;tile.append(small,bold);summary.append(tile);
+ for(const [name,value] of [['KAYITLI GECE',entries.length+' / 7'],['ORT. UYKU',avg===null?'—':sleepTextMinutes(avg)],['8 SAAT VE ÜSTÜ',entries.filter(e=>e.minutes>=480).length+' gece'],['DİNLENMİŞLİK',rested===null?'—':rested+' / 5']]){
+  const box=document.createElement('div');box.className='stat',label=document.createElement('small'),b=document.createElement('b');label.textContent=name;b.textContent=value;box.append(label,b);summary.append(box);
  }
  const graph=$('sleepWeekChart');graph.replaceChildren();
- for(const date of dates){
-  const entry=nights[date],minutes=entry?sleepDurationMinutes(entry.bedtime,entry.wakeTime):null;
-  const cell=document.createElement('div');cell.className='sleepChartDay';
+ for(const day of days){
+  const minutes=nights[day]?sleepDurationMinutes(nights[day].bedtime,nights[day].wakeTime):null;
+  const el=document.createElement('div');el.className='sleepChartDay';
   const value=document.createElement('span');value.className='sleepChartValue';value.textContent=minutes===null?'—':(minutes/60).toFixed(1)+'s';
   const track=document.createElement('div');track.className='sleepChartTrack';
   if(minutes!==null){const bar=document.createElement('div');bar.className='sleepChartBar'+(minutes<420?' sleepShort':'');bar.style.height=Math.min(100,minutes/600*100)+'%';track.append(bar)}
-  const label=document.createElement('span');label.className='sleepChartLabel';label.textContent=parse(date).toLocaleDateString('tr-TR',{weekday:'short'});
-  cell.title=fmt(date)+(minutes===null?' · Kayıt yok':' · '+sleepTextMinutes(minutes));
-  cell.append(value,track,label);graph.append(cell);
+  const label=document.createElement('span');label.className='sleepChartLabel';label.textContent=parse(day).toLocaleDateString('tr-TR',{weekday:'short'});
+  el.title=fmt(day)+(minutes===null?' · Kayıt yok':' · '+sleepTextMinutes(minutes));el.append(value,track,label);graph.append(el);
  }
  const history=$('sleepHistory');history.replaceChildren();
- const all=Object.entries(nights).filter(([date])=>date<=todayDate).sort((a,b)=>b[0].localeCompare(a[0])).slice(0,45);
- if(!all.length){const empty=document.createElement('p');empty.className='sleepNotice';empty.textContent='Henüz uyku kaydın yok. İlk kaydını yukarıdan ekleyebilirsin.';history.append(empty)}
- for(const [date,entry] of all){
-  const row=document.createElement('div');row.className='sleepHistoryRow';
-  const info=document.createElement('div');info.className='sleepHistoryInfo';
-  const label=document.createElement('b');label.textContent=fmt(date)+' · '+sleepTextMinutes(sleepDurationMinutes(entry.bedtime,entry.wakeTime));
-  const details=document.createElement('small');details.textContent=entry.bedtime+' → '+entry.wakeTime+' · Dinlenmişlik '+entry.quality+'/5'+(entry.note?' · '+entry.note:'');
-  info.append(label,details);
+ const all=Object.entries(nights).filter(([day])=>day<=now).sort((a,b)=>b[0].localeCompare(a[0])).slice(0,45);
+ if(!all.length){const none=document.createElement('p');none.className='sleepNotice';none.textContent='Henüz uyku kaydın yok. Günaydın butonuyla başlayabilirsin.';history.append(none)}
+ for(const [day,e] of all){
+  const row=document.createElement('div');row.className='sleepHistoryRow',info=document.createElement('div');info.className='sleepHistoryInfo';
+  const label=document.createElement('b');label.textContent=fmt(day)+' · '+sleepTextMinutes(sleepDurationMinutes(e.bedtime,e.wakeTime));
+  const note=document.createElement('small');note.textContent=e.bedtime+' → '+e.wakeTime+' · Dinlenmişlik '+e.quality+'/5 · '+sleepAward(day).total+' XP'+(e.note?' · '+e.note:'');
+  info.append(label,note);
   const actions=document.createElement('div');actions.className='sleepHistoryActions';
-  const edit=document.createElement('button');edit.type='button';edit.textContent='Düzenle';edit.onclick=()=>{$('sleepWakeDate').value=date;sleepEditorFill();$('sleepForm').scrollIntoView({behavior:'smooth',block:'start'})};
-  const del=document.createElement('button');del.type='button';del.textContent='Sil';del.className='danger';del.disabled=COACH_MODE;del.onclick=()=>sleepDelete(date);
+  const edit=document.createElement('button');edit.type='button';edit.textContent='Düzenle';edit.onclick=()=>{$('sleepWakeDate').value=day;$('sleepNightForDay').value=day;sleepEditorFill();$('sleepForm').scrollIntoView({behavior:'smooth',block:'start'})};
+  const del=document.createElement('button');del.type='button';del.textContent='Sil';del.className='danger';del.disabled=COACH_MODE;del.onclick=()=>sleepDelete(day);
   actions.append(edit,del);row.append(info,actions);history.append(row);
  }
+ renderSleepRoutines();
 }
 function initSleepTracking(){
- $('sleepWakeDate').value=today();
- $('sleepWakeDate').max=today();
- $('sleepWakeDate').onchange=sleepEditorFill;
- $('sleepForm').onsubmit=sleepSave;
- for(const id of ['sleepWakeDate','sleepBedTime','sleepWakeTime','sleepQuality','sleepNote','sleepSave'])$(id).disabled=COACH_MODE;
+ $('sleepWakeDate').value=today();$('sleepWakeDate').max=today();$('sleepNightForDay').value=add(today(),1);
+ $('sleepWakeDate').onchange=sleepEditorFill;$('sleepNightForDay').onchange=renderSleepRoutines;
+ $('sleepWakeButton').onclick=sleepWakeUp;$('sleepForm').onsubmit=sleepSave;
+ for(const id of ['sleepWakeDate','sleepBedTime','sleepWakeTime','sleepQuality','sleepNote','sleepSave','sleepNightForDay'])$(id).disabled=COACH_MODE;
  sleepEditorFill();
 }
 
