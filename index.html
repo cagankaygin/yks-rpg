@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#0e1220">
-<title>YKS RPG V3.61</title>
+<title>YKS RPG V3.62</title>
 <style>
 :root{
  color-scheme:dark;--bg:#0c1019;--surface:#141b28;--surface-raised:#1b2535;--surface-soft:#101722;--border:#2a3547;--text:#edf2fa;--muted:#98a7bc;--accent:#84cbb8;--success:#84cbb8;--warning:#e9be76;--danger:#ef9c9d;--gold:#e9be76;--violet:#b5a1e5;
@@ -113,8 +113,8 @@ button,input,select,textarea{font:inherit}button{min-height:44px;display:inline-
 </head>
 <body>
 <main>
-<header class="appHeader"><div class="brand"><span class="brandMark" aria-hidden="true">🎮</span><div><div class="brandLine"><h1>YKS RPG</h1><span class="version">V3.61</span></div><p class="sub">Her gün biraz daha güçlü.</p></div></div><div class="headerBadges"><span class="pill" id="cloudPill">☁️ <span id="cloudStatus">Yerel</span></span><span class="pill" title="Boş gün bileti">🎟️ <span id="tickets">0</span></span><span class="pill" title="İndirim kuponu">🏷️ <span id="coupons">0</span></span></div></header>
-<section class="panel hero"><div class="heroHeading"><div><span class="overline">LEVEL / XP · KULLANILABİLİR BAKİYE</span><div class="big" id="balance">0 XP</div></div><div class="heroEmblem" aria-hidden="true">✦</div></div><div class="bar"><div id="progress"></div></div><div class="heroReward"><small id="next">Sonraki boş gün biletine 3.300 XP</small><span class="pill">🎟️ 3.300 XP</span></div><div class="stats heroStats"><div class="stat"><small>BU HAFTA</small><b id="weekly">0</b></div><div class="stat"><small>🔥 STREAK</small><b id="topStreak">0 gün</b></div><div class="stat"><small>BUGÜNKÜ RANK</small><b id="heroRank">D-Rank</b></div><div class="stat"><small>👹 BOSS POWER</small><b id="bossMini">0/100</b><div class="bar miniBoss"><div id="heroBossProgress"></div></div></div></div><div class="heroFooter"><button id="countdown" class="viewControl" type="button">🎯 YKS tarihini ayarla</button><div class="ledgerRow"><span>Toplam <b id="earned">0</b> XP</span><span>Harcanan <b id="spent">0</b> XP</span><span>En iyi seri <b id="bestStreak">0 gün</b></span></div></div></section>
+<header class="appHeader"><div class="brand"><span class="brandMark" aria-hidden="true">🎮</span><div><div class="brandLine"><h1>YKS RPG</h1><span class="version">V3.62</span></div><p class="sub">Her gün biraz daha güçlü.</p></div></div><div class="headerBadges"><span class="pill" id="cloudPill">☁️ <span id="cloudStatus">Yerel</span></span><span class="pill" title="Boş gün bileti">🎟️ <span id="tickets">0</span></span><span class="pill" title="İndirim kuponu">🏷️ <span id="coupons">0</span></span></div></header>
+<section class="panel hero"><div class="heroHeading"><div><span class="overline">LEVEL / XP · KULLANILABİLİR BAKİYE</span><div class="big" id="balance">0 XP</div></div><div class="heroEmblem" aria-hidden="true">✦</div></div><div class="bar"><div id="progress"></div></div><div class="heroReward"><small id="next">Sonraki tam boş gün biletine 5.000 XP</small><span class="pill">🎟️ 5.000 XP</span></div><div class="stats heroStats"><div class="stat"><small>BU HAFTA</small><b id="weekly">0</b></div><div class="stat"><small>🔥 STREAK</small><b id="topStreak">0 gün</b></div><div class="stat"><small>BUGÜNKÜ RANK</small><b id="heroRank">D-Rank</b></div><div class="stat"><small>👹 BOSS POWER</small><b id="bossMini">0/100</b><div class="bar miniBoss"><div id="heroBossProgress"></div></div></div></div><div class="heroFooter"><button id="countdown" class="viewControl" type="button">🎯 YKS tarihini ayarla</button><div class="ledgerRow"><span>Toplam <b id="earned">0</b> XP</span><span>Harcanan <b id="spent">0</b> XP</span><span>En iyi seri <b id="bestStreak">0 gün</b></span></div></div></section>
 <nav class="tabs" role="tablist" aria-label="Uygulama bölümleri"><button id="nav-daily" data-tab="daily" role="tab" aria-controls="daily" aria-selected="true" class="active"><span class="navIcon" aria-hidden="true">📅</span>Günlük</button><button id="nav-lockInTab" data-tab="lockInTab" role="tab" aria-controls="lockInTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🔒</span>Odaklanma</button><button id="nav-rpg" data-tab="rpg" role="tab" aria-controls="rpg" aria-selected="false"><span class="navIcon" aria-hidden="true">⚔️</span>Gelişme</button><button id="nav-mockTab" data-tab="mockTab" role="tab" aria-controls="mockTab" aria-selected="false"><span class="navIcon" aria-hidden="true">📝</span>Denemeler</button><button id="nav-planTab" data-tab="planTab" role="tab" aria-controls="planTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🗓️</span>Plan</button><button id="nav-sleepTab" data-tab="sleepTab" role="tab" aria-controls="sleepTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🌙</span>Uyku</button><button id="nav-vaultTab" data-tab="vaultTab" role="tab" aria-controls="vaultTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🧠</span>Zor Soru</button><button id="nav-teacherTab" data-tab="teacherTab" role="tab" aria-controls="teacherTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🙋</span>Hocaya Sor</button><button id="nav-shopTab" data-tab="shopTab" role="tab" aria-controls="shopTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🛍️</span>Mağaza</button><button id="nav-backupTab" data-tab="backupTab" role="tab" aria-controls="backupTab" aria-selected="false"><span class="navIcon" aria-hidden="true">💾</span>Yedek</button></nav>
 
 <div id="daily" class="tab active" role="tabpanel" aria-labelledby="nav-daily">
@@ -153,7 +153,7 @@ button,input,select,textarea{font:inherit}button{min-height:44px;display:inline-
 </div>
 
 <div id="shopTab" class="tab" role="tabpanel" aria-labelledby="nav-shopTab"><div class="sectionIntro"><span class="overline">EMEĞİNİ ÖDÜLLENDİR</span><h2>🛍️ Ödül mağazası</h2><p>Biriktirdiğin XP ile kendine küçük molalar ve yeni hedefler aç.</p></div>
-<section class="panel"><div class="top"><h2>🛍️ Ödül Dükkânı</h2><span class="pill">🏷️ Kupon: <span id="couponShop">0</span></span></div><p class="notice">Ödül aldığında XP gerçekten bakiyenden düşer. Kupon varsa uygun ödülde −250 XP kullanmayı seçebilirsin.</p><div id="rewardShop"></div><div class="divider"></div><div class="actions"><button id="buy" class="primary">🎟️ 3.300 XP → Pazartesi Boş Gün Bileti</button><button id="refund">Son kullanılmamış bileti iade et</button><button id="undoReward">Son mağaza alışını geri al</button></div><p id="shopnote" class="notice"></p></section>
+<section class="panel"><div class="top"><h2>🛍️ Ödül Dükkânı</h2><span class="pill">🏷️ Kupon: <span id="couponShop">0</span></span></div><p class="notice">Ödül aldığında XP gerçekten bakiyenden düşer. Kupon varsa uygun ödülde −250 XP kullanmayı seçebilirsin.</p><div id="rewardShop"></div><div class="divider"></div><div class="actions"><button id="buy" class="primary">🎟️ 5.000 XP → Pazartesi Tam Boş Gün Bileti</button><button id="refund">Son kullanılmamış bileti iade et</button><button id="undoReward">Son mağaza alışını geri al</button></div><p id="shopnote" class="notice"></p></section>
 <section class="panel"><h2>💎 30 Gün Streak Büyük Ödülü</h2><p id="streakStatus"></p><p class="notice">XP ile satın alınmaz. En iyi streak'in 30 güne ulaştığında kalıcı olarak açılmış sayılır.</p></section>
 </div>
 
@@ -479,7 +479,7 @@ button,input,select,textarea{font:inherit}button{min-height:44px;display:inline-
 <script>
 'use strict';
 const FLOW_START='2026-10-14',PLAN_ONLY_START='2026-11-05';
-const START='2026-09-28',LEGACY_PRICE=3000,PRICE=3300,KEY='yks-xp-final-v1',APP='yks-rpg-v3-coach-sync';
+const START='2026-09-28',LEGACY_PRICE=3000,PRICE=5000,KEY='yks-xp-final-v1',APP='yks-rpg-v3-coach-sync';
 const SUPABASE_URL='https://slyanyoxykuhqebjglkh.supabase.co';
 const SUPABASE_KEY='sb_publishable_kXs1WBuLiQtb5v_YY-zXzw_S6ILkc95';
 const CLOUD_TOKEN_KEY='yks-rpg-owner-token-v1';
@@ -490,7 +490,7 @@ let ownerToken=localStorage.getItem(CLOUD_TOKEN_KEY)||'';
 let cloudTimer=null,cloudBusy=false,lastCloudSavedAt=null,suppressCloud=false;
 const DAY=['Pazartesi','Salı','Çarşamba','Perşembe','Cuma','Cumartesi','Pazar'];
 const LEGACY_REWARD_PRICES={special:1000,gaming:1500,friends:1750,shield:2000};
-const REWARDS={special:{name:'Special',price:1100,coupon:false},gaming:{name:'🎮 Tam oyun gecesi',price:1650,coupon:true},friends:{name:'🧑‍🤝‍🧑 Arkadaşlarla uzun akşam',price:1900,coupon:true},shield:{name:'🛡️ Streak Koruyucu',price:2200,coupon:false}};
+const REWARDS={special:{name:'Special',price:1500,coupon:false},gaming:{name:'🎮 Tam oyun gecesi',price:2200,coupon:true},friends:{name:'🧑‍🤝‍🧑 Arkadaşlarla uzun akşam',price:2600,coupon:true},shield:{name:'🛡️ Streak Koruyucu',price:3000,coupon:false}};
 const T={
  dailyAnalysis:['Analiz',100,'Zor soruları, yanlışları, boşları ve zaman kaybettiren soruları sistemli biçimde analiz et.'],
  paragraph:['Paragraf soru çözümü',40,'Paragraf soruları çöz.'],
@@ -776,7 +776,7 @@ function trackedDates(end=today()){if(end<START)return[];return datesBetween(STA
 function normalizeTicketEconomy(raw,purchases,refunds){
  if(!raw||typeof raw!=='object'||!Number.isInteger(raw.oldPurchases)||!Number.isInteger(raw.oldRefunds)||!Array.isArray(raw.events))return null;
  const oldPurchases=Math.max(0,raw.oldPurchases),oldRefunds=Math.max(0,raw.oldRefunds);
- const events=raw.events.filter(x=>x&&['buy','refund'].includes(x.type)&&[LEGACY_PRICE,PRICE].includes(x.price)).map(x=>({type:x.type,price:x.price}));
+ const events=raw.events.filter(x=>x&&['buy','refund'].includes(x.type)&&[LEGACY_PRICE,3300,PRICE].includes(x.price)).map(x=>({type:x.type,price:x.price}));
  if(oldPurchases+events.filter(e=>e.type==='buy').length!==purchases||oldRefunds+events.filter(e=>e.type==='refund').length!==refunds)return null;
  return {oldPurchases,oldRefunds,events};
 }
@@ -792,8 +792,13 @@ function ticketSpend(){
 function refundableTicketPrice(){
  const e=state.ticketEconomy;
  if(!e)return LEGACY_PRICE;
- const newerOutstanding=e.events.reduce((n,x)=>n+(x.type==='buy'?1:-1),0);
- return newerOutstanding>0?PRICE:LEGACY_PRICE;
+ // Earlier purchases retain their original refund amount after future price changes.
+ const pending=[];
+ for(const event of e.events){
+  if(event.type==='buy')pending.push(event.price);
+  else if(pending.length)pending.pop();
+ }
+ return pending.length?pending[pending.length-1]:LEGACY_PRICE;
 }
 function rewardSpent(){return state.rewardBuys.reduce((a,x)=>a+(Number(x.price)||LEGACY_REWARD_PRICES[x.type]||0),0)}
 function tickets(){return state.purchases-state.refunds-state.spentRests}
@@ -1212,7 +1217,7 @@ $('undoRest').onclick=()=>{if(COACH_MODE)return;if(!isRest(selected))return;if(c
 $('useShield').onclick=()=>{if(COACH_MODE)return;if(shieldInventory()<1||selected>today()||isRest(selected)||protectedDay(selected)||rankValue(dayRank(selected))>=rankValue('B'))return;if(confirm(`${fmt(selected)} günü Streak Koruyucu ile korunsun mu? Günün XP'si ve Rank'ı değişmez; yalnızca streak kırılmaz.`)){state.shieldUses[selected]=true;save();render()}};
 $('undoShield').onclick=()=>{if(COACH_MODE)return;if(!protectedDay(selected))return;if(confirm('Bu gündeki Streak Koruyucu geri alınsın mı?')){delete state.shieldUses[selected];save();render()}};
 $('claimChest').onclick=claimChest;
-$('buy').onclick=()=>{if(COACH_MODE)return;if(totals().balance<PRICE)return;if(confirm(PRICE.toLocaleString('tr-TR')+' XP harcayıp 1 Pazartesi Boş Gün Bileti almak istiyor musun?')){ensureTicketEconomy().events.push({type:'buy',price:PRICE});state.purchases++;save();render()}};
+$('buy').onclick=()=>{if(COACH_MODE)return;if(totals().balance<PRICE)return;if(confirm(PRICE.toLocaleString('tr-TR')+' XP harcayıp 1 Pazartesi Tam Boş Gün Bileti almak istiyor musun?')){ensureTicketEconomy().events.push({type:'buy',price:PRICE});state.purchases++;save();render()}};
 $('refund').onclick=()=>{if(COACH_MODE)return;if(state.purchases<=state.refunds+state.spentRests)return;const refundPrice=refundableTicketPrice();if(confirm('Son kullanılmamış bilet alışını iptal edip '+refundPrice.toLocaleString('tr-TR')+' XP iade edilsin mi?')){ensureTicketEconomy().events.push({type:'refund',price:refundPrice});state.refunds++;save();render()}};
 $('undoReward').onclick=()=>{if(COACH_MODE)return;let x=state.rewardBuys[state.rewardBuys.length-1];if(!x)return;if(x.type==='shield'&&Object.values(state.shieldUses).filter(Boolean).length>=state.rewardBuys.filter(y=>y.type==='shield').length){alert('Son Streak Koruyucu kullanılmış durumda. Önce bir gündeki korumayı kaldır.');return}if(confirm(`Son mağaza alışın (${REWARDS[x.type]?.name||x.type}) iptal edilip ${Number(x.price||0).toLocaleString('tr-TR')} XP iade edilsin mi?`)){state.rewardBuys.pop();if(x.couponUsed)state.coupons=1;save();render()}};
 $('saveCheckin').onclick=()=>{if(saveSelectedCheckin(checkinLoad,checkinSat,$('checkinNote').value)){render();alert('🌙 Check-in kaydedildi.')}};
@@ -2170,12 +2175,32 @@ function renderVaultSummary(){
   const d=document.createElement('div');d.className='stat';const s=document.createElement('small');s.textContent=label;const b=document.createElement('b');b.textContent=String(value);d.append(s,b);el.append(d);
  }
 }
+
+const VAULT_BOOK_SUBJECT_ORDER=['mathStudy','problem','geo','physics','chem','bio','turkishStudy','grammar','hist','geoTYT','tytSocial','tytScience','aytMath','aytPhysics','aytChem','aytBio'];
+function sortedVaultBooks(){
+ const order=key=>{const i=VAULT_BOOK_SUBJECT_ORDER.indexOf(key);return i<0?VAULT_BOOK_SUBJECT_ORDER.length:i};
+ return [...vaultBooks()].sort((a,b)=>order(a.subject)-order(b.subject)||a.name.localeCompare(b.name,'tr',{numeric:true,sensitivity:'base'}));
+}
+function fillGroupedVaultBooks(select,preferredId,placeholder){
+ select.replaceChildren();
+ const books=sortedVaultBooks();
+ if(!books.length){select.add(new Option(placeholder,''));return}
+ let group=null,lastSubject='';
+ for(const book of books){
+  if(book.subject!==lastSubject){
+   group=document.createElement('optgroup');
+   group.label=vaultSubjectLabel(book.subject);
+   select.append(group);
+   lastSubject=book.subject;
+  }
+  group.append(new Option(book.name,book.id));
+ }
+ if(preferredId&&books.some(b=>b.id===preferredId))select.value=preferredId;
+}
 function renderVaultBookOptions(){
  const select=$('vaultQuestionBook'),subject=$('vaultBookSubject');if(!select||!subject)return;
- const old=select.value||vaultLastBookId;select.replaceChildren();
- if(!vaultBooks().length)select.add(new Option('Önce bir kitap ekle',''));
- else for(const b of vaultBooks())select.add(new Option(vaultSubjectLabel(b.subject)+' · '+b.name,b.id));
- if(old&&[...select.options].some(o=>o.value===old))select.value=old;
+ const old=select.value||vaultLastBookId;
+ fillGroupedVaultBooks(select,old,'Önce bir kitap ekle');
  subject.replaceChildren();for(const [key,name] of Object.entries(VAULT_SUBJECTS))subject.add(new Option(name,key));
  updateVaultTopicOptions();
 }
@@ -2476,10 +2501,9 @@ function recordVaultResult(result){
 
 
 function fillQuickVaultBooks(){
- const select=$('quickVaultBook');if(!select)return;const old=select.value||vaultLastBookId;select.replaceChildren();
- if(!vaultBooks().length)select.add(new Option('Önce Zor Soru sekmesinden kaynak ekle',''));
- else for(const b of vaultBooks())select.add(new Option(vaultSubjectLabel(b.subject)+' · '+b.name,b.id));
- if(old&&[...select.options].some(o=>o.value===old))select.value=old;fillQuickVaultTopics();
+ const select=$('quickVaultBook');if(!select)return;const old=select.value||vaultLastBookId;
+ fillGroupedVaultBooks(select,old,'Önce Zor Soru sekmesinden kaynak ekle');
+ fillQuickVaultTopics();
 }
 function fillQuickVaultTopics(){
  const list=$('quickVaultTopicOptions');if(!list)return;list.replaceChildren();const bookId=$('quickVaultBook')?.value;
@@ -2542,10 +2566,8 @@ function teacherQuestionBook(q){return vaultBook(q?.bookId)}
 function teacherQuestionSubject(q){const linked=vaultQuestions().find(x=>x.id===q.vaultQuestionId);return linked?vaultQuestionSubject(linked):teacherQuestionBook(q)?.subject||''}
 function teacherQuestionLabel(q){const linked=vaultQuestions().find(x=>x.id===q.vaultQuestionId);if(linked)return vaultQuestionLabel(linked);const b=teacherQuestionBook(q);return (b?b.name:'Kaynak')+' · '+q.topic+' · s.'+(q.page||'—')+' / S.'+(q.questionNo||'—')}
 function renderTeacherBookOptions(){
- const select=$('teacherQuestionBook');if(!select)return;const old=select.value;select.replaceChildren();
- if(!vaultBooks().length)select.add(new Option('Önce Zor Soru bölümünden kaynak ekle',''));
- else for(const b of vaultBooks())select.add(new Option(vaultSubjectLabel(b.subject)+' · '+b.name,b.id));
- if(old&&[...select.options].some(o=>o.value===old))select.value=old;
+ const select=$('teacherQuestionBook');if(!select)return;const old=select.value;
+ fillGroupedVaultBooks(select,old,'Önce Zor Soru bölümünden kaynak ekle');
 }
 function addTeacherQuestion(event){
  event.preventDefault();if(COACH_MODE)return;
