@@ -114,7 +114,7 @@ button,input,select,textarea{font:inherit}button{min-height:44px;display:inline-
 <body>
 <main>
 <header class="appHeader"><div class="brand"><span class="brandMark" aria-hidden="true">🎮</span><div><div class="brandLine"><h1>YKS RPG</h1><span class="version">V3.58</span></div><p class="sub">Her gün biraz daha güçlü.</p></div></div><div class="headerBadges"><span class="pill" id="cloudPill">☁️ <span id="cloudStatus">Yerel</span></span><span class="pill" title="Boş gün bileti">🎟️ <span id="tickets">0</span></span><span class="pill" title="İndirim kuponu">🏷️ <span id="coupons">0</span></span></div></header>
-<section class="panel hero"><div class="heroHeading"><div><span class="overline">LEVEL / XP · KULLANILABİLİR BAKİYE</span><div class="big" id="balance">0 XP</div></div><div class="heroEmblem" aria-hidden="true">✦</div></div><div class="bar"><div id="progress"></div></div><div class="heroReward"><small id="next">Sonraki boş gün biletine 3.000 XP</small><span class="pill">🎟️ 3.000 XP</span></div><div class="stats heroStats"><div class="stat"><small>BU HAFTA</small><b id="weekly">0</b></div><div class="stat"><small>🔥 STREAK</small><b id="topStreak">0 gün</b></div><div class="stat"><small>BUGÜNKÜ RANK</small><b id="heroRank">D-Rank</b></div><div class="stat"><small>👹 BOSS POWER</small><b id="bossMini">0/100</b><div class="bar miniBoss"><div id="heroBossProgress"></div></div></div></div><div class="heroFooter"><button id="countdown" class="viewControl" type="button">🎯 YKS tarihini ayarla</button><div class="ledgerRow"><span>Toplam <b id="earned">0</b> XP</span><span>Harcanan <b id="spent">0</b> XP</span><span>En iyi seri <b id="bestStreak">0 gün</b></span></div></div></section>
+<section class="panel hero"><div class="heroHeading"><div><span class="overline">LEVEL / XP · KULLANILABİLİR BAKİYE</span><div class="big" id="balance">0 XP</div></div><div class="heroEmblem" aria-hidden="true">✦</div></div><div class="bar"><div id="progress"></div></div><div class="heroReward"><small id="next">Sonraki boş gün biletine 3.300 XP</small><span class="pill">🎟️ 3.300 XP</span></div><div class="stats heroStats"><div class="stat"><small>BU HAFTA</small><b id="weekly">0</b></div><div class="stat"><small>🔥 STREAK</small><b id="topStreak">0 gün</b></div><div class="stat"><small>BUGÜNKÜ RANK</small><b id="heroRank">D-Rank</b></div><div class="stat"><small>👹 BOSS POWER</small><b id="bossMini">0/100</b><div class="bar miniBoss"><div id="heroBossProgress"></div></div></div></div><div class="heroFooter"><button id="countdown" class="viewControl" type="button">🎯 YKS tarihini ayarla</button><div class="ledgerRow"><span>Toplam <b id="earned">0</b> XP</span><span>Harcanan <b id="spent">0</b> XP</span><span>En iyi seri <b id="bestStreak">0 gün</b></span></div></div></section>
 <nav class="tabs" role="tablist" aria-label="Uygulama bölümleri"><button id="nav-daily" data-tab="daily" role="tab" aria-controls="daily" aria-selected="true" class="active"><span class="navIcon" aria-hidden="true">📅</span>Günlük</button><button id="nav-lockInTab" data-tab="lockInTab" role="tab" aria-controls="lockInTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🔒</span>Odaklanma</button><button id="nav-rpg" data-tab="rpg" role="tab" aria-controls="rpg" aria-selected="false"><span class="navIcon" aria-hidden="true">⚔️</span>Gelişme</button><button id="nav-mockTab" data-tab="mockTab" role="tab" aria-controls="mockTab" aria-selected="false"><span class="navIcon" aria-hidden="true">📝</span>Denemeler</button><button id="nav-planTab" data-tab="planTab" role="tab" aria-controls="planTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🗓️</span>Plan</button><button id="nav-sleepTab" data-tab="sleepTab" role="tab" aria-controls="sleepTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🌙</span>Uyku</button><button id="nav-vaultTab" data-tab="vaultTab" role="tab" aria-controls="vaultTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🧠</span>Zor Soru</button><button id="nav-teacherTab" data-tab="teacherTab" role="tab" aria-controls="teacherTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🙋</span>Hocaya Sor</button><button id="nav-shopTab" data-tab="shopTab" role="tab" aria-controls="shopTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🛍️</span>Mağaza</button><button id="nav-backupTab" data-tab="backupTab" role="tab" aria-controls="backupTab" aria-selected="false"><span class="navIcon" aria-hidden="true">💾</span>Yedek</button></nav>
 
 <div id="daily" class="tab active" role="tabpanel" aria-labelledby="nav-daily">
@@ -153,7 +153,7 @@ button,input,select,textarea{font:inherit}button{min-height:44px;display:inline-
 </div>
 
 <div id="shopTab" class="tab" role="tabpanel" aria-labelledby="nav-shopTab"><div class="sectionIntro"><span class="overline">EMEĞİNİ ÖDÜLLENDİR</span><h2>🛍️ Ödül mağazası</h2><p>Biriktirdiğin XP ile kendine küçük molalar ve yeni hedefler aç.</p></div>
-<section class="panel"><div class="top"><h2>🛍️ Ödül Dükkânı</h2><span class="pill">🏷️ Kupon: <span id="couponShop">0</span></span></div><p class="notice">Ödül aldığında XP gerçekten bakiyenden düşer. Kupon varsa uygun ödülde −250 XP kullanmayı seçebilirsin.</p><div id="rewardShop"></div><div class="divider"></div><div class="actions"><button id="buy" class="primary">🎟️ 3.000 XP → Pazartesi Boş Gün Bileti</button><button id="refund">Son kullanılmamış bileti iade et</button><button id="undoReward">Son mağaza alışını geri al</button></div><p id="shopnote" class="notice"></p></section>
+<section class="panel"><div class="top"><h2>🛍️ Ödül Dükkânı</h2><span class="pill">🏷️ Kupon: <span id="couponShop">0</span></span></div><p class="notice">Ödül aldığında XP gerçekten bakiyenden düşer. Kupon varsa uygun ödülde −250 XP kullanmayı seçebilirsin.</p><div id="rewardShop"></div><div class="divider"></div><div class="actions"><button id="buy" class="primary">🎟️ 3.300 XP → Pazartesi Boş Gün Bileti</button><button id="refund">Son kullanılmamış bileti iade et</button><button id="undoReward">Son mağaza alışını geri al</button></div><p id="shopnote" class="notice"></p></section>
 <section class="panel"><h2>💎 30 Gün Streak Büyük Ödülü</h2><p id="streakStatus"></p><p class="notice">XP ile satın alınmaz. En iyi streak'in 30 güne ulaştığında kalıcı olarak açılmış sayılır.</p></section>
 </div>
 
@@ -479,7 +479,7 @@ button,input,select,textarea{font:inherit}button{min-height:44px;display:inline-
 <script>
 'use strict';
 const FLOW_START='2026-10-14',PLAN_ONLY_START='2026-11-05';
-const START='2026-09-28',PRICE=3000,KEY='yks-xp-final-v1',APP='yks-rpg-v3-coach-sync';
+const START='2026-09-28',LEGACY_PRICE=3000,PRICE=3300,KEY='yks-xp-final-v1',APP='yks-rpg-v3-coach-sync';
 const SUPABASE_URL='https://slyanyoxykuhqebjglkh.supabase.co';
 const SUPABASE_KEY='sb_publishable_kXs1WBuLiQtb5v_YY-zXzw_S6ILkc95';
 const CLOUD_TOKEN_KEY='yks-rpg-owner-token-v1';
@@ -489,7 +489,8 @@ const sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY);
 let ownerToken=localStorage.getItem(CLOUD_TOKEN_KEY)||'';
 let cloudTimer=null,cloudBusy=false,lastCloudSavedAt=null,suppressCloud=false;
 const DAY=['Pazartesi','Salı','Çarşamba','Perşembe','Cuma','Cumartesi','Pazar'];
-const REWARDS={special:{name:'Special',price:1000,coupon:false},gaming:{name:'🎮 Tam oyun gecesi',price:1500,coupon:true},friends:{name:'🧑‍🤝‍🧑 Arkadaşlarla uzun akşam',price:1750,coupon:true},shield:{name:'🛡️ Streak Koruyucu',price:2000,coupon:false}};
+const LEGACY_REWARD_PRICES={special:1000,gaming:1500,friends:1750,shield:2000};
+const REWARDS={special:{name:'Special',price:1100,coupon:false},gaming:{name:'🎮 Tam oyun gecesi',price:1650,coupon:true},friends:{name:'🧑‍🤝‍🧑 Arkadaşlarla uzun akşam',price:1900,coupon:true},shield:{name:'🛡️ Streak Koruyucu',price:2200,coupon:false}};
 const T={
  dailyAnalysis:['Analiz',100,'Zor soruları, yanlışları, boşları ve zaman kaybettiren soruları sistemli biçimde analiz et.'],
  paragraph:['Paragraf soru çözümü',40,'Paragraf soruları çöz.'],
@@ -561,7 +562,7 @@ function taskDisplayName(day,slot){const occ=planSlotOccurrence(day,slot),name=t
 // Keep the historical plan and task IDs intact; the new plan applies only from FLOW_START.
 const STUDY_PLAN=PLAN.map(keys=>keys.filter(k=>k!=='tyt'&&k!=='r1'&&k!=='r2'&&!ANALYSIS_KEYS.includes(k)));
 const SKILLS={geo:{name:'📐 Geometri',sources:{geo:120,anGeo:60,aytGeo:125}},physics:{name:'⚛️ Fizik',sources:{physics:110,anPhysics:60,aytPhysics:115}},chem:{name:'🧪 Kimya',sources:{chem:100,anChem:60,aytChem:100}},bio:{name:'🧬 Biyoloji',sources:{bio:90,anBio:60,aytBio:90}},problem:{name:'🧩 Problem',sources:{r1:60,r2:60,anProblem:60,problem:60}},paragraph:{name:'📖 Paragraf',sources:{paragraph:40}},mat:{name:'🔢 Matematik',sources:{mat:120,anMath:90,mathStudy:100,aytMath:120}},tr:{name:'📝 Türkçe',sources:{tr:80,turkishStudy:85}},grammar:{name:'✍️ Dil Bilgisi',sources:{grammar:90,anGrammar:40}},geoTYT:{name:'🌍 TYT Coğrafya',sources:{geoTYT:80,anGeoTYT:40}},hist:{name:'📜 TYT Tarih',sources:{hist:80,anHist:40}}};
-function emptyState(){return {checks:{},rests:{},purchases:0,refunds:0,spentRests:0,rewardBuys:[],shieldUses:{},chestClaims:{},checkins:{},claimedAchievements:{},coupons:0,streakRewardUnlocked:false,swaps:{},mockExams:[],settings:{examDate:""},weekPlans:{},planNotes:{},questionVault:{books:[],questions:[]},teacherQuestions:[],studyTimer:{running:null,sessions:[],breaks:[],breakRunning:null},sleepTracking:{nights:{},routines:{},wakePresses:{}},lockIn:{days:{}},xpReset:{earned:0,spent:0}}}
+function emptyState(){return {checks:{},rests:{},purchases:0,refunds:0,spentRests:0,ticketEconomy:null,rewardBuys:[],shieldUses:{},chestClaims:{},checkins:{},claimedAchievements:{},coupons:0,streakRewardUnlocked:false,swaps:{},mockExams:[],settings:{examDate:""},weekPlans:{},planNotes:{},questionVault:{books:[],questions:[]},teacherQuestions:[],studyTimer:{running:null,sessions:[],breaks:[],breakRunning:null},sleepTracking:{nights:{},routines:{},wakePresses:{}},lockIn:{days:{}},xpReset:{earned:0,spent:0}}}
 let state=emptyState();
 let selected=START,week=START,checkinLoad=0,checkinSat=0,modalLoad=0,modalSat=0;
 const $=id=>document.getElementById(id);
@@ -664,7 +665,7 @@ function normalizeRemoteState(st){
  if(!st||typeof st!=='object')return null;
  return {
   checks:st.checks||{},rests:st.rests||{},purchases:Number(st.purchases)||0,refunds:Number(st.refunds)||0,
-  spentRests:Number(st.spentRests)||0,rewardBuys:(st.rewardBuys||[]).map(x=>typeof x==='string'?{type:x,date:'',price:REWARDS[x]?.price||0,couponUsed:false}:{...x,price:Number(x.price)||REWARDS[x.type]?.price||0,couponUsed:!!x.couponUsed}),
+  spentRests:Number(st.spentRests)||0,ticketEconomy:normalizeTicketEconomy(st.ticketEconomy,Number(st.purchases)||0,Number(st.refunds)||0),rewardBuys:(st.rewardBuys||[]).map(x=>typeof x==='string'?{type:x,date:'',price:LEGACY_REWARD_PRICES[x]||0,couponUsed:false}:{...x,price:Number(x.price)||LEGACY_REWARD_PRICES[x.type]||0,couponUsed:!!x.couponUsed}),
   shieldUses:st.shieldUses||{},chestClaims:st.chestClaims||{},checkins:st.checkins||{},claimedAchievements:st.claimedAchievements||{},
   coupons:Math.min(1,Math.max(0,Number(st.coupons)||0)),streakRewardUnlocked:!!st.streakRewardUnlocked,
   swaps:st.swaps&&typeof st.swaps==='object'&&!Array.isArray(st.swaps)?st.swaps:{},
@@ -771,7 +772,30 @@ async function coachLink(){const token=await deriveCoachToken();return location.
 
 function datesBetween(a,b){let out=[];for(let s=a;s<=b;s=add(s,1))out.push(s);return out}
 function trackedDates(end=today()){if(end<START)return[];return datesBetween(START,end)}
-function rewardSpent(){return state.rewardBuys.reduce((a,x)=>a+(Number(x.price)||REWARDS[x.type]?.price||0),0)}
+
+function normalizeTicketEconomy(raw,purchases,refunds){
+ if(!raw||typeof raw!=='object'||!Number.isInteger(raw.oldPurchases)||!Number.isInteger(raw.oldRefunds)||!Array.isArray(raw.events))return null;
+ const oldPurchases=Math.max(0,raw.oldPurchases),oldRefunds=Math.max(0,raw.oldRefunds);
+ const events=raw.events.filter(x=>x&&['buy','refund'].includes(x.type)&&[LEGACY_PRICE,PRICE].includes(x.price)).map(x=>({type:x.type,price:x.price}));
+ if(oldPurchases+events.filter(e=>e.type==='buy').length!==purchases||oldRefunds+events.filter(e=>e.type==='refund').length!==refunds)return null;
+ return {oldPurchases,oldRefunds,events};
+}
+function ensureTicketEconomy(){
+ if(!state.ticketEconomy)state.ticketEconomy={oldPurchases:state.purchases,oldRefunds:state.refunds,events:[]};
+ return state.ticketEconomy;
+}
+function ticketSpend(){
+ const e=state.ticketEconomy;
+ if(!e)return (state.purchases-state.refunds)*LEGACY_PRICE;
+ return (e.oldPurchases-e.oldRefunds)*LEGACY_PRICE+e.events.reduce((n,x)=>n+(x.type==='buy'?x.price:-x.price),0);
+}
+function refundableTicketPrice(){
+ const e=state.ticketEconomy;
+ if(!e)return LEGACY_PRICE;
+ const newerOutstanding=e.events.reduce((n,x)=>n+(x.type==='buy'?1:-1),0);
+ return newerOutstanding>0?PRICE:LEGACY_PRICE;
+}
+function rewardSpent(){return state.rewardBuys.reduce((a,x)=>a+(Number(x.price)||LEGACY_REWARD_PRICES[x.type]||0),0)}
 function tickets(){return state.purchases-state.refunds-state.spentRests}
 function shieldInventory(){return state.rewardBuys.filter(x=>x.type==='shield').length-Object.values(state.shieldUses).filter(Boolean).length}
 function baseEarned(){return recordedDays().reduce((n,s)=>n+completedStudies(s).reduce((sum,x)=>sum+x.xp,0),0)}
@@ -782,10 +806,10 @@ function chestXP(){return Object.values(state.chestClaims).reduce((a,x)=>a+(Numb
 function finalizePendingXpReset(){
  if(COACH_MODE||!state.xpReset?.pending)return;
  const base=baseEarned(),s=sRankDates().length,pw=perfectWeekCount(),cb=comebackDates().length,ch=chestXP(),li=lockInTotals();
- state.xpReset={earned:base+s*50+pw*250+cb*50+ch+li.reward+sleepXpTotals().total,spent:(state.purchases-state.refunds)*PRICE+rewardSpent()+li.penalty,pending:false};
+ state.xpReset={earned:base+s*50+pw*250+cb*50+ch+li.reward+sleepXpTotals().total,spent:ticketSpend()+rewardSpent()+li.penalty,pending:false};
  save();
 }
-function totals(){let base=baseEarned(),s=sRankDates().length,pw=perfectWeekCount(),cb=comebackDates().length,ch=chestXP();let li=lockInTotals(),earned=base+s*50+pw*250+cb*50+ch+li.reward+sleepXpTotals().total;let spent=(state.purchases-state.refunds)*PRICE+rewardSpent()+li.penalty;const reset=state.xpReset||{earned:0,spent:0};return {base,s,pw,cb,ch,earned:earned-reset.earned,spent:spent-reset.spent,balance:(earned-spent)-(reset.earned-reset.spent)}}
+function totals(){let base=baseEarned(),s=sRankDates().length,pw=perfectWeekCount(),cb=comebackDates().length,ch=chestXP();let li=lockInTotals(),earned=base+s*50+pw*250+cb*50+ch+li.reward+sleepXpTotals().total;let spent=ticketSpend()+rewardSpent()+li.penalty;const reset=state.xpReset||{earned:0,spent:0};return {base,s,pw,cb,ch,earned:earned-reset.earned,spent:spent-reset.spent,balance:(earned-spent)-(reset.earned-reset.spent)}}
 function weekCore(w){let p=0,completed=0,total=0;for(let i=0;i<7;i++){let s=add(w,i),planned=isRest(s)?tasks(s).filter(k=>planSlotBase(k)==='tyt'):tasks(s);for(let k of planned){total++;if(isDone(s,k))completed++}p+=completedStudies(s).reduce((sum,x)=>sum+x.xp,0);if(dayRank(s)==='S')p+=50}if(weekAll(w)&&add(w,6)<=today())p+=250;let cb=comebackDates().filter(s=>monday(s)===w).length;p+=cb*50;let chest=state.chestClaims[w]?.reward||0;p+=chest+lockInTotals(w,add(w,6)).net+sleepXpTotals(w,add(w,6)).total;return {p,completed,total,cb,chest}}
 function rankClass(r){return r==='REST'?'':`rank${r}`}
 function analysisXPInRange(a,b){let n=0;for(let s=a;s<=b;s=add(s,1)){if(isRest(s))continue;for(let k of ANALYSIS_KEYS)if(tasks(s).includes(k)&&isDone(s,k))n+=xpFor(s,k)}return n}
@@ -1180,8 +1204,8 @@ $('undoRest').onclick=()=>{if(COACH_MODE)return;if(!isRest(selected))return;if(c
 $('useShield').onclick=()=>{if(COACH_MODE)return;if(shieldInventory()<1||selected>today()||isRest(selected)||protectedDay(selected)||rankValue(dayRank(selected))>=rankValue('B'))return;if(confirm(`${fmt(selected)} günü Streak Koruyucu ile korunsun mu? Günün XP'si ve Rank'ı değişmez; yalnızca streak kırılmaz.`)){state.shieldUses[selected]=true;save();render()}};
 $('undoShield').onclick=()=>{if(COACH_MODE)return;if(!protectedDay(selected))return;if(confirm('Bu gündeki Streak Koruyucu geri alınsın mı?')){delete state.shieldUses[selected];save();render()}};
 $('claimChest').onclick=claimChest;
-$('buy').onclick=()=>{if(COACH_MODE)return;if(totals().balance<PRICE)return;if(confirm('3.000 XP harcayıp 1 Pazartesi Boş Gün Bileti almak istiyor musun?')){state.purchases++;save();render()}};
-$('refund').onclick=()=>{if(COACH_MODE)return;if(state.purchases<=state.refunds+state.spentRests)return;if(confirm('Son kullanılmamış bilet alışını iptal edip 3.000 XP iade edilsin mi?')){state.refunds++;save();render()}};
+$('buy').onclick=()=>{if(COACH_MODE)return;if(totals().balance<PRICE)return;if(confirm(PRICE.toLocaleString('tr-TR')+' XP harcayıp 1 Pazartesi Boş Gün Bileti almak istiyor musun?')){ensureTicketEconomy().events.push({type:'buy',price:PRICE});state.purchases++;save();render()}};
+$('refund').onclick=()=>{if(COACH_MODE)return;if(state.purchases<=state.refunds+state.spentRests)return;const refundPrice=refundableTicketPrice();if(confirm('Son kullanılmamış bilet alışını iptal edip '+refundPrice.toLocaleString('tr-TR')+' XP iade edilsin mi?')){ensureTicketEconomy().events.push({type:'refund',price:refundPrice});state.refunds++;save();render()}};
 $('undoReward').onclick=()=>{if(COACH_MODE)return;let x=state.rewardBuys[state.rewardBuys.length-1];if(!x)return;if(x.type==='shield'&&Object.values(state.shieldUses).filter(Boolean).length>=state.rewardBuys.filter(y=>y.type==='shield').length){alert('Son Streak Koruyucu kullanılmış durumda. Önce bir gündeki korumayı kaldır.');return}if(confirm(`Son mağaza alışın (${REWARDS[x.type]?.name||x.type}) iptal edilip ${Number(x.price||0).toLocaleString('tr-TR')} XP iade edilsin mi?`)){state.rewardBuys.pop();if(x.couponUsed)state.coupons=1;save();render()}};
 $('saveCheckin').onclick=()=>{if(saveSelectedCheckin(checkinLoad,checkinSat,$('checkinNote').value)){render();alert('🌙 Check-in kaydedildi.')}};
 $('clearCheckin').onclick=()=>{if(COACH_MODE)return;if(state.checkins[selected]&&confirm('Bu günün check-in kaydı silinsin mi?')){delete state.checkins[selected];save();render()}};
