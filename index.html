@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#0e1220">
-<title>YKS RPG V3.62</title>
+<title>YKS RPG V3.63</title>
 <style>
 :root{
  color-scheme:dark;--bg:#0c1019;--surface:#141b28;--surface-raised:#1b2535;--surface-soft:#101722;--border:#2a3547;--text:#edf2fa;--muted:#98a7bc;--accent:#84cbb8;--success:#84cbb8;--warning:#e9be76;--danger:#ef9c9d;--gold:#e9be76;--violet:#b5a1e5;
@@ -113,7 +113,7 @@ button,input,select,textarea{font:inherit}button{min-height:44px;display:inline-
 </head>
 <body>
 <main>
-<header class="appHeader"><div class="brand"><span class="brandMark" aria-hidden="true">🎮</span><div><div class="brandLine"><h1>YKS RPG</h1><span class="version">V3.62</span></div><p class="sub">Her gün biraz daha güçlü.</p></div></div><div class="headerBadges"><span class="pill" id="cloudPill">☁️ <span id="cloudStatus">Yerel</span></span><span class="pill" title="Boş gün bileti">🎟️ <span id="tickets">0</span></span><span class="pill" title="İndirim kuponu">🏷️ <span id="coupons">0</span></span></div></header>
+<header class="appHeader"><div class="brand"><span class="brandMark" aria-hidden="true">🎮</span><div><div class="brandLine"><h1>YKS RPG</h1><span class="version">V3.63</span></div><p class="sub">Her gün biraz daha güçlü.</p></div></div><div class="headerBadges"><span class="pill" id="cloudPill">☁️ <span id="cloudStatus">Yerel</span></span><span class="pill" title="Boş gün bileti">🎟️ <span id="tickets">0</span></span><span class="pill" title="İndirim kuponu">🏷️ <span id="coupons">0</span></span></div></header>
 <section class="panel hero"><div class="heroHeading"><div><span class="overline">LEVEL / XP · KULLANILABİLİR BAKİYE</span><div class="big" id="balance">0 XP</div></div><div class="heroEmblem" aria-hidden="true">✦</div></div><div class="bar"><div id="progress"></div></div><div class="heroReward"><small id="next">Sonraki tam boş gün biletine 5.000 XP</small><span class="pill">🎟️ 5.000 XP</span></div><div class="stats heroStats"><div class="stat"><small>BU HAFTA</small><b id="weekly">0</b></div><div class="stat"><small>🔥 STREAK</small><b id="topStreak">0 gün</b></div><div class="stat"><small>BUGÜNKÜ RANK</small><b id="heroRank">D-Rank</b></div><div class="stat"><small>👹 BOSS POWER</small><b id="bossMini">0/100</b><div class="bar miniBoss"><div id="heroBossProgress"></div></div></div></div><div class="heroFooter"><button id="countdown" class="viewControl" type="button">🎯 YKS tarihini ayarla</button><div class="ledgerRow"><span>Toplam <b id="earned">0</b> XP</span><span>Harcanan <b id="spent">0</b> XP</span><span>En iyi seri <b id="bestStreak">0 gün</b></span></div></div></section>
 <nav class="tabs" role="tablist" aria-label="Uygulama bölümleri"><button id="nav-daily" data-tab="daily" role="tab" aria-controls="daily" aria-selected="true" class="active"><span class="navIcon" aria-hidden="true">📅</span>Günlük</button><button id="nav-lockInTab" data-tab="lockInTab" role="tab" aria-controls="lockInTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🔒</span>Odaklanma</button><button id="nav-rpg" data-tab="rpg" role="tab" aria-controls="rpg" aria-selected="false"><span class="navIcon" aria-hidden="true">⚔️</span>Gelişme</button><button id="nav-mockTab" data-tab="mockTab" role="tab" aria-controls="mockTab" aria-selected="false"><span class="navIcon" aria-hidden="true">📝</span>Denemeler</button><button id="nav-planTab" data-tab="planTab" role="tab" aria-controls="planTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🗓️</span>Plan</button><button id="nav-sleepTab" data-tab="sleepTab" role="tab" aria-controls="sleepTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🌙</span>Uyku</button><button id="nav-vaultTab" data-tab="vaultTab" role="tab" aria-controls="vaultTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🧠</span>Zor Soru</button><button id="nav-teacherTab" data-tab="teacherTab" role="tab" aria-controls="teacherTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🙋</span>Hocaya Sor</button><button id="nav-shopTab" data-tab="shopTab" role="tab" aria-controls="shopTab" aria-selected="false"><span class="navIcon" aria-hidden="true">🛍️</span>Mağaza</button><button id="nav-backupTab" data-tab="backupTab" role="tab" aria-controls="backupTab" aria-selected="false"><span class="navIcon" aria-hidden="true">💾</span>Yedek</button></nav>
 
@@ -321,7 +321,7 @@ button,input,select,textarea{font:inherit}button{min-height:44px;display:inline-
  </section>
  <section class="panel">
   <h2>🌅 Sabah rutini · 6 XP</h2><p id="sleepMorningDateLabel" class="sleepNotice"></p>
-  <p class="sleepNotice">Pzt / Çrş / Cum: ibadet ve egzersiz. Sal / Per / Cmt / Paz: hijyen ve 07.45'te evde derse başlama. Her görev 3 XP.</p>
+  <p class="sleepNotice">Her gün aynı rutin: sabah hijyenini tamamla ve 07.45 civarı evde derse otur. Her görev 3 XP, toplam 6 XP.</p>
   <div id="sleepMorningRoutines" class="sleepRoutines"></div>
  </section>
  <section class="panel">
@@ -2666,9 +2666,8 @@ function initQuestionVault(){
 
 const SLEEP_START='2026-11-28',SLEEP_WAKE_TARGET=450;
 const NIGHT_ROUTINE=[['prep','🎒 Hazırlık','Yarının çanta, kıyafet ve ders planını hazırladım.',2],['hygiene','🪥 Hijyen','Gece kişisel bakımımı yaptım.',2],['worship','🌙 İbadet','Kendi ibadet düzenimi tamamladım.',2]];
-const MORNING_MWF=[['worship','🕌 İbadet','Vaktine göre ibadetimi tamamladım.',3],['exercise','💪 Egzersiz','Dead hang ve kısa hareketimi yaptım.',3]];
-const MORNING_OTHER=[['hygiene','🪥 Hijyen','Sabah kişisel bakımımı yaptım.',3],['study','📚 Derse oturdum','07.45 civarı evde çalışmaya başladım.',3]];
-function sleepMorningSet(day){return [0,2,4].includes(idx(day))?MORNING_MWF:MORNING_OTHER}
+const MORNING_EVERY_DAY=[['hygiene','🪥 Hijyen','Sabah kişisel bakımımı yaptım.',3],['study','📚 Derse oturdum','07.45 civarı evde çalışmaya başladım.',3]];
+function sleepMorningSet(day){return MORNING_EVERY_DAY}
 function sleepAllowed(day,night=false){return validDay(day)&&day>=SLEEP_START&&day>=add(today(),-2)&&day<=add(today(),night?1:0)}
 function sleepClockMinutes(value){if(typeof value!=='string'||!/^([01]\d|2[0-3]):[0-5]\d$/.test(value))return null;const p=value.split(':').map(Number);return p[0]*60+p[1]}
 function sleepDurationMinutes(bedtime,wakeTime){const b=sleepClockMinutes(bedtime),w=sleepClockMinutes(wakeTime);return b===null||w===null?null:(w-b+1440)%1440}
@@ -2752,7 +2751,7 @@ function renderSleepRoutines(){
  nightInput.min=add(today(),-2);nightInput.max=add(today(),1);
  const nightDay=nightInput.value,morningDay=$('sleepWakeDate').value;
  $('sleepNightDateLabel').textContent=validDay(nightDay)?fmt(nightDay)+' sabahına hazırlık':'';
- $('sleepMorningDateLabel').textContent=validDay(morningDay)?fmt(morningDay)+' · '+([0,2,4].includes(idx(morningDay))?'İbadet ve egzersiz':'Hijyen ve derse başlama'):'';
+ $('sleepMorningDateLabel').textContent=validDay(morningDay)?fmt(morningDay)+' · Hijyen ve derse başlama':'';
  for(const item of [{id:'sleepNightRoutines',day:nightDay,phase:'night',rules:NIGHT_ROUTINE},{id:'sleepMorningRoutines',day:morningDay,phase:'morning',rules:validDay(morningDay)?sleepMorningSet(morningDay):[]}]){
   const wrap=$(item.id);wrap.replaceChildren();const stored=state.sleepTracking?.routines?.[item.day]?.[item.phase]||{};
   for(const [key,name,detail,xp] of item.rules){
